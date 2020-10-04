@@ -30,8 +30,8 @@ namespace MERG_PSI
 
         private string Title { get; set; }
         private string Url { get; set; }
-        private string siteUrl = "https://www.oceannetworks.ca/news/stories";
-        public string[] QueryTerms { get; } = { "Ocean", "Nature", "Pollution" };
+        private string siteUrl = "https://www.kampas.lt";
+        public string[] QueryTerms { get; } = { "Vilnius" };
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -63,7 +63,7 @@ namespace MERG_PSI
             foreach (var term in QueryTerms)
             {
                 articleLink = document.All.Where(x =>
-                    x.ClassName == "views-field views-field-nothing" &&
+                    x.ClassName == "card-link text-content" &&
                     (x.ParentElement.InnerHtml.Contains(term) || x.ParentElement.InnerHtml.Contains(term.ToLower()))).Skip(1);
 
                 //Overwriting articleLink above means we have to print it's result for all QueryTerms
@@ -81,6 +81,7 @@ namespace MERG_PSI
             foreach (var element in articleLink)
             {
                 richTextBox2.AppendText(element.InnerHtml);
+                richTextBox2.AppendText("\n\n*\n*\n*\n");
                 CleanUpResults(element);
 
                 richTextBox1.AppendText($"{Title} - {Url}{Environment.NewLine}");
