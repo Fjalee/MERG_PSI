@@ -70,7 +70,7 @@ namespace MERG_PSI
                     //x.ClassName == "k-ad-card-wide" &&
                     x.ClassName != null &&
                     x.ClassName.Contains("k-ad-card-wide") &&
-                    (x.ClassName.InnerHtml.Contains(term) || x.ClassName.InnerHtml.Contains(term.ToLower()))).Skip(1);
+                    (x.ParentElement.InnerHtml.Contains(term) || x.ParentElement.InnerHtml.Contains(term.ToLower()))).Skip(1);
                     
                 //Overwriting articleLink above means we have to print it's result for all QueryTerms
                 //Appending to a pre-declared IEnumerable (like a List), could mean taking this out of the main loop.
