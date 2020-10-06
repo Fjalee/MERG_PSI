@@ -62,14 +62,16 @@ namespace MERG_PSI
 
             foreach (var term in QueryTerms)
             {
-
-
+                //fix below
+                
                 articleLink = document.All.Where(x =>
                     //x.ClassName == "small-line" &&
-                    x.ClassName == "card-link text-content" &&
-                    (x.ParentElement.InnerHtml.Contains(term) || x.ParentElement.InnerHtml.Contains(term.ToLower()))).Skip(1);
-
-               
+                    //j = x.ParentElement.InnerHtml;
+                    //x.ClassName == "k-ad-card-wide" &&
+                    x.ClassName != null &&
+                    x.ClassName.Contains("k-ad-card-wide") &&
+                    (x.ClassName.InnerHtml.Contains(term) || x.ClassName.InnerHtml.Contains(term.ToLower()))).Skip(1);
+                    
                 //Overwriting articleLink above means we have to print it's result for all QueryTerms
                 //Appending to a pre-declared IEnumerable (like a List), could mean taking this out of the main loop.
                 if (articleLink.Any())
@@ -84,6 +86,9 @@ namespace MERG_PSI
             //Every element needs to be cleaned and displayed
             foreach (var element in articleLink)
             {
+                richTextBox1.AppendText(element.ParentElement.InnerHtml);
+                richTextBox1.AppendText("\n\n*\n*\n*\n");
+
                 richTextBox2.AppendText(element.InnerHtml);
                 richTextBox2.AppendText("\n\n*\n*\n*\n");
 
@@ -94,20 +99,31 @@ namespace MERG_PSI
 
         private void CleanUpResults(IElement result)
         {
-            string htmlResult = result.InnerHtml.ReplaceFirst("<p class=\"small-line\">\n", "");
-            htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"first-line\">\n", "");
-            htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"second-line\">\n", "");
-            htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"third-line line-bold\">\n", "");
+            var urlSubDirIdentifier = "<a href=\"";
+            var indexUrlSubDirStart = (result.InnerHtml.IndexOf(urlSubDirIdentifier)) + urlSubDirIdentifier.Length;
+            var urlSubDirEndNotParsed = result.InnerHtml.Substring(indexUrlSubDirStart);
+            var indexUrlSubDirEnd = urlSubDirEndNotParsed.IndexOf("\"");
+            var urlSubDir = urlSubDirEndNotParsed.Substring(0, indexUrlSubDirEnd);
 
-            richTextBox3.AppendText(htmlResult);
+            var domain = "https://www.kampas.lt";
+            var url = domain + urlSubDir;
+
+
+            //string htmlResult = result.InnerHtml.ReplaceFirst("<p class=\"small-line\">\n", "");
+            //htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"first-line\">\n", "");
+            //htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"second-line\">\n", "");
+            //htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"third-line line-bold\">\n", "");
+
+            richTextBox3.AppendText(url);
+            richTextBox3.AppendText("\n\n*\n*\n*\n");
             //String[] spearator = { "<!----></p> <div class" }; 
             //fix String[] tempArray = htmlResult.Split(spearator, 1, StringSplitOptions.RemoveEmptyEntries);
-            string[] separatingStrings = { "<!---->" };
-            string[] tempArray = htmlResult.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-            htmlResult = tempArray[0];
+            //string[] separatingStrings = { "<!---->" };
+            //string[] tempArray = htmlResult.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
+            //htmlResult = tempArray[0];
 
-            richTextBox1.AppendText(htmlResult);
-            richTextBox1.AppendText("\n\n*\n*\n*\n");
+            //richTextBox1.AppendText(htmlResult);
+            //richTextBox1.AppendText("\n\n*\n*\n*\n");
             //Seperate the results into our class fields for use in PrintResults()
             //SplitResults(htmlResult);
         }
