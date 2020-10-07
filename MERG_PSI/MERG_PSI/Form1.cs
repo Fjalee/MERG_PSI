@@ -11,10 +11,7 @@ using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using AngleSharp.Text;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Windows;
@@ -22,7 +19,7 @@ using System.Windows;
 namespace MERG_PSI{
     public partial class Form1 : Form{
         private List<string> tempList = new List<string>();
-        WebScraper ws = new WebScraper();
+        WebScraper ws = new WebScraper("https://www.kampas.lt", "k-ad-card-wide");
 
         public Form1()
         {

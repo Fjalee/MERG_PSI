@@ -11,24 +11,26 @@ using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using AngleSharp.Text;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Windows;
 
 namespace MERG_PSI {
     class WebScraper {
-        private string siteUrl = "https://www.kampas.lt";
-        private List<string> links = new List<string>();
 
-        public WebScraper() {
-            ScrapeWebsite();
+        private string siteUrl;
+        private List<string> links = new List<string>();
+        private string className;
+
+        public WebScraper(string siteUrl, string className) {
+            this.siteUrl = siteUrl;
+            this.className = className;
+
+            getLinks();
         }
 
-        internal async void ScrapeWebsite() {
+        private async void getLinks() {
             CancellationTokenSource cancellationToken = new CancellationTokenSource();
             HttpClient httpClient = new HttpClient();
 
@@ -41,29 +43,28 @@ namespace MERG_PSI {
             HtmlParser parser = new HtmlParser();
             IHtmlDocument document = parser.ParseDocument(response);
 
-            GetScrapeResults(document);
-        }
-
-        private void GetScrapeResults(IHtmlDocument document) {
-            IEnumerable<IElement> articleLink = null;
-
-            articleLink = document.All.Where(x =>
-                x.ClassName != null &&
-                x.ClassName.Contains("k-ad-card-wide"));
-
-            if(articleLink.Any()) { PrintResults(articleLink); }
-        }
-
-        public void PrintResults(IEnumerable<IElement> articleLink) {
-            foreach(var element in articleLink) {
-                links.Add(CleanUpResults(element));
+            IEnumerable<IElement> adCardHtml = getAdCardHtml(document);
+            if(adCardHtml.Any()) { 
+                foreach(var element in adCardHtml) {
+                    links.Add(parseLink(element.InnerHtml));
+                }
             }
         }
 
-        private string CleanUpResults(IElement result) {
+        private IEnumerable<IElement> getAdCardHtml(IHtmlDocument document) {
+            IEnumerable<IElement> adCardHtml = null;
+
+            adCardHtml = document.All.Where(x =>
+                x.ClassName != null &&
+                x.ClassName.Contains(className));
+
+            return adCardHtml;
+        }
+
+        private string parseLink(string cardHtml) {
             var urlSubDirIdentifier = "<a href=\"";
-            var indexUrlSubDirStart = (result.InnerHtml.IndexOf(urlSubDirIdentifier)) + urlSubDirIdentifier.Length;
-            var urlSubDirEndNotParsed = result.InnerHtml.Substring(indexUrlSubDirStart);
+            var indexUrlSubDirStart = (cardHtml.IndexOf(urlSubDirIdentifier)) + urlSubDirIdentifier.Length;
+            var urlSubDirEndNotParsed = cardHtml.Substring(indexUrlSubDirStart);
             var indexUrlSubDirEnd = urlSubDirEndNotParsed.IndexOf("\"");
             var urlSubDir = urlSubDirEndNotParsed.Substring(0, indexUrlSubDirEnd);
 
@@ -76,19 +77,3 @@ namespace MERG_PSI {
         }
     }
 }
-
-//string htmlResult = result.InnerHtml.ReplaceFirst("<p class=\"small-line\">\n", "");
-//htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"first-line\">\n", "");
-//htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"second-line\">\n", "");
-//htmlResult = htmlResult.ReplaceFirst("</p> <p class=\"third-line line-bold\">\n", "");
-
-//String[] spearator = { "<!----></p> <div class" }; 
-//fix String[] tempArray = htmlResult.Split(spearator, 1, StringSplitOptions.RemoveEmptyEntries);
-//string[] separatingStrings = { "<!---->" };
-//string[] tempArray = htmlResult.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-//htmlResult = tempArray[0];
-
-//richTextBox1.AppendText(htmlResult);
-//richTextBox1.AppendText("\n\n*\n*\n*\n");
-//Seperate the results into our class fields for use in PrintResults()
-//SplitResults(htmlResult);*/
