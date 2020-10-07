@@ -19,18 +19,15 @@ using System.Windows;
 namespace MERG_PSI {
     class WebScraper {
 
-        private string siteUrl;
         private List<string> links = new List<string>();
-        private string className;
 
         public WebScraper(string siteUrl, string className) {
-            this.siteUrl = siteUrl;
-            this.className = className;
+            getLinks(siteUrl, className);
 
-            getLinks();
+            //getLinks(siteUrlWithPage, className);
         }
 
-        private async void getLinks() {
+        private async void getLinks(string siteUrl, string className) {
             CancellationTokenSource cancellationToken = new CancellationTokenSource();
             HttpClient httpClient = new HttpClient();
 
@@ -43,15 +40,15 @@ namespace MERG_PSI {
             HtmlParser parser = new HtmlParser();
             IHtmlDocument document = parser.ParseDocument(response);
 
-            IEnumerable<IElement> adCardHtml = getAdCardHtml(document);
+            IEnumerable<IElement> adCardHtml = getAdCardHtml(document, className);
             if(adCardHtml.Any()) { 
                 foreach(var element in adCardHtml) {
-                    links.Add(parseLink(element.InnerHtml));
+                    links.Add(parseLink(element.InnerHtml, siteUrl));
                 }
             }
         }
 
-        private IEnumerable<IElement> getAdCardHtml(IHtmlDocument document) {
+        private IEnumerable<IElement> getAdCardHtml(IHtmlDocument document, string className) {
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
@@ -61,7 +58,7 @@ namespace MERG_PSI {
             return adCardHtml;
         }
 
-        private string parseLink(string cardHtml) {
+        private string parseLink(string cardHtml, string siteUrl) {
             var urlSubDirIdentifier = "<a href=\"";
             var indexUrlSubDirStart = (cardHtml.IndexOf(urlSubDirIdentifier)) + urlSubDirIdentifier.Length;
             var urlSubDirEndNotParsed = cardHtml.Substring(indexUrlSubDirStart);
