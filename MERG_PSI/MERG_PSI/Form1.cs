@@ -69,8 +69,7 @@ namespace MERG_PSI
                     //j = x.ParentElement.InnerHtml;
                     //x.ClassName == "k-ad-card-wide" &&
                     x.ClassName != null &&
-                    x.ClassName.Contains("k-ad-card-wide") &&
-                    (x.ParentElement.InnerHtml.Contains(term) || x.ParentElement.InnerHtml.Contains(term.ToLower()))).Skip(1);
+                    x.ClassName.Contains("k-ad-card-wide"));
                     
                 //Overwriting articleLink above means we have to print it's result for all QueryTerms
                 //Appending to a pre-declared IEnumerable (like a List), could mean taking this out of the main loop.
@@ -105,8 +104,7 @@ namespace MERG_PSI
             var indexUrlSubDirEnd = urlSubDirEndNotParsed.IndexOf("\"");
             var urlSubDir = urlSubDirEndNotParsed.Substring(0, indexUrlSubDirEnd);
 
-            var domain = "https://www.kampas.lt";
-            var url = domain + urlSubDir;
+            var url = siteUrl + urlSubDir;
 
 
             //string htmlResult = result.InnerHtml.ReplaceFirst("<p class=\"small-line\">\n", "");
