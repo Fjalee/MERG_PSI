@@ -21,13 +21,20 @@ using System.Windows;
 
 namespace MERG_PSI{
     public partial class Form1 : Form{
+        private List<string> tempList = new List<string>();
+        WebScraper ws = new WebScraper();
+
         public Form1()
         {
             InitializeComponent();
         }
         public void button1_Click(object sender, EventArgs e)
         {
-            WebScraper ws = new WebScraper();
+            tempList = ws.getUrls();
+            foreach (var temp in tempList){
+                richTextBox3.AppendText(temp);
+                richTextBox3.AppendText("\n\n*\n*\n*\n");
+            }
         }
     }
 }

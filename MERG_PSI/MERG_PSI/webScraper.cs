@@ -19,14 +19,12 @@ using System.Net.Http;
 using System.Threading;
 using System.Windows;
 
-namespace MERG_PSI
-{
-    class WebScraper
-    {
+namespace MERG_PSI {
+    class WebScraper {
         private string siteUrl = "https://www.kampas.lt";
+        private List<string> links = new List<string>();
 
-        public WebScraper()
-        {
+        public WebScraper() {
             ScrapeWebsite();
         }
 
@@ -49,24 +47,20 @@ namespace MERG_PSI
         private void GetScrapeResults(IHtmlDocument document) {
             IEnumerable<IElement> articleLink = null;
 
-            foreach(var term in QueryTerms) {
-                //fix below
+            articleLink = document.All.Where(x =>
+                x.ClassName != null &&
+                x.ClassName.Contains("k-ad-card-wide"));
 
-                articleLink = document.All.Where(x =>
-                    x.ClassName != null &&
-                    x.ClassName.Contains("k-ad-card-wide"));
-
-                if(articleLink.Any()) { PrintResults(articleLink); }
-            }
+            if(articleLink.Any()) { PrintResults(articleLink); }
         }
 
         public void PrintResults(IEnumerable<IElement> articleLink) {
             foreach(var element in articleLink) {
-                CleanUpResults(element);
+                links.Add(CleanUpResults(element));
             }
         }
 
-        private void CleanUpResults(IElement result) {
+        private string CleanUpResults(IElement result) {
             var urlSubDirIdentifier = "<a href=\"";
             var indexUrlSubDirStart = (result.InnerHtml.IndexOf(urlSubDirIdentifier)) + urlSubDirIdentifier.Length;
             var urlSubDirEndNotParsed = result.InnerHtml.Substring(indexUrlSubDirStart);
@@ -74,9 +68,11 @@ namespace MERG_PSI
             var urlSubDir = urlSubDirEndNotParsed.Substring(0, indexUrlSubDirEnd);
 
             var url = siteUrl + urlSubDir;
+            return url;
+        }
 
-            //richTextBox3.AppendText(url);
-            //richTextBox3.AppendText("\n\n*\n*\n*\n");
+        public List<string> getUrls() {
+            return links;
         }
     }
 }
