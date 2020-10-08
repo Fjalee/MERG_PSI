@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
@@ -15,6 +16,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Windows;
+using System.Xml;
 
 namespace MERG_PSI
 {
@@ -22,16 +24,8 @@ namespace MERG_PSI
     {
         private string className, siteUrl;
 
+        private List<string> buildingInfoLabels = new List<string>();
         private List<string> buildingInfo = new List<string>();
-
-        public string size { get; set; }
-        public string eurPerSq { get; set; }
-        public string rooms { get; set; }
-        public string floor { get; set; }
-        public string construction { get; set; }
-        public string isEquipped { get; set; }
-        public string heating { get; set; }
-        public string buildYear { get; set; }
 
         public insideAdScraper(string siteUrl, string className){
             this.siteUrl = siteUrl;
@@ -44,8 +38,11 @@ namespace MERG_PSI
 
             var buildingInfoHtml = getBuildingInfoHtml(document);
 
-            createInfoList(buildingInfoHtml);
-            listToStrings();
+            if (buildingInfoHtml.Any()){
+                foreach (var element in buildingInfoHtml){
+                    parseBuildingInfo(element.InnerHtml);
+                }
+            }
         }
 
         private async Task<IHtmlDocument> getIHtmlDoc(){
@@ -74,39 +71,62 @@ namespace MERG_PSI
             return adCardHtml;
         }
 
-        private void createInfoList (IEnumerable<IElement> buildingInfoHtml){
-            if (buildingInfoHtml.Any())
-            {
-                foreach (var element in buildingInfoHtml)
-                {
-                    buildingInfo.Add(parseBuildingInfo(element.InnerHtml));
-                }
+        private void parseBuildingInfo(string buildingInfoHtml){
+            var labelWithValueHtml = getElementContentHtml(buildingInfoHtml , "span");
+            var parsedLabel = parseLabel(labelWithValueHtml);
+            var parsedValue = getElementContentHtml(labelWithValueHtml, "strong");
+
+            buildingInfoLabels.Add(parsedLabel);
+            buildingInfo.Add(parsedValue);
+        }
+
+        private string getElementContentHtml (string stringHtml, string localName){
+            var config = Configuration.Default;
+            var context = BrowsingContext.New(config);
+            var parser = context.GetService<IHtmlParser>();
+            var document = parser.ParseDocument(stringHtml);
+
+            IEnumerable<IElement> value = null;
+            value = document.All.Where(x =>
+                x.LocalName == localName);
+
+            var parsedValue = "no data";
+            foreach (var element in value){
+                parsedValue = element.InnerHtml;
             }
+            return parsedValue;
         }
 
-        private string parseBuildingInfo(string buildingInfoHtml){
-            var valueEndIdentifier = "</strong";
-
-            string[] arrayHtmlSplit = buildingInfoHtml.Split('>');
-
-            var valueStartParsed = arrayHtmlSplit[(arrayHtmlSplit.Length)-3];
+        private string parseLabel(string labelWithHtml){
             
-            var indexValueEnd = (valueStartParsed.IndexOf(valueEndIdentifier));
+            //fix clean error handeling below
+            if (labelWithHtml.Substring(0, 5).CompareTo("\n    ") != 0){
+                MessageBox.Show("error parseLabel insideAdScraper Class", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            var value = valueStartParsed.Substring(0, indexValueEnd);
+            labelWithHtml = labelWithHtml.Substring(5);
+            
+            var labelEndIdentifier = ": <";
+            var indexLabelEnd = (labelWithHtml.IndexOf(labelEndIdentifier));
 
-            return value;
+            var label = labelWithHtml.Substring(0, indexLabelEnd);
+
+            return label;
         }
 
-        private void listToStrings(){
-            size = buildingInfo[0];
-            eurPerSq = buildingInfo[1];
-            rooms = buildingInfo[2];
-            floor = buildingInfo[3];
-            construction = buildingInfo[4];
-            isEquipped = buildingInfo[5];
-            heating = buildingInfo[6];
-            buildYear = buildingInfo[7];
+        public string getBuildingInfo(){
+            var buildingInfoString = "";
+
+            var i = 0;
+            foreach (var element in buildingInfoLabels){
+                buildingInfoString = buildingInfoString + "\n" + element + " " + buildingInfo[i];
+                i ++;
+            }
+
+            if (buildingInfoString.Length > 0){ buildingInfoString = buildingInfoString.Substring(1); }
+
+            return buildingInfoString;
         }
     }
 }

@@ -31,29 +31,12 @@ namespace MERG_PSI{
             foreach (var link in kampasAdsLinks){
                 insideAdScraper ias = new insideAdScraper(link, "k-classified-icon-item");
                 await ias.scrapeBuildingInfoAsync();
-                temp(link, ias);
+                
+                richTextBox1.AppendText(link);
+                richTextBox1.AppendText("\n");
+                richTextBox1.AppendText(ias.getBuildingInfo());
+                richTextBox1.AppendText("\n\n*\n*\n*\n");
             }
-        }
-
-        private void temp(string link, insideAdScraper ias){
-            richTextBox1.AppendText(link);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.size);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.eurPerSq);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.rooms);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.floor);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.construction);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.isEquipped);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.heating);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(ias.buildYear);
-            richTextBox1.AppendText("\n\n*\n*\n*\n");
         }
     }
 }
