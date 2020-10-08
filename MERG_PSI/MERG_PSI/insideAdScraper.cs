@@ -20,19 +20,17 @@ namespace MERG_PSI
 {
     class insideAdScraper
     {
-    private List<string> links = new List<string>();
-
-        public insideAdScraper(string siteUrl, string siteUrlWithPage, string className)
+        public insideAdScraper(string siteUrl)
         {
-            tempFunc(siteUrl, siteUrlWithPage, className);
+            tempFunc(siteUrl);
         }
 
-        private async void tempFunc(string siteUrl, string siteUrlWithPage, string className)
+        private async void tempFunc(string siteUrl)
         {
             CancellationTokenSource cancellationToken = new CancellationTokenSource();
             HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage request = await httpClient.GetAsync(siteUrlWithPage);
+            HttpResponseMessage request = await httpClient.GetAsync(siteUrl);
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             Stream response = await request.Content.ReadAsStreamAsync();
@@ -43,3 +41,7 @@ namespace MERG_PSI
         }
     }
 }
+
+
+
+//"k-classified-icon-item"

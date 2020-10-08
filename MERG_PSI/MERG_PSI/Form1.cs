@@ -21,6 +21,7 @@ namespace MERG_PSI{
         private List<string> tempList = new List<string>();
         private List<string> tempListt = new List<string>();
         adCardLinkScraper ws = new adCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt/?page=10", "k-ad-card-wide");
+        insideAdScraper ias = new insideAdScraper("https://www.kampas.lt/skelbimai/butas-vilniuje-fabijoniskes-salomejos-neries-g-600459");
 
 
         public Form1()
