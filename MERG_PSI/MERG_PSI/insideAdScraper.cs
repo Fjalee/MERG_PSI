@@ -20,39 +20,51 @@ namespace MERG_PSI
 {
     class insideAdScraper
     {
+        private string className, siteUrl;
+
         private List<string> buildingInfo = new List<string>();
 
-        public insideAdScraper(string siteUrl, string className)
-        {
-            getBuildingInfo(siteUrl, className);
+        public string size { get; set; }
+        public string eurPerSq { get; set; }
+        public string rooms { get; set; }
+        public string floor { get; set; }
+        public string construction { get; set; }
+        public string isEquipped { get; set; }
+        public string heating { get; set; }
+        public string buildYear { get; set; }
+
+        public insideAdScraper(string siteUrl, string className){
+            this.siteUrl = siteUrl;
+            this.className = className;
         }
 
-        private async void getBuildingInfo(string siteUrl, string className)
-        {
-            CancellationTokenSource cancellationToken = new CancellationTokenSource();
-            HttpClient httpClient = new HttpClient();
+        public async Task scrapeBuildingInfoAsync(){
+            
+            var document = await getIHtmlDoc();
 
-            HttpResponseMessage request = await httpClient.GetAsync(siteUrl);
-            cancellationToken.Token.ThrowIfCancellationRequested();
+            var buildingInfoHtml = getBuildingInfoHtml(document);
 
-            Stream response = await request.Content.ReadAsStreamAsync();
-            cancellationToken.Token.ThrowIfCancellationRequested();
-
-            HtmlParser parser = new HtmlParser();
-            IHtmlDocument document = parser.ParseDocument(response);
-
-            IEnumerable<IElement> adCardHtml = getBuildingInfoHtml(document, className);
-            if (adCardHtml.Any())
-            {
-                foreach (var element in adCardHtml)
-                {
-                    buildingInfo.Add(parseBuildingInfo(element.InnerHtml));
-                }
-            }
+            createInfoList(buildingInfoHtml);
+            listToStrings();
         }
 
-        private IEnumerable<IElement> getBuildingInfoHtml(IHtmlDocument document, string className)
-        {
+        private async Task<IHtmlDocument> getIHtmlDoc(){
+            var cancellationToken = new CancellationTokenSource();
+            var httpClient = new HttpClient();
+
+            var request = await httpClient.GetAsync(siteUrl);
+            cancellationToken.Token.ThrowIfCancellationRequested();
+
+            var response = await request.Content.ReadAsStreamAsync();
+            cancellationToken.Token.ThrowIfCancellationRequested();
+
+            var parser = new HtmlParser();
+            var document = parser.ParseDocument(response);
+
+            return document;
+        }
+
+        private IEnumerable<IElement> getBuildingInfoHtml(IHtmlDocument document){
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
@@ -62,23 +74,39 @@ namespace MERG_PSI
             return adCardHtml;
         }
 
-        private string parseBuildingInfo(string buildingInfoHtml)
-        {
+        private void createInfoList (IEnumerable<IElement> buildingInfoHtml){
+            if (buildingInfoHtml.Any())
+            {
+                foreach (var element in buildingInfoHtml)
+                {
+                    buildingInfo.Add(parseBuildingInfo(element.InnerHtml));
+                }
+            }
+        }
+
+        private string parseBuildingInfo(string buildingInfoHtml){
             var valueEndIdentifier = "</strong";
 
             string[] arrayHtmlSplit = buildingInfoHtml.Split('>');
 
             var valueStartParsed = arrayHtmlSplit[(arrayHtmlSplit.Length)-3];
-
+            
             var indexValueEnd = (valueStartParsed.IndexOf(valueEndIdentifier));
+
             var value = valueStartParsed.Substring(0, indexValueEnd);
 
             return value;
         }
 
-        public List<string> getBuildingInfo()
-        {
-            return buildingInfo;
+        private void listToStrings(){
+            size = buildingInfo[0];
+            eurPerSq = buildingInfo[1];
+            rooms = buildingInfo[2];
+            floor = buildingInfo[3];
+            construction = buildingInfo[4];
+            isEquipped = buildingInfo[5];
+            heating = buildingInfo[6];
+            buildYear = buildingInfo[7];
         }
     }
 }

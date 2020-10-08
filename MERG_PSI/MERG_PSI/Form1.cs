@@ -18,30 +18,42 @@ using System.Windows;
 
 namespace MERG_PSI{
     public partial class Form1 : Form{
-        private List<string> tempList = new List<string>();
-        private List<string> tempListt = new List<string>();
-        adCardLinkScraper ws = new adCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt/?page=10", "k-ad-card-wide");
-        insideAdScraper ias = new insideAdScraper("https://www.kampas.lt/skelbimai/butas-vilniuje-fabijoniskes-salomejos-neries-g-600459", "k-classified-icon-item");
+        private List<string> kampasAdsLinks = new List<string>();
 
-
-        public Form1()
-        {
+        public Form1(){
             InitializeComponent();
         }
-        public void button1_Click(object sender, EventArgs e)
-        {
-            tempList = ws.getUrls();
-            foreach (var temp in tempList){
-                richTextBox3.AppendText(temp);
-                richTextBox3.AppendText("\n\n*\n*\n*\n");
-            }
+        public async void button1_Click(object sender, EventArgs e){
+            adCardLinkScraper ws = new adCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt", "k-ad-card-wide");
+            await ws.scrapeUrlsAsync();
+            kampasAdsLinks = ws.getUrls();
 
-            tempList = ias.getBuildingInfo();
-            foreach (var temp in tempList)
-            {
-                richTextBox2.AppendText(temp);
-                richTextBox2.AppendText("\n*\n");
+            foreach (var link in kampasAdsLinks){
+                insideAdScraper ias = new insideAdScraper(link, "k-classified-icon-item");
+                await ias.scrapeBuildingInfoAsync();
+                temp(link, ias);
             }
+        }
+
+        private void temp(string link, insideAdScraper ias){
+            richTextBox1.AppendText(link);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.size);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.eurPerSq);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.rooms);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.floor);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.construction);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.isEquipped);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.heating);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(ias.buildYear);
+            richTextBox1.AppendText("\n\n*\n*\n*\n");
         }
     }
 }

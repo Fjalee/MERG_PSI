@@ -18,41 +18,56 @@ using System.Windows;
 
 namespace MERG_PSI {
     class adCardLinkScraper {
+        private string siteUrl, siteUrlWithPage, className;
         private List<string> links = new List<string>();
 
         public adCardLinkScraper(string siteUrl, string siteUrlWithPage, string className) {
-            getLinks(siteUrl, siteUrlWithPage, className);
+            this.siteUrl = siteUrl;
+            this.siteUrlWithPage = siteUrlWithPage;
+            this.className = className;
         }
 
-        private async void getLinks(string siteUrl, string siteUrlWithPage, string className){
-            CancellationTokenSource cancellationToken = new CancellationTokenSource();
-            HttpClient httpClient = new HttpClient();
+        public async Task scrapeUrlsAsync(){
 
-            HttpResponseMessage request = await httpClient.GetAsync(siteUrlWithPage);
+            var document = await getIHtmlDoc();
+
+            var adCardHtml = getAdCardHtml(document);
+
+            createLinkList(adCardHtml);
+        }
+
+        private async Task<IHtmlDocument> getIHtmlDoc(){
+            var cancellationToken = new CancellationTokenSource();
+            var httpClient = new HttpClient();
+
+            var request = await httpClient.GetAsync(siteUrlWithPage);
             cancellationToken.Token.ThrowIfCancellationRequested();
 
-            Stream response = await request.Content.ReadAsStreamAsync();
+            var response = await request.Content.ReadAsStreamAsync();
             cancellationToken.Token.ThrowIfCancellationRequested();
 
-            HtmlParser parser = new HtmlParser();
-            IHtmlDocument document = parser.ParseDocument(response);
+            var parser = new HtmlParser();
+            var document = parser.ParseDocument(response);
 
-            IEnumerable<IElement> adCardHtml = getAdCardHtml(document, className);
+            return document;
+        }
+
+        private IEnumerable<IElement> getAdCardHtml(IHtmlDocument document){
+            IEnumerable<IElement> adCardHtml = null;
+
+            adCardHtml = document.All.Where(x =>
+                x.LocalName == "div" &&
+                x.ClassList.Contains(className));
+
+            return adCardHtml;
+        }
+
+        void createLinkList(IEnumerable<IElement> adCardHtml){
             if(adCardHtml.Any()) { 
                 foreach(var element in adCardHtml) {
                     links.Add(parseLink(element.InnerHtml, siteUrl));
                 }
             }
-        }
-
-        private IEnumerable<IElement> getAdCardHtml(IHtmlDocument document, string className) {
-            IEnumerable<IElement> adCardHtml = null;
-
-            adCardHtml = document.All.Where(x =>
-                x.LocalName == "div" &&
-                x.ClassList.Contains(className)) ;
-
-            return adCardHtml;
         }
 
         private string parseLink(string cardHtml, string siteUrl) {
@@ -66,7 +81,7 @@ namespace MERG_PSI {
             return url;
         }
 
-        public List<string> getUrls() {
+        public List<string> getUrls(){
             return links;
         }
     }
