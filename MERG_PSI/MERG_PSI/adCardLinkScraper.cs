@@ -17,21 +17,18 @@ using System.Threading;
 using System.Windows;
 
 namespace MERG_PSI {
-    class WebScraper {
-
+    class adCardLinkScraper {
         private List<string> links = new List<string>();
 
-        public WebScraper(string siteUrl, string className) {
-            getLinks(siteUrl, className);
-
-            //getLinks(siteUrlWithPage, className);
+        public adCardLinkScraper(string siteUrl, string siteUrlWithPage, string className) {
+            getLinks(siteUrl, siteUrlWithPage, className);
         }
 
-        private async void getLinks(string siteUrl, string className) {
+        private async void getLinks(string siteUrl, string siteUrlWithPage, string className){
             CancellationTokenSource cancellationToken = new CancellationTokenSource();
             HttpClient httpClient = new HttpClient();
 
-            HttpResponseMessage request = await httpClient.GetAsync(siteUrl);
+            HttpResponseMessage request = await httpClient.GetAsync(siteUrlWithPage);
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             Stream response = await request.Content.ReadAsStreamAsync();

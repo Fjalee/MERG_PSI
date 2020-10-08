@@ -19,7 +19,9 @@ using System.Windows;
 namespace MERG_PSI{
     public partial class Form1 : Form{
         private List<string> tempList = new List<string>();
-        WebScraper ws = new WebScraper("https://www.kampas.lt", "k-ad-card-wide");
+        private List<string> tempListt = new List<string>();
+        adCardLinkScraper ws = new adCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt/?page=10", "k-ad-card-wide");
+
 
         public Form1()
         {
