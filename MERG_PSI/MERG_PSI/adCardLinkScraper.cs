@@ -49,8 +49,8 @@ namespace MERG_PSI {
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
-                x.ClassName != null &&
-                x.ClassName.Contains(className));
+                x.LocalName == "div" &&
+                x.ClassList.Contains(className));
 
             return adCardHtml;
         }
