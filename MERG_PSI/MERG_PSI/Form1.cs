@@ -21,7 +21,7 @@ namespace MERG_PSI{
         private List<string> tempList = new List<string>();
         private List<string> tempListt = new List<string>();
         adCardLinkScraper ws = new adCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt/?page=10", "k-ad-card-wide");
-        insideAdScraper ias = new insideAdScraper("https://www.kampas.lt/skelbimai/butas-vilniuje-fabijoniskes-salomejos-neries-g-600459");
+        insideAdScraper ias = new insideAdScraper("https://www.kampas.lt/skelbimai/butas-vilniuje-fabijoniskes-salomejos-neries-g-600459", "k-classified-icon-item");
 
 
         public Form1()
@@ -34,6 +34,13 @@ namespace MERG_PSI{
             foreach (var temp in tempList){
                 richTextBox3.AppendText(temp);
                 richTextBox3.AppendText("\n\n*\n*\n*\n");
+            }
+
+            tempList = ias.getBuildingInfo();
+            foreach (var temp in tempList)
+            {
+                richTextBox2.AppendText(temp);
+                richTextBox2.AppendText("\n*\n");
             }
         }
     }

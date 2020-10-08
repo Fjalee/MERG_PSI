@@ -50,7 +50,7 @@ namespace MERG_PSI {
 
             adCardHtml = document.All.Where(x =>
                 x.LocalName == "div" &&
-                x.ClassList.Contains(className));
+                x.ClassList.Contains(className)) ;
 
             return adCardHtml;
         }
