@@ -81,10 +81,7 @@ namespace MERG_PSI
         }
 
         private string getElementContentHtml (string stringHtml, string localName){
-            var config = Configuration.Default;
-            var context = BrowsingContext.New(config);
-            var parser = context.GetService<IHtmlParser>();
-            var document = parser.ParseDocument(stringHtml);
+            var document = stringIntoIHtmlDoc(stringHtml);
 
             IEnumerable<IElement> value = null;
             value = document.All.Where(x =>
@@ -95,6 +92,15 @@ namespace MERG_PSI
                 parsedValue = element.InnerHtml;
             }
             return parsedValue;
+        }
+
+        private IHtmlDocument stringIntoIHtmlDoc(string stringHtml){
+            var config = Configuration.Default;
+            var context = BrowsingContext.New(config);
+            var parser = context.GetService<IHtmlParser>();
+            var document = parser.ParseDocument(stringHtml);
+
+            return document;
         }
 
         private string parseLabel(string labelWithHtml){
