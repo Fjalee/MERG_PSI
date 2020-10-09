@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
@@ -15,6 +16,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Windows;
+using System.Runtime.InteropServices;
 
 namespace MERG_PSI {
     class adCardLinkScraper {
@@ -71,14 +73,38 @@ namespace MERG_PSI {
         }
 
         private string parseLink(string cardHtml, string siteUrl) {
-            var urlSubDirIdentifier = "<a href=\"";
-            var indexUrlSubDirStart = (cardHtml.IndexOf(urlSubDirIdentifier)) + urlSubDirIdentifier.Length;
-            var urlSubDirEndNotParsed = cardHtml.Substring(indexUrlSubDirStart);
-            var indexUrlSubDirEnd = urlSubDirEndNotParsed.IndexOf("\"");
-            var urlSubDir = urlSubDirEndNotParsed.Substring(0, indexUrlSubDirEnd);
+            var document = stringIntoIHtmlDoc(cardHtml);
+            var urlSubDirEndParsed = getHref(document);
+
+            var urlSubDirStringToBeDeleted = "about://";
+            var nmCharToBeDeleted = urlSubDirStringToBeDeleted.Length;
+            var urlSubDir = urlSubDirEndParsed.Substring(nmCharToBeDeleted);
+
+            //fix add error handling
 
             var url = siteUrl + urlSubDir;
             return url;
+        }
+
+        private string getHref (IHtmlDocument document){var menuItems = document.QuerySelectorAll("a");
+            var links = menuItems.Select(m => ((IHtmlAnchorElement)m).Href).ToList();
+
+            //fix clean error handling
+            if (links.Count != 1){
+                MessageBox.Show("error getHref func", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return links[0];
+        }
+
+        private IHtmlDocument stringIntoIHtmlDoc(string stringHtml){
+            var config = Configuration.Default;
+            var context = BrowsingContext.New(config);
+            var parser = context.GetService<IHtmlParser>();
+            var document = parser.ParseDocument(stringHtml);
+
+            return document;
         }
 
         public List<string> getUrls(){
