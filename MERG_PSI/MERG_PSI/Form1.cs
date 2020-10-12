@@ -15,6 +15,8 @@ namespace MERG_PSI
         public Form1()
         {
             InitializeComponent();
+            webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
+            webBrowser2.ScriptErrorsSuppressed = true;
         }
 
         private void municipality_KeyPress(object sender, KeyPressEventArgs e)
@@ -138,5 +140,52 @@ namespace MERG_PSI
                 areaTo.ForeColor = Color.Silver;
             }
         }
+
+       /* private void showAdList_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var openForm2 = new Form2();
+            openForm2.ShowDialog();
+            this.Close();
+        }*/
+
+        private void advSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void webBrowser2_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+     
+            var town = municipality.Text;
+            var streetName = street.Text;
+            webBrowser2.ScriptErrorsSuppressed = true;
+            try
+            {
+                var location = new StringBuilder("http://maps.google.com/maps?q=%22");
+                if (town != string.Empty)
+                {
+                    location.Append(town + "," + "+");
+                }
+                if (streetName != string.Empty)
+                {
+                    location.Append(streetName + "," + "+");
+                }
+                webBrowser2.Navigate(location.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "error");
+            }
+        }
+
+        /*
+         It looks like you have enabled Internet Explorer Compatibility View. Google Maps will not work correctly unless this is turned off.
+        */
     }
 }

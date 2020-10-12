@@ -8,3 +8,4 @@ C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.Gene
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.CoreCompileInputs.cache
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.exe
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.pdb
+C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.Form2.resources
