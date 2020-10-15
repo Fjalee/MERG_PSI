@@ -19,18 +19,18 @@ using System.Windows;
 using System.Runtime.InteropServices;
 
 namespace MERG_PSI {
-    class adCardLinkScraper {
+    class AdCardLinkScraper {
         private string siteUrl, siteUrlWithPage, className;
         private IHtmlDocument document;
         private List<string> links = new List<string>();
 
-        public adCardLinkScraper(string siteUrl, string siteUrlWithPage, string className) {
+        public AdCardLinkScraper(string siteUrl, string siteUrlWithPage, string className) {
             this.siteUrl = siteUrl;
             this.siteUrlWithPage = siteUrlWithPage;
             this.className = className;
         }
 
-        public void scrapeUrls(){
+        public void ScrapeUrls(){
 
             //fix error handeling
             if (this.document == null){
@@ -38,12 +38,12 @@ namespace MERG_PSI {
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var adCardHtml = getAdCardHtml(document);
+            var adCardHtml = GetAdCardHtml(document);
 
-            createLinkList(adCardHtml);
+            CreateLinkList(adCardHtml);
         }
 
-        public async Task getIHtmlDoc(){
+        public async Task GetIHtmlDoc(){
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
@@ -57,7 +57,7 @@ namespace MERG_PSI {
             this.document = parser.ParseDocument(response);
         }
 
-        private IEnumerable<IElement> getAdCardHtml(IHtmlDocument document){
+        private IEnumerable<IElement> GetAdCardHtml(IHtmlDocument document){
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
@@ -67,17 +67,17 @@ namespace MERG_PSI {
             return adCardHtml;
         }
 
-        void createLinkList(IEnumerable<IElement> adCardHtml){
+        void CreateLinkList(IEnumerable<IElement> adCardHtml){
             if(adCardHtml.Any()) { 
                 foreach(var element in adCardHtml) {
-                    links.Add(parseLink(element.InnerHtml, siteUrl));
+                    links.Add(ParseLink(element.InnerHtml, siteUrl));
                 }
             }
         }
 
-        private string parseLink(string cardHtml, string siteUrl) {
-            var document = stringIntoIHtmlDoc(cardHtml);
-            var urlSubDirEndParsed = getHref(document);
+        private string ParseLink(string cardHtml, string siteUrl) {
+            var document = StringIntoIHtmlDoc(cardHtml);
+            var urlSubDirEndParsed = GetHref(document);
 
             var urlSubDirStringToBeDeleted = "about://";
             var nmCharToBeDeleted = urlSubDirStringToBeDeleted.Length;
@@ -89,14 +89,14 @@ namespace MERG_PSI {
             return url;
         }
 
-        private string getHref (IHtmlDocument document){
+        private string GetHref (IHtmlDocument document){
             var menuItems = document.QuerySelectorAll("a");
             var links = menuItems.Select(m => ((IHtmlAnchorElement)m).Href).ToList();
 
             return links[0];
         }
 
-        private IHtmlDocument stringIntoIHtmlDoc(string stringHtml){
+        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml){
             var config = Configuration.Default;
             var context = BrowsingContext.New(config);
             var parser = context.GetService<IHtmlParser>();
@@ -105,7 +105,7 @@ namespace MERG_PSI {
             return document;
         }
 
-        public List<string> getUrls(){
+        public List<string> GetUrls(){
             return links;
         }
     }

@@ -24,20 +24,20 @@ namespace MERG_PSI{
             InitializeComponent();
         }
         public async void button1_Click(object sender, EventArgs e){
-            adCardLinkScraper ws = new adCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt", "k-ad-card-wide");
-            await ws.getIHtmlDoc();
-            ws.scrapeUrls();
-            kampasAdsLinks = ws.getUrls();
+            AdCardLinkScraper ws = new AdCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt", "k-ad-card-wide");
+            await ws.GetIHtmlDoc();
+            ws.ScrapeUrls();
+            kampasAdsLinks = ws.GetUrls();
 
             foreach (var link in kampasAdsLinks){
-                insideAdScraper ias = new insideAdScraper(link, "k-classified-icon-item");
-                await ias.getIHtmlDoc();
-                ias.scrapeBuildingInfo();
-                ias.scrapeMapCoord();
+                InsideAdScraper ias = new InsideAdScraper(link, "k-classified-icon-item");
+                await ias.GetIHtmlDoc();
+                ias.ScrapeBuildingInfo();
+                ias.ScrapeMapCoord();
                 
                 richTextBox1.AppendText(link);
                 richTextBox1.AppendText("\n");
-                richTextBox1.AppendText(ias.getBuildingInfo());
+                richTextBox1.AppendText(ias.GetBuildingInfo());
                 richTextBox1.AppendText("\n\n*\n*\n*\n");
             }
         }

@@ -20,7 +20,7 @@ using System.Xml;
 
 namespace MERG_PSI
 {
-    class insideAdScraper
+    class InsideAdScraper
     {
         private string className, siteUrl;
         private IHtmlDocument document;
@@ -28,12 +28,12 @@ namespace MERG_PSI
         private List<string> buildingInfoLabels = new List<string>();
         private List<string> buildingInfo = new List<string>();
 
-        public insideAdScraper(string siteUrl, string className){
+        public InsideAdScraper(string siteUrl, string className){
             this.siteUrl = siteUrl;
             this.className = className;
         }
 
-        public void scrapeBuildingInfo()
+        public void ScrapeBuildingInfo()
         {
             //fix error handeling
             if (this.document == null){
@@ -41,20 +41,33 @@ namespace MERG_PSI
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var buildingInfoHtml = getBuildingInfoHtml(document);
+            var buildingInfoHtml = GetBuildingInfoHtml(this.document);
 
             if (buildingInfoHtml.Any()){
                 foreach (var element in buildingInfoHtml){
-                    parseBuildingInfo(element.InnerHtml);
+                    ParseBuildingInfo(element.InnerHtml);
                 }
             }
         }
 
-        public void scrapeMapCoord(){
-            
+        public void ScrapeMapCoord(){
+            //fix error handeling
+            if (this.document == null){
+                MessageBox.Show("error, func scrapeMapCoord, didnt get IHTMLDocument first", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            var tempVar = Temp(this.document);
+
+            if (tempVar.Any()){
+                foreach (var element in tempVar){
+                    var x = element.InnerHtml;
+                }
+            }
+
         }
 
-        public async Task getIHtmlDoc(){
+        public async Task GetIHtmlDoc(){
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
@@ -68,7 +81,7 @@ namespace MERG_PSI
             this.document = parser.ParseDocument(response);
         }
 
-        private IEnumerable<IElement> getBuildingInfoHtml(IHtmlDocument document){
+        private IEnumerable<IElement> GetBuildingInfoHtml(IHtmlDocument document){
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
@@ -78,17 +91,27 @@ namespace MERG_PSI
             return adCardHtml;
         }
 
-        private void parseBuildingInfo(string buildingInfoHtml){
-            var labelWithValueHtml = getElementContentHtml(buildingInfoHtml , "span");
-            var parsedLabel = parseLabel(labelWithValueHtml);
-            var parsedValue = getElementContentHtml(labelWithValueHtml, "strong");
+        private IEnumerable<IElement> Temp(IHtmlDocument document){
+            IEnumerable<IElement> adCardHtml = null;
+
+            adCardHtml = document.All.Where(x =>
+                x.LocalName == ("li") &&
+                x.ClassList.Contains("li-map-preview"));
+
+            return adCardHtml;
+        }
+
+        private void ParseBuildingInfo(string buildingInfoHtml){
+            var labelWithValueHtml = GetElementContentHtml(buildingInfoHtml , "span");
+            var parsedLabel = ParseLabel(labelWithValueHtml);
+            var parsedValue = GetElementContentHtml(labelWithValueHtml, "strong");
 
             buildingInfoLabels.Add(parsedLabel);
             buildingInfo.Add(parsedValue);
         }
 
-        private string getElementContentHtml (string stringHtml, string localName){
-            var document = stringIntoIHtmlDoc(stringHtml);
+        private string GetElementContentHtml (string stringHtml, string localName){
+            var document = StringIntoIHtmlDoc(stringHtml);
 
             IEnumerable<IElement> value = null;
             value = document.All.Where(x =>
@@ -101,7 +124,7 @@ namespace MERG_PSI
             return parsedValue;
         }
 
-        private IHtmlDocument stringIntoIHtmlDoc(string stringHtml){
+        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml){
             var config = Configuration.Default;
             var context = BrowsingContext.New(config);
             var parser = context.GetService<IHtmlParser>();
@@ -110,7 +133,7 @@ namespace MERG_PSI
             return document;
         }
 
-        private string parseLabel(string labelWithHtml){
+        private string ParseLabel(string labelWithHtml){
             
             //fix clean error handeling below
             if (labelWithHtml.Substring(0, 5).CompareTo("\n    ") != 0){
@@ -128,7 +151,7 @@ namespace MERG_PSI
             return label;
         }
 
-        public string getBuildingInfo(){
+        public string GetBuildingInfo(){
             var buildingInfoString = "";
 
             var i = 0;
