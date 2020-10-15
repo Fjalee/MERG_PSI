@@ -23,6 +23,7 @@ namespace MERG_PSI
     class insideAdScraper
     {
         private string className, siteUrl;
+        private IHtmlDocument document;
 
         private List<string> buildingInfoLabels = new List<string>();
         private List<string> buildingInfo = new List<string>();
@@ -32,9 +33,13 @@ namespace MERG_PSI
             this.className = className;
         }
 
-        public async Task scrapeBuildingInfoAsync(){
-            
-            var document = await getIHtmlDoc();
+        public void scrapeBuildingInfo()
+        {
+            //fix error handeling
+            if (this.document == null){
+                MessageBox.Show("error, func scrapeBuildingInfo, didnt get IHTMLDocument first", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             var buildingInfoHtml = getBuildingInfoHtml(document);
 
@@ -45,7 +50,11 @@ namespace MERG_PSI
             }
         }
 
-        private async Task<IHtmlDocument> getIHtmlDoc(){
+        public void scrapeMapCoord(){
+            
+        }
+
+        public async Task getIHtmlDoc(){
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
@@ -56,9 +65,7 @@ namespace MERG_PSI
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             var parser = new HtmlParser();
-            var document = parser.ParseDocument(response);
-
-            return document;
+            this.document = parser.ParseDocument(response);
         }
 
         private IEnumerable<IElement> getBuildingInfoHtml(IHtmlDocument document){

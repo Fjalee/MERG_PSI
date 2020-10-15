@@ -21,6 +21,7 @@ using System.Runtime.InteropServices;
 namespace MERG_PSI {
     class adCardLinkScraper {
         private string siteUrl, siteUrlWithPage, className;
+        private IHtmlDocument document;
         private List<string> links = new List<string>();
 
         public adCardLinkScraper(string siteUrl, string siteUrlWithPage, string className) {
@@ -29,16 +30,20 @@ namespace MERG_PSI {
             this.className = className;
         }
 
-        public async Task scrapeUrlsAsync(){
+        public void scrapeUrls(){
 
-            var document = await getIHtmlDoc();
+            //fix error handeling
+            if (this.document == null){
+                MessageBox.Show("error, func scrapeUrls, didnt get IHTMLDocument first", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             var adCardHtml = getAdCardHtml(document);
 
             createLinkList(adCardHtml);
         }
 
-        private async Task<IHtmlDocument> getIHtmlDoc(){
+        public async Task getIHtmlDoc(){
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
@@ -49,9 +54,7 @@ namespace MERG_PSI {
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             var parser = new HtmlParser();
-            var document = parser.ParseDocument(response);
-
-            return document;
+            this.document = parser.ParseDocument(response);
         }
 
         private IEnumerable<IElement> getAdCardHtml(IHtmlDocument document){

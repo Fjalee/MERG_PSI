@@ -25,12 +25,15 @@ namespace MERG_PSI{
         }
         public async void button1_Click(object sender, EventArgs e){
             adCardLinkScraper ws = new adCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt", "k-ad-card-wide");
-            await ws.scrapeUrlsAsync();
+            await ws.getIHtmlDoc();
+            ws.scrapeUrls();
             kampasAdsLinks = ws.getUrls();
 
             foreach (var link in kampasAdsLinks){
                 insideAdScraper ias = new insideAdScraper(link, "k-classified-icon-item");
-                await ias.scrapeBuildingInfoAsync();
+                await ias.getIHtmlDoc();
+                ias.scrapeBuildingInfo();
+                ias.scrapeMapCoord();
                 
                 richTextBox1.AppendText(link);
                 richTextBox1.AppendText("\n");
