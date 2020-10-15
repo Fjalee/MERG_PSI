@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AngleSharp;
+﻿using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
-using AngleSharp.Text;
-using System.IO;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
-using System.Windows;
-using System.Xml;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MERG_PSI
 {
@@ -28,7 +20,8 @@ namespace MERG_PSI
         private List<string> buildingInfoLabels = new List<string>();
         private List<string> buildingInfo = new List<string>();
 
-        public InsideAdScraper(string siteUrl, string className){
+        public InsideAdScraper(string siteUrl, string className)
+        {
             this.siteUrl = siteUrl;
             this.className = className;
         }
@@ -36,38 +29,46 @@ namespace MERG_PSI
         public void ScrapeBuildingInfo()
         {
             //fix error handeling
-            if (this.document == null){
-                MessageBox.Show("error, func scrapeBuildingInfo, didnt get IHTMLDocument first", "Error", 
+            if (this.document == null)
+            {
+                MessageBox.Show("error, func scrapeBuildingInfo, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             var buildingInfoHtml = GetBuildingInfoHtml(this.document);
 
-            if (buildingInfoHtml.Any()){
-                foreach (var element in buildingInfoHtml){
+            if (buildingInfoHtml.Any())
+            {
+                foreach (var element in buildingInfoHtml)
+                {
                     ParseBuildingInfo(element.InnerHtml);
                 }
             }
         }
 
-        public void ScrapeMapCoord(){
+        public void ScrapeMapCoord()
+        {
             //fix error handeling
-            if (this.document == null){
-                MessageBox.Show("error, func scrapeMapCoord, didnt get IHTMLDocument first", "Error", 
+            if (this.document == null)
+            {
+                MessageBox.Show("error, func scrapeMapCoord, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             var tempVar = Temp(this.document);
 
-            if (tempVar.Any()){
-                foreach (var element in tempVar){
+            if (tempVar.Any())
+            {
+                foreach (var element in tempVar)
+                {
                     var x = element.InnerHtml;
                 }
             }
 
         }
 
-        public async Task GetIHtmlDoc(){
+        public async Task GetIHtmlDoc()
+        {
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
@@ -81,7 +82,8 @@ namespace MERG_PSI
             this.document = parser.ParseDocument(response);
         }
 
-        private IEnumerable<IElement> GetBuildingInfoHtml(IHtmlDocument document){
+        private IEnumerable<IElement> GetBuildingInfoHtml(IHtmlDocument document)
+        {
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
@@ -91,7 +93,8 @@ namespace MERG_PSI
             return adCardHtml;
         }
 
-        private IEnumerable<IElement> Temp(IHtmlDocument document){
+        private IEnumerable<IElement> Temp(IHtmlDocument document)
+        {
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
@@ -101,8 +104,9 @@ namespace MERG_PSI
             return adCardHtml;
         }
 
-        private void ParseBuildingInfo(string buildingInfoHtml){
-            var labelWithValueHtml = GetElementContentHtml(buildingInfoHtml , "span");
+        private void ParseBuildingInfo(string buildingInfoHtml)
+        {
+            var labelWithValueHtml = GetElementContentHtml(buildingInfoHtml, "span");
             var parsedLabel = ParseLabel(labelWithValueHtml);
             var parsedValue = GetElementContentHtml(labelWithValueHtml, "strong");
 
@@ -110,7 +114,8 @@ namespace MERG_PSI
             buildingInfo.Add(parsedValue);
         }
 
-        private string GetElementContentHtml (string stringHtml, string localName){
+        private string GetElementContentHtml(string stringHtml, string localName)
+        {
             var document = StringIntoIHtmlDoc(stringHtml);
 
             IEnumerable<IElement> value = null;
@@ -118,13 +123,15 @@ namespace MERG_PSI
                 x.LocalName == localName);
 
             var parsedValue = "no data";
-            foreach (var element in value){
+            foreach (var element in value)
+            {
                 parsedValue = element.InnerHtml;
             }
             return parsedValue;
         }
 
-        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml){
+        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml)
+        {
             var config = Configuration.Default;
             var context = BrowsingContext.New(config);
             var parser = context.GetService<IHtmlParser>();
@@ -133,16 +140,18 @@ namespace MERG_PSI
             return document;
         }
 
-        private string ParseLabel(string labelWithHtml){
-            
+        private string ParseLabel(string labelWithHtml)
+        {
+
             //fix clean error handeling below
-            if (labelWithHtml.Substring(0, 5).CompareTo("\n    ") != 0){
-                MessageBox.Show("error parseLabel insideAdScraper Class", "Error", 
+            if (labelWithHtml.Substring(0, 5).CompareTo("\n    ") != 0)
+            {
+                MessageBox.Show("error parseLabel insideAdScraper Class", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             labelWithHtml = labelWithHtml.Substring(5);
-            
+
             var labelEndIdentifier = ": <";
             var indexLabelEnd = (labelWithHtml.IndexOf(labelEndIdentifier));
 
@@ -151,16 +160,18 @@ namespace MERG_PSI
             return label;
         }
 
-        public string GetBuildingInfo(){
+        public string GetBuildingInfo()
+        {
             var buildingInfoString = "";
 
             var i = 0;
-            foreach (var element in buildingInfoLabels){
+            foreach (var element in buildingInfoLabels)
+            {
                 buildingInfoString = buildingInfoString + "\n" + element + " " + buildingInfo[i];
-                i ++;
+                i++;
             }
 
-            if (buildingInfoString.Length > 0){ buildingInfoString = buildingInfoString.Substring(1); }
+            if (buildingInfoString.Length > 0) { buildingInfoString = buildingInfoString.Substring(1); }
 
             return buildingInfoString;
         }

@@ -1,40 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AngleSharp;
+﻿using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
-using AngleSharp.Text;
-using System.IO;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
-using System.Windows;
-using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace MERG_PSI {
-    class AdCardLinkScraper {
+namespace MERG_PSI
+{
+    class AdCardLinkScraper
+    {
         private string siteUrl, siteUrlWithPage, className;
         private IHtmlDocument document;
         private List<string> links = new List<string>();
 
-        public AdCardLinkScraper(string siteUrl, string siteUrlWithPage, string className) {
+        public AdCardLinkScraper(string siteUrl, string siteUrlWithPage, string className)
+        {
             this.siteUrl = siteUrl;
             this.siteUrlWithPage = siteUrlWithPage;
             this.className = className;
         }
 
-        public void ScrapeUrls(){
+        public void ScrapeUrls()
+        {
 
             //fix error handeling
-            if (this.document == null){
-                MessageBox.Show("error, func scrapeUrls, didnt get IHTMLDocument first", "Error", 
+            if (this.document == null)
+            {
+                MessageBox.Show("error, func scrapeUrls, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -43,7 +40,8 @@ namespace MERG_PSI {
             CreateLinkList(adCardHtml);
         }
 
-        public async Task GetIHtmlDoc(){
+        public async Task GetIHtmlDoc()
+        {
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
@@ -57,7 +55,8 @@ namespace MERG_PSI {
             this.document = parser.ParseDocument(response);
         }
 
-        private IEnumerable<IElement> GetAdCardHtml(IHtmlDocument document){
+        private IEnumerable<IElement> GetAdCardHtml(IHtmlDocument document)
+        {
             IEnumerable<IElement> adCardHtml = null;
 
             adCardHtml = document.All.Where(x =>
@@ -67,15 +66,19 @@ namespace MERG_PSI {
             return adCardHtml;
         }
 
-        void CreateLinkList(IEnumerable<IElement> adCardHtml){
-            if(adCardHtml.Any()) { 
-                foreach(var element in adCardHtml) {
+        void CreateLinkList(IEnumerable<IElement> adCardHtml)
+        {
+            if (adCardHtml.Any())
+            {
+                foreach (var element in adCardHtml)
+                {
                     links.Add(ParseLink(element.InnerHtml, siteUrl));
                 }
             }
         }
 
-        private string ParseLink(string cardHtml, string siteUrl) {
+        private string ParseLink(string cardHtml, string siteUrl)
+        {
             var document = StringIntoIHtmlDoc(cardHtml);
             var urlSubDirEndParsed = GetHref(document);
 
@@ -89,19 +92,23 @@ namespace MERG_PSI {
             return url;
         }
 
-        private string GetHref (IHtmlDocument document){
+        private string GetHref(IHtmlDocument document)
+        {
             var menuItems = document.QuerySelectorAll("a");
             var links = menuItems.Select(m => ((IHtmlAnchorElement)m).Href).ToList();
 
             //fix error handeling
-            if (links.Count == 2){
-                if (links[0] != links[1]){
-                    MessageBox.Show("error2, func GetHref", "Error", 
+            if (links.Count == 2)
+            {
+                if (links[0] != links[1])
+                {
+                    MessageBox.Show("error2, func GetHref", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (links.Count != 1 && links.Count != 2){
-                MessageBox.Show("error, func GetHref", "Error", 
+            else if (links.Count != 1 && links.Count != 2)
+            {
+                MessageBox.Show("error, func GetHref", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -109,7 +116,8 @@ namespace MERG_PSI {
             return links[0];
         }
 
-        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml){
+        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml)
+        {
             var config = Configuration.Default;
             var context = BrowsingContext.New(config);
             var parser = context.GetService<IHtmlParser>();
@@ -118,7 +126,8 @@ namespace MERG_PSI {
             return document;
         }
 
-        public List<string> GetUrls(){
+        public List<string> GetUrls()
+        {
             return links;
         }
     }
