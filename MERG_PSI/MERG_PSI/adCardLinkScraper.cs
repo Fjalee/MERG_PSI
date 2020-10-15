@@ -93,6 +93,19 @@ namespace MERG_PSI {
             var menuItems = document.QuerySelectorAll("a");
             var links = menuItems.Select(m => ((IHtmlAnchorElement)m).Href).ToList();
 
+            //fix error handeling
+            if (links.Count == 2){
+                if (links[0] != links[1]){
+                    MessageBox.Show("error2, func GetHref", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (links.Count != 1 && links.Count != 2){
+                MessageBox.Show("error, func GetHref", "Error", 
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
             return links[0];
         }
 
