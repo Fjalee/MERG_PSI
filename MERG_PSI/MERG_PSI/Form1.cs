@@ -21,10 +21,10 @@ namespace MERG_PSI
 
             foreach (var link in kampasAdsLinks)
             {
-                var ias = new InsideAdScraper(link, "k-classified-icon-item");
+                var ias = new InsideAdScraper(link);
                 await ias.GetIHtmlDoc();
-                ias.ScrapeBuildingInfo();
-                ias.ScrapeMapCoord();
+                ias.ScrapeBuildingInfo("k-classified-icon-item");
+                ias.ScrapeMapCoord("li-map-preview");
 
                 richTextBox1.AppendText(link);
                 richTextBox1.AppendText("\n");
