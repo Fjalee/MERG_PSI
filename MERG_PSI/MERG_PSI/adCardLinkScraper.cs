@@ -90,6 +90,13 @@ namespace MERG_PSI
             var nmCharToBeDeleted = urlSubDirStringToBeDeleted.Length;
             var urlSubDir = urlSubDirEndParsed.Substring(nmCharToBeDeleted);
 
+            //fix error handling
+            if (urlSubDirEndParsed.Substring(0, nmCharToBeDeleted) != urlSubDirStringToBeDeleted)
+            {
+                MessageBox.Show("error, func ParseLink", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             //fix add error handling
 
             var url = siteUrl + urlSubDir;
