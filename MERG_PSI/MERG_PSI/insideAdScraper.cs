@@ -19,6 +19,7 @@ namespace MERG_PSI
 
         private List<string> buildingInfoLabels = new List<string>();
         private List<string> buildingInfo = new List<string>();
+        private string mapCoord;
 
         public InsideAdScraper(string siteUrl, string className)
         {
@@ -35,7 +36,7 @@ namespace MERG_PSI
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var buildingInfoHtml = GetBuildingInfoHtml(this.document);
+            var buildingInfoHtml = GetHtmlClassContent(this.document, "div", this.className);
 
             if (buildingInfoHtml.Any())
             {
@@ -55,16 +56,26 @@ namespace MERG_PSI
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var tempVar = Temp(this.document);
+            var liClassContent = GetHtmlClassContent(document, "li", "li-map-preview");
 
-            if (tempVar.Any())
+            if (liClassContent.Count() != 1)
             {
-                foreach (var element in tempVar)
-                {
-                    var x = element.InnerHtml;
-                }
+                MessageBox.Show("error, ScrapeMapCoord()", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            mapCoord = GetHrefFromAnchor(liClassContent.First());
+        }
+
+        private string GetHrefFromAnchor(IElement anchor)
+        {
+            //fix error handling
+            if (anchor.Children.Length != 1)
+            {
+                MessageBox.Show("error GetHrefFromAnchor() insideAdScraper Class", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return ((IHtmlAnchorElement)anchor.Children.First()).Href;
         }
 
         public async Task GetIHtmlDoc()
@@ -82,28 +93,17 @@ namespace MERG_PSI
             this.document = parser.ParseDocument(response);
         }
 
-        private IEnumerable<IElement> GetBuildingInfoHtml(IHtmlDocument document)
+        private IEnumerable<IElement> GetHtmlClassContent(IHtmlDocument document, string localName, string className)
         {
-            IEnumerable<IElement> adCardHtml = null;
+            IEnumerable<IElement> htmlClassContent = null;
 
-            adCardHtml = document.All.Where(x =>
-                x.LocalName == "div" &&
+            htmlClassContent = document.All.Where(x =>
+                x.LocalName == localName &&
                 x.ClassList.Contains(className));
 
-            return adCardHtml;
+            return htmlClassContent;
         }
-
-        private IEnumerable<IElement> Temp(IHtmlDocument document)
-        {
-            IEnumerable<IElement> adCardHtml = null;
-
-            adCardHtml = document.All.Where(x =>
-                x.LocalName == ("li") &&
-                x.ClassList.Contains("li-map-preview"));
-
-            return adCardHtml;
-        }
-
+        
         private void ParseBuildingInfo(string buildingInfoHtml)
         {
             var labelWithValueHtml = GetElementContentHtml(buildingInfoHtml, "span");
