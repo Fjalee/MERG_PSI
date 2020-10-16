@@ -17,7 +17,7 @@ namespace MERG_PSI
         public async void button1_Click(object sender, EventArgs e)
         {
             var websitePage = 1;
-            while (!reachedPageNoAds)
+            //while (!reachedPageNoAds)
             while (websitePage < 4)
             {
                 var tempLinkWithPage = websiteLink + "/butai?page=" + websitePage.ToString();
