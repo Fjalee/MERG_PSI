@@ -7,6 +7,8 @@ namespace MERG_PSI
     public partial class Form1 : Form
     {
         private List<string> kampasAdsLinks = new List<string>();
+        private string websiteLink = "https://www.kampas.lt";
+        private Boolean reachedPageNoAds = false;
 
         public Form1()
         {
@@ -14,22 +16,34 @@ namespace MERG_PSI
         }
         public async void button1_Click(object sender, EventArgs e)
         {
-            var ws = new AdCardLinkScraper("https://www.kampas.lt", "https://www.kampas.lt", "k-ad-card-wide");
-            await ws.GetIHtmlDoc();
-            ws.ScrapeUrls();
-            kampasAdsLinks = ws.GetUrls();
-
-            foreach (var link in kampasAdsLinks)
+            var websitePage = 1;
+            while (!reachedPageNoAds)
             {
-                var ias = new InsideAdScraper(link);
-                await ias.GetIHtmlDoc();
-                ias.ScrapeBuildingInfo("k-classified-icon-item");
-                ias.ScrapeMapCoord("li-map-preview");
+                var tempLinkWithPage = websiteLink + "/butai?page=" + websitePage.ToString();
+                var ws = new AdCardLinkScraper(websiteLink, tempLinkWithPage, "k-ad-card-wide");
+                await ws.GetIHtmlDoc();
+                ws.ScrapeUrls();
+                kampasAdsLinks = ws.GetUrls();
 
-                richTextBox1.AppendText(link);
-                richTextBox1.AppendText("\n");
-                richTextBox1.AppendText(ias.GetBuildingInfo());
-                richTextBox1.AppendText("\n\n*\n*\n*\n");
+                if (kampasAdsLinks.Count == 0)
+                {
+                    reachedPageNoAds = true;
+                }
+
+                foreach (var link in kampasAdsLinks)
+                {
+                    var ias = new InsideAdScraper(link);
+                    await ias.GetIHtmlDoc();
+                    ias.ScrapeBuildingInfo("k-classified-icon-item");
+                    ias.ScrapeMapCoord("li-map-preview");
+
+                    richTextBox1.AppendText(link);
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(ias.GetBuildingInfo());
+                    richTextBox1.AppendText("\n\n*\n*\n*\n");
+                }
+
+                websitePage++;
             }
         }
     }
