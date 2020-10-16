@@ -41,7 +41,7 @@ namespace MERG_PSI
             {
                 foreach (var element in buildingInfoHtml)
                 {
-                    ParseBuildingInfo(element.InnerHtml);
+                    ParseBuildingInfo(element);
                 }
             }
         }
@@ -103,11 +103,31 @@ namespace MERG_PSI
             this.document = parser.ParseDocument(response);
         }
 
-        private void ParseBuildingInfo(string buildingInfoHtml)
+        private void ParseBuildingInfo(IElement buildingInfoHtml)
         {
-            var labelWithValueHtml = GetElementContentHtml(buildingInfoHtml, "span");
-            var parsedLabel = ParseLabel(labelWithValueHtml);
-            var parsedValue = GetElementContentHtml(labelWithValueHtml, "strong");
+            var htmlChildren = buildingInfoHtml.Children.Where(x => x.InnerHtml != "");
+
+            //fix error handling
+            if (htmlChildren.Count() != 1)
+            {
+                MessageBox.Show("error GetHrefFromAnchor() insideAdScraper Class", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            var parsedValue = "";
+            var parsedLabel = "";
+            try
+            {
+                parsedValue = htmlChildren.First().FirstElementChild.InnerHtml;
+                var fullInfoLine = htmlChildren.First().TextContent;
+                parsedLabel = fullInfoLine.Substring(0, fullInfoLine.IndexOf(parsedValue)).Replace("\n", "").Trim();
+            }
+            catch (System.NullReferenceException)
+            {
+                var fullInfoLine = htmlChildren.First().TextContent;
+                parsedLabel = fullInfoLine.Replace("\n", "").Trim();
+            }
 
             buildingInfoLabels.Add(parsedLabel);
             buildingInfo.Add(parsedValue);
@@ -121,11 +141,15 @@ namespace MERG_PSI
             value = document.All.Where(x =>
                 x.LocalName == localName);
 
-            var parsedValue = "no data";
-            foreach (var element in value)
+            //fix error handeling
+            if (value.Count() != 1)
             {
-                parsedValue = element.InnerHtml;
+                MessageBox.Show("error, func GetElementContentHtml, didnt get IHTMLDocument first", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            var parsedValue = "no data";
+            parsedValue = value.First().InnerHtml;
             return parsedValue;
         }
 
