@@ -133,26 +133,6 @@ namespace MERG_PSI
             buildingInfo.Add(parsedValue);
         }
 
-        private string GetElementContentHtml(string stringHtml, string localName)
-        {
-            var document = StringIntoIHtmlDoc(stringHtml);
-
-            IEnumerable<IElement> value = null;
-            value = document.All.Where(x =>
-                x.LocalName == localName);
-
-            //fix error handeling
-            if (value.Count() != 1)
-            {
-                MessageBox.Show("error, func GetElementContentHtml, didnt get IHTMLDocument first", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            var parsedValue = "no data";
-            parsedValue = value.First().InnerHtml;
-            return parsedValue;
-        }
-
         private IHtmlDocument StringIntoIHtmlDoc(string stringHtml)
         {
             var config = Configuration.Default;
@@ -161,26 +141,6 @@ namespace MERG_PSI
             var document = parser.ParseDocument(stringHtml);
 
             return document;
-        }
-
-        private string ParseLabel(string labelWithHtml)
-        {
-
-            //fix clean error handeling below
-            if (labelWithHtml.Substring(0, 5).CompareTo("\n    ") != 0)
-            {
-                MessageBox.Show("error parseLabel insideAdScraper Class", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            labelWithHtml = labelWithHtml.Substring(5);
-
-            var labelEndIdentifier = ": <";
-            var indexLabelEnd = (labelWithHtml.IndexOf(labelEndIdentifier));
-
-            var label = labelWithHtml.Substring(0, indexLabelEnd);
-
-            return label;
         }
 
         public string GetBuildingInfo()
