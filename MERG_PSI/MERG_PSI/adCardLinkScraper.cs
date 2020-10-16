@@ -54,6 +54,9 @@ namespace MERG_PSI
 
             var parser = new HtmlParser();
             this.document = parser.ParseDocument(response);
+
+            cancellationToken.Dispose();
+            httpClient.Dispose();
         }
 
         private IEnumerable<IElement> GetAdCardHtml(IHtmlDocument document)
