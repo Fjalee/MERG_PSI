@@ -19,7 +19,7 @@ namespace MERG_PSI
 
         private List<string> buildingInfoLabels = new List<string>();
         private List<string> buildingInfo = new List<string>();
-        private string mapCoord;
+        private string mapLink;
         private string price;
 
         public InsideAdScraper(string siteUrl)
@@ -47,12 +47,12 @@ namespace MERG_PSI
             }
         }
 
-        public void ScrapeMapCoord(string className)
+        public void ScrapeMapLink(string className)
         {
             //fix error handeling
             if (this.document == null)
             {
-                MessageBox.Show("error, func scrapeMapCoord, didnt get IHTMLDocument first", "Error",
+                MessageBox.Show("error, func scrapeMapLink, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -60,7 +60,7 @@ namespace MERG_PSI
 
             if (liClassContent.Count() == 0)
             {
-                mapCoord = "";
+                mapLink = "";
             }
             else if (liClassContent.Count() != 1)
             {
@@ -69,7 +69,7 @@ namespace MERG_PSI
             }
             else
             {
-                mapCoord = GetHrefFromAnchor(liClassContent.First());
+                mapLink = GetHrefFromAnchor(liClassContent.First());
             }
         }
 
@@ -177,7 +177,7 @@ namespace MERG_PSI
                 i++;
             }
             buildingInfoString = buildingInfoString + "\n" + price;
-            buildingInfoString = buildingInfoString + "\n" + mapCoord;
+            buildingInfoString = buildingInfoString + "\n" + mapLink;
 
             if (buildingInfoString.Length > 0) { buildingInfoString = buildingInfoString.Substring(1); }
 

@@ -37,7 +37,7 @@ namespace MERG_PSI
                     await ias.GetIHtmlDoc();
                     ias.ScrapeBuildingInfo("k-classified-icon-item");
                     ias.ScrapePrice("price");
-                    ias.ScrapeMapCoord("li-map-preview");
+                    ias.ScrapeMapLink("li-map-preview");
 
 
                     richTextBox1.AppendText(link);
