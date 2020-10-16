@@ -57,13 +57,19 @@ namespace MERG_PSI
 
             var liClassContent = GetHtmlClassContent(document, "li", className);
 
-            if (liClassContent.Count() != 1)
+            if (liClassContent.Count() == 0)
+            {
+                mapCoord = "";
+            }
+            else if (liClassContent.Count() != 1)
             {
                 MessageBox.Show("error, ScrapeMapCoord()", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            mapCoord = GetHrefFromAnchor(liClassContent.First());
+            else
+            {
+                mapCoord = GetHrefFromAnchor(liClassContent.First());
+            }
         }
 
         private string GetHrefFromAnchor(IElement anchor)
@@ -131,16 +137,6 @@ namespace MERG_PSI
 
             buildingInfoLabels.Add(parsedLabel);
             buildingInfo.Add(parsedValue);
-        }
-
-        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml)
-        {
-            var config = Configuration.Default;
-            var context = BrowsingContext.New(config);
-            var parser = context.GetService<IHtmlParser>();
-            var document = parser.ParseDocument(stringHtml);
-
-            return document;
         }
 
         public string GetBuildingInfo()
