@@ -18,6 +18,7 @@ namespace MERG_PSI
         {
             var websitePage = 1;
             while (!reachedPageNoAds)
+            while (websitePage < 4)
             {
                 var tempLinkWithPage = websiteLink + "/butai?page=" + websitePage.ToString();
                 var ws = new AdCardLinkScraper(websiteLink, tempLinkWithPage, "k-ad-card-wide");
@@ -35,7 +36,9 @@ namespace MERG_PSI
                     var ias = new InsideAdScraper(link);
                     await ias.GetIHtmlDoc();
                     ias.ScrapeBuildingInfo("k-classified-icon-item");
+                    ias.ScrapePrice("price");
                     ias.ScrapeMapCoord("li-map-preview");
+
 
                     richTextBox1.AppendText(link);
                     richTextBox1.AppendText("\n");

@@ -20,6 +20,7 @@ namespace MERG_PSI
         private List<string> buildingInfoLabels = new List<string>();
         private List<string> buildingInfo = new List<string>();
         private string mapCoord;
+        private string price;
 
         public InsideAdScraper(string siteUrl)
         {
@@ -69,6 +70,32 @@ namespace MERG_PSI
             else
             {
                 mapCoord = GetHrefFromAnchor(liClassContent.First());
+            }
+        }
+
+        public void ScrapePrice(string className)
+        {
+            //fix error handeling
+            if (this.document == null)
+            {
+                MessageBox.Show("error, func ScrapePrice, didnt get IHTMLDocument first", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            var classContent = GetHtmlClassContent(document, "div", className);
+
+            if (classContent.Count() == 0)
+            {
+                price = "";
+            }
+            else if (classContent.Count() != 1)
+            {
+                MessageBox.Show("error, ScrapeMapCoord()", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                price = classContent.First().TextContent;
             }
         }
 
@@ -149,6 +176,7 @@ namespace MERG_PSI
                 buildingInfoString = buildingInfoString + "\n" + element + " " + buildingInfo[i];
                 i++;
             }
+            buildingInfoString = buildingInfoString + "\n" + price;
             buildingInfoString = buildingInfoString + "\n" + mapCoord;
 
             if (buildingInfoString.Length > 0) { buildingInfoString = buildingInfoString.Substring(1); }
