@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.search = new System.Windows.Forms.Button();
             this.showAdList = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.advSearch = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.webBrowser2 = new System.Windows.Forms.WebBrowser();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.search = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -85,10 +85,20 @@
             this.panel2.Size = new System.Drawing.Size(327, 950);
             this.panel2.TabIndex = 0;
             // 
+            // search
+            // 
+            this.search.Location = new System.Drawing.Point(46, 381);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(141, 49);
+            this.search.TabIndex = 5;
+            this.search.Text = "Ieškoti";
+            this.search.UseVisualStyleBackColor = true;
+            this.search.Click += new System.EventHandler(this.search_Click);
+            // 
             // showAdList
             // 
             this.showAdList.BackColor = System.Drawing.Color.Transparent;
-            this.showAdList.Location = new System.Drawing.Point(74, 874);
+            this.showAdList.Location = new System.Drawing.Point(46, 874);
             this.showAdList.Name = "showAdList";
             this.showAdList.Size = new System.Drawing.Size(141, 47);
             this.showAdList.TabIndex = 1;
@@ -108,13 +118,12 @@
             this.advSearch.BackColor = System.Drawing.Color.Transparent;
             this.advSearch.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.advSearch.ForeColor = System.Drawing.Color.Black;
-            this.advSearch.Location = new System.Drawing.Point(46, 377);
+            this.advSearch.Location = new System.Drawing.Point(46, 812);
             this.advSearch.Name = "advSearch";
             this.advSearch.Size = new System.Drawing.Size(182, 42);
             this.advSearch.TabIndex = 4;
             this.advSearch.Text = "Detali paieška";
             this.advSearch.UseVisualStyleBackColor = false;
-            this.advSearch.Click += new System.EventHandler(this.advSearch_Click);
             // 
             // priceTo
             // 
@@ -167,6 +176,7 @@
             // street
             // 
             this.street.AutoCompleteCustomSource.AddRange(new string[] {
+            "Mokyklos g.",
             "Nadruvos g. ",
             "V. Nagevičiaus g. ",
             "Nakvišų g. ",
@@ -439,7 +449,6 @@
             this.webBrowser2.Name = "webBrowser2";
             this.webBrowser2.Size = new System.Drawing.Size(1270, 927);
             this.webBrowser2.TabIndex = 2;
-            this.webBrowser2.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser2_DocumentCompleted);
             // 
             // webBrowser1
             // 
@@ -457,16 +466,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1270, 32);
             this.panel4.TabIndex = 0;
-            // 
-            // search
-            // 
-            this.search.Location = new System.Drawing.Point(74, 802);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(141, 49);
-            this.search.TabIndex = 5;
-            this.search.Text = "Ieškoti";
-            this.search.UseVisualStyleBackColor = true;
-            this.search.Click += new System.EventHandler(this.search_Click);
             // 
             // Form1
             // 

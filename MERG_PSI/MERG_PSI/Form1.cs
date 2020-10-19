@@ -19,6 +19,7 @@ namespace MERG_PSI
             webBrowser2.ScriptErrorsSuppressed = true;
         }
 
+        ///----------------------------------------------------------------------------------------------------
         private void municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
             var ch = e.KeyChar;
@@ -68,6 +69,8 @@ namespace MERG_PSI
                 e.Handled = true;
             }
         }
+
+        //--------------------------------------------------------------------------------------------------
 
         private void priceFrom_Enter(object sender, EventArgs e)
         {
@@ -141,6 +144,8 @@ namespace MERG_PSI
             }
         }
 
+        //-------------------------------------------------------------------------------------
+
        /* private void showAdList_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -148,16 +153,6 @@ namespace MERG_PSI
             openForm2.ShowDialog();
             this.Close();
         }*/
-
-        private void advSearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void webBrowser2_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
 
         private void search_Click(object sender, EventArgs e)
         {
