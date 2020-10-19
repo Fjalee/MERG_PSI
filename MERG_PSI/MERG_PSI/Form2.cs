@@ -17,22 +17,12 @@ namespace MERG_PSI
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void showMap_Click(object sender, EventArgs e)
         {
             this.Hide();
             var openForm1 = new Form1();
             openForm1.ShowDialog();
             this.Close();
-        }
-
-        private void panel8_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
