@@ -15,31 +15,31 @@ namespace MERG_PSI
 {
     class AdCardLinkScraper
     {
-        private string _siteUrl, _siteUrlWithPage, _className;
+        private string _siteUrl, _siteUrlWithPage, _classNameForAdCard;
         private IHtmlDocument _document;
         public List<string> Links { get; set; }
-
         public AdCardLinkScraper(string siteUrl, string siteUrlWithPage, string className)
         {
             _siteUrl = siteUrl;
             _siteUrlWithPage = siteUrlWithPage;
-            _className = className;
+            _classNameForAdCard = className;
+
             Links = new List<string>(); 
         }
 
+
         public void ScrapeUrls()
         {
-
             //fix error handeling
             if (_document == null)
             {
-                MessageBox.Show("error, func scrapeUrls, didnt get IHTMLDocument first", "Error",
+                MessageBox.Show("Error, func scrapeUrls, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var adCardHtml = GetAdCardHtml(_document);
+            var adCardsHtml = GetAdCardsHtml(_document);
 
-            CreateLinkList(adCardHtml);
+            Links = ParseAllLinks(adCardsHtml);
         }
 
         public async Task GetIHtmlDoc()
@@ -60,87 +60,33 @@ namespace MERG_PSI
             httpClient.Dispose();
         }
 
-        private IEnumerable<IElement> GetAdCardHtml(IHtmlDocument document)
+        //fix method name and adCardsHtml name
+        private IEnumerable<IElement> GetAdCardsHtml(IHtmlDocument document)
         {
-            IEnumerable<IElement> adCardHtml = null;
+            IEnumerable<IElement> adCardsHtml = null;
 
-            adCardHtml = document.All.Where(x =>
-                x.LocalName == "div" &&
-                x.ClassList.Contains(_className));
+            adCardsHtml = document.All.Where(x =>
+                x.LocalName == "a" &&
+                x.ParentElement.LocalName == "div" &&
+                x.ParentElement.ClassList.Contains(_classNameForAdCard));
 
-            return adCardHtml;
+            return adCardsHtml;
         }
 
-        void CreateLinkList(IEnumerable<IElement> adCardHtml)
+        private List<string> ParseAllLinks(IEnumerable<IElement> adCardsHtml)
         {
-            if (adCardHtml.Any())
+            var allLinks = new List<string>();
+
+            if (adCardsHtml.Any())
             {
-                foreach (var element in adCardHtml)
+                foreach (var element in adCardsHtml)
                 {
-                    Links.Add(ParseLink(element.InnerHtml, _siteUrl));
+                    var url = _siteUrl + ((IHtmlAnchorElement)element).PathName;
+                    allLinks.Add(url);
                 }
             }
-        }
 
-        private string ParseLink(string cardHtml, string siteUrl)
-        {
-            var document = StringIntoIHtmlDoc(cardHtml);
-            var urlSubDirEndParsed = GetHref(document);
-
-            var urlSubDirStringToBeDeleted = "about://";
-            var nmCharToBeDeleted = urlSubDirStringToBeDeleted.Length;
-            var urlSubDir = urlSubDirEndParsed.Substring(nmCharToBeDeleted);
-
-            //fix error handling
-            if (urlSubDirEndParsed.Substring(0, nmCharToBeDeleted) != urlSubDirStringToBeDeleted)
-            {
-                MessageBox.Show("error, func ParseLink", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            //fix add error handling
-
-            var url = siteUrl + urlSubDir;
-            return url;
-        }
-
-        private string GetHref(IHtmlDocument document)
-        {
-            var menuItems = document.QuerySelectorAll("a");
-            var Links = menuItems.Select(m => ((IHtmlAnchorElement)m).Href).ToList();
-
-            //fix error handeling
-            if (Links.Count == 2)
-            {
-                if (Links[0] != Links[1])
-                {
-                    MessageBox.Show("error2, func GetHref", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (Links.Count != 1 && Links.Count != 2)
-            {
-                MessageBox.Show("error, func GetHref", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-            return Links[0];
-        }
-
-        private IHtmlDocument StringIntoIHtmlDoc(string stringHtml)
-        {
-            var config = Configuration.Default;
-            var context = BrowsingContext.New(config);
-            var parser = context.GetService<IHtmlParser>();
-            var document = parser.ParseDocument(stringHtml);
-
-            return document;
-        }
-
-        public List<string> GetUrls()
-        {
-            return Links;
+            return allLinks;
         }
     }
 }
