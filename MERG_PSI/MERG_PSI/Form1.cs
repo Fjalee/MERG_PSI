@@ -19,6 +19,11 @@ namespace MERG_PSI
             //while (!reachedPageNoAds)
             while (websitePage < 4)
             {
+
+
+
+
+
                 var tempLinkWithPage = websiteLink + "/butai?page=" + websitePage.ToString();
                 var ws = new AdCardLinkScraper(websiteLink, tempLinkWithPage, "k-ad-card-wide");
                 await ws.GetIHtmlDoc();
