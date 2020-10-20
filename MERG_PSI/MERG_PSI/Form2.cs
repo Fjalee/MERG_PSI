@@ -24,5 +24,10 @@ namespace MERG_PSI
             openForm1.ShowDialog();
             this.Close();
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

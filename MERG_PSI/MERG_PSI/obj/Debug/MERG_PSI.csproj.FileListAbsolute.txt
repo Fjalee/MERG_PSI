@@ -9,3 +9,14 @@ C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.Core
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.exe
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.pdb
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.Form2.resources
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\MERG_PSI.exe.config
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\MERG_PSI.exe
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\MERG_PSI.pdb
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csprojAssemblyReference.cache
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.Form1.resources
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.Form2.resources
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.Properties.Resources.resources
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.GenerateResource.cache
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.CoreCompileInputs.cache
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.exe
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.pdb

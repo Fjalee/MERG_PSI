@@ -15,8 +15,15 @@ namespace MERG_PSI
         public Form1()
         {
             InitializeComponent();
-            webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
-            webBrowser2.ScriptErrorsSuppressed = true;
+           // webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
+          //  webBrowser2.ScriptErrorsSuppressed = true;
+            var tekstas = "";
+            var Data = (new Data()).SampleData;
+            foreach (var eilute in Data)
+            {
+                tekstas = tekstas + eilute;
+            }
+            richTextBox1.Text = tekstas;
         }
 
         ///----------------------------------------------------------------------------------------------------
@@ -146,18 +153,22 @@ namespace MERG_PSI
 
         //-------------------------------------------------------------------------------------
 
-       /* private void showAdList_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var openForm2 = new Form2();
-            openForm2.ShowDialog();
-            this.Close();
-        }*/
+        /* private void showAdList_Click(object sender, EventArgs e)
+         {
+             this.Hide();
+             var openForm2 = new Form2();
+             openForm2.ShowDialog();
+             this.Close();
+         }*/
 
         private void search_Click(object sender, EventArgs e)
         {
-     
-            var town = municipality.Text;
+            var Inspection = new Inspection();
+            var TextBoxes = new List<TextBox> {priceFrom, priceTo, areaFrom, areaTo, municipality};
+            var ListOfRealEstate = new Data().SampleData;
+            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate,TextBoxes));
+
+            /*var town = municipality.Text;
             var streetName = street.Text;
             webBrowser2.ScriptErrorsSuppressed = true;
             try
@@ -177,6 +188,31 @@ namespace MERG_PSI
             {
                 MessageBox.Show(ex.Message.ToString(), "error");
             }
+            */
+        }
+
+        private void municipality_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void advSearch_Click(object sender, EventArgs e)
+        {
+            //var Filter=  new Filters();
+            //  var list = Filter.getSampleData();
+        
+
+            
+            //  richTextBox1.Text = filteredList.ToString();
+        }
+        private String ListToDisplay (List<RealEstate> RealEstateList)
+        {
+            var tekstas = "";
+            foreach (var eilute in RealEstateList)
+            {
+                tekstas = tekstas + eilute;
+            }
+            return tekstas;
         }
 
         /*
