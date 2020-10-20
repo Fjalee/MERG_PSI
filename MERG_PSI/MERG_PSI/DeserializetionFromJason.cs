@@ -9,7 +9,7 @@ namespace MERG_PSI
     {
         private void dederialization()
         {
-            var filePath = @"C:\Users\Greta\Desktop\text2.txt";
+            var filePath = "../../scrapedData.txt";
 
             string jsonFromFIle;
             using (var reader = new StreamReader(filePath))
