@@ -17,13 +17,14 @@ namespace MERG_PSI
     {
         private string _siteUrl, _siteUrlWithPage, _className;
         private IHtmlDocument _document;
-        private List<string> links = new List<string>();
+        public List<string> Links { get; set; }
 
         public AdCardLinkScraper(string siteUrl, string siteUrlWithPage, string className)
         {
             _siteUrl = siteUrl;
             _siteUrlWithPage = siteUrlWithPage;
             _className = className;
+            Links = new List<string>(); 
         }
 
         public void ScrapeUrls()
@@ -76,7 +77,7 @@ namespace MERG_PSI
             {
                 foreach (var element in adCardHtml)
                 {
-                    links.Add(ParseLink(element.InnerHtml, _siteUrl));
+                    Links.Add(ParseLink(element.InnerHtml, _siteUrl));
                 }
             }
         }
@@ -106,25 +107,25 @@ namespace MERG_PSI
         private string GetHref(IHtmlDocument document)
         {
             var menuItems = document.QuerySelectorAll("a");
-            var links = menuItems.Select(m => ((IHtmlAnchorElement)m).Href).ToList();
+            var Links = menuItems.Select(m => ((IHtmlAnchorElement)m).Href).ToList();
 
             //fix error handeling
-            if (links.Count == 2)
+            if (Links.Count == 2)
             {
-                if (links[0] != links[1])
+                if (Links[0] != Links[1])
                 {
                     MessageBox.Show("error2, func GetHref", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (links.Count != 1 && links.Count != 2)
+            else if (Links.Count != 1 && Links.Count != 2)
             {
                 MessageBox.Show("error, func GetHref", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
-            return links[0];
+            return Links[0];
         }
 
         private IHtmlDocument StringIntoIHtmlDoc(string stringHtml)
@@ -139,7 +140,7 @@ namespace MERG_PSI
 
         public List<string> GetUrls()
         {
-            return links;
+            return Links;
         }
     }
 }

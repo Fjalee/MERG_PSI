@@ -6,7 +6,6 @@ namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
-        private List<string> kampasAdsLinks = new List<string>();
         private string websiteLink = "https://www.kampas.lt";
         private Boolean reachedPageNoAds = false;
 
@@ -24,14 +23,13 @@ namespace MERG_PSI
                 var ws = new AdCardLinkScraper(websiteLink, tempLinkWithPage, "k-ad-card-wide");
                 await ws.GetIHtmlDoc();
                 ws.ScrapeUrls();
-                kampasAdsLinks = ws.GetUrls();
 
-                if (kampasAdsLinks.Count == 0)
+                if (ws.Links.Count == 0)
                 {
                     reachedPageNoAds = true;
                 }
 
-                foreach (var link in kampasAdsLinks)
+                foreach (var link in ws.Links)
                 {
                     var ias = new InsideAdScraper(link);
                     await ias.GetIHtmlDoc();
