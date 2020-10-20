@@ -12,12 +12,28 @@ namespace MERG_PSI
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
-        public int Floor { get; set; }
+        public int Floor { get; set; }   //stringas kolkas tegul buna
         public double Price { get; set; }
         public string MapLink { get; set; }
         public string Municipality { get; set; }
         public string Street { get; set; }
         public int BuildYear { get; set; }
+
+        //public string Link { get; set; }
+        //public double Area { get; set; }             
+        //public double PricePerSqM { get; set; }       
+        //public int NumberOfRooms { get; set; }
+        //public string Floor { get; set; }              
+        //public double Price { get; set; }             ///ar reikia
+        //public string Construction { get; set; }      //reikia prideti
+        //public string Heating { get; set; }           ///reikia prideti
+        //public int BuildYear { get; set; }
+        //public string MapLink { get; set; }
+        //public string City { get; set; }              //reikia prideti
+        //public string Municipality { get; set; }
+        //public string Street { get; set; }
+        //public string HouseNm { get; set; }            //reikia prideti
+        //public string Coordinates { get; set; }        //reikia prideti
 
         public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, int floor, string mapLink, string municipality, string street, int buildYear)
         {
