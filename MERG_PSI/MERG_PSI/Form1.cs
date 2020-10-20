@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MERG_PSI
@@ -7,6 +8,7 @@ namespace MERG_PSI
     public partial class Form1 : Form
     {
         private string _websiteLink = "https://www.kampas.lt";
+        private List<RealEstate> _scrapedData = new List<RealEstate>();
         private Boolean _reachedPageNoAds = false;
 
         public Form1()
@@ -19,39 +21,44 @@ namespace MERG_PSI
             //while (!_reachedPageNoAds)
             while (websitePage < 4)
             {
+                var linkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
 
+                var adCardLinkScraper = new AdCardLinkScraper(_websiteLink, linkWithPage, "k-ad-card-wide");
+                await adCardLinkScraper.GetIHtmlDoc();
+                adCardLinkScraper.ScrapeUrls();
 
-
-
-
-                var tempLinkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
-                var ws = new AdCardLinkScraper(_websiteLink, tempLinkWithPage, "k-ad-card-wide");
-                await ws.GetIHtmlDoc();
-                ws.ScrapeUrls();
-
-                if (ws.Links.Count == 0)
+                if (adCardLinkScraper.Links.Any())
                 {
-                    _reachedPageNoAds = true;
+                    foreach (var link in adCardLinkScraper.Links)
+                    {
+                        var insideAdScraper = new InsideAdScraper(link);
+                        await insideAdScraper.GetIHtmlDoc();
+                        insideAdScraper.ScrapeBuildingInfo("k-classified-icon-item");
+                        insideAdScraper.ScrapePrice("price");
+                        insideAdScraper.ScrapeMapLink("li-map-preview");
+
+                        /*_scrapedData.Add(new RealEstate(
+                            link, area, pricePerSqM, numberOfRooms, floor, mapLink,
+                            municipality, street, buildYear);*/
+
+                        //fix delete with TempOutput()
+                        var buildingInfo = insideAdScraper.GetBuildingInfo();
+                        TempOutput(link, buildingInfo);
+                    }
+
+                    websitePage++;
                 }
-
-                foreach (var link in ws.Links)
-                {
-                    var ias = new InsideAdScraper(link);
-                    await ias.GetIHtmlDoc();
-                    ias.ScrapeBuildingInfo("k-classified-icon-item");
-                    ias.ScrapePrice("price");
-                    ias.ScrapeMapLink("li-map-preview");
-
-
-                    richTextBox1.AppendText(link);
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText(ias.GetBuildingInfo());
-                    richTextBox1.AppendText("\n\n*\n*\n*\n");
-                }
-
-                websitePage++;
+                else { _reachedPageNoAds = true; }
             }
         }
+
+       private void TempOutput(string link, string buildingInfo)
+       {
+            richTextBox1.AppendText(link);
+            richTextBox1.AppendText("\n");
+            richTextBox1.AppendText(buildingInfo);
+            richTextBox1.AppendText("\n\n*\n*\n*\n");
+       }
     }
 }
 

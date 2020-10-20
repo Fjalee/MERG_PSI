@@ -13,3 +13,5 @@ C:\Users\Rytis\Documents\MyDocuments\MyApps\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug
 C:\Users\Rytis\Documents\MyDocuments\MyApps\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.CopyComplete
 C:\Users\Rytis\Documents\MyDocuments\MyApps\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.exe
 C:\Users\Rytis\Documents\MyDocuments\MyApps\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.pdb
+C:\Users\Rytis\Documents\MyDocuments\MyApps\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Rytis\Documents\MyDocuments\MyApps\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\Newtonsoft.Json.xml
