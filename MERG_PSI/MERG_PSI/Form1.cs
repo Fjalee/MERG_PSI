@@ -6,8 +6,8 @@ namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
-        private string websiteLink = "https://www.kampas.lt";
-        private Boolean reachedPageNoAds = false;
+        private string _websiteLink = "https://www.kampas.lt";
+        private Boolean _reachedPageNoAds = false;
 
         public Form1()
         {
@@ -16,7 +16,7 @@ namespace MERG_PSI
         public async void button1_Click(object sender, EventArgs e)
         {
             var websitePage = 1;
-            //while (!reachedPageNoAds)
+            //while (!_reachedPageNoAds)
             while (websitePage < 4)
             {
 
@@ -24,14 +24,14 @@ namespace MERG_PSI
 
 
 
-                var tempLinkWithPage = websiteLink + "/butai?page=" + websitePage.ToString();
-                var ws = new AdCardLinkScraper(websiteLink, tempLinkWithPage, "k-ad-card-wide");
+                var tempLinkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
+                var ws = new AdCardLinkScraper(_websiteLink, tempLinkWithPage, "k-ad-card-wide");
                 await ws.GetIHtmlDoc();
                 ws.ScrapeUrls();
 
                 if (ws.Links.Count == 0)
                 {
-                    reachedPageNoAds = true;
+                    _reachedPageNoAds = true;
                 }
 
                 foreach (var link in ws.Links)
