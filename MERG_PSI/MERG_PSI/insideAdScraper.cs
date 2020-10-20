@@ -30,6 +30,13 @@ namespace MERG_PSI
             BuildingInfoLabels = new List<string>();
         }
 
+        public override void Scrape()
+        {
+            ScrapeBuildingInfo();
+            ScrapePrice();
+            ScrapeMapLink();
+        }
+
         public void ScrapeBuildingInfo()
         {
             //fix error handeling

@@ -27,7 +27,10 @@ namespace MERG_PSI
             Links = new List<string>(); 
         }
 
-
+        public override void Scrape()
+        {
+            ScrapeUrls();
+        }
         public void ScrapeUrls()
         {
             //fix error handeling
@@ -42,7 +45,6 @@ namespace MERG_PSI
             Links = ParseAllLinks(adCardsHtml);
         }
 
-        //fix method name and adCardsHtml name
         private IEnumerable<IElement> GetAdCardsHtml(IHtmlDocument document)
         {
             IEnumerable<IElement> adCardsHtml = null;

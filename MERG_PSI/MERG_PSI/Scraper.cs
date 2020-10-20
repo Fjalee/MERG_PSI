@@ -30,5 +30,7 @@ namespace MERG_PSI
 
             return parser.ParseDocument(response);
         }
+
+        public abstract void Scrape();
     }
 }

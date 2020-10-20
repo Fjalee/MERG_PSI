@@ -33,10 +33,7 @@ namespace MERG_PSI
                     {
                         var insideAdScraper = new InsideAdScraper(link);
                         insideAdScraper.Document = await insideAdScraper.GetIHtmlDoc(link);
-
-                        insideAdScraper.ScrapeBuildingInfo();
-                        insideAdScraper.ScrapePrice();
-                        insideAdScraper.ScrapeMapLink();
+                        insideAdScraper.Scrape();
 
                         /*_scrapedData.Add(new RealEstate(
                             link, area, pricePerSqM, numberOfRooms, floor, mapLink,
