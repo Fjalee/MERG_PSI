@@ -23,8 +23,8 @@ namespace MERG_PSI
             {
                 var linkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
 
-                var adCardLinkScraper = new AdCardLinkScraper(_websiteLink, linkWithPage, "k-ad-card-wide");
-                await adCardLinkScraper.GetIHtmlDoc();
+                var adCardLinkScraper = new AdCardLinkScraper(_websiteLink, "k-ad-card-wide");
+                adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
                 adCardLinkScraper.ScrapeUrls();
 
                 if (adCardLinkScraper.Links.Any())
@@ -32,7 +32,8 @@ namespace MERG_PSI
                     foreach (var link in adCardLinkScraper.Links)
                     {
                         var insideAdScraper = new InsideAdScraper(link);
-                        await insideAdScraper.GetIHtmlDoc();
+                        insideAdScraper.Document = await insideAdScraper.GetIHtmlDoc(link);
+
                         insideAdScraper.ScrapeBuildingInfo();
                         insideAdScraper.ScrapePrice();
                         insideAdScraper.ScrapeMapLink();

@@ -13,15 +13,15 @@ using System.Windows.Forms;
 
 namespace MERG_PSI
 {
-    class AdCardLinkScraper
+    class AdCardLinkScraper : Scraper
     {
-        private string _siteUrl, _siteUrlWithPage, _classNameForAdCard;
-        private IHtmlDocument _document;
+
+        private string _siteUrl, _classNameForAdCard;
+        public IHtmlDocument Document { get; set; }
         public List<string> Links { get; set; }
-        public AdCardLinkScraper(string siteUrl, string siteUrlWithPage, string className)
+        public AdCardLinkScraper(string siteUrl, string className)
         {
             _siteUrl = siteUrl;
-            _siteUrlWithPage = siteUrlWithPage;
             _classNameForAdCard = className;
 
             Links = new List<string>(); 
@@ -31,33 +31,15 @@ namespace MERG_PSI
         public void ScrapeUrls()
         {
             //fix error handeling
-            if (_document == null)
+            if (Document == null)
             {
                 MessageBox.Show("Error, func scrapeUrls, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var adCardsHtml = GetAdCardsHtml(_document);
+            var adCardsHtml = GetAdCardsHtml(Document);
 
             Links = ParseAllLinks(adCardsHtml);
-        }
-
-        public async Task GetIHtmlDoc()
-        {
-            var cancellationToken = new CancellationTokenSource();
-            var httpClient = new HttpClient();
-
-            var request = await httpClient.GetAsync(_siteUrlWithPage);
-            cancellationToken.Token.ThrowIfCancellationRequested();
-
-            var response = await request.Content.ReadAsStreamAsync();
-            cancellationToken.Token.ThrowIfCancellationRequested();
-
-            var parser = new HtmlParser();
-            _document = parser.ParseDocument(response);
-
-            cancellationToken.Dispose();
-            httpClient.Dispose();
         }
 
         //fix method name and adCardsHtml name

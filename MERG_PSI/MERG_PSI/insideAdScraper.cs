@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace MERG_PSI
 {
-    class InsideAdScraper
+    class InsideAdScraper : Scraper
     {
         private string _siteUrl;
 
-        private IHtmlDocument _document;
+        public IHtmlDocument Document { get; set; }
 
         public List<string> BuildingInfoLabels { get; set; }
         public List<string> BuildingInfo { get; set; }
@@ -33,7 +33,7 @@ namespace MERG_PSI
         public void ScrapeBuildingInfo()
         {
             //fix error handeling
-            if (_document == null)
+            if (Document == null)
             {
                 MessageBox.Show("error, func scrapeBuildingInfo, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -53,7 +53,7 @@ namespace MERG_PSI
         public void ScrapeMapLink()
         {
             //fix error handeling
-            if (_document == null)
+            if (Document == null)
             {
                 MessageBox.Show("error, func scrapeMapLink, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -80,7 +80,7 @@ namespace MERG_PSI
         public void ScrapePrice()
         {
             //fix error handeling
-            if (_document == null)
+            if (Document == null)
             {
                 MessageBox.Show("error, func ScrapePrice, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -108,7 +108,7 @@ namespace MERG_PSI
         {
             IEnumerable<IElement> htmlClassContent = null;
 
-            htmlClassContent = (_document).All.Where(x =>
+            htmlClassContent = (Document).All.Where(x =>
                 x.LocalName == "a" &&
                 ((IHtmlAnchorElement)x).HostName == "maps.google.com" &&
                 x.ParentElement.LocalName == "li" &&
@@ -120,7 +120,7 @@ namespace MERG_PSI
         {
             IEnumerable<IElement> htmlClassContent = null;
 
-            htmlClassContent = _document.All.Where(x =>
+            htmlClassContent = Document.All.Where(x =>
                 x.ClassName == "label" &&
                 x.ParentElement.LocalName == "div" &&
                 x.ParentElement.ClassList.Contains("k-classified-icon-item"));
@@ -131,29 +131,11 @@ namespace MERG_PSI
         {
             IEnumerable<IElement> htmlClassContent = null;
 
-            htmlClassContent = _document.All.Where(x =>
+            htmlClassContent = Document.All.Where(x =>
                 x.LocalName == "div" &&
                 x.ClassList.Contains("price"));
 
             return htmlClassContent;
-        }
-        
-        public async Task GetIHtmlDoc()
-        {
-            var cancellationToken = new CancellationTokenSource();
-            var httpClient = new HttpClient();
-
-            var request = await httpClient.GetAsync(_siteUrl);
-            cancellationToken.Token.ThrowIfCancellationRequested();
-
-            var response = await request.Content.ReadAsStreamAsync();
-            cancellationToken.Token.ThrowIfCancellationRequested();
-
-            var parser = new HtmlParser();
-            _document = parser.ParseDocument(response);
-
-            cancellationToken.Dispose();
-            httpClient.Dispose();
         }
 
         private void ParseBuildingInfoLineLabelFromVal(IElement buildingInfoLineHtml)
