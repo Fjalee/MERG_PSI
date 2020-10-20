@@ -30,7 +30,7 @@ namespace MERG_PSI
             BuildingInfoLabels = new List<string>();
         }
 
-        public void ScrapeBuildingInfo(string className)
+        public void ScrapeBuildingInfo()
         {
             //fix error handeling
             if (_document == null)
@@ -39,18 +39,18 @@ namespace MERG_PSI
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var buildingInfoHtml = GetHtmlClassContent(_document, "div", className);
+            var buildingInfoLineHtml = GetBuildingInfoLinesHtml();
 
-            if (buildingInfoHtml.Any())
+            if (buildingInfoLineHtml.Any())
             {
-                foreach (var element in buildingInfoHtml)
+                foreach (var element in buildingInfoLineHtml)
                 {
-                    ParseBuildingInfo(element);
+                    ParseBuildingInfoLineLabelFromVal(element);
                 }
             }
         }
 
-        public void ScrapeMapLink(string className)
+        public void ScrapeMapLink()
         {
             //fix error handeling
             if (_document == null)
@@ -59,24 +59,25 @@ namespace MERG_PSI
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var liClassContent = GetHtmlClassContent(_document, "li", className);
+            var mapLinkHtml = GetMapLinkHtml();
+                
+            if (mapLinkHtml.Any())
+            {
+                if (mapLinkHtml.Count() != 1)
+                {
+                    MessageBox.Show("error, ScrapeMapCoord()", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            if (liClassContent.Count() == 0)
-            {
-                MapLink = "";
-            }
-            else if (liClassContent.Count() != 1)
-            {
-                MessageBox.Show("error, ScrapeMapCoord()", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MapLink = ((IHtmlAnchorElement)mapLinkHtml.First()).Href;
             }
             else
             {
-                MapLink = GetHrefFromAnchor(liClassContent.First());
+                MapLink = "";
             }
         }
 
-        public void ScrapePrice(string className)
+        public void ScrapePrice()
         {
             //fix error handeling
             if (_document == null)
@@ -85,41 +86,54 @@ namespace MERG_PSI
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var classContent = GetHtmlClassContent(_document, "div", className);
+            var classContent = GetPriceHtml();
 
-            if (classContent.Count() == 0)
+            if (classContent.Any())
             {
-                Price = "";
-            }
-            else if (classContent.Count() != 1)
-            {
-                MessageBox.Show("error, ScrapeMapCoord()", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (classContent.Count() != 1)
+                {
+                    MessageBox.Show("error, ScrapeMapCoord()", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                Price = classContent.First().TextContent;
             }
             else
             {
-                Price = classContent.First().TextContent;
+                Price = "";
             }
         }
 
-        private string GetHrefFromAnchor(IElement anchor)
-        {
-            //fix error handling
-            if (anchor.Children.Length != 1)
-            {
-                MessageBox.Show("error GetHrefFromAnchor() insideAdScraper Class", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return ((IHtmlAnchorElement)anchor.Children.First()).Href;
-        }
-
-        private IEnumerable<IElement> GetHtmlClassContent(IHtmlDocument document, string localName, string className)
+        private IEnumerable<IElement> GetMapLinkHtml()
         {
             IEnumerable<IElement> htmlClassContent = null;
 
-            htmlClassContent = document.All.Where(x =>
-                x.LocalName == localName &&
-                x.ClassList.Contains(className));
+            htmlClassContent = (_document).All.Where(x =>
+                x.LocalName == "a" &&
+                ((IHtmlAnchorElement)x).HostName == "maps.google.com" &&
+                x.ParentElement.LocalName == "li" &&
+                x.ParentElement.ClassList.Contains("li-map-preview"));
+
+            return htmlClassContent;
+        }
+        private IEnumerable<IElement> GetBuildingInfoLinesHtml()
+        {
+            IEnumerable<IElement> htmlClassContent = null;
+
+            htmlClassContent = _document.All.Where(x =>
+                x.ClassName == "label" &&
+                x.ParentElement.LocalName == "div" &&
+                x.ParentElement.ClassList.Contains("k-classified-icon-item"));
+
+            return htmlClassContent;
+        }
+        private IEnumerable<IElement> GetPriceHtml()
+        {
+            IEnumerable<IElement> htmlClassContent = null;
+
+            htmlClassContent = _document.All.Where(x =>
+                x.LocalName == "div" &&
+                x.ClassList.Contains("price"));
 
             return htmlClassContent;
         }
@@ -142,29 +156,20 @@ namespace MERG_PSI
             httpClient.Dispose();
         }
 
-        private void ParseBuildingInfo(IElement buildingInfoHtml)
+        private void ParseBuildingInfoLineLabelFromVal(IElement buildingInfoLineHtml)
         {
-            var htmlChildren = buildingInfoHtml.Children.Where(x => x.InnerHtml != "");
-
-            //fix error handling
-            if (htmlChildren.Count() != 1)
-            {
-                MessageBox.Show("error GetHrefFromAnchor() insideAdScraper Class", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
             var parsedValue = "";
             var parsedLabel = "";
             try
             {
-                parsedValue = htmlChildren.First().FirstElementChild.InnerHtml;
-                var fullInfoLine = htmlChildren.First().TextContent;
+                parsedValue = buildingInfoLineHtml.FirstElementChild.InnerHtml;
+
+                var fullInfoLine = buildingInfoLineHtml.TextContent;
                 parsedLabel = fullInfoLine.Substring(0, fullInfoLine.IndexOf(parsedValue)).Replace("\n", "").Trim();
             }
             catch (System.NullReferenceException)
             {
-                var fullInfoLine = htmlChildren.First().TextContent;
+                var fullInfoLine = buildingInfoLineHtml.TextContent;
                 parsedLabel = fullInfoLine.Replace("\n", "").Trim();
             }
 
