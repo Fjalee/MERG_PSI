@@ -104,6 +104,17 @@ namespace MERG_PSI
             }
         }
 
+        private IEnumerable<IElement> GetBuildingInfoLinesHtml()
+        {
+            IEnumerable<IElement> htmlClassContent = null;
+
+            htmlClassContent = Document.All.Where(x =>
+                x.ClassName == "label" &&
+                x.ParentElement.LocalName == "div" &&
+                x.ParentElement.ClassList.Contains("k-classified-icon-item"));
+
+            return htmlClassContent;
+        }
         private IEnumerable<IElement> GetMapLinkHtml()
         {
             IEnumerable<IElement> htmlClassContent = null;
@@ -113,17 +124,6 @@ namespace MERG_PSI
                 ((IHtmlAnchorElement)x).HostName == "maps.google.com" &&
                 x.ParentElement.LocalName == "li" &&
                 x.ParentElement.ClassList.Contains("li-map-preview"));
-
-            return htmlClassContent;
-        }
-        private IEnumerable<IElement> GetBuildingInfoLinesHtml()
-        {
-            IEnumerable<IElement> htmlClassContent = null;
-
-            htmlClassContent = Document.All.Where(x =>
-                x.ClassName == "label" &&
-                x.ParentElement.LocalName == "div" &&
-                x.ParentElement.ClassList.Contains("k-classified-icon-item"));
 
             return htmlClassContent;
         }
