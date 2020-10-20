@@ -15,16 +15,19 @@ namespace MERG_PSI
     class InsideAdScraper
     {
         private string _siteUrl;
+
         private IHtmlDocument _document;
 
-        private List<string> _buildingInfoLabels = new List<string>();
-        private List<string> _buildingInfo = new List<string>();
-        private string _mapLink;
-        private string _price;
-
+        public List<string> BuildingInfoLabels { get; set; }
+        public List<string> BuildingInfo { get; set; }
+        public string MapLink { get; set; }
+        public string Price { get; set; }
         public InsideAdScraper(string siteUrl)
         {
             _siteUrl = siteUrl;
+
+            BuildingInfo = new List<string>();
+            BuildingInfoLabels = new List<string>();
         }
 
         public void ScrapeBuildingInfo(string className)
@@ -60,7 +63,7 @@ namespace MERG_PSI
 
             if (liClassContent.Count() == 0)
             {
-                _mapLink = "";
+                MapLink = "";
             }
             else if (liClassContent.Count() != 1)
             {
@@ -69,7 +72,7 @@ namespace MERG_PSI
             }
             else
             {
-                _mapLink = GetHrefFromAnchor(liClassContent.First());
+                MapLink = GetHrefFromAnchor(liClassContent.First());
             }
         }
 
@@ -86,7 +89,7 @@ namespace MERG_PSI
 
             if (classContent.Count() == 0)
             {
-                _price = "";
+                Price = "";
             }
             else if (classContent.Count() != 1)
             {
@@ -95,7 +98,7 @@ namespace MERG_PSI
             }
             else
             {
-                _price = classContent.First().TextContent;
+                Price = classContent.First().TextContent;
             }
         }
 
@@ -165,8 +168,8 @@ namespace MERG_PSI
                 parsedLabel = fullInfoLine.Replace("\n", "").Trim();
             }
 
-            _buildingInfoLabels.Add(parsedLabel);
-            _buildingInfo.Add(parsedValue);
+            BuildingInfoLabels.Add(parsedLabel);
+            BuildingInfo.Add(parsedValue);
         }
 
         public string GetBuildingInfo()
@@ -174,13 +177,13 @@ namespace MERG_PSI
             var buildingInfoString = "";
 
             var i = 0;
-            foreach (var element in _buildingInfoLabels)
+            foreach (var element in BuildingInfoLabels)
             {
-                buildingInfoString = buildingInfoString + "\n" + element + " " + _buildingInfo[i];
+                buildingInfoString = buildingInfoString + "\n" + element + " " + BuildingInfo[i];
                 i++;
             }
-            buildingInfoString = buildingInfoString + "\n" + _price;
-            buildingInfoString = buildingInfoString + "\n" + _mapLink;
+            buildingInfoString = buildingInfoString + "\n" + Price;
+            buildingInfoString = buildingInfoString + "\n" + MapLink;
 
             if (buildingInfoString.Length > 0) { buildingInfoString = buildingInfoString.Substring(1); }
 
