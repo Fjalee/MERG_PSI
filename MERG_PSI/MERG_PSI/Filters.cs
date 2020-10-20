@@ -13,17 +13,21 @@ namespace MERG_PSI
         {
             return houses.Where(house => house.Area >= minArea && house.Area <= maxArea).ToList();
         }
-        public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> Houses, double PriceFrom, double PriceTo)
+        public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> houses, double PriceFrom, double PriceTo)
         {
-            return Houses.Where(house => house.Price >= PriceFrom && house.Price <= PriceTo).ToList();
+            return houses.Where(house => house.Price >= PriceFrom && house.Price <= PriceTo).ToList();
         }
-        public  List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> Houses, string municipality)
+        public  List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
         {
-            return Houses.Where(house => (house.Municipality).ToLower().Contains(municipality)).ToList();
+            return houses.Where(house => (house.Municipality).ToLower().Contains(municipality)).ToList();
         }
-        public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> Houses, double PriceFrom, double PriceTo)
+        public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double PriceFrom, double PriceTo)
         {
-            return Houses.Where(house => house.PricePerSqM>= PriceFrom && house.PricePerSqM<= PriceTo).ToList();
+            return houses.Where(house => house.PricePerSqM>= PriceFrom && house.PricePerSqM<= PriceTo).ToList();
+        }
+        public List<RealEstate> FilterRealEstateByCity(List<RealEstate> houses, string city)
+        {
+            return houses.Where(house => (house.City).ToLower().Contains(city.ToLower())).ToList();
         }
 
     }
