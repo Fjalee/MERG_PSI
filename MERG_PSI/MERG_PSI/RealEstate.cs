@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,31 +12,20 @@ namespace MERG_PSI
         public string Link { get; set; }
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
-        public int NumberOfRooms { get; set; }
-        public int Floor { get; set; }   //stringas kolkas tegul buna
         public double Price { get; set; }
+        public int NumberOfRooms { get; set; }
+        public string Floor { get; set; }   //stringas kolkas tegul buna
+        public string Construction { get; set; }
+        public string Heating { get; set; }
+        public int BuildYear { get; set; }
         public string MapLink { get; set; }
         public string Municipality { get; set; }
+        public string City { get; set; }
         public string Street { get; set; }
-        public int BuildYear { get; set; }
+        public string HouseNm { get; set; }
+        public string Coordinates { get; set; }
 
-        //public string Link { get; set; }
-        //public double Area { get; set; }             
-        //public double PricePerSqM { get; set; }       
-        //public int NumberOfRooms { get; set; }
-        //public string Floor { get; set; }              
-        //public double Price { get; set; }             ///ar reikia
-        //public string Construction { get; set; }      //reikia prideti
-        //public string Heating { get; set; }           ///reikia prideti
-        //public int BuildYear { get; set; }
-        //public string MapLink { get; set; }
-        //public string City { get; set; }              //reikia prideti
-        //public string Municipality { get; set; }
-        //public string Street { get; set; }
-        //public string HouseNm { get; set; }            //reikia prideti
-        //public string Coordinates { get; set; }        //reikia prideti
-
-        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, int floor, string mapLink, string municipality, string street, int buildYear)
+        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, string floor, string construction, string heating, string mapLink, string municipality, string city, string street, string houseNm, string coordinates, int buildYear)
         {
             Link = link;
             Area = area;
@@ -43,9 +33,14 @@ namespace MERG_PSI
             NumberOfRooms = numberOfRooms;
             Floor = floor;
             Price = pricePerSqM* area;
+            Construction = construction;
+            Heating = heating;
             MapLink = mapLink;
             Municipality = municipality;
+            City = city;
             Street = street;
+            HouseNm = houseNm;
+            Coordinates = coordinates;
             BuildYear = buildYear;
         }
         override

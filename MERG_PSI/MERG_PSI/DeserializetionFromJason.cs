@@ -7,7 +7,7 @@ namespace MERG_PSI
 {
     class DeserializetionFromJason
     {
-        private void dederialization()
+        private void Dederialization()
         {
             var filePath = "../../scrapedData.txt";
 
