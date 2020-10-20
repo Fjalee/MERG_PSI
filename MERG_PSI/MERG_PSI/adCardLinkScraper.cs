@@ -15,28 +15,28 @@ namespace MERG_PSI
 {
     class AdCardLinkScraper
     {
-        private string siteUrl, siteUrlWithPage, className;
-        private IHtmlDocument document;
+        private string _siteUrl, _siteUrlWithPage, _className;
+        private IHtmlDocument _document;
         private List<string> links = new List<string>();
 
         public AdCardLinkScraper(string siteUrl, string siteUrlWithPage, string className)
         {
-            this.siteUrl = siteUrl;
-            this.siteUrlWithPage = siteUrlWithPage;
-            this.className = className;
+            _siteUrl = siteUrl;
+            _siteUrlWithPage = siteUrlWithPage;
+            _className = className;
         }
 
         public void ScrapeUrls()
         {
 
             //fix error handeling
-            if (this.document == null)
+            if (_document == null)
             {
                 MessageBox.Show("error, func scrapeUrls, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var adCardHtml = GetAdCardHtml(document);
+            var adCardHtml = GetAdCardHtml(_document);
 
             CreateLinkList(adCardHtml);
         }
@@ -46,14 +46,14 @@ namespace MERG_PSI
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
-            var request = await httpClient.GetAsync(siteUrlWithPage);
+            var request = await httpClient.GetAsync(_siteUrlWithPage);
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             var response = await request.Content.ReadAsStreamAsync();
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             var parser = new HtmlParser();
-            this.document = parser.ParseDocument(response);
+            _document = parser.ParseDocument(response);
 
             cancellationToken.Dispose();
             httpClient.Dispose();
@@ -65,7 +65,7 @@ namespace MERG_PSI
 
             adCardHtml = document.All.Where(x =>
                 x.LocalName == "div" &&
-                x.ClassList.Contains(className));
+                x.ClassList.Contains(_className));
 
             return adCardHtml;
         }
@@ -76,7 +76,7 @@ namespace MERG_PSI
             {
                 foreach (var element in adCardHtml)
                 {
-                    links.Add(ParseLink(element.InnerHtml, siteUrl));
+                    links.Add(ParseLink(element.InnerHtml, _siteUrl));
                 }
             }
         }

@@ -14,29 +14,29 @@ namespace MERG_PSI
 {
     class InsideAdScraper
     {
-        private string siteUrl;
-        private IHtmlDocument document;
+        private string _siteUrl;
+        private IHtmlDocument _document;
 
-        private List<string> buildingInfoLabels = new List<string>();
-        private List<string> buildingInfo = new List<string>();
-        private string mapLink;
-        private string price;
+        private List<string> _buildingInfoLabels = new List<string>();
+        private List<string> _buildingInfo = new List<string>();
+        private string _mapLink;
+        private string _price;
 
         public InsideAdScraper(string siteUrl)
         {
-            this.siteUrl = siteUrl;
+            _siteUrl = siteUrl;
         }
 
         public void ScrapeBuildingInfo(string className)
         {
             //fix error handeling
-            if (this.document == null)
+            if (_document == null)
             {
                 MessageBox.Show("error, func scrapeBuildingInfo, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var buildingInfoHtml = GetHtmlClassContent(this.document, "div", className);
+            var buildingInfoHtml = GetHtmlClassContent(_document, "div", className);
 
             if (buildingInfoHtml.Any())
             {
@@ -50,17 +50,17 @@ namespace MERG_PSI
         public void ScrapeMapLink(string className)
         {
             //fix error handeling
-            if (this.document == null)
+            if (_document == null)
             {
                 MessageBox.Show("error, func scrapeMapLink, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var liClassContent = GetHtmlClassContent(document, "li", className);
+            var liClassContent = GetHtmlClassContent(_document, "li", className);
 
             if (liClassContent.Count() == 0)
             {
-                mapLink = "";
+                _mapLink = "";
             }
             else if (liClassContent.Count() != 1)
             {
@@ -69,24 +69,24 @@ namespace MERG_PSI
             }
             else
             {
-                mapLink = GetHrefFromAnchor(liClassContent.First());
+                _mapLink = GetHrefFromAnchor(liClassContent.First());
             }
         }
 
         public void ScrapePrice(string className)
         {
             //fix error handeling
-            if (this.document == null)
+            if (_document == null)
             {
                 MessageBox.Show("error, func ScrapePrice, didnt get IHTMLDocument first", "Error",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            var classContent = GetHtmlClassContent(document, "div", className);
+            var classContent = GetHtmlClassContent(_document, "div", className);
 
             if (classContent.Count() == 0)
             {
-                price = "";
+                _price = "";
             }
             else if (classContent.Count() != 1)
             {
@@ -95,7 +95,7 @@ namespace MERG_PSI
             }
             else
             {
-                price = classContent.First().TextContent;
+                _price = classContent.First().TextContent;
             }
         }
 
@@ -126,14 +126,14 @@ namespace MERG_PSI
             var cancellationToken = new CancellationTokenSource();
             var httpClient = new HttpClient();
 
-            var request = await httpClient.GetAsync(siteUrl);
+            var request = await httpClient.GetAsync(_siteUrl);
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             var response = await request.Content.ReadAsStreamAsync();
             cancellationToken.Token.ThrowIfCancellationRequested();
 
             var parser = new HtmlParser();
-            this.document = parser.ParseDocument(response);
+            _document = parser.ParseDocument(response);
 
             cancellationToken.Dispose();
             httpClient.Dispose();
@@ -165,8 +165,8 @@ namespace MERG_PSI
                 parsedLabel = fullInfoLine.Replace("\n", "").Trim();
             }
 
-            buildingInfoLabels.Add(parsedLabel);
-            buildingInfo.Add(parsedValue);
+            _buildingInfoLabels.Add(parsedLabel);
+            _buildingInfo.Add(parsedValue);
         }
 
         public string GetBuildingInfo()
@@ -174,13 +174,13 @@ namespace MERG_PSI
             var buildingInfoString = "";
 
             var i = 0;
-            foreach (var element in buildingInfoLabels)
+            foreach (var element in _buildingInfoLabels)
             {
-                buildingInfoString = buildingInfoString + "\n" + element + " " + buildingInfo[i];
+                buildingInfoString = buildingInfoString + "\n" + element + " " + _buildingInfo[i];
                 i++;
             }
-            buildingInfoString = buildingInfoString + "\n" + price;
-            buildingInfoString = buildingInfoString + "\n" + mapLink;
+            buildingInfoString = buildingInfoString + "\n" + _price;
+            buildingInfoString = buildingInfoString + "\n" + _mapLink;
 
             if (buildingInfoString.Length > 0) { buildingInfoString = buildingInfoString.Substring(1); }
 
