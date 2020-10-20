@@ -25,7 +25,7 @@ namespace MERG_PSI
         }
         public List<RealEstate> GetFilteredList(List<RealEstate> ListOfRealEstate, List<TextBox> TextBoxes)
         {
-
+            var Filters = new Filters();
             if (IsTextBoxNotEmpty(TextBoxes[0])
                 && IsTextBoxNotEmpty(TextBoxes[1])
                 && IsTextBoxNotEmpty(TextBoxes[2])
