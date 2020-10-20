@@ -9,10 +9,10 @@ namespace MERG_PSI
     {
         private void dederialization()
         {
-            var RfilePath = @"C:\Users\Greta\Desktop\text2.txt";
+            var filePath = @"C:\Users\Greta\Desktop\text2.txt";
 
             string jsonFromFIle;
-            using (var reader = new StreamReader(RfilePath))
+            using (var reader = new StreamReader(filePath))
             {
                 jsonFromFIle = reader.ReadToEnd();
                 reader.Close();

@@ -12,12 +12,12 @@ namespace MERG_PSI
     {
         private void dederialization()
         {
-            var WfilePath = @"C:\Users\Greta\Desktop\text.txt";
+            var filePath = @"C:\Users\Greta\Desktop\text.txt";
             var ad = new List<RealEstate>();
 
             var jsonToWrite = JsonConvert.SerializeObject(ad);
 
-            using (var writer = new StreamWriter(WfilePath))
+            using (var writer = new StreamWriter(filePath))
             {
                 writer.Write(jsonToWrite);
                 writer.Close();
