@@ -64,11 +64,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="insideAdScraper.cs" />
+    <Compile Include="InsideAdScraper.cs" />
     <Compile Include="OutputToJson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="adCardLinkScraper.cs" />
+    <Compile Include="AdCardLinkScraper.cs" />
     <Compile Include="RealEstate.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
