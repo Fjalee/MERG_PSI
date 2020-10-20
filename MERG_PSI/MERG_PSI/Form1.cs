@@ -25,7 +25,7 @@ namespace MERG_PSI
 
                 var adCardLinkScraper = new AdCardLinkScraper(_websiteLink, "k-ad-card-wide");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
-                adCardLinkScraper.ScrapeUrls();
+                adCardLinkScraper.Scrape();
 
                 if (adCardLinkScraper.Links.Any())
                 {

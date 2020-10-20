@@ -31,7 +31,7 @@ namespace MERG_PSI
         {
             ScrapeUrls();
         }
-        public void ScrapeUrls()
+        private void ScrapeUrls()
         {
             //fix error handeling
             if (Document == null)

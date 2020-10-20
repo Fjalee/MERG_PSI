@@ -37,7 +37,7 @@ namespace MERG_PSI
             ScrapeMapLink();
         }
 
-        public void ScrapeBuildingInfo()
+        private void ScrapeBuildingInfo()
         {
             //fix error handeling
             if (Document == null)
@@ -56,8 +56,7 @@ namespace MERG_PSI
                 }
             }
         }
-
-        public void ScrapeMapLink()
+        private void ScrapeMapLink()
         {
             //fix error handeling
             if (Document == null)
@@ -83,8 +82,7 @@ namespace MERG_PSI
                 MapLink = "";
             }
         }
-
-        public void ScrapePrice()
+        private void ScrapePrice()
         {
             //fix error handeling
             if (Document == null)
