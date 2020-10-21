@@ -8,7 +8,7 @@ namespace MERG_PSI
     public partial class Form1 : Form
     {
         private string _websiteLink = "https://www.kampas.lt";
-        private List<RealEstate> _scrapedData = new List<RealEstate>();
+        private List<RealEstate> _scrapedRealEstate = new List<RealEstate>();
         private Boolean _reachedPageNoAds = false;
 
         public Form1()
@@ -31,32 +31,31 @@ namespace MERG_PSI
                 {
                     foreach (var link in adCardLinkScraper.Links)
                     {
-                        var insideAdScraper = new InsideAdScraper(link);
-                        insideAdScraper.Document = await insideAdScraper.GetIHtmlDoc(link);
-                        insideAdScraper.Scrape();
+                        var ias = new InsideAdScraper();
+                        ias.Document = await ias.GetIHtmlDoc(link);
+                        ias.Scrape();
 
-                        /*_scrapedData.Add(new RealEstate(
-                            link, area, pricePerSqM, numberOfRooms, floor, mapLink,
-                            municipality, street, buildYear);*/
-
-                        //fix delete with TempOutput()
-                        var buildingInfo = insideAdScraper.GetBuildingInfo();
-                        TempOutput(link, buildingInfo);
+                        _scrapedRealEstate.Add(new RealEstate(link, ias.Area, ias.PricePerSqM, ias.NumberOfRooms,
+                            ias.Floor, ias.MapLink, ias.Municipality, ias.Street, ias.BuildYear));
                     }
 
                     websitePage++;
                 }
                 else { _reachedPageNoAds = true; }
             }
+
+            TempOutput();
+            //OutputToJson output = new OutputToJson(_scrapedRealEstate);
+            //output.WriteToFile();
         }
 
-       private void TempOutput(string link, string buildingInfo)
-       {
-            richTextBox1.AppendText(link);
-            richTextBox1.AppendText("\n");
-            richTextBox1.AppendText(buildingInfo);
-            richTextBox1.AppendText("\n\n*\n*\n*\n");
-       }
+        private void TempOutput()
+        {
+            foreach (var element in _scrapedRealEstate)
+            {
+                richTextBox1.AppendText(element.ToString());
+            }
+        }
     }
 }
 

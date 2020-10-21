@@ -12,14 +12,14 @@ namespace MERG_PSI
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
-        public int Floor { get; set; }
+        public string Floor { get; set; }
         public double Price { get; set; }
         public string MapLink { get; set; }
         public string Municipality { get; set; }
         public string Street { get; set; }
         public int BuildYear { get; set; }
 
-        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, int floor, string mapLink, string municipality, string street, int buildYear)
+        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, string floor, string mapLink, string municipality, string street, int buildYear)
         {
             Link = link;
             Area = area;
@@ -35,7 +35,18 @@ namespace MERG_PSI
         override
         public string ToString()
         {
-            return $"NT yra {Municipality}, šio namo kaina {Price} €, plotas {Area} m2\n";
+            //return $"NT yra {Municipality}, šio namo kaina {Price} €, plotas {Area} m2\n";
+            return $"Link|    {Link}\n" +
+                   $"Area|    {Area}\n" +
+                   $"PricePerSqM|    {PricePerSqM}\n" +
+                   $"NumberOfRooms|    {NumberOfRooms}\n" +
+                   $"Floor|    {Floor}\n" +
+                   $"Price|    {Price}\n" +
+                   $"MapLink|    {MapLink}\n" +
+                   $"Municipality|    {Municipality}\n" +
+                   $"Street|    {Street}\n" +
+                   $"BuildYear|    {BuildYear}\n" +
+                   $"\n\n\n";
         }
     }
 }

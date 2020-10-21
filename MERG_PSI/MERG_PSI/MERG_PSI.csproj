@@ -71,6 +71,7 @@
     <Compile Include="AdCardLinkScraper.cs" />
     <Compile Include="RealEstate.cs" />
     <Compile Include="Scraper.cs" />
+    <Compile Include="StringExtension.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

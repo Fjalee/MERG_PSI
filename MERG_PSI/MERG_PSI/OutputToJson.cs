@@ -12,24 +12,23 @@ namespace MERG_PSI
     {
         //fix to relative
         private string _filePath = @"C:\Users\Rytis\Downloads\scrapedData.txt";
+        private string _jsonToWrite;
 
-        public OutputToJson()
+        public OutputToJson(List<RealEstate> listToConvert)
         {
-            var jsonToWrite = ConvertToJson();
-            WriteToFile(jsonToWrite);
+            _jsonToWrite = ConvertToJson(listToConvert);
         }
 
-        private string ConvertToJson()
+        private string ConvertToJson(List<RealEstate> listToConvert)
         {
-            var ad = new List<RealEstate>();
-            return JsonConvert.SerializeObject(ad);
+            return JsonConvert.SerializeObject(listToConvert);
         }
 
-        private void WriteToFile(string jsonToWrite)
+        public void WriteToFile()
         {
             using (var writer = new StreamWriter(_filePath))
             {
-                writer.Write(jsonToWrite);
+                writer.Write(_jsonToWrite);
                 writer.Close();
             }
         }

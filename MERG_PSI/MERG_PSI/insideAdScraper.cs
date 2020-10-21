@@ -2,6 +2,7 @@
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,20 +15,24 @@ namespace MERG_PSI
 {
     class InsideAdScraper : Scraper
     {
-        private string _siteUrl;
-
         public IHtmlDocument Document { get; set; }
-
-        public List<string> BuildingInfoLabels { get; set; }
-        public List<string> BuildingInfo { get; set; }
+        private Dictionary<string, string> _buildingInfo;
+        public double Area { get; set; }
+        public double PricePerSqM { get; set; }
+        public int NumberOfRooms { get; set; }
+        public string Floor { get; set; }
+        public string Municipality { get; set; }
+        public string Street { get; set; }
+        public int BuildYear { get; set; }
         public string MapLink { get; set; }
         public string Price { get; set; }
-        public InsideAdScraper(string siteUrl)
+        public InsideAdScraper()
         {
-            _siteUrl = siteUrl;
+            _buildingInfo = new Dictionary<string, string>();
 
-            BuildingInfo = new List<string>();
-            BuildingInfoLabels = new List<string>();
+            //fix
+            Municipality = "";
+            Street = "";
         }
 
         public override void Scrape()
@@ -35,6 +40,8 @@ namespace MERG_PSI
             ScrapeBuildingInfo();
             ScrapePrice();
             ScrapeMapLink();
+
+            DictionaryToProperties(_buildingInfo);
         }
 
         private void ScrapeBuildingInfo()
@@ -143,43 +150,82 @@ namespace MERG_PSI
             return htmlClassContent;
         }
 
-        private void ParseBuildingInfoLineLabelFromVal(IElement buildingInfoLineHtml)
+        private void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
         {
             var parsedValue = "";
             var parsedLabel = "";
             try
             {
-                parsedValue = buildingInfoLineHtml.FirstElementChild.InnerHtml;
+                parsedValue = lineHtml.FirstElementChild.InnerHtml;
 
-                var fullInfoLine = buildingInfoLineHtml.TextContent;
+                var fullInfoLine = lineHtml.TextContent;
                 parsedLabel = fullInfoLine.Substring(0, fullInfoLine.IndexOf(parsedValue)).Replace("\n", "").Trim();
             }
             catch (System.NullReferenceException)
             {
-                var fullInfoLine = buildingInfoLineHtml.TextContent;
+                var fullInfoLine = lineHtml.TextContent;
                 parsedLabel = fullInfoLine.Replace("\n", "").Trim();
             }
 
-            BuildingInfoLabels.Add(parsedLabel);
-            BuildingInfo.Add(parsedValue);
+            _buildingInfo.Add(parsedLabel, parsedValue);
         }
 
-        public string GetBuildingInfo()
+        private void DictionaryToProperties(Dictionary<string, string> dictionary)
         {
-            var buildingInfoString = "";
+            var areaIEn = dictionary.Where(x => x.Key == "Plotas m²:");
+            var pricePerSqMIEn = dictionary.Where(x => x.Key == "€/m²:");
+            var numberOfRoomsIEn = dictionary.Where(x => x.Key == "Kambariai:");
+            var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybų metai:");
+            var floorIEn = dictionary.Where(x => x.Key == "Aukštas:");
 
-            var i = 0;
-            foreach (var element in BuildingInfoLabels)
+
+            if (floorIEn.Count() == 1)
             {
-                buildingInfoString = buildingInfoString + "\n" + element + " " + BuildingInfo[i];
-                i++;
+                Floor = floorIEn.First().Value;
             }
-            buildingInfoString = buildingInfoString + "\n" + Price;
-            buildingInfoString = buildingInfoString + "\n" + MapLink;
+            else
+            {
+                Floor = "";
+                /*fix log */
+            }
+            if (areaIEn.Count() == 1)
+            {
+                Area = areaIEn.First().Value.parseToDoubleLogIfCant();
+            }
+            else {
+                Area = 0;
+                /*fix log */
+            }
+            if (pricePerSqMIEn.Count() == 1)
+            {
+                PricePerSqM = pricePerSqMIEn.First().Value.parseToDoubleLogIfCant();
+            }
+            else {
+                PricePerSqM = 0;
+                /*fix log*/
+            }
+            if (numberOfRoomsIEn.Count() == 1)
+            {
+                NumberOfRooms = numberOfRoomsIEn.First().Value.parseToIntLogIfCant();
+            }
+            else {
+                NumberOfRooms = 0;
+                /*fix log*/
+            }
+            if (buildYearParsableIEn.Count() == 1)
+            {
+                BuildYear = buildYearParsableIEn.First().Value.parseToIntLogIfCant();
+            }
+            else {
+                BuildYear = 0;
+                /*fix log*/
+            }
 
-            if (buildingInfoString.Length > 0) { buildingInfoString = buildingInfoString.Substring(1); }
 
-            return buildingInfoString;
+            if (Floor == "" || Area == 0 || PricePerSqM == 0 || NumberOfRooms == 0 || BuildYear == 0)
+            {
+                //fix log
+            }
         }
     }
 }
