@@ -60,9 +60,6 @@ namespace MERG_PSI
             OutputToJson output = new OutputToJson(_scrapedRealEstate);
             richTextBox2.AppendText("Writing to File (serialized)...\n");
             output.WriteToFile();
-
-            richTextBox2.AppendText("Writing to File (log)...\n");
-            MyLog.WriteToFile();
             richTextBox2.AppendText("Done\n");
         }
 

@@ -11,63 +11,76 @@ namespace MERG_PSI
 {
     static class MyLog
     {
-        static string _fileName = @"log.txt";
-
-        static private List<string> _logMsg = new List<string>();
-        static private List<string> _logAdInvalid = new List<string>();
-        static private List<string> _logIEnCountInvalid = new List<string>();
-        static private List<string> _logCantParse = new List<string>();
-        static private List<string> _logErrorNoDocument = new List<string>();
-        static private List<string> _logDnContainCoords = new List<string>();
+        static string _fileNameLogMsg = @"log_Msg.txt";
+        static string _fileNameLogAdInvalid = @"log_AdInvalid.txt";
+        static string _fileNameLogIEnCountInvalid = @"log_IEnCountInvalid.txt";
+        static string _fileNameLogCantParse = @"log_CantParse.txt";
+        static string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
+        static string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
 
         static MyLog()
         {
-            if (File.Exists(_fileName))
-            {
-                File.Delete(_fileName);
-            }
+            delFileIfExist(_fileNameLogMsg);
+            delFileIfExist(_fileNameLogAdInvalid);
+            delFileIfExist(_fileNameLogIEnCountInvalid);
+            delFileIfExist(_fileNameLogCantParse);
+            delFileIfExist(_fileNameLogErrorNoDocument);
+            delFileIfExist(_fileNameLogDnContainCoords);
         }
-        
+
         static public void Msg(string message)
         {
-            _logMsg.Add(message + "\n");
+            using (StreamWriter w = File.AppendText(_fileNameLogMsg))
+            {
+                w.WriteLine(message);
+            }
         }
        
         static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street)
         {
-            var message = "Invalid Ad:\n" + 
-                $"Link|    {link}\n" +
+            var message = $"Link|    {link}\n" +
                 $"MapLink|    {mapLink}\n" +
                 $"NumberOfRooms|    {numberOfRooms}\n" +
                 $"ScrapedPrice|    {scrapedPrice}\n" +
                 $"PricePerSqM|    {pricePerSqM}\n" +
                 $"Area|    {area}\n" +
                 $"Municipality|    {municipality}\n" +
-                $"Street|    {street}\n" +
-                $"\n";
+                $"Street|    {street}\n";
 
-            _logAdInvalid.Add(message);
+            using (StreamWriter w = File.AppendText(_fileNameLogAdInvalid))
+            {
+                w.WriteLine(message);
+            }
         }
         
         static public void IEnCountInvalid(string link, int count, string name)
         {
-            var message = $"Invalid IEnumerable count: {name} count is {count}\n{link}\n";
+            var message = $"Invalid IEnumerable count: {name} count is {count}\n{link}";
 
-            _logIEnCountInvalid.Add(message);
+            using (StreamWriter w = File.AppendText(_fileNameLogIEnCountInvalid))
+            {
+                w.WriteLine(message);
+            }
         }
         
         static public void CantParse(string valToParse)
         {
-            var message = $"Couldn't parse value: \"{valToParse}\"\n";
+            var message = $"Couldn't parse value: \"{valToParse}\"";
 
-            _logCantParse.Add(message);
+            using (StreamWriter w = File.AppendText(_fileNameLogCantParse))
+            {
+                w.WriteLine(message);
+            }
         }
 
         static public void ErrorNoDocument()
         {
-            var message = "Didnt get IHTMLDocument first\n";
+            var message = "Didnt get IHTMLDocument first";
 
-            _logErrorNoDocument.Add(message);
+            using (StreamWriter w = File.AppendText(_fileNameLogErrorNoDocument))
+            {
+                w.WriteLine(message);
+            }
 
             MessageBox.Show("Didnt get IHTMLDocument first", "Error",
             MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -75,66 +88,19 @@ namespace MERG_PSI
 
         static public void DnContainCoords(string link)
         {
-            var message = $"Link doesn't contain coordinates: \"{link}\"\n";
+            var message = $"Link doesn't contain coordinates: \"{link}\"";
 
-            _logDnContainCoords.Add(message);
-        }
-
-        static public void WriteToFile()
-        {
-            if (_logMsg.Any())
+            using (StreamWriter w = File.AppendText(_fileNameLogDnContainCoords))
             {
-                WriteLineIndcNewLogList("Message");
-            }
-            WriteAllListElement(_logMsg);
-
-            if (_logAdInvalid.Any())
-            {
-                WriteLineIndcNewLogList("Ad Invalid");
-            }
-            WriteAllListElement(_logAdInvalid);
-
-            if (_logIEnCountInvalid.Any())
-            {
-                WriteLineIndcNewLogList("IEn Count Invalid");
-            }
-            WriteAllListElement(_logIEnCountInvalid);
-
-            if (_logCantParse.Any())
-            {
-                WriteLineIndcNewLogList("Can't Parse");
-            }
-            WriteAllListElement(_logCantParse);
-
-            if (_logErrorNoDocument.Any())
-            {
-                WriteLineIndcNewLogList("Error: No Document");
-            }
-            WriteAllListElement(_logErrorNoDocument);
-
-            if (_logDnContainCoords.Any())
-            {
-                WriteLineIndcNewLogList("Doesn't Contain Coords");
-            }
-            WriteAllListElement(_logDnContainCoords);
-        }
-
-        static private void WriteAllListElement(List<string> list)
-        {
-            using (StreamWriter w = File.AppendText(_fileName))
-            {
-                foreach (var element in list)
-                {
-                    w.WriteLine(element);
-                }
+                w.WriteLine(message);
             }
         }
 
-        static private void WriteLineIndcNewLogList(string newListIndicator)
+        static private void delFileIfExist(string fileName)
         {
-            using (StreamWriter w = File.AppendText(_fileName))
+            if (File.Exists(fileName))
             {
-                w.WriteLine($"\n-------------------------------\n{newListIndicator}\n\n");
+                File.Delete(fileName);
             }
         }
     }
