@@ -148,6 +148,7 @@ namespace MERG_PSI
         {
             var parsedValue = "";
             var parsedLabel = "";
+
             try
             {
                 parsedValue = lineHtml.FirstElementChild.InnerHtml;

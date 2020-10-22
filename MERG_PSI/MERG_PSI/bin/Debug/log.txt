@@ -1,10 +1,6 @@
-Couldn't parse value: "127000-€150000"
 
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/algirdo-apartamentai-zaliakalnyje-naujas-butas-kaune-zaliakalnis-algirdo-g-597732"
-
-
-Couldn't parse value: ""
+-------------------------------
+Ad Invalid
 
 
 Invalid Ad:
@@ -18,12 +14,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "53000-€112000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bitenu-oaze-naujas-butas-vilniuje-pilaite-bitenu-g-jau-pradedam-553271"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/bitenu-oaze-naujas-butas-vilniuje-pilaite-bitenu-g-jau-pradedam-553271
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20Bit%C4%97n%C5%B3%20g.
@@ -33,12 +23,6 @@ PricePerSqM|    0
 Area|    0
 Municipality|    
 Street|    
-
-
-Couldn't parse value: "89000-€92500"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/silainiu-butai-naujas-butas-kaune-silainiai-eitkunu-g-naujas-dar-dazais-kvepiantis-3-597735"
 
 
 Invalid Ad:
@@ -52,12 +36,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "uo€"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sierakausko-25-naujas-butas-vilniuje-naujamiestis-z-sierakausko-g-sierakausko-25-598403"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/sierakausko-25-naujas-butas-vilniuje-naujamiestis-z-sierakausko-g-sierakausko-25-598403
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujamiestis%2C%20Z.%20Sierakausko%20g.
@@ -67,12 +45,6 @@ PricePerSqM|    0
 Area|    0
 Municipality|    
 Street|    
-
-
-Couldn't parse value: "uo€"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/mazvydo-2-naujas-butas-vilniuje-pilaite-m-mazvydo-g-mazvydo-2-namai-sukurti-pilaites-594365"
 
 
 Invalid Ad:
@@ -86,12 +58,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "72000-€95000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sukurio-1-naujas-butas-vilniaus-rajone-klevines-vs-klevines-g-557176"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/sukurio-1-naujas-butas-vilniaus-rajone-klevines-vs-klevines-g-557176
 MapLink|    https://maps.google.com/maps?q=Vilniaus%20r.%20sav.%2C%20Klevin%C4%97%2C%20Klevin%C4%97s%20g.
@@ -101,12 +67,6 @@ PricePerSqM|    0
 Area|    0
 Municipality|    
 Street|    
-
-
-Couldn't parse value: "36500-€87000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/naujoji-dainava-naujas-butas-kaune-dainava-garazu-g-wwwnaujojidainavaltnaujoji-569664"
 
 
 Invalid Ad:
@@ -120,12 +80,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "88800-€112000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/panoramos-trio-naujas-butas-kaune-aleksotas-amerikos-lietuviu-g-569389"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/panoramos-trio-naujas-butas-kaune-aleksotas-amerikos-lietuviu-g-569389
 MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Aleksotas%2C%20Amerikos%20Lietuvi%C5%B3%20g.
@@ -135,12 +89,6 @@ PricePerSqM|    0
 Area|    0
 Municipality|    
 Street|    
-
-
-Couldn't parse value: "56000-€89000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/kiara-naujas-butas-kaune-aleksotas-svirbygalos-g-wwwkiaraltsviesus-grazus-namai-569388"
 
 
 Invalid Ad:
@@ -154,12 +102,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "66000-€143000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/skandea-naujas-butas-kaune-dainava-v-kreves-pr-skandea-kvartalas-ir-jo-namuose-504891"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/skandea-naujas-butas-kaune-dainava-v-kreves-pr-skandea-kvartalas-ir-jo-namuose-504891
 MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20V.%20Kr%C4%97v%C4%97s%20pr.
@@ -169,12 +111,6 @@ PricePerSqM|    0
 Area|    0
 Municipality|    
 Street|    
-
-
-Couldn't parse value: "58600-€164500"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bajoru-alejos-naujas-butas-vilniuje-bajorai-salaspilio-g-bajoru-alejos-tai-unikali-524541"
 
 
 Invalid Ad:
@@ -188,12 +124,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "47780-€95670"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/eika-namai-pilaiteje-naujas-butas-vilniuje-pilaite-karaliauciaus-g-eika-namai-524540"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/eika-namai-pilaiteje-naujas-butas-vilniuje-pilaite-karaliauciaus-g-eika-namai-524540
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20Karaliau%C4%8Diaus%20g.
@@ -203,12 +133,6 @@ PricePerSqM|    0
 Area|    0
 Municipality|    
 Street|    
-
-
-Couldn't parse value: "67671-€178314"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/baltas-lapas-naujas-butas-vilniuje-naujamiestis-aguonu-g-naujas-gyvenimo-etapas-ir-524543"
 
 
 Invalid Ad:
@@ -222,12 +146,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "63086-€177660"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/antakalnio-panorama-naujas-butas-vilniuje-antakalnis-smelio-g-antakalnio-panorama-524542"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/antakalnio-panorama-naujas-butas-vilniuje-antakalnis-smelio-g-antakalnio-panorama-524542
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Antakalnis%2C%20Sm%C4%97lio%20g.
@@ -237,12 +155,6 @@ PricePerSqM|    0
 Area|    0
 Municipality|    
 Street|    
-
-
-Couldn't parse value: "69600-€122000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/silo-namai-naujas-butas-kaune-aukstieji-sanciai-birzisku-g-504811"
 
 
 Invalid Ad:
@@ -256,12 +168,6 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "96500-€273700"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/raitininku-sodas-naujas-butas-vilniuje-zirmunai-raitininku-g-visai-salia-pacios-566705"
-
-
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/raitininku-sodas-naujas-butas-vilniuje-zirmunai-raitininku-g-visai-salia-pacios-566705
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%BDirm%C5%ABnai%2C%20Raitinink%C5%B3%20g.
@@ -273,789 +179,85 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "81700-€261700"
 
+-------------------------------
+Can't Parse
 
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/naujasis-skansenas-naujas-butas-vilniuje-snipiskes-linkmenu-g-naujasis-skansenas-566702"
 
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/naujasis-skansenas-naujas-butas-vilniuje-snipiskes-linkmenu-g-naujasis-skansenas-566702
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Linkmen%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "43800-€116600"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/9-bijunai-naujas-butas-klaipedoje-centras-bijunu-g-gyvenimas-be-rupesciu-istisus-566683"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/9-bijunai-naujas-butas-klaipedoje-centras-bijunu-g-gyvenimas-be-rupesciu-istisus-566683
-MapLink|    https://maps.google.com/maps?q=Klaip%C4%97da%2C%20Centras%2C%20Bij%C5%ABn%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "84300-€246500"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/piliamiestis-naujas-butas-kaune-vilijampole-brastos-g-desiniajame-neries-krante-504804"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/piliamiestis-naujas-butas-kaune-vilijampole-brastos-g-desiniajame-neries-krante-504804
-MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Vilijampol%C4%97%2C%20Brastos%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "48500-€159100"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/horizon-naujas-butas-vilniuje-virsuliskes-virsuliskiu-skg-504871"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/horizon-naujas-butas-vilniuje-virsuliskes-virsuliskiu-skg-504871
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Vir%C5%A1uli%C5%A1k%C4%97s%2C%20Vir%C5%A1uli%C5%A1ki%C5%B3%20skg.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-senamiestis-rumpiskes-g-rumpiskes-g-parduodamas-1-kambario-butas-23-476606
-MapLink|    
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "63500-€299000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/senamiescio-arka-naujas-butas-vilniuje-senamiestis-placioji-g-504824"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/senamiescio-arka-naujas-butas-vilniuje-senamiestis-placioji-g-504824
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Senamiestis%2C%20Pla%C4%8Dioji%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "67000-€156000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/zirmunu-skveras-naujas-butas-vilniuje-zirmunai-zirmunu-g-504807"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/zirmunu-skveras-naujas-butas-vilniuje-zirmunai-zirmunu-g-504807
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%BDirm%C5%ABnai%2C%20%C5%BDirm%C5%ABn%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "51500-€101500"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/pilaites-terasos-butai-naujas-butas-vilniuje-pilaite-simono-grunau-g-pilaites-504883"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/pilaites-terasos-butai-naujas-butas-vilniuje-pilaite-simono-grunau-g-pilaites-504883
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20Simono%20Grunau%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "92000-€400000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/zveryno-vakarai-naujas-butas-vilniuje-zverynas-saltoniskiu-g-504834"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/zveryno-vakarai-naujas-butas-vilniuje-zverynas-saltoniskiu-g-504834
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%BDv%C4%97rynas%2C%20Saltoni%C5%A1ki%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "uo€72000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/parko-namai-naujas-butas-kaune-centras-krevos-g-504890"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/parko-namai-naujas-butas-kaune-centras-krevos-g-504890
-MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Centras%2C%20Kr%C4%97vos%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "67000-€99950"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/koriai-naujas-butas-vilniuje-snipiskes-giedraiciu-g-543939"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/koriai-naujas-butas-vilniuje-snipiskes-giedraiciu-g-543939
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Giedrai%C4%8Di%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "uo€122500"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/kopu-zuvedra-naujas-butas-klaipedoje-giruliai-pamario-g-504799"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/kopu-zuvedra-naujas-butas-klaipedoje-giruliai-pamario-g-504799
-MapLink|    https://maps.google.com/maps?q=Klaip%C4%97da%2C%20Giruliai%2C%20Pamario%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "uo€53000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/aitvaru-namai-naujas-butas-vilniuje-lazdyneliai-lazdyneliu-g-524531"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/aitvaru-namai-naujas-butas-vilniuje-lazdyneliai-lazdyneliu-g-524531
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Lazdyn%C4%97liai%2C%20Lazdyn%C4%97li%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "uo€54000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/martyno-namai-naujas-butas-vilniuje-pilaite-m-mazvydo-g-524529"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/martyno-namai-naujas-butas-vilniuje-pilaite-m-mazvydo-g-524529
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20M.%20Ma%C5%BEvydo%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "86000-€217000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/kernaves-aveniu-naujas-butas-vilniuje-snipiskes-kernaves-g-susiklosciusi-situacija-559646"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/kernaves-aveniu-naujas-butas-vilniuje-snipiskes-kernaves-g-susiklosciusi-situacija-559646
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Kernav%C4%97s%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "68000-€117600"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/wow-city-eco-life-naujas-butas-vilniuje-snipiskes-giedraiciu-g-504852"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/wow-city-eco-life-naujas-butas-vilniuje-snipiskes-giedraiciu-g-504852
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Giedrai%C4%8Di%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "104400-€130700"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/akaciju-vilos-naujas-butas-kaune-silainiai-kalnu-g-akaciju-vilos-andnbsp-gamtos-504851"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/akaciju-vilos-naujas-butas-kaune-silainiai-kalnu-g-akaciju-vilos-andnbsp-gamtos-504851
-MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20%C5%A0ilainiai%2C%20Kaln%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "79857-€131196"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/lampedzio-takas-naujas-butas-kaune-lampedziai-ikalnes-aklg-lampedzio-takas-butai-504813"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/lampedzio-takas-naujas-butas-kaune-lampedziai-ikalnes-aklg-lampedzio-takas-butai-504813
-MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Lamp%C4%97d%C5%BEiai%2C%20%C4%AEkaln%C4%97s%20aklg.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "74814-€92334"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/apartamentai-kopose-naujas-butas-sventojoje-juros-g-504831"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/apartamentai-kopose-naujas-butas-sventojoje-juros-g-504831
-MapLink|    https://maps.google.com/maps?q=%C5%A0ventoji%2C%20J%C5%ABros%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "45000-€84000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/leiciu-kiemas-naujas-butas-vilniuje-pasilaiciai-leiciu-g-504920"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/leiciu-kiemas-naujas-butas-vilniuje-pasilaiciai-leiciu-g-504920
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pa%C5%A1ilai%C4%8Diai%2C%20Lei%C4%8Di%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "54180-€429660"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/p9-naujas-butas-vilniuje-uzupis-paplaujos-g-504886"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/p9-naujas-butas-vilniuje-uzupis-paplaujos-g-504886
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20U%C5%BEupis%2C%20Paplaujos%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "23400-€156000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/fontanu-namai-naujas-butas-vilniuje-naujininkai-eisiskiu-pl-504795"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/fontanu-namai-naujas-butas-vilniuje-naujininkai-eisiskiu-pl-504795
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujininkai%2C%20Ei%C5%A1i%C5%A1ki%C5%B3%20pl.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "uo€50000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/neveroniu-dvaras-naujas-butas-kauno-rajone-neveroniu-k-davalgoniu-g-tai-dvieju-556751"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/neveroniu-dvaras-naujas-butas-kauno-rajone-neveroniu-k-davalgoniu-g-tai-dvieju-556751
-MapLink|    https://maps.google.com/maps?q=Kauno%20r.%20sav.%2C%20Neveronys%2C%20Davalgoni%C5%B3%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "50000-€170000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/lucky-homes-naujas-butas-vilniuje-naujamiestis-gerosios-vilties-g-lucky-homes-viskas-555792"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/lucky-homes-naujas-butas-vilniuje-naujamiestis-gerosios-vilties-g-lucky-homes-viskas-555792
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujamiestis%2C%20Gerosios%20Vilties%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "uo€116480"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/tower-naujas-butas-vilniuje-snipiskes-konstitucijos-pr-504910"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/tower-naujas-butas-vilniuje-snipiskes-konstitucijos-pr-504910
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Konstitucijos%20pr.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/skelbimai/butas-vilniuje-seskine-gelvonu-g-atviru-duru-diena-si-sestadieni-10-24-12-14-val-577498
-MapLink|    
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "61000-€109000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/cloud-namai-naujas-butas-vilniuje-snipiskes-zalgirio-g-cloud-namai-naujas-projektas-541090"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/cloud-namai-naujas-butas-vilniuje-snipiskes-zalgirio-g-cloud-namai-naujas-projektas-541090
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20%C5%BDalgirio%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "35200-€54000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/auksine-kalva-naujas-butas-kaune-silainiai-k-cerbuleno-g-auksine-kalva-a-energetines-524574"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/auksine-kalva-naujas-butas-kaune-silainiai-k-cerbuleno-g-auksine-kalva-a-energetines-524574
-MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20%C5%A0ilainiai%2C%20K.%20%C4%8Cerbul%C4%97no%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-vetrunge-paryziaus-komunos-g-parduodami-3-kambariu-64-kvm-586574
-MapLink|    
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "80000-€199000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/juodkrantes-terasos-naujas-butas-juodkranteje-kalno-g-juodkrantes-terasos-ypatingame-524147"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/juodkrantes-terasos-naujas-butas-juodkranteje-kalno-g-juodkrantes-terasos-ypatingame-524147
-MapLink|    https://maps.google.com/maps?q=Juodkrant%C4%97%2C%20Kalno%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "79500-€395000"
-
-
-Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bistrycios-namai-naujas-butas-vilniuje-antakalnis-bistrycios-g-bistrycios-namai-tai-524151"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/projektas/bistrycios-namai-naujas-butas-vilniuje-antakalnis-bistrycios-g-bistrycios-namai-tai-524151
-MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Antakalnis%2C%20Bistry%C4%8Dios%20g.
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zvejybos-uostas-naikupes-g-2-kamb-butas-naikupes-g-96a-48-kv-m-233513
-MapLink|    
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Invalid Ad:
-Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-vetrunge-kuosu-g-nauja-statyba-parduodamas-puikiai-irengtas-2k-205682
-MapLink|    
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
 Couldn't parse value: "nenu"
 
-
 Couldn't parse value: "nenu"
-
 
 Couldn't parse value: "nenu"
 
+Couldn't parse value: "127000-€150000"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: ""
 
-
-Couldn't parse value: "nenu"
+Couldn't parse value: "53000-€112000"
 
+Couldn't parse value: "89000-€92500"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: "uo€"
 
+Couldn't parse value: "uo€"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: "72000-€95000"
 
+Couldn't parse value: "36500-€87000"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: "88800-€112000"
 
+Couldn't parse value: "56000-€89000"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: "66000-€143000"
 
+Couldn't parse value: "58600-€164500"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: "47780-€95670"
 
+Couldn't parse value: "67671-€178314"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: "63086-€177660"
 
+Couldn't parse value: "69600-€122000"
 
-Couldn't parse value: "nenu"
+Couldn't parse value: "96500-€273700"
 
 
-Couldn't parse value: "nenu"
+-------------------------------
+Doesn't Contain Coords
 
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/algirdo-apartamentai-zaliakalnyje-naujas-butas-kaune-zaliakalnis-algirdo-g-597732"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bitenu-oaze-naujas-butas-vilniuje-pilaite-bitenu-g-jau-pradedam-553271"
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/silainiu-butai-naujas-butas-kaune-silainiai-eitkunu-g-naujas-dar-dazais-kvepiantis-3-597735"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sierakausko-25-naujas-butas-vilniuje-naujamiestis-z-sierakausko-g-sierakausko-25-598403"
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/mazvydo-2-naujas-butas-vilniuje-pilaite-m-mazvydo-g-mazvydo-2-namai-sukurti-pilaites-594365"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sukurio-1-naujas-butas-vilniaus-rajone-klevines-vs-klevines-g-557176"
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/naujoji-dainava-naujas-butas-kaune-dainava-garazu-g-wwwnaujojidainavaltnaujoji-569664"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/panoramos-trio-naujas-butas-kaune-aleksotas-amerikos-lietuviu-g-569389"
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/kiara-naujas-butas-kaune-aleksotas-svirbygalos-g-wwwkiaraltsviesus-grazus-namai-569388"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/skandea-naujas-butas-kaune-dainava-v-kreves-pr-skandea-kvartalas-ir-jo-namuose-504891"
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bajoru-alejos-naujas-butas-vilniuje-bajorai-salaspilio-g-bajoru-alejos-tai-unikali-524541"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/eika-namai-pilaiteje-naujas-butas-vilniuje-pilaite-karaliauciaus-g-eika-namai-524540"
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/baltas-lapas-naujas-butas-vilniuje-naujamiestis-aguonu-g-naujas-gyvenimo-etapas-ir-524543"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/antakalnio-panorama-naujas-butas-vilniuje-antakalnis-smelio-g-antakalnio-panorama-524542"
 
-Couldn't parse value: "nenu"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/silo-namai-naujas-butas-kaune-aukstieji-sanciai-birzisku-g-504811"
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/raitininku-sodas-naujas-butas-vilniuje-zirmunai-raitininku-g-visai-salia-pacios-566705"
 

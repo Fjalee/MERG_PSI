@@ -22,7 +22,7 @@ namespace MERG_PSI
         {
             var websitePage = 1;
             //while (!_reachedPageNoAds)
-            while (websitePage < 20)
+            while (websitePage < 5)
             {
                 var linkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
                 richTextBox2.AppendText("\n" + "Scraping domain...  " + linkWithPage + "\n");
@@ -55,11 +55,14 @@ namespace MERG_PSI
             }
 
 
-            TempOutput();
+            //TempOutput();
             richTextBox2.AppendText("Serializing...\n");
             OutputToJson output = new OutputToJson(_scrapedRealEstate);
-            richTextBox2.AppendText("Writing to File...\n");
+            richTextBox2.AppendText("Writing to File (serialized)...\n");
             output.WriteToFile();
+
+            richTextBox2.AppendText("Writing to File (log)...\n");
+            MyLog.WriteToFile();
             richTextBox2.AppendText("Done\n");
         }
 
