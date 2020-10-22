@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MERG_PSI
 {
@@ -19,6 +20,7 @@ namespace MERG_PSI
                 File.Delete(_fileName);
             }
         }
+        
         static public void Msg(string message)
         {
             using (StreamWriter w = File.AppendText(_fileName))
@@ -26,6 +28,7 @@ namespace MERG_PSI
                 w.WriteLine(message);
             }
         }
+       
         static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street)
         {
             using (StreamWriter w = File.AppendText(_fileName))
@@ -44,7 +47,7 @@ namespace MERG_PSI
                 w.WriteLine(message);
             }
         }
-
+        
         static public void IEnCountInvalid(string link, int count, string name)
         {
             using (StreamWriter w = File.AppendText(_fileName))
@@ -54,7 +57,7 @@ namespace MERG_PSI
                 w.WriteLine(message);
             }
         }
-
+        
         static public void CantParse(string valToParse)
         {
             using (StreamWriter w = File.AppendText(_fileName))
@@ -65,5 +68,15 @@ namespace MERG_PSI
             }
         }
 
+        static public void ErrorNoDocument()
+        {
+            using (StreamWriter w = File.AppendText(_fileName))
+            {
+                w.WriteLine("Didnt get IHTMLDocument first");
+            }
+
+            MessageBox.Show("Didnt get IHTMLDocument first", "Error",
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

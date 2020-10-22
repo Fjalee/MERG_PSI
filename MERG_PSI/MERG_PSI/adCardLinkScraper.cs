@@ -33,11 +33,9 @@ namespace MERG_PSI
         }
         private void ScrapeUrls()
         {
-            //fix error handeling
             if (Document == null)
             {
-                MessageBox.Show("Error, func scrapeUrls, didnt get IHTMLDocument first", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MyLog.ErrorNoDocument();
             }
 
             var adCardsHtml = GetAdCardsHtml(Document);

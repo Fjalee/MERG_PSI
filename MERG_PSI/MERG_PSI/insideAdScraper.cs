@@ -43,11 +43,9 @@ namespace MERG_PSI
 
         private void ScrapeBuildingInfo()
         {
-            //fix error handeling
             if (Document == null)
             {
-                MessageBox.Show("error, func scrapeBuildingInfo, didnt get IHTMLDocument first", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MyLog.ErrorNoDocument();
             }
 
             var buildingInfoLineHtml = GetBuildingInfoLinesHtml();
@@ -62,11 +60,9 @@ namespace MERG_PSI
         }
         private void ScrapeMapLink()
         {
-            //fix error handeling
             if (Document == null)
             {
-                MessageBox.Show("error, func scrapeMapLink, didnt get IHTMLDocument first", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MyLog.ErrorNoDocument();
             }
 
             var mapLinkHtml = GetMapLinkHtml();
@@ -88,11 +84,9 @@ namespace MERG_PSI
         }
         private void ScrapePrice()
         {
-            //fix error handeling
             if (Document == null)
             {
-                MessageBox.Show("error, func ScrapePrice, didnt get IHTMLDocument first", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MyLog.ErrorNoDocument();
             }
 
             var classContent = GetPriceHtml();
