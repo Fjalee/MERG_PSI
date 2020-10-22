@@ -45,7 +45,7 @@ namespace MERG_PSI
                    $"Floor|    {Floor}\n" +
                    $"_calculatedPrice|    {_calculatedPrice}\n" +
                    $"ScrapedPrice|    {ScrapedPrice}\n" +
-                   $"ScrapedPrice|    {Price}\n" +
+                   $"Price|    {Price}\n" +
                    $"MapLink|    {MapLink}\n" +
                    $"Municipality|    {Municipality}\n" +
                    $"Street|    {Street}\n" +

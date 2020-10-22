@@ -53,16 +53,19 @@ namespace MERG_PSI
                 else { _reachedPageNoAds = true; }
             }
 
+
             TempOutput();
+            richTextBox2.AppendText("Serializing...\n");
             OutputToJson output = new OutputToJson(_scrapedRealEstate);
+            richTextBox2.AppendText("Writing to File...\n");
             output.WriteToFile();
+            richTextBox2.AppendText("Done\n");
         }
 
         private void TempOutput()
         {
             foreach (var element in _scrapedRealEstate)
             {
-                richTextBox2.AppendText("Serializing " + element.Link + "\n");
                 richTextBox1.AppendText(element.ToString());
             }
         }
