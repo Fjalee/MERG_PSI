@@ -161,7 +161,7 @@ namespace MERG_PSI
                 var fullInfoLine = lineHtml.TextContent;
                 parsedLabel = fullInfoLine.Substring(0, fullInfoLine.IndexOf(parsedValue)).Replace("\n", "").Trim();
             }
-            catch (System.NullReferenceException)
+            catch (NullReferenceException)
             {
                 var fullInfoLine = lineHtml.TextContent;
                 parsedLabel = fullInfoLine.Replace("\n", "").Trim();

@@ -22,6 +22,7 @@ namespace MERG_PSI
             while (websitePage < 4)
             {
                 var linkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
+                richTextBox2.AppendText("\n" + "Scraping domain...  " + linkWithPage + "\n");
 
                 var adCardLinkScraper = new AdCardLinkScraper(_websiteLink, "k-ad-card-wide");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
@@ -31,6 +32,7 @@ namespace MERG_PSI
                 {
                     foreach (var link in adCardLinkScraper.Links)
                     {
+                        //richTextBox2.AppendText("Scraping subdomain...  " + link + "\n");
                         var ias = new InsideAdScraper();
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
@@ -45,14 +47,15 @@ namespace MERG_PSI
             }
 
             TempOutput();
-            //OutputToJson output = new OutputToJson(_scrapedRealEstate);
-            //output.WriteToFile();
+            OutputToJson output = new OutputToJson(_scrapedRealEstate);
+            output.WriteToFile();
         }
 
         private void TempOutput()
         {
             foreach (var element in _scrapedRealEstate)
             {
+                richTextBox2.AppendText("Serializing " + element.Link + "\n");
                 richTextBox1.AppendText(element.ToString());
             }
         }
