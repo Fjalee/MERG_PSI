@@ -212,7 +212,7 @@ namespace MERG_PSI
 
             if (buildYearParsableIEn.Count() == 1)
             {
-                BuildYear = buildYearParsableIEn.First().Value.ParseToIntLogIfCant();
+                BuildYear = buildYearParsableIEn.First().Value.Substring(0,4).ParseToIntLogIfCant();
             }
             else
             {
