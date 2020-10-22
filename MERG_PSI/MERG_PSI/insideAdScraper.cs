@@ -1,14 +1,9 @@
-﻿using AngleSharp;
-using AngleSharp.Dom;
+﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using AngleSharp.Html.Parser;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MERG_PSI
@@ -25,7 +20,7 @@ namespace MERG_PSI
         public string Street { get; set; }
         public int BuildYear { get; set; }
         public string MapLink { get; set; }
-        public string Price { get; set; }
+        public double Price { get; set; }
         public InsideAdScraper()
         {
             _buildingInfo = new Dictionary<string, string>();
@@ -73,7 +68,7 @@ namespace MERG_PSI
             }
 
             var mapLinkHtml = GetMapLinkHtml();
-                
+
             if (mapLinkHtml.Any())
             {
                 if (mapLinkHtml.Count() != 1)
@@ -108,11 +103,12 @@ namespace MERG_PSI
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                Price = classContent.First().TextContent;
+                var priceStrContainsOnlyDigits = classContent.First().TextContent.Substring(1).Replace(" ", "");
+                Price = priceStrContainsOnlyDigits.ParseToDoubleLogIfCant();
             }
             else
             {
-                Price = "";
+                Price = 0;
             }
         }
 
@@ -187,44 +183,60 @@ namespace MERG_PSI
             {
                 Floor = "";
                 /*fix log */
+                //MessageBox.Show("error, temp, fix log", "Error",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (areaIEn.Count() == 1)
             {
-                Area = areaIEn.First().Value.parseToDoubleLogIfCant();
+                Area = areaIEn.First().Value.ParseToDoubleLogIfCant();
             }
-            else {
+            else
+            {
                 Area = 0;
                 /*fix log */
+                //MessageBox.Show("error, temp, fix log", "Error",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (pricePerSqMIEn.Count() == 1)
             {
-                PricePerSqM = pricePerSqMIEn.First().Value.parseToDoubleLogIfCant();
+                PricePerSqM = pricePerSqMIEn.First().Value.ParseToDoubleLogIfCant();
             }
-            else {
+            else
+            {
                 PricePerSqM = 0;
                 /*fix log*/
+                //MessageBox.Show("error, temp, fix log", "Error",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (numberOfRoomsIEn.Count() == 1)
             {
-                NumberOfRooms = numberOfRoomsIEn.First().Value.parseToIntLogIfCant();
+                NumberOfRooms = numberOfRoomsIEn.First().Value.ParseToIntLogIfCant();
             }
-            else {
+            else
+            {
                 NumberOfRooms = 0;
                 /*fix log*/
+                //MessageBox.Show("error, temp, fix log", "Error",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (buildYearParsableIEn.Count() == 1)
             {
-                BuildYear = buildYearParsableIEn.First().Value.parseToIntLogIfCant();
+                BuildYear = buildYearParsableIEn.First().Value.ParseToIntLogIfCant();
             }
-            else {
+            else
+            {
                 BuildYear = 0;
                 /*fix log*/
+                //MessageBox.Show("error, temp, fix log", "Error",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
             if (Floor == "" || Area == 0 || PricePerSqM == 0 || NumberOfRooms == 0 || BuildYear == 0)
             {
                 //fix log
+                //MessageBox.Show("error, temp, fix log", "Error",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

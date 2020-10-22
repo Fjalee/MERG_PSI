@@ -38,7 +38,7 @@ namespace MERG_PSI
                         ias.Scrape();
 
                         _scrapedRealEstate.Add(new RealEstate(link, ias.Area, ias.PricePerSqM, ias.NumberOfRooms,
-                            ias.Floor, ias.MapLink, ias.Municipality, ias.Street, ias.BuildYear));
+                            ias.Floor, ias.Price, ias.MapLink, ias.Municipality, ias.Street, ias.BuildYear));
                     }
 
                     websitePage++;
@@ -56,7 +56,11 @@ namespace MERG_PSI
             foreach (var element in _scrapedRealEstate)
             {
                 richTextBox2.AppendText("Serializing " + element.Link + "\n");
-                richTextBox1.AppendText(element.ToString());
+
+                if (element.ScrapedPrice != 0)
+                {
+                    richTextBox1.AppendText(element.ToString());
+                }
             }
         }
     }
