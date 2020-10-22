@@ -11,7 +11,7 @@ namespace MERG_PSI
     class OutputToJson
     {
         //fix to relative
-        private string _filePath = @"C:\Users\Rytis\Downloads\scrapedData.txt";
+        private string _filePath = @"scrapedData.txt";
         private string _jsonToWrite;
 
         public OutputToJson(List<RealEstate> listToConvert)
