@@ -44,7 +44,7 @@ namespace MERG_PSI
                 x.ParentElement.LocalName == "" &&
                 x.ParentElement.ClassList.Contains("section - hero - header - title - title"));
 
-            return sidebarHtml;*/
-        }
+            return sidebarHtml;
+        }*/
     }
 }

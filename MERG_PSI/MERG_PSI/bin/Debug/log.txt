@@ -1,7 +1,7 @@
-Couldn't parse value: "nenu"
-
-
 Couldn't parse value: "127000-€150000"
+
+
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/algirdo-apartamentai-zaliakalnyje-naujas-butas-kaune-zaliakalnis-algirdo-g-597732"
 
 
 Couldn't parse value: ""
@@ -18,10 +18,10 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "nenu"
-
-
 Couldn't parse value: "53000-€112000"
+
+
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bitenu-oaze-naujas-butas-vilniuje-pilaite-bitenu-g-jau-pradedam-553271"
 
 
 Invalid Ad:
@@ -35,10 +35,10 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "nenu"
-
-
 Couldn't parse value: "89000-€92500"
+
+
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/silainiu-butai-naujas-butas-kaune-silainiai-eitkunu-g-naujas-dar-dazais-kvepiantis-3-597735"
 
 
 Invalid Ad:
@@ -52,24 +52,10 @@ Municipality|
 Street|    
 
 
-Invalid Ad:
-Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-senamiestis-rumpiskes-g-rumpiskes-g-parduodamas-1-kambario-butas-23-476606
-MapLink|    
-NumberOfRooms|    0
-ScrapedPrice|    0
-PricePerSqM|    0
-Area|    0
-Municipality|    
-Street|    
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
 Couldn't parse value: "uo€"
+
+
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sierakausko-25-naujas-butas-vilniuje-naujamiestis-z-sierakausko-g-sierakausko-25-598403"
 
 
 Invalid Ad:
@@ -86,6 +72,9 @@ Street|
 Couldn't parse value: "uo€"
 
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/mazvydo-2-naujas-butas-vilniuje-pilaite-m-mazvydo-g-mazvydo-2-namai-sukurti-pilaites-594365"
+
+
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/mazvydo-2-naujas-butas-vilniuje-pilaite-m-mazvydo-g-mazvydo-2-namai-sukurti-pilaites-594365
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20M.%20Ma%C5%BEvydo%20g.
@@ -98,6 +87,9 @@ Street|
 
 
 Couldn't parse value: "72000-€95000"
+
+
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sukurio-1-naujas-butas-vilniaus-rajone-klevines-vs-klevines-g-557176"
 
 
 Invalid Ad:
@@ -114,6 +106,9 @@ Street|
 Couldn't parse value: "36500-€87000"
 
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/naujoji-dainava-naujas-butas-kaune-dainava-garazu-g-wwwnaujojidainavaltnaujoji-569664"
+
+
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/naujoji-dainava-naujas-butas-kaune-dainava-garazu-g-wwwnaujojidainavaltnaujoji-569664
 MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20Gara%C5%BE%C5%B3%20g.
@@ -128,6 +123,9 @@ Street|
 Couldn't parse value: "88800-€112000"
 
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/panoramos-trio-naujas-butas-kaune-aleksotas-amerikos-lietuviu-g-569389"
+
+
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/panoramos-trio-naujas-butas-kaune-aleksotas-amerikos-lietuviu-g-569389
 MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Aleksotas%2C%20Amerikos%20Lietuvi%C5%B3%20g.
@@ -139,16 +137,10 @@ Municipality|
 Street|    
 
 
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
-Couldn't parse value: "nenu"
-
-
 Couldn't parse value: "56000-€89000"
+
+
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/kiara-naujas-butas-kaune-aleksotas-svirbygalos-g-wwwkiaraltsviesus-grazus-namai-569388"
 
 
 Invalid Ad:
@@ -165,6 +157,9 @@ Street|
 Couldn't parse value: "66000-€143000"
 
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/skandea-naujas-butas-kaune-dainava-v-kreves-pr-skandea-kvartalas-ir-jo-namuose-504891"
+
+
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/skandea-naujas-butas-kaune-dainava-v-kreves-pr-skandea-kvartalas-ir-jo-namuose-504891
 MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20V.%20Kr%C4%97v%C4%97s%20pr.
@@ -179,6 +174,9 @@ Street|
 Couldn't parse value: "58600-€164500"
 
 
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bajoru-alejos-naujas-butas-vilniuje-bajorai-salaspilio-g-bajoru-alejos-tai-unikali-524541"
+
+
 Invalid Ad:
 Link|    https://www.kampas.lt/projektas/bajoru-alejos-naujas-butas-vilniuje-bajorai-salaspilio-g-bajoru-alejos-tai-unikali-524541
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Bajorai%2C%20Salaspilio%20g.
@@ -191,6 +189,9 @@ Street|
 
 
 Couldn't parse value: "47780-€95670"
+
+
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/eika-namai-pilaiteje-naujas-butas-vilniuje-pilaite-karaliauciaus-g-eika-namai-524540"
 
 
 Invalid Ad:

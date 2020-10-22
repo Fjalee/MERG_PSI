@@ -39,17 +39,14 @@ namespace MERG_PSI
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
-                        var gms = new GoogleMapsScraper(ias.MapLink);
-                        gms.Scrape();
-
-                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area))
+                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
                         {
                             _scrapedRealEstate.Add(new RealEstate(link, ias.Area, ias.PricePerSqM, ias.NumberOfRooms,
-                            ias.Floor, ias.Price, ias.MapLink, gms.Municipality, gms.Street, ias.BuildYear));
+                            ias.Floor, ias.Price, ias.MapLink, "", "", ias.BuildYear, ias.MapCoords)); //fix Municipality, Street instead of "", ""
                         }
                         else
                         {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, gms.Municipality, gms.Street);
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", ""); //fix Municipality, Street instead of "", ""
                         }
                     }
                     websitePage++;
@@ -74,10 +71,11 @@ namespace MERG_PSI
             }
         }
 
-        private bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area)
+        private bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string mapCoords)
         {
            var calculatedPrice = pricePerSqM * area;
-            if (link == "" ||
+            if (mapCoords == "" ||
+                link == "" ||
                 mapLink == "" ||
                 numberOfRooms == 0 ||
                 (calculatedPrice == 0 && scrapedPrice == 0) ||

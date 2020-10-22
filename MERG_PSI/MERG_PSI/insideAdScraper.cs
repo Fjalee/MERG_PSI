@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Web;
+using System.Text.RegularExpressions;
 
 namespace MERG_PSI
 {
@@ -18,16 +20,13 @@ namespace MERG_PSI
         public string Floor { get; set; }
         public int BuildYear { get; set; }
         public string MapLink { get; set; }
+        public string MapCoords { get; set; }
         public double Price { get; set; }
         private string _link;
         public InsideAdScraper(string link)
         {
             _link = link;
             _buildingInfo = new Dictionary<string, string>();
-
-            //fix
-            Municipality = "";
-            Street = "";
         }
 
         public override void Scrape()
@@ -36,6 +35,7 @@ namespace MERG_PSI
             ScrapePrice();
             ScrapeMapLink();
 
+            MapCoords = ParseMapLinkToCoords(MapLink);
             DictionaryToProperties(_buildingInfo);
         }
 
@@ -69,7 +69,7 @@ namespace MERG_PSI
             {
                 if (mapLinkHtml.Count() != 1)
                 {
-                    MessageBox.Show("error, ScrapeMapCoord()", "Error",
+                    MessageBox.Show("error, ScrapeMapCoords()", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -93,7 +93,7 @@ namespace MERG_PSI
             {
                 if (classContent.Count() != 1)
                 {
-                    MessageBox.Show("error, ScrapeMapCoord()", "Error",
+                    MessageBox.Show("error, ScrapeMapCoords()", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -158,6 +158,21 @@ namespace MERG_PSI
             }
 
             _buildingInfo.Add(parsedLabel, parsedValue);
+        }
+        private String ParseMapLinkToCoords(string linkString)
+        {
+            Uri link = new Uri(linkString);
+            var location = HttpUtility.ParseQueryString(link.Query).Get("q");
+
+            if (Regex.IsMatch(location, @"^[0-9,.]+$"))
+            {
+                return location;
+            }
+            else
+            {
+                MyLog.DnContainCoords(_link);
+                return "";
+            }
         }
 
         private void DictionaryToProperties(Dictionary<string, string> dictionary)

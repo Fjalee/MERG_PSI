@@ -17,8 +17,9 @@ namespace MERG_PSI
         public string Municipality { get; set; }
         public string Street { get; set; }
         public int BuildYear { get; set; }
+        public string MapCoords { get; set; }
 
-        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, string floor, double scrapedPrice, string mapLink, string municipality, string street, int buildYear)
+        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, string floor, double scrapedPrice, string mapLink, string municipality, string street, int buildYear, string mapCoords)
         {
             Link = link;
             Area = area;
@@ -30,6 +31,7 @@ namespace MERG_PSI
             Municipality = municipality;
             Street = street;
             BuildYear = buildYear;
+            MapCoords = mapCoords;
 
             _calculatedPrice = pricePerSqM * area;
             SetPrice();
@@ -50,6 +52,7 @@ namespace MERG_PSI
                    $"Municipality|    {Municipality}\n" +
                    $"Street|    {Street}\n" +
                    $"BuildYear|    {BuildYear}\n" +
+                   $"MapCoords|    {MapCoords}\n" +
                    $"\n\n\n";
         }
 

@@ -72,11 +72,21 @@ namespace MERG_PSI
         {
             using (StreamWriter w = File.AppendText(_fileName))
             {
-                w.WriteLine("Didnt get IHTMLDocument first");
+                w.WriteLine("Didnt get IHTMLDocument first\n\n");
             }
 
             MessageBox.Show("Didnt get IHTMLDocument first", "Error",
             MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        static public void DnContainCoords(string link)
+        {
+            using (StreamWriter w = File.AppendText(_fileName))
+            {
+                var message = $"Link doesn't contain coordinates: \"{link}\"\n\n";
+
+                w.WriteLine(message);
+            }
         }
     }
 }
