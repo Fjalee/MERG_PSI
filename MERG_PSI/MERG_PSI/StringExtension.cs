@@ -16,9 +16,7 @@ namespace MERG_PSI
 
             if (!parsable)
             {
-                //fix log
-                //MessageBox.Show("error, temp, fix log, cant parse to double " + stringToParse, "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MyLog.CantParse(stringToParse);
             }
 
             return returnVal;
@@ -30,9 +28,7 @@ namespace MERG_PSI
 
             if (!parsable)
             {
-                //fix log
-                //MessageBox.Show("error, temp, fix log, cant parse to int " + stringToParse, "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MyLog.CantParse(stringToParse);
             }
 
             return returnVal;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -34,7 +36,7 @@ namespace MERG_PSI
                     foreach (var link in adCardLinkScraper.Links)
                     {
                         //richTextBox2.AppendText("Scraping subdomain...  " + link + "\n");
-                        var ias = new InsideAdScraper();
+                        var ias = new InsideAdScraper(link);
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
@@ -45,7 +47,7 @@ namespace MERG_PSI
                         }
                         else
                         {
-                            //fix log
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Municipality, ias.Street);
                         }
                     }
                     websitePage++;
@@ -72,7 +74,7 @@ namespace MERG_PSI
 
         private bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area)
         {
-            var calculatedPrice = pricePerSqM * area;
+           var calculatedPrice = pricePerSqM * area;
             if (link == "" ||
                 mapLink == "" ||
                 numberOfRooms == 0 ||
@@ -89,7 +91,7 @@ namespace MERG_PSI
         public bool IsValuesClose(double value1, double value2, int roundErr)
         {
             var diff = value1 - value2;
-            if ((diff < roundErr && diff > 0) || (diff < 0 && diff > -roundErr))
+            if ((diff < roundErr && diff >= 0) || (diff <= 0 && diff > -roundErr))
             {
                 return true;
             }

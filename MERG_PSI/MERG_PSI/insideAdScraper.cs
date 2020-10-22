@@ -21,8 +21,10 @@ namespace MERG_PSI
         public int BuildYear { get; set; }
         public string MapLink { get; set; }
         public double Price { get; set; }
-        public InsideAdScraper()
+        private string _link;
+        public InsideAdScraper(string link)
         {
+            _link = link;
             _buildingInfo = new Dictionary<string, string>();
 
             //fix
@@ -181,62 +183,63 @@ namespace MERG_PSI
             }
             else
             {
-                Floor = "";
-                /*fix log */
-                //MessageBox.Show("error, temp, fix log", "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (floorIEn.Count() != 0)
+                {
+                    Floor = "";
+                    MyLog.IEnCountInvalid(_link, floorIEn.Count(), "Floor");
+                }
             }
+
             if (areaIEn.Count() == 1)
             {
                 Area = areaIEn.First().Value.ParseToDoubleLogIfCant();
             }
             else
             {
-                Area = 0;
-                /*fix log */
-                //MessageBox.Show("error, temp, fix log", "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (areaIEn.Count() != 0)
+                {
+                    Area = 0;
+                    MyLog.IEnCountInvalid(_link, areaIEn.Count(), "Area");
+                }
             }
+
             if (pricePerSqMIEn.Count() == 1)
             {
                 PricePerSqM = pricePerSqMIEn.First().Value.ParseToDoubleLogIfCant();
             }
             else
             {
-                PricePerSqM = 0;
-                /*fix log*/
-                //MessageBox.Show("error, temp, fix log", "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (pricePerSqMIEn.Count() != 0)
+                {
+                    PricePerSqM = 0;
+                    MyLog.IEnCountInvalid(_link, pricePerSqMIEn.Count(), "PricePerSqM");
+                }
             }
-            if (numberOfRoomsIEn.Count() == 1)
-            {
-                NumberOfRooms = numberOfRoomsIEn.First().Value.ParseToIntLogIfCant();
-            }
-            else
-            {
-                NumberOfRooms = 0;
-                /*fix log*/
-                //MessageBox.Show("error, temp, fix log", "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
             if (buildYearParsableIEn.Count() == 1)
             {
                 BuildYear = buildYearParsableIEn.First().Value.ParseToIntLogIfCant();
             }
             else
             {
-                BuildYear = 0;
-                /*fix log*/
-                //MessageBox.Show("error, temp, fix log", "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (buildYearParsableIEn.Count() != 0)
+                {
+                    BuildYear = 0;
+                    MyLog.IEnCountInvalid(_link, buildYearParsableIEn.Count(), "BuildYear");
+                }
             }
 
-
-            if (Floor == "" || Area == 0 || PricePerSqM == 0 || NumberOfRooms == 0 || BuildYear == 0)
+            if (numberOfRoomsIEn.Count() == 1)
             {
-                //fix log
-                //MessageBox.Show("error, temp, fix log", "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+                NumberOfRooms = numberOfRoomsIEn.First().Value.ParseToIntLogIfCant();
+            }
+            else
+            {
+                if (numberOfRoomsIEn.Count() != 0)
+                {
+                    NumberOfRooms = 0;
+                    MyLog.IEnCountInvalid(_link, numberOfRoomsIEn.Count(), "NumberOfRooms");
+                }
             }
         }
     }
