@@ -35,19 +35,21 @@ namespace MERG_PSI
                 {
                     foreach (var link in adCardLinkScraper.Links)
                     {
-                        //richTextBox2.AppendText("Scraping subdomain...  " + link + "\n");
                         var ias = new InsideAdScraper(link);
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
+                        var gms = new GoogleMapsScraper(ias.MapLink);
+                        gms.Scrape();
+
                         if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area))
                         {
                             _scrapedRealEstate.Add(new RealEstate(link, ias.Area, ias.PricePerSqM, ias.NumberOfRooms,
-                            ias.Floor, ias.Price, ias.MapLink, ias.Municipality, ias.Street, ias.BuildYear));
+                            ias.Floor, ias.Price, ias.MapLink, gms.Municipality, gms.Street, ias.BuildYear));
                         }
                         else
                         {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Municipality, ias.Street);
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, gms.Municipality, gms.Street);
                         }
                     }
                     websitePage++;

@@ -10,14 +10,12 @@ namespace MERG_PSI
 {
     class InsideAdScraper : Scraper
     {
-        public IHtmlDocument Document { get; set; }
+        public override IHtmlDocument Document { get; set; }
         private Dictionary<string, string> _buildingInfo;
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
         public string Floor { get; set; }
-        public string Municipality { get; set; }
-        public string Street { get; set; }
         public int BuildYear { get; set; }
         public string MapLink { get; set; }
         public double Price { get; set; }

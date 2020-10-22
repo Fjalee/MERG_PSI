@@ -12,6 +12,7 @@ namespace MERG_PSI
 {
     abstract class Scraper
     {
+        public abstract IHtmlDocument Document { get; set; }
         public async Task<IHtmlDocument> GetIHtmlDoc(string siteUrl)
         {
             var cancellationToken = new CancellationTokenSource();

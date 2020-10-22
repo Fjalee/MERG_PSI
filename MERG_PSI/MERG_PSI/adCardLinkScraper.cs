@@ -15,9 +15,8 @@ namespace MERG_PSI
 {
     class AdCardLinkScraper : Scraper
     {
-
         private string _siteUrl, _classNameForAdCard;
-        public IHtmlDocument Document { get; set; }
+        public override IHtmlDocument Document { get; set; }
         public List<string> Links { get; set; }
         public AdCardLinkScraper(string siteUrl, string className)
         {
@@ -31,6 +30,7 @@ namespace MERG_PSI
         {
             ScrapeUrls();
         }
+
         private void ScrapeUrls()
         {
             if (Document == null)
@@ -38,16 +38,16 @@ namespace MERG_PSI
                 MyLog.ErrorNoDocument();
             }
 
-            var adCardsHtml = GetAdCardsHtml(Document);
+            var adCardsHtml = GetAdCardsHtml();
 
             Links = ParseAllLinks(adCardsHtml);
         }
 
-        private IEnumerable<IElement> GetAdCardsHtml(IHtmlDocument document)
+        private IEnumerable<IElement> GetAdCardsHtml()
         {
             IEnumerable<IElement> adCardsHtml = null;
 
-            adCardsHtml = document.All.Where(x =>
+            adCardsHtml = Document.All.Where(x =>
                 x.LocalName == "a" &&
                 x.ParentElement.LocalName == "div" &&
                 x.ParentElement.ClassList.Contains(_classNameForAdCard));
