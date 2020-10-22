@@ -15,6 +15,7 @@ namespace MERG_PSI
         {
             InitializeComponent();
         }
+
         public async void button1_Click(object sender, EventArgs e)
         {
             var websitePage = 1;
@@ -37,10 +38,16 @@ namespace MERG_PSI
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
-                        _scrapedRealEstate.Add(new RealEstate(link, ias.Area, ias.PricePerSqM, ias.NumberOfRooms,
+                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area))
+                        {
+                            _scrapedRealEstate.Add(new RealEstate(link, ias.Area, ias.PricePerSqM, ias.NumberOfRooms,
                             ias.Floor, ias.Price, ias.MapLink, ias.Municipality, ias.Street, ias.BuildYear));
+                        }
+                        else
+                        {
+                            //fix log
+                        }
                     }
-
                     websitePage++;
                 }
                 else { _reachedPageNoAds = true; }
@@ -56,12 +63,34 @@ namespace MERG_PSI
             foreach (var element in _scrapedRealEstate)
             {
                 richTextBox2.AppendText("Serializing " + element.Link + "\n");
-
-                if (element.ScrapedPrice != 0)
-                {
-                    richTextBox1.AppendText(element.ToString());
-                }
+                richTextBox1.AppendText(element.ToString());
             }
+        }
+
+        private bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area)
+        {
+            var calculatedPrice = pricePerSqM * area;
+            if (link == "" ||
+                mapLink == "" ||
+                numberOfRooms == 0 ||
+                (calculatedPrice == 0 && scrapedPrice == 0) ||
+                !IsValuesClose(calculatedPrice, scrapedPrice, 1000)
+                /*Municipality == /*fix to be implemented*/
+                /*Street == /*fix to be implemented*/)
+            {
+                return false;
+            }
+            else { return true; }
+        }
+
+        public bool IsValuesClose(double value1, double value2, int roundErr)
+        {
+            var diff = value1 - value2;
+            if ((diff < roundErr && diff > 0) || (diff < 0 && diff > -roundErr))
+            {
+                return true;
+            }
+            else { return false; }
         }
     }
 }

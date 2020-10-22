@@ -1,4 +1,7 @@
-﻿namespace MERG_PSI
+﻿using System;
+using System.CodeDom.Compiler;
+
+namespace MERG_PSI
 {
     class RealEstate
     {
@@ -7,8 +10,9 @@
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
         public string Floor { get; set; }
-        public double CalculatedPrice { get; set; }
+        private double _calculatedPrice { get; set; }
         public double ScrapedPrice { get; set; }
+        public double Price { get; set; }
         public string MapLink { get; set; }
         public string Municipality { get; set; }
         public string Street { get; set; }
@@ -21,29 +25,58 @@
             PricePerSqM = pricePerSqM;
             NumberOfRooms = numberOfRooms;
             Floor = floor;
-            CalculatedPrice = pricePerSqM * area;
             ScrapedPrice = scrapedPrice;
             MapLink = mapLink;
             Municipality = municipality;
             Street = street;
             BuildYear = buildYear;
+
+            _calculatedPrice = pricePerSqM * area;
+            SetPrice();
         }
         override
         public string ToString()
         {
-            //return $"NT yra {Municipality}, šio namo kaina {CalculatedPrice} €, plotas {Area} m2\n";
+            //return $"NT yra {Municipality}, šio namo kaina {_calculatedPrice} €, plotas {Area} m2\n";
             return $"Link|    {Link}\n" +
                    $"Area|    {Area}\n" +
                    $"PricePerSqM|    {PricePerSqM}\n" +
                    $"NumberOfRooms|    {NumberOfRooms}\n" +
                    $"Floor|    {Floor}\n" +
-                   $"CalculatedPrice|    {CalculatedPrice}\n" +
+                   $"_calculatedPrice|    {_calculatedPrice}\n" +
                    $"ScrapedPrice|    {ScrapedPrice}\n" +
+                   $"ScrapedPrice|    {Price}\n" +
                    $"MapLink|    {MapLink}\n" +
                    $"Municipality|    {Municipality}\n" +
                    $"Street|    {Street}\n" +
                    $"BuildYear|    {BuildYear}\n" +
                    $"\n\n\n";
+        }
+
+        public void SetPrice()
+        {
+            if (_calculatedPrice != 0 && ScrapedPrice != 0 && IsValuesClose(_calculatedPrice, ScrapedPrice, 1000))
+            {
+                Price = Math.Round(ScrapedPrice / 1000) * 1000;
+            }
+            else if (_calculatedPrice != 0 && ScrapedPrice == 0)
+            {
+                Price = Math.Round(_calculatedPrice / 1000) * 1000;
+            }
+            else if (_calculatedPrice == 0 && ScrapedPrice != 0)
+            {
+                Price = Math.Round(ScrapedPrice / 1000) * 1000;
+            }
+        }
+
+        public bool IsValuesClose(double value1, double value2, int roundErr)
+        {
+            var diff = value1 - value2;
+            if ((diff < roundErr && diff > 0) || (diff < 0 && diff > -roundErr))
+            {
+                return true;
+            }
+            else { return false; }
         }
     }
 }
