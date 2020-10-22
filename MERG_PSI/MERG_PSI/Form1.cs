@@ -22,7 +22,7 @@ namespace MERG_PSI
         {
             var websitePage = 1;
             //while (!_reachedPageNoAds)
-            while (websitePage < 4)
+            while (websitePage < 20)
             {
                 var linkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
                 richTextBox2.AppendText("\n" + "Scraping domain...  " + linkWithPage + "\n");

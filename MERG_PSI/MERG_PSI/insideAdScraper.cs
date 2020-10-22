@@ -35,7 +35,11 @@ namespace MERG_PSI
             ScrapePrice();
             ScrapeMapLink();
 
-            MapCoords = ParseMapLinkToCoords(MapLink);
+            if (MapLink != "")
+            {
+                MapCoords = ParseMapLinkToCoords(MapLink);
+            }
+
             DictionaryToProperties(_buildingInfo);
         }
 
