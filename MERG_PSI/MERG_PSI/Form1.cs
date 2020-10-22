@@ -21,8 +21,8 @@ namespace MERG_PSI
         public async void button1_Click(object sender, EventArgs e)
         {
             var websitePage = 1;
-            //while (!_reachedPageNoAds)
-            while (websitePage < 5)
+            while (!_reachedPageNoAds)
+            //while (websitePage < 5)
             {
                 var linkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
                 richTextBox2.AppendText("\n" + "Scraping domain...  " + linkWithPage + "\n");

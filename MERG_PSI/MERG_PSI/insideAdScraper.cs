@@ -230,7 +230,15 @@ namespace MERG_PSI
 
             if (buildYearParsableIEn.Count() == 1)
             {
-                BuildYear = buildYearParsableIEn.First().Value.Substring(0,4).ParseToIntLogIfCant();
+                var buildYearString = buildYearParsableIEn.First().Value;
+                if (buildYearString.Length >= 4)
+                {
+                    buildYearString.Substring(0, 4).ParseToIntLogIfCant();
+                }
+                else
+                {
+                    MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
+                }
             }
             else
             {
