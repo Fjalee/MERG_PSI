@@ -20,3 +20,6 @@ C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_P
 C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.CoreCompileInputs.cache
 C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.exe
 C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.pdb
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.CopyComplete

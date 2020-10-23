@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MERG_PSI
 {
-    
+
     class DeserializationFromJson
     {
         public List<RealEstate> Data { get; set; }
@@ -20,7 +20,7 @@ namespace MERG_PSI
             }
 
             Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFIle);
-             
+
         }
     }
 }

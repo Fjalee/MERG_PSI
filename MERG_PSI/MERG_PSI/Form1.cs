@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MERG_PSI
@@ -198,12 +193,7 @@ namespace MERG_PSI
 
         private void advSearch_Click(object sender, EventArgs e)
         {
-            //var Filter=  new Filters();
-            //  var list = Filter.getSampleData();
-        
-
-            
-            //  richTextBox1.Text = filteredList.ToString();
+      
         }
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {

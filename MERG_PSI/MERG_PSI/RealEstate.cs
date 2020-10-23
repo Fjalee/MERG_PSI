@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.CodeDom.Compiler;
 
 namespace MERG_PSI
 {
@@ -12,41 +8,78 @@ namespace MERG_PSI
         public string Link { get; set; }
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
-        public double Price { get; set; }
         public int NumberOfRooms { get; set; }
-        public string Floor { get; set; }   //stringas kolkas tegul buna
-        public string Construction { get; set; }
-        public string Heating { get; set; }
-        public int BuildYear { get; set; }
+        public string Floor { get; set; }
+        private double _calculatedPrice { get; set; }
+        public double ScrapedPrice { get; set; }
+        public double Price { get; set; }
         public string MapLink { get; set; }
         public string Municipality { get; set; }
-        public string City { get; set; }
         public string Street { get; set; }
-        public string HouseNm { get; set; }
-        public string Coordinates { get; set; }
+        public int BuildYear { get; set; }
+        public string MapCoords { get; set; }
 
-        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, string floor, string construction, string heating, string mapLink, string municipality, string city, string street, string houseNm, string coordinates, int buildYear)
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string street = "", int buildYear = 0, string mapCoords = "")
         {
             Link = link;
             Area = area;
             PricePerSqM = pricePerSqM;
             NumberOfRooms = numberOfRooms;
             Floor = floor;
-            Price = pricePerSqM* area;
-            Construction = construction;
-            Heating = heating;
+            ScrapedPrice = scrapedPrice;
             MapLink = mapLink;
             Municipality = municipality;
-            City = city;
             Street = street;
-            HouseNm = houseNm;
-            Coordinates = coordinates;
             BuildYear = buildYear;
+            MapCoords = mapCoords;
+
+            _calculatedPrice = pricePerSqM * area;
+            SetPrice();
         }
         override
         public string ToString()
         {
-            return $"NT yra {Municipality}, {Street}, šio namo kaina {Price} €, plotas {Area} m2\n";
+            //return $"NT yra {Municipality}, šio namo kaina {_calculatedPrice} €, plotas {Area} m2\n";
+            return $"Link|    {Link}\n" +
+                   $"Area|    {Area}\n" +
+                   $"PricePerSqM|    {PricePerSqM}\n" +
+                   $"NumberOfRooms|    {NumberOfRooms}\n" +
+                   $"Floor|    {Floor}\n" +
+                   $"_calculatedPrice|    {_calculatedPrice}\n" +
+                   $"ScrapedPrice|    {ScrapedPrice}\n" +
+                   $"Price|    {Price}\n" +
+                   $"MapLink|    {MapLink}\n" +
+                   $"Municipality|    {Municipality}\n" +
+                   $"Street|    {Street}\n" +
+                   $"BuildYear|    {BuildYear}\n" +
+                   $"MapCoords|    {MapCoords}\n" +
+                   $"\n\n\n";
+        }
+
+        public void SetPrice()
+        {
+            if (_calculatedPrice != 0 && ScrapedPrice != 0 && IsValuesClose(_calculatedPrice, ScrapedPrice, 1000))
+            {
+                Price = Math.Round(ScrapedPrice / 1000) * 1000;
+            }
+            else if (_calculatedPrice != 0 && ScrapedPrice == 0)
+            {
+                Price = Math.Round(_calculatedPrice / 1000) * 1000;
+            }
+            else if (_calculatedPrice == 0 && ScrapedPrice != 0)
+            {
+                Price = Math.Round(ScrapedPrice / 1000) * 1000;
+            }
+        }
+
+        public bool IsValuesClose(double value1, double value2, int roundErr)
+        {
+            var diff = value1 - value2;
+            if ((diff < roundErr && diff > 0) || (diff < 0 && diff > -roundErr))
+            {
+                return true;
+            }
+            else { return false; }
         }
     }
 }
