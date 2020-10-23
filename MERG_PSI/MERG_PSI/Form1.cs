@@ -39,10 +39,10 @@ namespace MERG_PSI
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
-                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
+                        if (IsAdHasAllNeededData(link, ias.MapLink,  ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
                         {
-                            _scrapedRealEstate.Add(new RealEstate(link, ias.Area, ias.PricePerSqM, ias.NumberOfRooms,
-                            ias.Floor, ias.Price, ias.MapLink, "", "", ias.BuildYear, ias.MapCoords)); //fix Municipality, Street instead of "", ""
+                            _scrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
+                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords)); //fix Municipality, Street instead of "", ""
                         }
                         else
                         {
@@ -74,7 +74,10 @@ namespace MERG_PSI
         private bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string mapCoords)
         {
            var calculatedPrice = pricePerSqM * area;
-            if (mapCoords == "" ||
+            if (
+                //fix put area and priceerarea
+
+                mapCoords == "" ||
                 link == "" ||
                 mapLink == "" ||
                 numberOfRooms == 0 ||

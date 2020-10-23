@@ -19,7 +19,7 @@ namespace MERG_PSI
         public int BuildYear { get; set; }
         public string MapCoords { get; set; }
 
-        public RealEstate(string link, double area, double pricePerSqM, int numberOfRooms, string floor, double scrapedPrice, string mapLink, string municipality, string street, int buildYear, string mapCoords)
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string street = "", int buildYear = 0, string mapCoords = "")
         {
             Link = link;
             Area = area;
