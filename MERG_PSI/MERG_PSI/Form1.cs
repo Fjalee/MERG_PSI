@@ -21,7 +21,7 @@ namespace MERG_PSI
             richTextBox1.Text = tekstas;
         }
 
-        ///----------------------------------------------------------------------------------------------------
+        #region TextBox Input 
         private void municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
             var ch = e.KeyChar;
@@ -72,7 +72,8 @@ namespace MERG_PSI
             }
         }
 
-        //--------------------------------------------------------------------------------------------------
+        #endregion
+        #region Prompt text
 
         private void priceFrom_Enter(object sender, EventArgs e)
         {
@@ -146,7 +147,7 @@ namespace MERG_PSI
             }
         }
 
-        //-------------------------------------------------------------------------------------
+        #endregion
 
         /* private void showAdList_Click(object sender, EventArgs e)
          {
