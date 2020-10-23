@@ -164,9 +164,9 @@ namespace MERG_PSI
         private void search_Click(object sender, EventArgs e)
         {
             var Inspection = new Inspection();
-            var TextBoxes = new List<TextBox> {priceFrom, priceTo, areaFrom, areaTo, municipality};
+            var filtersValues = new List<String> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text};
             var ListOfRealEstate = new Data().SampleData;
-            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate,TextBoxes));
+            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate, filtersValues));
 
             /*var town = municipality.Text;
             var streetName = street.Text;

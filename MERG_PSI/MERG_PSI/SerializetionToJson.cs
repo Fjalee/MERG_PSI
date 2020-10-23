@@ -12,7 +12,7 @@ namespace MERG_PSI
     {
         private void dederialization()
         {
-            var filePath = @"C:\Users\Greta\Desktop\text.txt";
+            var filePath = @"C:\Users\Greta\Desktop\text.txt"; // change filePath
             var ad = new List<RealEstate>();
 
             var jsonToWrite = JsonConvert.SerializeObject(ad);

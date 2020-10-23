@@ -8,7 +8,6 @@ namespace MERG_PSI
    
      class Filters
     {
-   //pakeist
         public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double minArea, double maxArea)
         {
             return houses.Where(house => house.Area >= minArea && house.Area <= maxArea).ToList();
@@ -19,15 +18,15 @@ namespace MERG_PSI
         }
         public  List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
         {
-            return houses.Where(house => (house.Municipality).ToLower().Contains(municipality)).ToList();
+            return houses.Where(house => (house.Municipality).ToLower().Contains(municipality.ToLower())).ToList();
         }
         public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double PriceFrom, double PriceTo)
         {
             return houses.Where(house => house.PricePerSqM>= PriceFrom && house.PricePerSqM<= PriceTo).ToList();
         }
-        public List<RealEstate> FilterRealEstateByCity(List<RealEstate> houses, string city)
+        public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street)
         {
-            return houses.Where(house => (house.City).ToLower().Contains(city.ToLower())).ToList();
+            return houses.Where(house => (house.Street).ToLower().Contains(street.ToLower())).ToList();
         }
 
     }

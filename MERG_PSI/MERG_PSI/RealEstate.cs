@@ -46,7 +46,7 @@ namespace MERG_PSI
         override
         public string ToString()
         {
-            return $"NT yra {Municipality}, šio namo kaina {Price} €, plotas {Area} m2\n";
+            return $"NT yra {Municipality}, {Street}, šio namo kaina {Price} €, plotas {Area} m2\n";
         }
     }
 }
