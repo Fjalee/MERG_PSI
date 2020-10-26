@@ -1,29 +1,80 @@
-﻿using System;
+﻿using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GMap.NET.WindowsForms.ToolTips;
 
 namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
+        GMapOverlay markOverlay = new GMapOverlay("marker");
         public Form1()
         {
+            //var markOverly = new GMapOverlay("marker");
             InitializeComponent();
-           // webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
-          //  webBrowser2.ScriptErrorsSuppressed = true;
+            map_Load();
+            
+
+            webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
+            webBrowser2.ScriptErrorsSuppressed = true;
+            
+            /*
             var tekstas = "";
             var Data = (new Data()).SampleData;
+            Data.Add();
             foreach (var eilute in Data)
             {
                 tekstas = tekstas + eilute;
             }
             richTextBox1.Text = tekstas;
+            */
+            //load_markers();
+        }
+
+        private void map_Load()
+        {
+            map.ShowCenter = false;
+            map.DragButton = MouseButtons.Left;
+            map.MapProvider = GMapProviders.GoogleMap; //or BingMap
+            //map.SetPositionByKeywords("Kaunas, Lithuania");
+            map.Position = new PointLatLng(55.233400, 23.894970);//kaunas
+            map.MinZoom = 1;
+            map.MaxZoom = 24;
+            map.Zoom = 5;
+            
+
+        }
+
+        private void load_markers(List<RealEstate> filteredList)
+        {
+            double[] darray = new double[2];
+
+            markOverlay.Markers.Clear();
+            foreach (var i in filteredList)
+            {
+                string[] c = i.Coordinates.Split(',');
+                darray[0] = Convert.ToDouble(c[0]);
+                darray[1] = Convert.ToDouble(c[1]);
+                var marker = new GMarkerGoogle(new PointLatLng(darray[0],darray[1]), GMarkerGoogleType.red);
+                marker.ToolTip = new GMapRoundedToolTip(marker);
+                marker.ToolTipText = $"Kambariai: {i.NumberOfRooms.ToString()}, miestas: {i.City.ToString()}, plotas: {i.Area.ToString()}, kaina: {i.PricePerSqM.ToString()}\n";
+                markOverlay.Markers.Add(marker);
+            }
+            map.Overlays.Add(markOverlay);
+
         }
 
         ///----------------------------------------------------------------------------------------------------
@@ -164,11 +215,13 @@ namespace MERG_PSI
         private void search_Click(object sender, EventArgs e)
         {
             var Inspection = new Inspection();
-            var TextBoxes = new List<TextBox> {priceFrom, priceTo, areaFrom, areaTo, municipality};
+            var TextBoxes = new List<TextBox> { priceFrom, priceTo, areaFrom, areaTo, municipality };
             var ListOfRealEstate = new Data().SampleData;
-            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate,TextBoxes));
+            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate, TextBoxes));
+            var list = Inspection.GetFilteredList(ListOfRealEstate, TextBoxes);
 
-            /*var town = municipality.Text;
+            load_markers(list);
+            var town = municipality.Text;
             var streetName = street.Text;
             webBrowser2.ScriptErrorsSuppressed = true;
             try
@@ -188,7 +241,7 @@ namespace MERG_PSI
             {
                 MessageBox.Show(ex.Message.ToString(), "error");
             }
-            */
+            
         }
 
         private void municipality_TextChanged(object sender, EventArgs e)
@@ -198,12 +251,9 @@ namespace MERG_PSI
 
         private void advSearch_Click(object sender, EventArgs e)
         {
-            //var Filter=  new Filters();
-            //  var list = Filter.getSampleData();
-        
-
-            
-            //  richTextBox1.Text = filteredList.ToString();
+              /*var Filter=  new Filters();
+              var list = Filter.getSampleData();
+              richTextBox1.Text = filteredList.ToString();*/
         }
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {
@@ -213,6 +263,21 @@ namespace MERG_PSI
                 tekstas = tekstas + eilute;
             }
             return tekstas;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void webBrowser2_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
+
+        private void gMapControl1_Load(object sender, EventArgs e)
+        {
+
         }
 
         /*

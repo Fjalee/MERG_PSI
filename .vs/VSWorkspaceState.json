@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MERG_PSI"
+    "\\MERG_PSI",
+    "\\MERG_PSI\\MapSample",
+    "\\MERG_PSI\\MERG_PSI"
   ],
-  "SelectedNode": "\\MERG_PSI\\MERG_PSI",
+  "SelectedNode": "\\MERG_PSI\\MERG_PSI\\Form1.cs",
   "PreviewInSolutionExplorer": false
 }
