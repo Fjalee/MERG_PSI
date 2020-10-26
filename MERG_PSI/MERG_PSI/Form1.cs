@@ -10,8 +10,8 @@ namespace MERG_PSI
         public Form1()
         {
             InitializeComponent();
-           // webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
-          //  webBrowser2.ScriptErrorsSuppressed = true;
+            // webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
+            //  webBrowser2.ScriptErrorsSuppressed = true;
             var tekstas = "";
             var Data = (new Data()).SampleData;
             foreach (var eilute in Data)
@@ -149,18 +149,12 @@ namespace MERG_PSI
 
         #endregion
 
-        /* private void showAdList_Click(object sender, EventArgs e)
-         {
-             this.Hide();
-             var openForm2 = new Form2();
-             openForm2.ShowDialog();
-             this.Close();
-         }*/
+
 
         private void search_Click(object sender, EventArgs e)
         {
             var Inspection = new Inspection();
-            var filtersValues = new List<String> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text};
+            var filtersValues = new List<String> { priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text, street.Text };
             var ListOfRealEstate = new Data().SampleData;
             richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate, filtersValues));
 
@@ -187,16 +181,7 @@ namespace MERG_PSI
             */
         }
 
-        private void municipality_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void advSearch_Click(object sender, EventArgs e)
-        {
-      
-        }
-        private String ListToDisplay (List<RealEstate> RealEstateList)
+        private String ListToDisplay(List<RealEstate> RealEstateList)
         {
             var tekstas = "";
             foreach (var eilute in RealEstateList)
@@ -205,9 +190,15 @@ namespace MERG_PSI
             }
             return tekstas;
         }
-
+        
         /*
-         It looks like you have enabled Internet Explorer Compatibility View. Google Maps will not work correctly unless this is turned off.
+        private void showAdList_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var openForm2 = new Form2();
+            openForm2.ShowDialog();
+            this.Close();
+        }
         */
     }
 }
