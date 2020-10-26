@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MERG_PSI
@@ -248,40 +249,6 @@ namespace MERG_PSI
                 numberOfRoomsTo.ForeColor = Color.Silver;
             }
         }
-        //private void _Enter(object sender, EventArgs e)
-        //{
-        //    if (.Text == "Nuo")
-        //    {
-        //        .Text = "";
-        //        .ForeColor = Color.Black;
-        //    }
-        //}
-        //private void _Leave(object sender, EventArgs e)
-        //{
-        //    if (.Text == "")
-        //    {
-        //        .Text = "Nuo";
-        //        .ForeColor = Color.Silver;
-        //    }
-        //}
-
-        //iki
-        //private void _Enter(object sender, EventArgs e)
-        //{
-        //    if (.Text == "Iki")
-        //    {
-        //        .Text = "";
-        //        .ForeColor = Color.Black;
-        //    }
-        //}
-        //private void _Leave(object sender, EventArgs e)
-        //{
-        //    if (.Text == "")
-        //    {
-        //        .Text = "Iki";
-        //        .ForeColor = Color.Silver;
-        //    }
-        //}
         private void areaFrom_Enter(object sender, EventArgs e)
         {
             if (areaFrom.Text == "Nuo")
@@ -331,9 +298,11 @@ namespace MERG_PSI
         private void search_Click(object sender, EventArgs e)
         {
             var Inspection = new Inspection();
-            var filtersValues = new List<String> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text};
+            var filtersValues = new List<String> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text,buildYearTo.Text,numberOfRoomsFrom.Text,numberOfRoomsTo.Text};
             var ListOfRealEstate = new Data().SampleData;
-            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate, filtersValues));
+            var noInfoBuild = noInfoBuildYear.Checked;
+            var noInfoRooms = noInfoRoomNumber.Checked;
+            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredListOFRealEstate(ListOfRealEstate, filtersValues,noInfoBuild,noInfoRooms));
 
             /*var town = municipality.Text;
             var streetName = street.Text;
@@ -369,12 +338,12 @@ namespace MERG_PSI
         }
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {
-            var tekstas = "";
-            foreach (var eilute in RealEstateList)
+            var textToPrint = new StringBuilder();
+            foreach (var realEstate in RealEstateList)
             {
-                tekstas = tekstas + eilute;
+                textToPrint.Append(realEstate);
             }
-            return tekstas;
+            return textToPrint.ToString();
         }
 
  

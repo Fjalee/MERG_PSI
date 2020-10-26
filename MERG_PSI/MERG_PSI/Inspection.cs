@@ -17,177 +17,71 @@ namespace MERG_PSI
                 return false;
             }
             return true;
-          //  return String.IsNullOrEmpty(textBox.Text);
         }
-        public List<RealEstate> GetFilteredList(List<RealEstate> listOfRealEstate, List<String> filtersValue)
+
+        public List<RealEstate> GetFilteredListOFRealEstate(List<RealEstate> listOfRealEstate, List<String> filtersValue, Boolean noInfoBuildYear, Boolean noInfoRoomsNumber)
         {
             var filters = new Filters();
-            //filter by price, area, municipality and street
-            if (isFilterValueSelected(filtersValue[0])
-                && isFilterValueSelected(filtersValue[1])
-                && isFilterValueSelected(filtersValue[2])
-                && isFilterValueSelected(filtersValue[3])
-                && !String.IsNullOrEmpty(filtersValue[4])
-                && !String.IsNullOrEmpty(filtersValue[5]))
+            var filteredList = listOfRealEstate;
+
+            if (isFilterValueSelected(filtersValue[0]) && isFilterValueSelected(filtersValue[1]))
             {
                 var priceFrom = int.Parse(filtersValue[0]);
                 var priceTo = int.Parse(filtersValue[1]);
-                var areaFrom = int.Parse(filtersValue[2]);
-                var areaTo = int.Parse(filtersValue[3]);
-                var municipality = filtersValue[4];
-                var street = filtersValue[5];
-
-                var filteredList1 = filters.FilterRealEstateByPrice(listOfRealEstate, priceFrom, priceTo);
-                var filteredList2 = filters.FilterRealEstateByArea(filteredList1, areaFrom, areaTo);
-                var filteredList3 = filters.FilterRealEstateByMunicipality(filteredList2, municipality);
-                var filteredList = filters.FilterRealEstateByStreet(filteredList3, street);
-
-                return filteredList;
+                filteredList = filters.FilterRealEstateByPrice(filteredList, priceFrom, priceTo);
             }
-            //filter by price, area, municipality
-            else if (isFilterValueSelected(filtersValue[0])
-                && isFilterValueSelected(filtersValue[1])
-                && isFilterValueSelected(filtersValue[2])
-                && isFilterValueSelected(filtersValue[3])
-                && !String.IsNullOrEmpty(filtersValue[4]))
-            {
-                var priceFrom = int.Parse(filtersValue[0]);
-                var priceTo = int.Parse(filtersValue[1]);
-                var areaFrom = int.Parse(filtersValue[2]);
-                var areaTo = int.Parse(filtersValue[3]);
-                var municipality = filtersValue[4];
-
-                var filteredList1 = filters.FilterRealEstateByPrice(listOfRealEstate, priceFrom, priceTo);
-                var filteredList2 = filters.FilterRealEstateByArea(filteredList1, areaFrom, areaTo);
-                var filteredList = filters.FilterRealEstateByMunicipality(filteredList2, municipality);
-
-                return filteredList;
-            }
-            //filter by price and area
-            else if (isFilterValueSelected(filtersValue[0])
-                && isFilterValueSelected(filtersValue[1])
-                && isFilterValueSelected(filtersValue[2])
-                && isFilterValueSelected(filtersValue[3]))
-            {
-                var priceFrom = int.Parse(filtersValue[0]);
-                var priceTo = int.Parse(filtersValue[1]);
-                var areaFrom = int.Parse(filtersValue[2]);
-                var areaTo = int.Parse(filtersValue[3]);
-
-                var filteredList1 = filters.FilterRealEstateByPrice(listOfRealEstate, priceFrom, priceTo);
-                var filteredList = filters.FilterRealEstateByArea(filteredList1, areaFrom, areaTo);
-
-                return filteredList;
-            }
-            //filter by price, municipality and street
-            else if (isFilterValueSelected(filtersValue[0])
-               && isFilterValueSelected(filtersValue[1])
-               && !String.IsNullOrEmpty(filtersValue[4])
-               && !String.IsNullOrEmpty(filtersValue[5]))
-            {
-                var priceFrom = int.Parse(filtersValue[0]);
-                var priceTo = int.Parse(filtersValue[1]);
-                var municipality = filtersValue[4];
-                var street = filtersValue[5];
-
-                var filteredList1 = filters.FilterRealEstateByPrice(listOfRealEstate, priceFrom, priceTo);
-                var filteredList2 = filters.FilterRealEstateByMunicipality(filteredList1, municipality);
-                var filteredList = filters.FilterRealEstateByStreet(filteredList2, street);
-                return filteredList;
-            }
-            //filter by price and municipality
-            else if (isFilterValueSelected(filtersValue[0])
-                && isFilterValueSelected(filtersValue[1])
-                && !String.IsNullOrEmpty(filtersValue[4]))
-            {
-                var priceFrom = int.Parse(filtersValue[0]);
-                var priceTo = int.Parse(filtersValue[1]);
-                var municipality = filtersValue[4];
-
-                var filteredList1 = filters.FilterRealEstateByPrice(listOfRealEstate, priceFrom, priceTo);
-                var filteredList = filters.FilterRealEstateByMunicipality(filteredList1, municipality);
-
-                return filteredList;
-            }
-            //filter by area, municipality and street
-            else if (isFilterValueSelected(filtersValue[2])
-                && isFilterValueSelected(filtersValue[3])
-                && !String.IsNullOrEmpty(filtersValue[4])
-                && !String.IsNullOrEmpty(filtersValue[5]))
+            if (isFilterValueSelected(filtersValue[2]) && isFilterValueSelected(filtersValue[3]))
             {
                 var areaFrom = int.Parse(filtersValue[2]);
                 var areaTo = int.Parse(filtersValue[3]);
-                var municipality = filtersValue[4];
-                var street = filtersValue[5];
-
-                var filteredList1 = filters.FilterRealEstateByArea(listOfRealEstate, areaFrom, areaTo);
-                var filteredList2 = filters.FilterRealEstateByMunicipality(filteredList1, municipality);
-                var filteredList = filters.FilterRealEstateByStreet(filteredList2, street);
-                return filteredList;
+                 filteredList = filters.FilterRealEstateByArea(filteredList, areaFrom, areaTo);
 
             }
-            //filter by area and municipality
-            else if (isFilterValueSelected(filtersValue[2])
-                && isFilterValueSelected(filtersValue[3])
-                && !String.IsNullOrEmpty(filtersValue[4]))
+            if (!String.IsNullOrEmpty(filtersValue[4]))
             {
-                var areaFrom = int.Parse(filtersValue[2]);
-                var areaTo = int.Parse(filtersValue[3]);
-                var municipality = filtersValue[4];
-
-                var filteredList1 = filters.FilterRealEstateByArea(listOfRealEstate, areaFrom, areaTo);
-                var filteredList = filters.FilterRealEstateByMunicipality(filteredList1, municipality);
-
-                return filteredList;
-
+               var  municipality = filtersValue[4];
+                filteredList = filters.FilterRealEstateByMunicipality(filteredList, municipality);
             }
-            //filter by price
-            else if (isFilterValueSelected(filtersValue[0])
-               && isFilterValueSelected(filtersValue[1]))
+            if (!String.IsNullOrEmpty(filtersValue[5]))
             {
-                var priceFrom = int.Parse(filtersValue[0]);
-                var priceTo = int.Parse(filtersValue[1]);
-
-                var filteredList = filters.FilterRealEstateByPrice(listOfRealEstate, priceFrom, priceTo);
-
-                return filteredList;
+               var  street = filtersValue[5];
+                filteredList = filters.FilterRealEstateByMunicipality(filteredList, street);
             }
-            //filter by area
-            else if (isFilterValueSelected(filtersValue[2])
-               && isFilterValueSelected(filtersValue[3]))
+            if (isFilterValueSelected(filtersValue[6]) && isFilterValueSelected(filtersValue[7]))
             {
-                var areaFrom = int.Parse(filtersValue[2]);
-                var areaTo = int.Parse(filtersValue[3]);
-
-                var filteredList = filters.FilterRealEstateByArea(listOfRealEstate, areaFrom, areaTo);
-
-                return filteredList;
+               var  pricePerSqMFrom = int.Parse(filtersValue[6]);
+               var  pricePerSqMTo = int.Parse(filtersValue[7]);
+                filteredList = filters.FilterRealEstateByPricePerSqM(filteredList, pricePerSqMFrom,pricePerSqMTo);
             }
-            //filter by municipality and street
-            else if (!String.IsNullOrEmpty(filtersValue[4])
-                     && !String.IsNullOrEmpty(filtersValue[5]))
+
+            /* ----------------------------------------------------------------------------------*/
+
+            if (isFilterValueSelected(filtersValue[8]) && isFilterValueSelected(filtersValue[9]))
             {
-                var municipality = filtersValue[4];
-                var street = filtersValue[5];
-
-                var filteredList1 = filters.FilterRealEstateByMunicipality(listOfRealEstate, municipality);
-                var filteredList = filters.FilterRealEstateByStreet(filteredList1, street);
-
-                return filteredList;
+                var buildYearFrom = int.Parse(filtersValue[8]);
+                var buildYearTo = int.Parse(filtersValue[9]);
+                filteredList = filters.FilterRealEstateByBuildYear(filteredList, buildYearFrom, buildYearTo,noInfoBuildYear);
             }
-            //filter by municipality
-            else if (!String.IsNullOrEmpty(filtersValue[4]))
+            else if (noInfoBuildYear)
             {
-                var municipality = filtersValue[4];
-                var filteredList = filters.FilterRealEstateByMunicipality(listOfRealEstate, municipality);
+                filteredList = filters.FilterByRealEstateWhenNoInfoBuildYear(filteredList);
+            }
 
-                return filteredList;
-            }
-            //no filters selected
-            else
+            /* ----------------------------------------------------------------------------------*/
+            if (isFilterValueSelected(filtersValue[10]) && isFilterValueSelected(filtersValue[11]))
             {
-                return listOfRealEstate;
+               var  numberOfRoomsFrom = int.Parse(filtersValue[10]);
+               var  numberOfRoomsTo = int.Parse(filtersValue[11]);
+                filteredList = filters.FilterRealEstateByNumberOfRooms(filteredList, numberOfRoomsFrom, numberOfRoomsTo, noInfoRoomsNumber);
             }
+            else if (noInfoRoomsNumber)
+            {
+                filteredList = filters.FilterByRealEstateWhenNoInfoNumberOfRooms(filteredList);
+
+            }
+            /* ----------------------------------------------------------------------------------*/
+            return filteredList;
         }
     }
+
 }

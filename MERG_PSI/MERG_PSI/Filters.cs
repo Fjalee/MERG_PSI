@@ -31,19 +31,34 @@ namespace MERG_PSI
         }
         public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, Boolean noInfoNumberOfRooms)
         {
-            if(noInfoNumberOfRooms)
+            if (noInfoNumberOfRooms)
             {
-                return houses.Where(house => (house.NumberOfRooms<=numberOfRoomsFrom && house.NumberOfRooms>=numberOfRoomsTo) || house.NumberOfRooms==0).ToList();
+                return houses.Where(house => (house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
             }
-            else return houses.Where(house => house.NumberOfRooms <= numberOfRoomsFrom && house.NumberOfRooms >= numberOfRoomsTo).ToList();
+            else
+            {
+                return houses.Where(house => house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo).ToList();
+            }
         }
         public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, Boolean noInfoBuildYear)
         {
             if (noInfoBuildYear)
             {
-                return houses.Where(house => (house.NumberOfRooms <= buildYearFrom && house.NumberOfRooms >= buildYearTo) || house.NumberOfRooms == 0).ToList();
+                return houses.Where(house => (house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo) || house.BuildYear == 0).ToList();
             }
-            else return houses.Where(house => house.NumberOfRooms <= buildYearFrom && house.NumberOfRooms >= buildYearTo).ToList();
+            else
+            {
+                return houses.Where(house => house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo).ToList();
+            }
+
+        }
+        public List<RealEstate> FilterByRealEstateWhenNoInfoBuildYear(List<RealEstate> houses)
+        {
+            return houses.Where(house => house.BuildYear == 0).ToList();
+        }
+        public List<RealEstate> FilterByRealEstateWhenNoInfoNumberOfRooms(List<RealEstate> houses)
+        {
+            return houses.Where(house => house.NumberOfRooms == 0).ToList();
         }
 
 
