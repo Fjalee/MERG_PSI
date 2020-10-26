@@ -61,6 +61,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.webBrowser2 = new System.Windows.Forms.WebBrowser();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.map = new GMap.NET.WindowsForms.GMapControl();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -578,6 +579,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.map);
             this.splitContainer1.Panel2.Controls.Add(this.panel4);
             this.splitContainer1.Size = new System.Drawing.Size(1602, 958);
             this.splitContainer1.SplitterDistance = 325;
@@ -599,6 +601,32 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1273, 32);
             this.panel4.TabIndex = 0;
+            // 
+            // map
+            // 
+            this.map.Bearing = 0F;
+            this.map.CanDragMap = true;
+            this.map.EmptyTileColor = System.Drawing.Color.Navy;
+            this.map.GrayScaleMode = false;
+            this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.map.LevelsKeepInMemory = 5;
+            this.map.Location = new System.Drawing.Point(4, 0);
+            this.map.MarkersEnabled = true;
+            this.map.MaxZoom = 24;
+            this.map.MinZoom = 3;
+            this.map.MouseWheelZoomEnabled = true;
+            this.map.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.map.Name = "map";
+            this.map.NegativeMode = false;
+            this.map.PolygonsEnabled = true;
+            this.map.RetryLoadTile = 0;
+            this.map.RoutesEnabled = true;
+            this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.map.ShowTileGridLines = false;
+            this.map.Size = new System.Drawing.Size(1266, 928);
+            this.map.TabIndex = 1;
+            this.map.Zoom = 7D;
             // 
             // Form1
             // 
@@ -655,6 +683,7 @@
         private System.Windows.Forms.TextBox buildYearTo;
         private System.Windows.Forms.TextBox buildYearFrom;
         private System.Windows.Forms.Label label8;
+        private GMap.NET.WindowsForms.GMapControl map;
     }
 }
 

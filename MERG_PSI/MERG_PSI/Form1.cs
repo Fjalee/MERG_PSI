@@ -1,4 +1,9 @@
-﻿using System;
+﻿using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using GMap.NET.WindowsForms.ToolTips;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -20,6 +25,38 @@ namespace MERG_PSI
                 tekstas = tekstas + eilute;
             }
             richTextBox1.Text = tekstas;
+            map_Load();
+
+        }
+
+        private void map_Load()
+        {
+            map.ShowCenter = false;
+            map.DragButton = MouseButtons.Left;
+            map.MapProvider = GMapProviders.GoogleMap; 
+            map.Position = new PointLatLng(55.233400, 23.894970);
+            //map.MinZoom = 1;
+            //map.MaxZoom = 24;
+            //map.Zoom = 5;
+        }
+
+        private void load_markers(List<RealEstate> filteredList)
+        {
+            var markOverlay = new GMapOverlay("marker");
+            double[] darray = new double[2];
+
+            markOverlay.Markers.Clear();
+            foreach (var i in filteredList)
+            {
+                string[] c = i.MapCoords.Split(',');
+                darray[0] = Convert.ToDouble(c[0]);
+                darray[1] = Convert.ToDouble(c[1]);
+                var marker = new GMarkerGoogle(new PointLatLng(darray[0], darray[1]), GMarkerGoogleType.red);
+                marker.ToolTip = new GMapRoundedToolTip(marker);
+                marker.ToolTipText = $"Kambariai: {i.NumberOfRooms.ToString()}, miestas: {i.Municipality.ToString()}, plotas: {i.Area.ToString()}, kaina: {i.PricePerSqM.ToString()}\n";
+                markOverlay.Markers.Add(marker);
+            }
+            map.Overlays.Add(markOverlay);
         }
 
         #region TextBox Input 
@@ -295,29 +332,31 @@ namespace MERG_PSI
             var ListOfRealEstate = new Data().SampleData;
             var noInfoBuild = noInfoBuildYear.Checked;
             var noInfoRooms = noInfoRoomNumber.Checked;
-            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredListOFRealEstate(ListOfRealEstate, filtersValues,noInfoBuild,noInfoRooms));
+            var filteredList = Inspection.GetFilteredListOFRealEstate(ListOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
+            richTextBox1.Text = ListToDisplay(filteredList); 
 
-            /*var town = municipality.Text;
-            var streetName = street.Text;
-            webBrowser2.ScriptErrorsSuppressed = true;
-            try
-            {
-                var location = new StringBuilder("http://maps.google.com/maps?q=%22");
-                if (town != string.Empty)
-                {
-                    location.Append(town + "," + "+");
-                }
-                if (streetName != string.Empty)
-                {
-                    location.Append(streetName + "," + "+");
-                }
-                webBrowser2.Navigate(location.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "error");
-            }
-            */
+            load_markers(filteredList);
+
+            //var town = municipality.Text;
+            //var streetName = street.Text;
+            //webBrowser2.ScriptErrorsSuppressed = true;
+            //try
+            //{
+            //    var location = new StringBuilder("http://maps.google.com/maps?q=%22");
+            //    if (town != string.Empty)
+            //    {
+            //        location.Append(town + "," + "+");
+            //    }
+            //    if (streetName != string.Empty)
+            //    {
+            //        location.Append(streetName + "," + "+");
+            //    }
+            //    webBrowser2.Navigate(location.ToString());
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString(), "error");
+            //}
         }
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {
