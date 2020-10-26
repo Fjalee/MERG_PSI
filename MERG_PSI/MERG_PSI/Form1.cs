@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MERG_PSI
@@ -10,8 +11,8 @@ namespace MERG_PSI
         public Form1()
         {
             InitializeComponent();
-            // webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
-            //  webBrowser2.ScriptErrorsSuppressed = true;
+           // webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
+          //  webBrowser2.ScriptErrorsSuppressed = true;
             var tekstas = "";
             var Data = (new Data()).SampleData;
             foreach (var eilute in Data)
@@ -71,6 +72,48 @@ namespace MERG_PSI
                 e.Handled = true;
             }
         }
+        private void pricePerSqMFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void pricePerSqMTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void buildYearFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void buildYearTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void numberOfRoomsFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void numberOfRoomsTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
         #endregion
         #region Prompt text
@@ -110,7 +153,102 @@ namespace MERG_PSI
                 priceTo.ForeColor = Color.Silver;
             }
         }
-
+        private void pricePerSqMFrom_Enter(object sender, EventArgs e)
+        {
+            if (pricePerSqMFrom.Text == "Nuo")
+            {
+                pricePerSqMFrom.Text = "";
+                pricePerSqMFrom.ForeColor = Color.Black;
+            }
+        }
+        private void pricePerSqMFrom_Leave(object sender, EventArgs e)
+        {
+            if (pricePerSqMFrom.Text == "")
+            {
+                pricePerSqMFrom.Text = "Nuo";
+                pricePerSqMFrom.ForeColor = Color.Silver;
+            }
+        }
+        private void pricePerSqMTo_Enter(object sender, EventArgs e)
+        {
+            if (pricePerSqMTo.Text == "Iki")
+            {
+                pricePerSqMTo.Text = "";
+                pricePerSqMTo.ForeColor = Color.Black;
+            }
+        }
+        private void pricePerSqMTo_Leave(object sender, EventArgs e)
+        {
+            if (pricePerSqMTo.Text == "")
+            {
+                pricePerSqMTo.Text = "Iki";
+                pricePerSqMTo.ForeColor = Color.Silver;
+            }
+        }
+        private void buildYearFrom_Enter(object sender, EventArgs e)
+        {
+            if (buildYearFrom.Text == "Nuo")
+            {
+                buildYearFrom.Text = "";
+                buildYearFrom.ForeColor = Color.Black;
+            }
+        }
+        private void buildYearFrom_Leave(object sender, EventArgs e)
+        {
+            if (buildYearFrom.Text == "")
+            {
+                buildYearFrom.Text = "Nuo";
+                buildYearFrom.ForeColor = Color.Silver;
+            }
+        }
+        private void buildYearTo_Enter(object sender, EventArgs e)
+        {
+            if (buildYearTo.Text == "Iki")
+            {
+                buildYearTo.Text = "";
+                buildYearTo.ForeColor = Color.Black;
+            }
+        }
+        private void buildYearTo_Leave(object sender, EventArgs e)
+        {
+            if (buildYearTo.Text == "")
+            {
+                buildYearTo.Text = "Iki";
+                buildYearTo.ForeColor = Color.Silver;
+            }
+        }
+        private void numberOfRoomsFrom_Enter(object sender, EventArgs e)
+        {
+            if (numberOfRoomsFrom.Text == "Nuo")
+            {
+                numberOfRoomsFrom.Text = "";
+                numberOfRoomsFrom.ForeColor = Color.Black;
+            }
+        }
+        private void numberOfRoomsFrom_Leave(object sender, EventArgs e)
+        {
+            if (numberOfRoomsFrom.Text == "")
+            {
+                numberOfRoomsFrom.Text = "Nuo";
+                numberOfRoomsFrom.ForeColor = Color.Silver;
+            }
+        }
+        private void numberOfRoomsTo_Enter(object sender, EventArgs e)
+        {
+            if (numberOfRoomsTo.Text == "Iki")
+            {
+                numberOfRoomsTo.Text = "";
+                numberOfRoomsTo.ForeColor = Color.Black;
+            }
+        }
+        private void numberOfRoomsTo_Leave(object sender, EventArgs e)
+        {
+            if (numberOfRoomsTo.Text == "")
+            {
+                numberOfRoomsTo.Text = "Iki";
+                numberOfRoomsTo.ForeColor = Color.Silver;
+            }
+        }
         private void areaFrom_Enter(object sender, EventArgs e)
         {
             if (areaFrom.Text == "Nuo")
@@ -149,14 +287,22 @@ namespace MERG_PSI
 
         #endregion
 
-
+        /* private void showAdList_Click(object sender, EventArgs e)
+         {
+             this.Hide();
+             var openForm2 = new Form2();
+             openForm2.ShowDialog();
+             this.Close();
+         }*/
 
         private void search_Click(object sender, EventArgs e)
         {
             var Inspection = new Inspection();
-            var filtersValues = new List<String> { priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text, street.Text };
+            var filtersValues = new List<String> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text,buildYearTo.Text,numberOfRoomsFrom.Text,numberOfRoomsTo.Text};
             var ListOfRealEstate = new Data().SampleData;
-            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredList(ListOfRealEstate, filtersValues));
+            var noInfoBuild = noInfoBuildYear.Checked;
+            var noInfoRooms = noInfoRoomNumber.Checked;
+            richTextBox1.Text = ListToDisplay(Inspection.GetFilteredListOFRealEstate(ListOfRealEstate, filtersValues,noInfoBuild,noInfoRooms));
 
             /*var town = municipality.Text;
             var streetName = street.Text;
@@ -181,24 +327,29 @@ namespace MERG_PSI
             */
         }
 
-        private String ListToDisplay(List<RealEstate> RealEstateList)
+        private void municipality_TextChanged(object sender, EventArgs e)
         {
-            var tekstas = "";
-            foreach (var eilute in RealEstateList)
+
+        }
+
+        private void advSearch_Click(object sender, EventArgs e)
+        {
+      
+        }
+        private String ListToDisplay (List<RealEstate> RealEstateList)
+        {
+            var textToPrint = new StringBuilder();
+            foreach (var realEstate in RealEstateList)
             {
-                tekstas = tekstas + eilute;
+                textToPrint.Append(realEstate);
             }
-            return tekstas;
+            return textToPrint.ToString();
         }
-        
+
+ 
+
         /*
-        private void showAdList_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var openForm2 = new Form2();
-            openForm2.ShowDialog();
-            this.Close();
-        }
+         It looks like you have enabled Internet Explorer Compatibility View. Google Maps will not work correctly unless this is turned off.
         */
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,6 +29,38 @@ namespace MERG_PSI
         {
             return houses.Where(house => (house.Street).ToLower().Contains(street.ToLower())).ToList();
         }
+        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, Boolean noInfoNumberOfRooms)
+        {
+            if (noInfoNumberOfRooms)
+            {
+                return houses.Where(house => (house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
+            }
+            else
+            {
+                return houses.Where(house => house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo).ToList();
+            }
+        }
+        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, Boolean noInfoBuildYear)
+        {
+            if (noInfoBuildYear)
+            {
+                return houses.Where(house => (house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo) || house.BuildYear == 0).ToList();
+            }
+            else
+            {
+                return houses.Where(house => house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo).ToList();
+            }
+
+        }
+        public List<RealEstate> FilterByRealEstateWhenNoInfoBuildYear(List<RealEstate> houses)
+        {
+            return houses.Where(house => house.BuildYear == 0).ToList();
+        }
+        public List<RealEstate> FilterByRealEstateWhenNoInfoNumberOfRooms(List<RealEstate> houses)
+        {
+            return houses.Where(house => house.NumberOfRooms == 0).ToList();
+        }
+
 
     }
 }
