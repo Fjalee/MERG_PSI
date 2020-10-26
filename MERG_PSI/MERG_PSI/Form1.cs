@@ -287,13 +287,6 @@ namespace MERG_PSI
 
         #endregion
 
-        /* private void showAdList_Click(object sender, EventArgs e)
-         {
-             this.Hide();
-             var openForm2 = new Form2();
-             openForm2.ShowDialog();
-             this.Close();
-         }*/
 
         private void search_Click(object sender, EventArgs e)
         {
@@ -326,16 +319,6 @@ namespace MERG_PSI
             }
             */
         }
-
-        private void municipality_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void advSearch_Click(object sender, EventArgs e)
-        {
-      
-        }
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {
             var textToPrint = new StringBuilder();
@@ -346,10 +329,13 @@ namespace MERG_PSI
             return textToPrint.ToString();
         }
 
- 
-
         /*
-         It looks like you have enabled Internet Explorer Compatibility View. Google Maps will not work correctly unless this is turned off.
-        */
+        private void showAdList_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var openForm2 = new Form2();
+            openForm2.ShowDialog();
+            this.Close();
+        }*/
     }
 }

@@ -43,8 +43,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.search = new System.Windows.Forms.Button();
             this.showAdList = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.advSearch = new System.Windows.Forms.Button();
             this.priceTo = new System.Windows.Forms.TextBox();
             this.areaTo = new System.Windows.Forms.TextBox();
             this.areaFrom = new System.Windows.Forms.TextBox();
@@ -62,7 +60,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.webBrowser2 = new System.Windows.Forms.WebBrowser();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -76,6 +73,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(194)))), ((int)(((byte)(241)))));
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.Controls.Add(this.richTextBox1);
             this.panel2.Controls.Add(this.noInfoRoomNumber);
             this.panel2.Controls.Add(this.numberOfRoomsTo);
             this.panel2.Controls.Add(this.numberOfRoomsFrom);
@@ -89,8 +87,6 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.search);
             this.panel2.Controls.Add(this.showAdList);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.advSearch);
             this.panel2.Controls.Add(this.priceTo);
             this.panel2.Controls.Add(this.areaTo);
             this.panel2.Controls.Add(this.areaFrom);
@@ -103,20 +99,20 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(0, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(0, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 617);
+            this.panel2.Size = new System.Drawing.Size(327, 949);
             this.panel2.TabIndex = 0;
             // 
             // noInfoRoomNumber
             // 
             this.noInfoRoomNumber.AutoSize = true;
-            this.noInfoRoomNumber.BackColor = System.Drawing.Color.Black;
+            this.noInfoRoomNumber.BackColor = System.Drawing.Color.Transparent;
             this.noInfoRoomNumber.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.noInfoRoomNumber.Location = new System.Drawing.Point(141, 334);
+            this.noInfoRoomNumber.Location = new System.Drawing.Point(212, 514);
+            this.noInfoRoomNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.noInfoRoomNumber.Name = "noInfoRoomNumber";
-            this.noInfoRoomNumber.Size = new System.Drawing.Size(81, 17);
+            this.noInfoRoomNumber.Size = new System.Drawing.Size(117, 24);
             this.noInfoRoomNumber.TabIndex = 16;
             this.noInfoRoomNumber.Text = "Nenurodyta";
             this.noInfoRoomNumber.UseVisualStyleBackColor = false;
@@ -124,10 +120,9 @@
             // numberOfRoomsTo
             // 
             this.numberOfRoomsTo.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.numberOfRoomsTo.Location = new System.Drawing.Point(76, 331);
-            this.numberOfRoomsTo.Margin = new System.Windows.Forms.Padding(2);
+            this.numberOfRoomsTo.Location = new System.Drawing.Point(114, 509);
             this.numberOfRoomsTo.Name = "numberOfRoomsTo";
-            this.numberOfRoomsTo.Size = new System.Drawing.Size(60, 20);
+            this.numberOfRoomsTo.Size = new System.Drawing.Size(88, 26);
             this.numberOfRoomsTo.TabIndex = 15;
             this.numberOfRoomsTo.Text = "Iki";
             this.numberOfRoomsTo.Enter += new System.EventHandler(this.numberOfRoomsTo_Enter);
@@ -137,10 +132,9 @@
             // numberOfRoomsFrom
             // 
             this.numberOfRoomsFrom.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.numberOfRoomsFrom.Location = new System.Drawing.Point(15, 331);
-            this.numberOfRoomsFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.numberOfRoomsFrom.Location = new System.Drawing.Point(22, 509);
             this.numberOfRoomsFrom.Name = "numberOfRoomsFrom";
-            this.numberOfRoomsFrom.Size = new System.Drawing.Size(60, 20);
+            this.numberOfRoomsFrom.Size = new System.Drawing.Size(88, 26);
             this.numberOfRoomsFrom.TabIndex = 14;
             this.numberOfRoomsFrom.Text = "Nuo";
             this.numberOfRoomsFrom.Enter += new System.EventHandler(this.numberOfRoomsFrom_Enter);
@@ -153,21 +147,21 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label9.Location = new System.Drawing.Point(12, 312);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(18, 480);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(121, 17);
+            this.label9.Size = new System.Drawing.Size(175, 24);
             this.label9.TabIndex = 13;
             this.label9.Text = "Kambarių skaičius";
             // 
             // noInfoBuildYear
             // 
             this.noInfoBuildYear.AutoSize = true;
-            this.noInfoBuildYear.BackColor = System.Drawing.Color.Black;
+            this.noInfoBuildYear.BackColor = System.Drawing.Color.Transparent;
             this.noInfoBuildYear.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.noInfoBuildYear.Location = new System.Drawing.Point(141, 292);
+            this.noInfoBuildYear.Location = new System.Drawing.Point(212, 449);
+            this.noInfoBuildYear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.noInfoBuildYear.Name = "noInfoBuildYear";
-            this.noInfoBuildYear.Size = new System.Drawing.Size(81, 17);
+            this.noInfoBuildYear.Size = new System.Drawing.Size(117, 24);
             this.noInfoBuildYear.TabIndex = 12;
             this.noInfoBuildYear.Text = "Nenurodyta";
             this.noInfoBuildYear.UseVisualStyleBackColor = false;
@@ -175,10 +169,9 @@
             // buildYearTo
             // 
             this.buildYearTo.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.buildYearTo.Location = new System.Drawing.Point(76, 290);
-            this.buildYearTo.Margin = new System.Windows.Forms.Padding(2);
+            this.buildYearTo.Location = new System.Drawing.Point(114, 446);
             this.buildYearTo.Name = "buildYearTo";
-            this.buildYearTo.Size = new System.Drawing.Size(60, 20);
+            this.buildYearTo.Size = new System.Drawing.Size(88, 26);
             this.buildYearTo.TabIndex = 11;
             this.buildYearTo.Text = "Iki";
             this.buildYearTo.Enter += new System.EventHandler(this.buildYearTo_Enter);
@@ -188,10 +181,9 @@
             // buildYearFrom
             // 
             this.buildYearFrom.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.buildYearFrom.Location = new System.Drawing.Point(14, 290);
-            this.buildYearFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.buildYearFrom.Location = new System.Drawing.Point(21, 446);
             this.buildYearFrom.Name = "buildYearFrom";
-            this.buildYearFrom.Size = new System.Drawing.Size(60, 20);
+            this.buildYearFrom.Size = new System.Drawing.Size(88, 26);
             this.buildYearFrom.TabIndex = 10;
             this.buildYearFrom.Text = "Nuo";
             this.buildYearFrom.Enter += new System.EventHandler(this.buildYearFrom_Enter);
@@ -204,20 +196,18 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label8.Location = new System.Drawing.Point(12, 271);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(18, 417);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(110, 17);
+            this.label8.Size = new System.Drawing.Size(158, 24);
             this.label8.TabIndex = 9;
             this.label8.Text = "Pastatymo metai";
             // 
             // pricePerSqMTo
             // 
             this.pricePerSqMTo.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.pricePerSqMTo.Location = new System.Drawing.Point(76, 249);
-            this.pricePerSqMTo.Margin = new System.Windows.Forms.Padding(2);
+            this.pricePerSqMTo.Location = new System.Drawing.Point(114, 383);
             this.pricePerSqMTo.Name = "pricePerSqMTo";
-            this.pricePerSqMTo.Size = new System.Drawing.Size(60, 20);
+            this.pricePerSqMTo.Size = new System.Drawing.Size(88, 26);
             this.pricePerSqMTo.TabIndex = 8;
             this.pricePerSqMTo.Text = "Iki";
             this.pricePerSqMTo.Enter += new System.EventHandler(this.pricePerSqMTo_Enter);
@@ -227,10 +217,9 @@
             // pricePerSqMFrom
             // 
             this.pricePerSqMFrom.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.pricePerSqMFrom.Location = new System.Drawing.Point(14, 249);
-            this.pricePerSqMFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.pricePerSqMFrom.Location = new System.Drawing.Point(21, 383);
             this.pricePerSqMFrom.Name = "pricePerSqMFrom";
-            this.pricePerSqMFrom.Size = new System.Drawing.Size(60, 20);
+            this.pricePerSqMFrom.Size = new System.Drawing.Size(88, 26);
             this.pricePerSqMFrom.TabIndex = 7;
             this.pricePerSqMFrom.Text = "Nuo";
             this.pricePerSqMFrom.Enter += new System.EventHandler(this.pricePerSqMFrom_Enter);
@@ -243,19 +232,17 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label7.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label7.Location = new System.Drawing.Point(12, 230);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(18, 354);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(128, 17);
+            this.label7.Size = new System.Drawing.Size(186, 24);
             this.label7.TabIndex = 6;
             this.label7.Text = "Kaina per kv. metrą";
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(31, 482);
-            this.search.Margin = new System.Windows.Forms.Padding(2);
+            this.search.Location = new System.Drawing.Point(46, 809);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(94, 32);
+            this.search.Size = new System.Drawing.Size(141, 49);
             this.search.TabIndex = 5;
             this.search.Text = "Ieškoti";
             this.search.UseVisualStyleBackColor = true;
@@ -264,44 +251,19 @@
             // showAdList
             // 
             this.showAdList.BackColor = System.Drawing.Color.Transparent;
-            this.showAdList.Location = new System.Drawing.Point(31, 568);
-            this.showAdList.Margin = new System.Windows.Forms.Padding(2);
+            this.showAdList.Location = new System.Drawing.Point(46, 874);
             this.showAdList.Name = "showAdList";
-            this.showAdList.Size = new System.Drawing.Size(94, 31);
+            this.showAdList.Size = new System.Drawing.Size(141, 48);
             this.showAdList.TabIndex = 1;
             this.showAdList.Text = "Rodyti sąrašą";
             this.showAdList.UseVisualStyleBackColor = false;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Location = new System.Drawing.Point(11, 359);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(190, 74);
-            this.panel3.TabIndex = 2;
-            // 
-            // advSearch
-            // 
-            this.advSearch.BackColor = System.Drawing.Color.Transparent;
-            this.advSearch.Font = new System.Drawing.Font("Modern No. 20", 11F);
-            this.advSearch.ForeColor = System.Drawing.Color.Black;
-            this.advSearch.Location = new System.Drawing.Point(31, 528);
-            this.advSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.advSearch.Name = "advSearch";
-            this.advSearch.Size = new System.Drawing.Size(121, 27);
-            this.advSearch.TabIndex = 4;
-            this.advSearch.Text = "Detali paieška";
-            this.advSearch.UseVisualStyleBackColor = false;
-            this.advSearch.Click += new System.EventHandler(this.advSearch_Click);
-            // 
             // priceTo
             // 
             this.priceTo.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.priceTo.Location = new System.Drawing.Point(76, 165);
-            this.priceTo.Margin = new System.Windows.Forms.Padding(2);
+            this.priceTo.Location = new System.Drawing.Point(114, 254);
             this.priceTo.Name = "priceTo";
-            this.priceTo.Size = new System.Drawing.Size(60, 20);
+            this.priceTo.Size = new System.Drawing.Size(88, 26);
             this.priceTo.TabIndex = 3;
             this.priceTo.Text = "Iki";
             this.priceTo.Enter += new System.EventHandler(this.priceTo_Enter);
@@ -311,10 +273,9 @@
             // areaTo
             // 
             this.areaTo.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.areaTo.Location = new System.Drawing.Point(76, 208);
-            this.areaTo.Margin = new System.Windows.Forms.Padding(2);
+            this.areaTo.Location = new System.Drawing.Point(114, 320);
             this.areaTo.Name = "areaTo";
-            this.areaTo.Size = new System.Drawing.Size(60, 20);
+            this.areaTo.Size = new System.Drawing.Size(88, 26);
             this.areaTo.TabIndex = 3;
             this.areaTo.Text = "Iki";
             this.areaTo.Enter += new System.EventHandler(this.areaTo_Enter);
@@ -324,10 +285,9 @@
             // areaFrom
             // 
             this.areaFrom.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.areaFrom.Location = new System.Drawing.Point(14, 208);
-            this.areaFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.areaFrom.Location = new System.Drawing.Point(21, 320);
             this.areaFrom.Name = "areaFrom";
-            this.areaFrom.Size = new System.Drawing.Size(60, 20);
+            this.areaFrom.Size = new System.Drawing.Size(88, 26);
             this.areaFrom.TabIndex = 3;
             this.areaFrom.Text = "Nuo";
             this.areaFrom.Enter += new System.EventHandler(this.areaFrom_Enter);
@@ -337,10 +297,9 @@
             // priceFrom
             // 
             this.priceFrom.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.priceFrom.Location = new System.Drawing.Point(14, 165);
-            this.priceFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.priceFrom.Location = new System.Drawing.Point(21, 254);
             this.priceFrom.Name = "priceFrom";
-            this.priceFrom.Size = new System.Drawing.Size(60, 20);
+            this.priceFrom.Size = new System.Drawing.Size(88, 26);
             this.priceFrom.TabIndex = 3;
             this.priceFrom.Text = "Nuo";
             this.priceFrom.Enter += new System.EventHandler(this.priceFrom_Enter);
@@ -421,11 +380,10 @@
             "Sodų g."});
             this.street.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.street.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.street.Location = new System.Drawing.Point(14, 124);
-            this.street.Margin = new System.Windows.Forms.Padding(2);
+            this.street.Location = new System.Drawing.Point(21, 191);
             this.street.Multiline = true;
             this.street.Name = "street";
-            this.street.Size = new System.Drawing.Size(123, 20);
+            this.street.Size = new System.Drawing.Size(182, 29);
             this.street.TabIndex = 2;
             this.street.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.street_KeyPress);
             // 
@@ -494,12 +452,10 @@
             "Zarasų r."});
             this.municipality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.municipality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.municipality.Location = new System.Drawing.Point(14, 81);
-            this.municipality.Margin = new System.Windows.Forms.Padding(2);
+            this.municipality.Location = new System.Drawing.Point(21, 125);
             this.municipality.Name = "municipality";
-            this.municipality.Size = new System.Drawing.Size(123, 20);
+            this.municipality.Size = new System.Drawing.Size(182, 26);
             this.municipality.TabIndex = 2;
-            this.municipality.TextChanged += new System.EventHandler(this.municipality_TextChanged);
             this.municipality.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.municipality_KeyPress);
             // 
             // objTipe
@@ -516,10 +472,9 @@
             "Patalpos nuomai",
             "Sklypas pardavimui",
             "Sklypas nuomai"});
-            this.objTipe.Location = new System.Drawing.Point(14, 42);
-            this.objTipe.Margin = new System.Windows.Forms.Padding(2);
+            this.objTipe.Location = new System.Drawing.Point(21, 65);
             this.objTipe.Name = "objTipe";
-            this.objTipe.Size = new System.Drawing.Size(123, 21);
+            this.objTipe.Size = new System.Drawing.Size(182, 28);
             this.objTipe.TabIndex = 1;
             // 
             // label6
@@ -528,10 +483,9 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label6.Location = new System.Drawing.Point(11, 189);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(16, 291);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 17);
+            this.label6.Size = new System.Drawing.Size(66, 24);
             this.label6.TabIndex = 0;
             this.label6.Text = "Plotas";
             // 
@@ -541,10 +495,9 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label5.Location = new System.Drawing.Point(10, 147);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(15, 226);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
+            this.label5.Size = new System.Drawing.Size(65, 24);
             this.label5.TabIndex = 0;
             this.label5.Text = "Kaina";
             // 
@@ -554,10 +507,9 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label4.Location = new System.Drawing.Point(10, 106);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(15, 163);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 17);
+            this.label4.Size = new System.Drawing.Size(60, 24);
             this.label4.TabIndex = 0;
             this.label4.Text = "Gatvė";
             // 
@@ -567,10 +519,9 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(11, 62);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(16, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 17);
+            this.label3.Size = new System.Drawing.Size(114, 24);
             this.label3.TabIndex = 0;
             this.label3.Text = "Savivaldybė";
             // 
@@ -580,18 +531,18 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(11, 21);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(16, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 17);
+            this.label2.Size = new System.Drawing.Size(127, 24);
             this.label2.TabIndex = 0;
             this.label2.Text = "Objekto tipas";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Location = new System.Drawing.Point(19, 543);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(680, 421);
+            this.richTextBox1.Size = new System.Drawing.Size(287, 258);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -599,28 +550,26 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Perpetua Titling MT", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(43, 3);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(64, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 58);
+            this.label1.Size = new System.Drawing.Size(263, 87);
             this.label1.TabIndex = 0;
             this.label1.Text = "MERG";
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.webBrowser2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1068, 59);
+            this.panel1.Size = new System.Drawing.Size(1602, 91);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 59);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 91);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -629,54 +578,36 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.webBrowser2);
-            this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
             this.splitContainer1.Panel2.Controls.Add(this.panel4);
-            this.splitContainer1.Size = new System.Drawing.Size(1068, 623);
-            this.splitContainer1.SplitterDistance = 217;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(1602, 958);
+            this.splitContainer1.SplitterDistance = 325;
             this.splitContainer1.TabIndex = 1;
             // 
             // webBrowser2
             // 
-            this.webBrowser2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser2.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser2.Margin = new System.Windows.Forms.Padding(2);
-            this.webBrowser2.MinimumSize = new System.Drawing.Size(13, 13);
+            this.webBrowser2.Location = new System.Drawing.Point(1478, 0);
+            this.webBrowser2.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser2.Name = "webBrowser2";
-            this.webBrowser2.Size = new System.Drawing.Size(848, 602);
+            this.webBrowser2.Size = new System.Drawing.Size(112, 87);
             this.webBrowser2.TabIndex = 2;
             this.webBrowser2.Visible = false;
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(13, 13);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(848, 602);
-            this.webBrowser1.TabIndex = 1;
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 602);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Location = new System.Drawing.Point(0, 926);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(848, 21);
+            this.panel4.Size = new System.Drawing.Size(1273, 32);
             this.panel4.TabIndex = 0;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1068, 682);
+            this.ClientSize = new System.Drawing.Size(1602, 1049);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -693,10 +624,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button advSearch;
         private System.Windows.Forms.TextBox priceTo;
         private System.Windows.Forms.TextBox areaTo;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox areaFrom;
         private System.Windows.Forms.TextBox priceFrom;
         private System.Windows.Forms.TextBox street;
@@ -713,7 +642,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.WebBrowser webBrowser2;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button search;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox pricePerSqMTo;
