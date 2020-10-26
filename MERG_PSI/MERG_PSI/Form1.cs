@@ -71,6 +71,48 @@ namespace MERG_PSI
                 e.Handled = true;
             }
         }
+        private void pricePerSqMFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void pricePerSqMTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void buildYearFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void buildYearTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void numberOfRoomsFrom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void numberOfRoomsTo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
         #endregion
         #region Prompt text
@@ -110,7 +152,136 @@ namespace MERG_PSI
                 priceTo.ForeColor = Color.Silver;
             }
         }
+        private void pricePerSqMFrom_Enter(object sender, EventArgs e)
+        {
+            if (pricePerSqMFrom.Text == "Nuo")
+            {
+                pricePerSqMFrom.Text = "";
+                pricePerSqMFrom.ForeColor = Color.Black;
+            }
+        }
+        private void pricePerSqMFrom_Leave(object sender, EventArgs e)
+        {
+            if (pricePerSqMFrom.Text == "")
+            {
+                pricePerSqMFrom.Text = "Nuo";
+                pricePerSqMFrom.ForeColor = Color.Silver;
+            }
+        }
+        private void pricePerSqMTo_Enter(object sender, EventArgs e)
+        {
+            if (pricePerSqMTo.Text == "Iki")
+            {
+                pricePerSqMTo.Text = "";
+                pricePerSqMTo.ForeColor = Color.Black;
+            }
+        }
+        private void pricePerSqMTo_Leave(object sender, EventArgs e)
+        {
+            if (pricePerSqMTo.Text == "")
+            {
+                pricePerSqMTo.Text = "Iki";
+                pricePerSqMTo.ForeColor = Color.Silver;
+            }
+        }
+        private void buildYearFrom_Enter(object sender, EventArgs e)
+        {
+            if (buildYearFrom.Text == "Nuo")
+            {
+                buildYearFrom.Text = "";
+                buildYearFrom.ForeColor = Color.Black;
+            }
+        }
+        private void buildYearFrom_Leave(object sender, EventArgs e)
+        {
+            if (buildYearFrom.Text == "")
+            {
+                buildYearFrom.Text = "Nuo";
+                buildYearFrom.ForeColor = Color.Silver;
+            }
+        }
+        private void buildYearTo_Enter(object sender, EventArgs e)
+        {
+            if (buildYearTo.Text == "Iki")
+            {
+                buildYearTo.Text = "";
+                buildYearTo.ForeColor = Color.Black;
+            }
+        }
+        private void buildYearTo_Leave(object sender, EventArgs e)
+        {
+            if (buildYearTo.Text == "")
+            {
+                buildYearTo.Text = "Iki";
+                buildYearTo.ForeColor = Color.Silver;
+            }
+        }
+        private void numberOfRoomsFrom_Enter(object sender, EventArgs e)
+        {
+            if (numberOfRoomsFrom.Text == "Nuo")
+            {
+                numberOfRoomsFrom.Text = "";
+                numberOfRoomsFrom.ForeColor = Color.Black;
+            }
+        }
+        private void numberOfRoomsFrom_Leave(object sender, EventArgs e)
+        {
+            if (numberOfRoomsFrom.Text == "")
+            {
+                numberOfRoomsFrom.Text = "Nuo";
+                numberOfRoomsFrom.ForeColor = Color.Silver;
+            }
+        }
+        private void numberOfRoomsTo_Enter(object sender, EventArgs e)
+        {
+            if (numberOfRoomsTo.Text == "Iki")
+            {
+                numberOfRoomsTo.Text = "";
+                numberOfRoomsTo.ForeColor = Color.Black;
+            }
+        }
+        private void numberOfRoomsTo_Leave(object sender, EventArgs e)
+        {
+            if (numberOfRoomsTo.Text == "")
+            {
+                numberOfRoomsTo.Text = "Iki";
+                numberOfRoomsTo.ForeColor = Color.Silver;
+            }
+        }
+        //private void _Enter(object sender, EventArgs e)
+        //{
+        //    if (.Text == "Nuo")
+        //    {
+        //        .Text = "";
+        //        .ForeColor = Color.Black;
+        //    }
+        //}
+        //private void _Leave(object sender, EventArgs e)
+        //{
+        //    if (.Text == "")
+        //    {
+        //        .Text = "Nuo";
+        //        .ForeColor = Color.Silver;
+        //    }
+        //}
 
+        //iki
+        //private void _Enter(object sender, EventArgs e)
+        //{
+        //    if (.Text == "Iki")
+        //    {
+        //        .Text = "";
+        //        .ForeColor = Color.Black;
+        //    }
+        //}
+        //private void _Leave(object sender, EventArgs e)
+        //{
+        //    if (.Text == "")
+        //    {
+        //        .Text = "Iki";
+        //        .ForeColor = Color.Silver;
+        //    }
+        //}
         private void areaFrom_Enter(object sender, EventArgs e)
         {
             if (areaFrom.Text == "Nuo")
@@ -205,6 +376,8 @@ namespace MERG_PSI
             }
             return tekstas;
         }
+
+ 
 
         /*
          It looks like you have enabled Internet Explorer Compatibility View. Google Maps will not work correctly unless this is turned off.
