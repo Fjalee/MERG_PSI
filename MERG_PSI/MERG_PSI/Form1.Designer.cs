@@ -59,7 +59,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.webBrowser2 = new System.Windows.Forms.WebBrowser();
             this.panel4 = new System.Windows.Forms.Panel();
             this.map = new GMap.NET.WindowsForms.GMapControl();
             this.panel2.SuspendLayout();
@@ -559,7 +558,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.webBrowser2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -584,15 +582,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1602, 958);
             this.splitContainer1.SplitterDistance = 325;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // webBrowser2
-            // 
-            this.webBrowser2.Location = new System.Drawing.Point(1478, 0);
-            this.webBrowser2.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser2.Name = "webBrowser2";
-            this.webBrowser2.Size = new System.Drawing.Size(112, 87);
-            this.webBrowser2.TabIndex = 2;
-            this.webBrowser2.Visible = false;
             // 
             // panel4
             // 
@@ -669,7 +658,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.WebBrowser webBrowser2;
         private System.Windows.Forms.Button search;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox pricePerSqMTo;

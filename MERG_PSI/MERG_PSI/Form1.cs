@@ -16,8 +16,6 @@ namespace MERG_PSI
         public Form1()
         {
             InitializeComponent();
-           // webBrowser2.Navigate("http://maps.google.com/maps?q=Lietuva%22");
-          //  webBrowser2.ScriptErrorsSuppressed = true;
             var tekstas = "";
             var Data = (new Data()).SampleData;
             foreach (var eilute in Data)
@@ -337,26 +335,6 @@ namespace MERG_PSI
 
             load_markers(filteredList);
 
-            //var town = municipality.Text;
-            //var streetName = street.Text;
-            //webBrowser2.ScriptErrorsSuppressed = true;
-            //try
-            //{
-            //    var location = new StringBuilder("http://maps.google.com/maps?q=%22");
-            //    if (town != string.Empty)
-            //    {
-            //        location.Append(town + "," + "+");
-            //    }
-            //    if (streetName != string.Empty)
-            //    {
-            //        location.Append(streetName + "," + "+");
-            //    }
-            //    webBrowser2.Navigate(location.ToString());
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message.ToString(), "error");
-            //}
         }
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {
