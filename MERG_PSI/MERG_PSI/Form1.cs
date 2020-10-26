@@ -24,7 +24,7 @@ namespace MERG_PSI
             }
             richTextBox1.Text = tekstas;
             map_Load();
-
+            load_markers(Data);
         }
 
         private void map_Load()
