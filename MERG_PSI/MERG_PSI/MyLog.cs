@@ -1,22 +1,16 @@
-﻿using AngleSharp.Dom;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Forms;
 
 namespace MERG_PSI
 {
     static class MyLog
     {
-        static string _fileNameLogMsg = @"log_Msg.txt";
-        static string _fileNameLogAdInvalid = @"log_AdInvalid.txt";
-        static string _fileNameLogIEnCountInvalid = @"log_IEnCountInvalid.txt";
-        static string _fileNameLogCantParse = @"log_CantParse.txt";
-        static string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
-        static string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
+        static readonly string _fileNameLogMsg = @"log_Msg.txt";
+        static readonly string _fileNameLogAdInvalid = @"log_AdInvalid.txt";
+        static readonly string _fileNameLogIEnCountInvalid = @"log_IEnCountInvalid.txt";
+        static readonly string _fileNameLogCantParse = @"log_CantParse.txt";
+        static readonly string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
+        static readonly string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
 
         static MyLog()
         {
@@ -30,12 +24,12 @@ namespace MERG_PSI
 
         static public void Msg(string message)
         {
-            using (StreamWriter w = File.AppendText(_fileNameLogMsg))
+            using (var w = File.AppendText(_fileNameLogMsg))
             {
                 w.WriteLine(message);
             }
         }
-       
+
         static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street)
         {
             var message = $"Link|    {link}\n" +
@@ -47,27 +41,27 @@ namespace MERG_PSI
                 $"Municipality|    {municipality}\n" +
                 $"Street|    {street}\n";
 
-            using (StreamWriter w = File.AppendText(_fileNameLogAdInvalid))
+            using (var w = File.AppendText(_fileNameLogAdInvalid))
             {
                 w.WriteLine(message);
             }
         }
-        
+
         static public void IEnCountInvalid(string link, int count, string name)
         {
             var message = $"Invalid IEnumerable count: {name} count is {count}\n{link}";
 
-            using (StreamWriter w = File.AppendText(_fileNameLogIEnCountInvalid))
+            using (var w = File.AppendText(_fileNameLogIEnCountInvalid))
             {
                 w.WriteLine(message);
             }
         }
-        
+
         static public void CantParse(string valToParse)
         {
             var message = $"Couldn't parse value: \"{valToParse}\"";
 
-            using (StreamWriter w = File.AppendText(_fileNameLogCantParse))
+            using (var w = File.AppendText(_fileNameLogCantParse))
             {
                 w.WriteLine(message);
             }
@@ -77,7 +71,7 @@ namespace MERG_PSI
         {
             var message = "Didnt get IHTMLDocument first";
 
-            using (StreamWriter w = File.AppendText(_fileNameLogErrorNoDocument))
+            using (var w = File.AppendText(_fileNameLogErrorNoDocument))
             {
                 w.WriteLine(message);
             }
@@ -90,7 +84,7 @@ namespace MERG_PSI
         {
             var message = $"Link doesn't contain coordinates: \"{link}\"";
 
-            using (StreamWriter w = File.AppendText(_fileNameLogDnContainCoords))
+            using (var w = File.AppendText(_fileNameLogDnContainCoords))
             {
                 w.WriteLine(message);
             }
