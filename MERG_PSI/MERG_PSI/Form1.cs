@@ -9,20 +9,20 @@ namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
-        private string _websiteLink = "https://www.kampas.lt";
-        private List<RealEstate> _scrapedRealEstate = new List<RealEstate>();
-        private Boolean _reachedPageNoAds = false;
+        private readonly string _websiteLink = "https://www.kampas.lt";
+        private readonly List<RealEstate> _scrapedRealEstate = new List<RealEstate>();
+        private bool _reachedPageNoAds = false;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        public async void button1_Click(object sender, EventArgs e)
+        public async void Button1_Click(object sender, EventArgs e)
         {
             var websitePage = 1;
             while (!_reachedPageNoAds)
-            //while (websitePage < 5)
+            //while (websitePage < 5) //Temporary, for testing purpose
             {
                 var linkWithPage = _websiteLink + "/butai?page=" + websitePage.ToString();
                 richTextBox2.AppendText("\n" + "Scraping domain...  " + linkWithPage + "\n");
@@ -55,9 +55,9 @@ namespace MERG_PSI
             }
 
 
-            //TempOutput();
+            //TempOutput(); // Temporary, for testing purposes
             richTextBox2.AppendText("Serializing...\n");
-            OutputToJson output = new OutputToJson(_scrapedRealEstate);
+            var output = new OutputToJson(_scrapedRealEstate);
             richTextBox2.AppendText("Writing to File (serialized)...\n");
             output.WriteToFile();
             richTextBox2.AppendText("Done\n");
@@ -69,7 +69,7 @@ namespace MERG_PSI
             {
                 richTextBox1.AppendText(element.ToString());
             }
-        }
+        } // Temporary, for testing purposes
 
         private bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string mapCoords)
         {
