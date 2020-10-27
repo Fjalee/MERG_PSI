@@ -25,3 +25,48 @@ Area|    0
 Municipality|    
 Street|    
 
+Link|    https://www.kampas.lt/projektas/sierakausko-25-naujas-butas-vilniuje-naujamiestis-z-sierakausko-g-sierakausko-25-598403
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujamiestis%2C%20Z.%20Sierakausko%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/mazvydo-2-naujas-butas-vilniuje-pilaite-m-mazvydo-g-mazvydo-2-namai-sukurti-pilaites-594365
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20M.%20Ma%C5%BEvydo%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/sukurio-1-naujas-butas-vilniaus-rajone-klevines-vs-klevines-g-557176
+MapLink|    https://maps.google.com/maps?q=Vilniaus%20r.%20sav.%2C%20Klevin%C4%97%2C%20Klevin%C4%97s%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/naujoji-dainava-naujas-butas-kaune-dainava-garazu-g-wwwnaujojidainavaltnaujoji-569664
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20Gara%C5%BE%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/panoramos-trio-naujas-butas-kaune-aleksotas-amerikos-lietuviu-g-569389
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Aleksotas%2C%20Amerikos%20Lietuvi%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+

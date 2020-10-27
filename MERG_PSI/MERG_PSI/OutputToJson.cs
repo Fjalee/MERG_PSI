@@ -6,8 +6,8 @@ namespace MERG_PSI
 {
     class OutputToJson
     {
-        private string _filePath = @"scrapedData.txt";
-        private string _jsonToWrite;
+        private readonly string _filePath = @"scrapedData.txt";
+        private readonly string _jsonToWrite;
 
         public OutputToJson(List<RealEstate> listToConvert)
         {

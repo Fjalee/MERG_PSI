@@ -1,3 +1,8 @@
 Link doesn't contain coordinates: "https://www.kampas.lt/projektas/algirdo-apartamentai-zaliakalnyje-naujas-butas-kaune-zaliakalnis-algirdo-g-597732"
 Link doesn't contain coordinates: "https://www.kampas.lt/projektas/bitenu-oaze-naujas-butas-vilniuje-pilaite-bitenu-g-jau-pradedam-553271"
 Link doesn't contain coordinates: "https://www.kampas.lt/projektas/silainiu-butai-naujas-butas-kaune-silainiai-eitkunu-g-naujas-dar-dazais-kvepiantis-3-597735"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sierakausko-25-naujas-butas-vilniuje-naujamiestis-z-sierakausko-g-sierakausko-25-598403"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/mazvydo-2-naujas-butas-vilniuje-pilaite-m-mazvydo-g-mazvydo-2-namai-sukurti-pilaites-594365"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/sukurio-1-naujas-butas-vilniaus-rajone-klevines-vs-klevines-g-557176"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/naujoji-dainava-naujas-butas-kaune-dainava-garazu-g-wwwnaujojidainavaltnaujoji-569664"
+Link doesn't contain coordinates: "https://www.kampas.lt/projektas/panoramos-trio-naujas-butas-kaune-aleksotas-amerikos-lietuviu-g-569389"

@@ -59,6 +59,7 @@ namespace MERG_PSI
                 }
             }
         }
+
         private void ScrapeMapLink()
         {
             if (Document == null)
@@ -83,6 +84,7 @@ namespace MERG_PSI
                 MapLink = "";
             }
         }
+
         private void ScrapePrice()
         {
             if (Document == null)
@@ -120,6 +122,7 @@ namespace MERG_PSI
 
             return htmlClassContent;
         }
+
         private IEnumerable<IElement> GetMapLinkHtml()
         {
             IEnumerable<IElement> htmlClassContent = null;
@@ -132,6 +135,7 @@ namespace MERG_PSI
 
             return htmlClassContent;
         }
+
         private IEnumerable<IElement> GetPriceHtml()
         {
             IEnumerable<IElement> htmlClassContent = null;
@@ -147,7 +151,7 @@ namespace MERG_PSI
         {
             var parsedValue = "";
             string parsedLabel;
-
+            
             try
             {
                 parsedValue = lineHtml.FirstElementChild.InnerHtml;
@@ -163,6 +167,7 @@ namespace MERG_PSI
 
             _buildingInfo.Add(parsedLabel, parsedValue);
         }
+
         private String ParseMapLinkToCoords(string linkString)
         {
             var link = new Uri(linkString);

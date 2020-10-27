@@ -3,7 +3,7 @@ using System.CodeDom.Compiler;
 
 namespace MERG_PSI
 {
-    class RealEstate
+    public class RealEstate
     {
         public string Link { get; set; }
         public double Area { get; set; }
