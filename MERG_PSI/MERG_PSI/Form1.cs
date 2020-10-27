@@ -13,6 +13,7 @@ namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
+        GMapOverlay markOverlay = new GMapOverlay("marker");
         public Form1()
         {
             InitializeComponent();
@@ -40,10 +41,11 @@ namespace MERG_PSI
 
         private void load_markers(List<RealEstate> filteredList)
         {
-            var markOverlay = new GMapOverlay("marker");
             double[] darray = new double[2];
 
             markOverlay.Markers.Clear();
+
+
             foreach (var i in filteredList)
             {
                 string[] c = i.MapCoords.Split(',');
@@ -55,8 +57,10 @@ namespace MERG_PSI
                 markOverlay.Markers.Add(marker);
             }
             map.Overlays.Add(markOverlay);
+            
         }
 
+       
         #region TextBox Input 
         private void municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -335,6 +339,8 @@ namespace MERG_PSI
 
             load_markers(filteredList);
 
+
+
         }
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {
@@ -345,7 +351,25 @@ namespace MERG_PSI
             }
             return textToPrint.ToString();
         }
+        //private List<String> GetAdress(PointLatLng point)
+        //{
+        //    List<Placemark> placemarks = null;
+        //    var statusCode = GMapProviders.GoogleMap.GetPlacemarks(point, out placemarks);
+        //    if (statusCode == GeoCoderStatusCode.OK && placemarks != null)
+        //    {
+        //        List<String> addresses = new List<string>();
+        //        foreach (var placemark in placemarks)
+        //        {
+        //            addresses.Add(placemark.Address);
+        //        }
+        //        return addresses;
+        //    }
+        //    return null;
+        //}
 
+
+        //       //var address = GetAdress(point)
+        //       //String.Join(", ", address.ToArray())
         /*
         private void showAdList_Click(object sender, EventArgs e)
         {
