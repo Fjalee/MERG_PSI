@@ -13,7 +13,7 @@ namespace MERG_PSI
     class InsideAdScraper : Scraper
     {
         public override IHtmlDocument Document { get; set; }
-        private Dictionary<string, string> _buildingInfo;
+        private readonly Dictionary<string, string> _buildingInfo = new Dictionary<string, string>();
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
@@ -22,11 +22,10 @@ namespace MERG_PSI
         public string MapLink { get; set; }
         public string MapCoords { get; set; }
         public double Price { get; set; }
-        private string _link;
+        private readonly string _link;
         public InsideAdScraper(string link)
         {
             _link = link;
-            _buildingInfo = new Dictionary<string, string>();
         }
 
         public override void Scrape()
@@ -147,7 +146,7 @@ namespace MERG_PSI
         private void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
         {
             var parsedValue = "";
-            var parsedLabel = "";
+            string parsedLabel;
 
             try
             {
@@ -166,7 +165,7 @@ namespace MERG_PSI
         }
         private String ParseMapLinkToCoords(string linkString)
         {
-            Uri link = new Uri(linkString);
+            var link = new Uri(linkString);
             var location = HttpUtility.ParseQueryString(link.Query).Get("q");
 
             if (Regex.IsMatch(location, @"^[0-9,.]+$"))
