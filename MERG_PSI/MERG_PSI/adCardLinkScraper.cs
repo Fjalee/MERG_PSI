@@ -1,29 +1,20 @@
-﻿using AngleSharp;
-using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
-using AngleSharp.Html.Parser;
-using System;
-using System.Collections.Generic;
+﻿using AngleSharp.Dom;
+using AngleSharp.Html.Dom;using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MERG_PSI
 {
     class AdCardLinkScraper : Scraper
     {
-        private string _siteUrl, _classNameForAdCard;
+        private readonly string _siteUrl;
+        private readonly string _classNameForAdCard;
         public override IHtmlDocument Document { get; set; }
-        public List<string> Links { get; set; } // fix
+        public List<string> Links { get; set; } = new List<string>();
         public AdCardLinkScraper(string siteUrl, string className)
         {
             _siteUrl = siteUrl;
             _classNameForAdCard = className;
-
-            Links = new List<string>(); 
         }
 
         public override void Scrape()
