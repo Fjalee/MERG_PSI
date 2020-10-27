@@ -10,18 +10,12 @@ namespace MERG_PSI
 {
     class OutputToJson
     {
-        //fix to relative
         private string _filePath = @"scrapedData.txt";
         private string _jsonToWrite;
 
         public OutputToJson(List<RealEstate> listToConvert)
         {
-            _jsonToWrite = ConvertToJson(listToConvert);
-        }
-
-        private string ConvertToJson(List<RealEstate> listToConvert)
-        {
-            return JsonConvert.SerializeObject(listToConvert);
+            _jsonToWrite = JsonConvert.SerializeObject(listToConvert);
         }
 
         public void WriteToFile()
