@@ -12,13 +12,13 @@ namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
-        private GMapOverlay markOverlay = new GMapOverlay("marker");
+        private readonly GMapOverlay markOverlay = new GMapOverlay("marker");
         public Form1()
         {
             InitializeComponent();
             var data = (new Data()).SampleData;
-     //       Map_Load();
-      //      Load_markers(data);
+            Map_Load();
+            Load_markers(data);
 
         }
 
@@ -329,7 +329,7 @@ namespace MERG_PSI
             var noInfoBuild = noInfoBuildYear.Checked;
             var noInfoRooms = noInfoRoomNumber.Checked;
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
-     //       Load_markers(filteredList);
+            Load_markers(filteredList);
 
 
 
