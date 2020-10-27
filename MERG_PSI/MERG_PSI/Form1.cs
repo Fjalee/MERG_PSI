@@ -33,22 +33,24 @@ namespace MERG_PSI
         private void LoadMarkers(List<RealEstate> filteredList)
         {
             var darray = new double[2];
-
             markOverlay.Markers.Clear();
-
-
             foreach (var i in filteredList)
             {
-                var c = i.MapCoords.Split(',');
-                darray[0] = double.Parse(c[0]);
-                darray[1] = double.Parse(c[1]);
-                var marker = new GMarkerGoogle(new PointLatLng(darray[0], darray[1]), GMarkerGoogleType.red);
+                var marker = new GMarkerGoogle(new PointLatLng(SplitCoordinates(i.MapCoords)[0], SplitCoordinates(i.MapCoords)[1]), GMarkerGoogleType.red);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
                 marker.ToolTipText = $"Kambariai: {i.NumberOfRooms}, miestas: {i.Municipality}, plotas: {i.Area}, kaina: {i.PricePerSqM}\n";
                 markOverlay.Markers.Add(marker);
             }
-            map.Overlays.Add(markOverlay);
-            
+            map.Overlays.Add(markOverlay);          
+        }
+
+        private double[] SplitCoordinates(string coords)
+        {
+            var darray = new double[2];
+            var c = coords.Split(',');
+            darray[0] = double.Parse(c[0]);
+            darray[1] = double.Parse(c[1]);
+            return darray;
         }
 
        
