@@ -13,7 +13,7 @@ namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
-        GMapOverlay markOverlay = new GMapOverlay("marker");
+        readonly GMapOverlay markOverlay = new GMapOverlay("marker");
         public Form1()
         {
             InitializeComponent();
@@ -24,45 +24,39 @@ namespace MERG_PSI
                 tekstas = tekstas + eilute;
             }
             richTextBox1.Text = tekstas;
-            map_Load();
-            load_markers(Data);
+            //string bilderis
+            MapLoad();
+            LoadMarkers(Data);
         }
 
-        private void map_Load()
+        private void MapLoad()
         {
             map.ShowCenter = false;
             map.DragButton = MouseButtons.Left;
             map.MapProvider = GMapProviders.GoogleMap; 
             map.Position = new PointLatLng(55.233400, 23.894970);
-            //map.MinZoom = 1;
-            //map.MaxZoom = 24;
-            //map.Zoom = 5;
         }
 
-        private void load_markers(List<RealEstate> filteredList)
+        private void LoadMarkers(List<RealEstate> filteredList)
         {
-            double[] darray = new double[2];
-
+            var darray = new double[2];
             markOverlay.Markers.Clear();
-
-
             foreach (var i in filteredList)
             {
-                string[] c = i.MapCoords.Split(',');
-                darray[0] = Convert.ToDouble(c[0]);
-                darray[1] = Convert.ToDouble(c[1]);
+                var c = i.MapCoords.Split(',');
+                darray[0] = double.Parse(c[0]);
+                darray[1] = double.Parse(c[1]);
                 var marker = new GMarkerGoogle(new PointLatLng(darray[0], darray[1]), GMarkerGoogleType.red);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
-                marker.ToolTipText = $"Kambariai: {i.NumberOfRooms.ToString()}, miestas: {i.Municipality.ToString()}, plotas: {i.Area.ToString()}, kaina: {i.PricePerSqM.ToString()}\n";
+                marker.ToolTipText = $"Kambariai: {i.NumberOfRooms}, miestas: {i.Municipality.ToString()}, plotas: {i.Area.ToString()}, kaina: {i.PricePerSqM.ToString()}\n";
                 markOverlay.Markers.Add(marker);
             }
             map.Overlays.Add(markOverlay);
-            
         }
 
        
         #region TextBox Input 
-        private void municipality_KeyPress(object sender, KeyPressEventArgs e)
+        private void Municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
             var ch = e.KeyChar;
             if (!char.IsControl(ch) && !char.IsLetter(ch) && !char.IsWhiteSpace(ch) && ch != 46)
@@ -71,7 +65,7 @@ namespace MERG_PSI
             }
         }
 
-        private void street_KeyPress(object sender, KeyPressEventArgs e)
+        private void Street_KeyPress(object sender, KeyPressEventArgs e)
         {
             var ch = e.KeyChar;
             if (!char.IsControl(ch) && !char.IsLetter(ch) && !char.IsWhiteSpace(ch) && ch != 46)
@@ -80,7 +74,7 @@ namespace MERG_PSI
             }
         }
 
-        private void priceFrom_KeyPress(object sender, KeyPressEventArgs e)
+        private void PriceFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -88,7 +82,7 @@ namespace MERG_PSI
             }
         }
 
-        private void priceTo_KeyPress(object sender, KeyPressEventArgs e)
+        private void PriceTo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -96,7 +90,7 @@ namespace MERG_PSI
             }
         }
 
-        private void areaFrom_KeyPress(object sender, KeyPressEventArgs e)
+        private void AreaFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -104,49 +98,49 @@ namespace MERG_PSI
             }
         }
 
-        private void areaTo_KeyPress(object sender, KeyPressEventArgs e)
+        private void AreaTo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-        private void pricePerSqMFrom_KeyPress(object sender, KeyPressEventArgs e)
+        private void PricePerSqMFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-        private void pricePerSqMTo_KeyPress(object sender, KeyPressEventArgs e)
+        private void PricePerSqMTo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-        private void buildYearFrom_KeyPress(object sender, KeyPressEventArgs e)
+        private void BuildYearFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-        private void buildYearTo_KeyPress(object sender, KeyPressEventArgs e)
+        private void BuildYearTo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-        private void numberOfRoomsFrom_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumberOfRoomsFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-        private void numberOfRoomsTo_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumberOfRoomsTo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -157,7 +151,7 @@ namespace MERG_PSI
         #endregion
         #region Prompt text
 
-        private void priceFrom_Enter(object sender, EventArgs e)
+        private void PriceFrom_Enter(object sender, EventArgs e)
         {
             if (priceFrom.Text == "Nuo")
             {
@@ -166,7 +160,7 @@ namespace MERG_PSI
             }
         }
 
-        private void priceFrom_Leave(object sender, EventArgs e)
+        private void PriceFrom_Leave(object sender, EventArgs e)
         {
             if (priceFrom.Text == "")
             {
@@ -175,7 +169,7 @@ namespace MERG_PSI
             }
         }
 
-        private void priceTo_Enter(object sender, EventArgs e)
+        private void PriceTo_Enter(object sender, EventArgs e)
         {
             if (priceTo.Text == "Iki")
             {
@@ -184,7 +178,7 @@ namespace MERG_PSI
             }
         }
 
-        private void priceTo_Leave(object sender, EventArgs e)
+        private void PriceTo_Leave(object sender, EventArgs e)
         {
             if (priceTo.Text == "")
             {
@@ -192,7 +186,7 @@ namespace MERG_PSI
                 priceTo.ForeColor = Color.Silver;
             }
         }
-        private void pricePerSqMFrom_Enter(object sender, EventArgs e)
+        private void PricePerSqMFrom_Enter(object sender, EventArgs e)
         {
             if (pricePerSqMFrom.Text == "Nuo")
             {
@@ -200,7 +194,7 @@ namespace MERG_PSI
                 pricePerSqMFrom.ForeColor = Color.Black;
             }
         }
-        private void pricePerSqMFrom_Leave(object sender, EventArgs e)
+        private void PricePerSqMFrom_Leave(object sender, EventArgs e)
         {
             if (pricePerSqMFrom.Text == "")
             {
@@ -208,7 +202,7 @@ namespace MERG_PSI
                 pricePerSqMFrom.ForeColor = Color.Silver;
             }
         }
-        private void pricePerSqMTo_Enter(object sender, EventArgs e)
+        private void PricePerSqMTo_Enter(object sender, EventArgs e)
         {
             if (pricePerSqMTo.Text == "Iki")
             {
@@ -216,7 +210,7 @@ namespace MERG_PSI
                 pricePerSqMTo.ForeColor = Color.Black;
             }
         }
-        private void pricePerSqMTo_Leave(object sender, EventArgs e)
+        private void PricePerSqMTo_Leave(object sender, EventArgs e)
         {
             if (pricePerSqMTo.Text == "")
             {
@@ -224,7 +218,7 @@ namespace MERG_PSI
                 pricePerSqMTo.ForeColor = Color.Silver;
             }
         }
-        private void buildYearFrom_Enter(object sender, EventArgs e)
+        private void BuildYearFrom_Enter(object sender, EventArgs e)
         {
             if (buildYearFrom.Text == "Nuo")
             {
@@ -232,7 +226,7 @@ namespace MERG_PSI
                 buildYearFrom.ForeColor = Color.Black;
             }
         }
-        private void buildYearFrom_Leave(object sender, EventArgs e)
+        private void BuildYearFrom_Leave(object sender, EventArgs e)
         {
             if (buildYearFrom.Text == "")
             {
@@ -240,7 +234,7 @@ namespace MERG_PSI
                 buildYearFrom.ForeColor = Color.Silver;
             }
         }
-        private void buildYearTo_Enter(object sender, EventArgs e)
+        private void BuildYearTo_Enter(object sender, EventArgs e)
         {
             if (buildYearTo.Text == "Iki")
             {
@@ -248,7 +242,7 @@ namespace MERG_PSI
                 buildYearTo.ForeColor = Color.Black;
             }
         }
-        private void buildYearTo_Leave(object sender, EventArgs e)
+        private void BuildYearTo_Leave(object sender, EventArgs e)
         {
             if (buildYearTo.Text == "")
             {
@@ -256,7 +250,7 @@ namespace MERG_PSI
                 buildYearTo.ForeColor = Color.Silver;
             }
         }
-        private void numberOfRoomsFrom_Enter(object sender, EventArgs e)
+        private void NumberOfRoomsFrom_Enter(object sender, EventArgs e)
         {
             if (numberOfRoomsFrom.Text == "Nuo")
             {
@@ -264,7 +258,7 @@ namespace MERG_PSI
                 numberOfRoomsFrom.ForeColor = Color.Black;
             }
         }
-        private void numberOfRoomsFrom_Leave(object sender, EventArgs e)
+        private void NumberOfRoomsFrom_Leave(object sender, EventArgs e)
         {
             if (numberOfRoomsFrom.Text == "")
             {
@@ -272,7 +266,7 @@ namespace MERG_PSI
                 numberOfRoomsFrom.ForeColor = Color.Silver;
             }
         }
-        private void numberOfRoomsTo_Enter(object sender, EventArgs e)
+        private void NumberOfRoomsTo_Enter(object sender, EventArgs e)
         {
             if (numberOfRoomsTo.Text == "Iki")
             {
@@ -280,7 +274,7 @@ namespace MERG_PSI
                 numberOfRoomsTo.ForeColor = Color.Black;
             }
         }
-        private void numberOfRoomsTo_Leave(object sender, EventArgs e)
+        private void NumberOfRoomsTo_Leave(object sender, EventArgs e)
         {
             if (numberOfRoomsTo.Text == "")
             {
@@ -288,7 +282,7 @@ namespace MERG_PSI
                 numberOfRoomsTo.ForeColor = Color.Silver;
             }
         }
-        private void areaFrom_Enter(object sender, EventArgs e)
+        private void AreaFrom_Enter(object sender, EventArgs e)
         {
             if (areaFrom.Text == "Nuo")
             {
@@ -297,7 +291,7 @@ namespace MERG_PSI
             }
         }
 
-        private void areaFrom_Leave(object sender, EventArgs e)
+        private void AreaFrom_Leave(object sender, EventArgs e)
         {
             if (areaFrom.Text == "")
             {
@@ -306,7 +300,7 @@ namespace MERG_PSI
             }
         }
 
-        private void areaTo_Enter(object sender, EventArgs e)
+        private void AreaTo_Enter(object sender, EventArgs e)
         {
             if (areaTo.Text == "Iki")
             {
@@ -315,7 +309,7 @@ namespace MERG_PSI
             }
         }
 
-        private void areaTo_Leave(object sender, EventArgs e)
+        private void AreaTo_Leave(object sender, EventArgs e)
         {
             if (areaTo.Text == "")
             {
@@ -327,7 +321,7 @@ namespace MERG_PSI
         #endregion
 
 
-        private void search_Click(object sender, EventArgs e)
+        private void Search_Click(object sender, EventArgs e)
         {
             var Inspection = new Inspection();
             var filtersValues = new List<String> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text,buildYearTo.Text,numberOfRoomsFrom.Text,numberOfRoomsTo.Text};
@@ -336,12 +330,9 @@ namespace MERG_PSI
             var noInfoRooms = noInfoRoomNumber.Checked;
             var filteredList = Inspection.GetFilteredListOFRealEstate(ListOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
             richTextBox1.Text = ListToDisplay(filteredList); 
-
-            load_markers(filteredList);
-
-
-
+            LoadMarkers(filteredList);
         }
+
         private String ListToDisplay (List<RealEstate> RealEstateList)
         {
             var textToPrint = new StringBuilder();
@@ -351,32 +342,5 @@ namespace MERG_PSI
             }
             return textToPrint.ToString();
         }
-        //private List<String> GetAdress(PointLatLng point)
-        //{
-        //    List<Placemark> placemarks = null;
-        //    var statusCode = GMapProviders.GoogleMap.GetPlacemarks(point, out placemarks);
-        //    if (statusCode == GeoCoderStatusCode.OK && placemarks != null)
-        //    {
-        //        List<String> addresses = new List<string>();
-        //        foreach (var placemark in placemarks)
-        //        {
-        //            addresses.Add(placemark.Address);
-        //        }
-        //        return addresses;
-        //    }
-        //    return null;
-        //}
-
-
-        //       //var address = GetAdress(point)
-        //       //String.Join(", ", address.ToArray())
-        /*
-        private void showAdList_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var openForm2 = new Form2();
-            openForm2.ShowDialog();
-            this.Close();
-        }*/
     }
 }

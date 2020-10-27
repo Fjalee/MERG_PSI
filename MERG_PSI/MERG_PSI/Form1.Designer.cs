@@ -125,9 +125,9 @@
             this.numberOfRoomsTo.Size = new System.Drawing.Size(88, 26);
             this.numberOfRoomsTo.TabIndex = 15;
             this.numberOfRoomsTo.Text = "Iki";
-            this.numberOfRoomsTo.Enter += new System.EventHandler(this.numberOfRoomsTo_Enter);
-            this.numberOfRoomsTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numberOfRoomsTo_KeyPress);
-            this.numberOfRoomsTo.Leave += new System.EventHandler(this.numberOfRoomsTo_Leave);
+            this.numberOfRoomsTo.Enter += new System.EventHandler(this.NumberOfRoomsTo_Enter);
+            this.numberOfRoomsTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOfRoomsTo_KeyPress);
+            this.numberOfRoomsTo.Leave += new System.EventHandler(this.NumberOfRoomsTo_Leave);
             // 
             // numberOfRoomsFrom
             // 
@@ -137,9 +137,9 @@
             this.numberOfRoomsFrom.Size = new System.Drawing.Size(88, 26);
             this.numberOfRoomsFrom.TabIndex = 14;
             this.numberOfRoomsFrom.Text = "Nuo";
-            this.numberOfRoomsFrom.Enter += new System.EventHandler(this.numberOfRoomsFrom_Enter);
-            this.numberOfRoomsFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numberOfRoomsFrom_KeyPress);
-            this.numberOfRoomsFrom.Leave += new System.EventHandler(this.numberOfRoomsFrom_Leave);
+            this.numberOfRoomsFrom.Enter += new System.EventHandler(this.NumberOfRoomsFrom_Enter);
+            this.numberOfRoomsFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOfRoomsFrom_KeyPress);
+            this.numberOfRoomsFrom.Leave += new System.EventHandler(this.NumberOfRoomsFrom_Leave);
             // 
             // label9
             // 
@@ -174,9 +174,9 @@
             this.buildYearTo.Size = new System.Drawing.Size(88, 26);
             this.buildYearTo.TabIndex = 11;
             this.buildYearTo.Text = "Iki";
-            this.buildYearTo.Enter += new System.EventHandler(this.buildYearTo_Enter);
-            this.buildYearTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buildYearTo_KeyPress);
-            this.buildYearTo.Leave += new System.EventHandler(this.buildYearTo_Leave);
+            this.buildYearTo.Enter += new System.EventHandler(this.BuildYearTo_Enter);
+            this.buildYearTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BuildYearTo_KeyPress);
+            this.buildYearTo.Leave += new System.EventHandler(this.BuildYearTo_Leave);
             // 
             // buildYearFrom
             // 
@@ -186,9 +186,9 @@
             this.buildYearFrom.Size = new System.Drawing.Size(88, 26);
             this.buildYearFrom.TabIndex = 10;
             this.buildYearFrom.Text = "Nuo";
-            this.buildYearFrom.Enter += new System.EventHandler(this.buildYearFrom_Enter);
-            this.buildYearFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.buildYearFrom_KeyPress);
-            this.buildYearFrom.Leave += new System.EventHandler(this.buildYearFrom_Leave);
+            this.buildYearFrom.Enter += new System.EventHandler(this.BuildYearFrom_Enter);
+            this.buildYearFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BuildYearFrom_KeyPress);
+            this.buildYearFrom.Leave += new System.EventHandler(this.BuildYearFrom_Leave);
             // 
             // label8
             // 
@@ -210,9 +210,9 @@
             this.pricePerSqMTo.Size = new System.Drawing.Size(88, 26);
             this.pricePerSqMTo.TabIndex = 8;
             this.pricePerSqMTo.Text = "Iki";
-            this.pricePerSqMTo.Enter += new System.EventHandler(this.pricePerSqMTo_Enter);
-            this.pricePerSqMTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pricePerSqMTo_KeyPress);
-            this.pricePerSqMTo.Leave += new System.EventHandler(this.pricePerSqMTo_Leave);
+            this.pricePerSqMTo.Enter += new System.EventHandler(this.PricePerSqMTo_Enter);
+            this.pricePerSqMTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PricePerSqMTo_KeyPress);
+            this.pricePerSqMTo.Leave += new System.EventHandler(this.PricePerSqMTo_Leave);
             // 
             // pricePerSqMFrom
             // 
@@ -222,9 +222,9 @@
             this.pricePerSqMFrom.Size = new System.Drawing.Size(88, 26);
             this.pricePerSqMFrom.TabIndex = 7;
             this.pricePerSqMFrom.Text = "Nuo";
-            this.pricePerSqMFrom.Enter += new System.EventHandler(this.pricePerSqMFrom_Enter);
-            this.pricePerSqMFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pricePerSqMFrom_KeyPress);
-            this.pricePerSqMFrom.Leave += new System.EventHandler(this.pricePerSqMFrom_Leave);
+            this.pricePerSqMFrom.Enter += new System.EventHandler(this.PricePerSqMFrom_Enter);
+            this.pricePerSqMFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PricePerSqMFrom_KeyPress);
+            this.pricePerSqMFrom.Leave += new System.EventHandler(this.PricePerSqMFrom_Leave);
             // 
             // label7
             // 
@@ -246,7 +246,7 @@
             this.search.TabIndex = 5;
             this.search.Text = "Ieškoti";
             this.search.UseVisualStyleBackColor = true;
-            this.search.Click += new System.EventHandler(this.search_Click);
+            this.search.Click += new System.EventHandler(this.Search_Click);
             // 
             // showAdList
             // 
@@ -266,9 +266,9 @@
             this.priceTo.Size = new System.Drawing.Size(88, 26);
             this.priceTo.TabIndex = 3;
             this.priceTo.Text = "Iki";
-            this.priceTo.Enter += new System.EventHandler(this.priceTo_Enter);
-            this.priceTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.priceTo_KeyPress);
-            this.priceTo.Leave += new System.EventHandler(this.priceTo_Leave);
+            this.priceTo.Enter += new System.EventHandler(this.PriceTo_Enter);
+            this.priceTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PriceTo_KeyPress);
+            this.priceTo.Leave += new System.EventHandler(this.PriceTo_Leave);
             // 
             // areaTo
             // 
@@ -278,9 +278,9 @@
             this.areaTo.Size = new System.Drawing.Size(88, 26);
             this.areaTo.TabIndex = 3;
             this.areaTo.Text = "Iki";
-            this.areaTo.Enter += new System.EventHandler(this.areaTo_Enter);
-            this.areaTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.areaTo_KeyPress);
-            this.areaTo.Leave += new System.EventHandler(this.areaTo_Leave);
+            this.areaTo.Enter += new System.EventHandler(this.AreaTo_Enter);
+            this.areaTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AreaTo_KeyPress);
+            this.areaTo.Leave += new System.EventHandler(this.AreaTo_Leave);
             // 
             // areaFrom
             // 
@@ -290,9 +290,9 @@
             this.areaFrom.Size = new System.Drawing.Size(88, 26);
             this.areaFrom.TabIndex = 3;
             this.areaFrom.Text = "Nuo";
-            this.areaFrom.Enter += new System.EventHandler(this.areaFrom_Enter);
-            this.areaFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.areaFrom_KeyPress);
-            this.areaFrom.Leave += new System.EventHandler(this.areaFrom_Leave);
+            this.areaFrom.Enter += new System.EventHandler(this.AreaFrom_Enter);
+            this.areaFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AreaFrom_KeyPress);
+            this.areaFrom.Leave += new System.EventHandler(this.AreaFrom_Leave);
             // 
             // priceFrom
             // 
@@ -302,9 +302,9 @@
             this.priceFrom.Size = new System.Drawing.Size(88, 26);
             this.priceFrom.TabIndex = 3;
             this.priceFrom.Text = "Nuo";
-            this.priceFrom.Enter += new System.EventHandler(this.priceFrom_Enter);
-            this.priceFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.priceFrom_KeyPress);
-            this.priceFrom.Leave += new System.EventHandler(this.priceFrom_Leave);
+            this.priceFrom.Enter += new System.EventHandler(this.PriceFrom_Enter);
+            this.priceFrom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PriceFrom_KeyPress);
+            this.priceFrom.Leave += new System.EventHandler(this.PriceFrom_Leave);
             // 
             // street
             // 
@@ -385,7 +385,7 @@
             this.street.Name = "street";
             this.street.Size = new System.Drawing.Size(182, 29);
             this.street.TabIndex = 2;
-            this.street.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.street_KeyPress);
+            this.street.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Street_KeyPress);
             // 
             // municipality
             // 
@@ -456,7 +456,7 @@
             this.municipality.Name = "municipality";
             this.municipality.Size = new System.Drawing.Size(182, 26);
             this.municipality.TabIndex = 2;
-            this.municipality.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.municipality_KeyPress);
+            this.municipality.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Municipality_KeyPress);
             // 
             // objTipe
             // 
