@@ -192,16 +192,15 @@ namespace MERG_PSI
             var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybų metai:");
             var floorIEn = dictionary.Where(x => x.Key == "Aukštas:");
 
-
             if (floorIEn.Count() == 1)
             {
                 Floor = floorIEn.First().Value;
             }
             else
             {
+                Floor = "";
                 if (floorIEn.Count() != 0)
                 {
-                    Floor = "";
                     MyLog.IEnCountInvalid(_link, floorIEn.Count(), "Floor");
                 }
             }
@@ -212,9 +211,9 @@ namespace MERG_PSI
             }
             else
             {
+                Area = 0;
                 if (areaIEn.Count() != 0)
                 {
-                    Area = 0;
                     MyLog.IEnCountInvalid(_link, areaIEn.Count(), "Area");
                 }
             }
@@ -225,9 +224,9 @@ namespace MERG_PSI
             }
             else
             {
+                PricePerSqM = 0;
                 if (pricePerSqMIEn.Count() != 0)
                 {
-                    PricePerSqM = 0;
                     MyLog.IEnCountInvalid(_link, pricePerSqMIEn.Count(), "PricePerSqM");
                 }
             }
@@ -237,19 +236,19 @@ namespace MERG_PSI
                 var buildYearString = buildYearParsableIEn.First().Value;
                 if (buildYearString.Length >= 4)
                 {
-                    buildYearString.Substring(0, 4).ParseToIntLogIfCant();
+                    BuildYear = buildYearString.Substring(0, 4).ParseToIntLogIfCant();
                 }
                 else
                 {
+                    BuildYear = 0;
                     MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
                 }
             }
-
             else
             {
+                BuildYear = 0;
                 if (buildYearParsableIEn.Count() != 0)
                 {
-                    BuildYear = 0;
                     MyLog.IEnCountInvalid(_link, buildYearParsableIEn.Count(), "BuildYear");
                 }
             }
@@ -260,9 +259,9 @@ namespace MERG_PSI
             }
             else
             {
+                NumberOfRooms = 0;
                 if (numberOfRoomsIEn.Count() != 0)
                 {
-                    NumberOfRooms = 0;
                     MyLog.IEnCountInvalid(_link, numberOfRoomsIEn.Count(), "NumberOfRooms");
                 }
             }

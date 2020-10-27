@@ -70,3 +70,111 @@ Area|    0
 Municipality|    
 Street|    
 
+Link|    https://www.kampas.lt/projektas/kiara-naujas-butas-kaune-aleksotas-svirbygalos-g-wwwkiaraltsviesus-grazus-namai-569388
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Aleksotas%2C%20Svirbygalos%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/skandea-naujas-butas-kaune-dainava-v-kreves-pr-skandea-kvartalas-ir-jo-namuose-504891
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20V.%20Kr%C4%97v%C4%97s%20pr.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/bajoru-alejos-naujas-butas-vilniuje-bajorai-salaspilio-g-bajoru-alejos-tai-unikali-524541
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Bajorai%2C%20Salaspilio%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/eika-namai-pilaiteje-naujas-butas-vilniuje-pilaite-karaliauciaus-g-eika-namai-524540
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20Karaliau%C4%8Diaus%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/baltas-lapas-naujas-butas-vilniuje-naujamiestis-aguonu-g-naujas-gyvenimo-etapas-ir-524543
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujamiestis%2C%20Aguon%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/antakalnio-panorama-naujas-butas-vilniuje-antakalnis-smelio-g-antakalnio-panorama-524542
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Antakalnis%2C%20Sm%C4%97lio%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/silo-namai-naujas-butas-kaune-aukstieji-sanciai-birzisku-g-504811
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Auk%C5%A1tieji%20%C5%A0an%C4%8Diai%2C%20Bir%C5%BEi%C5%A1k%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/raitininku-sodas-naujas-butas-vilniuje-zirmunai-raitininku-g-visai-salia-pacios-566705
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%BDirm%C5%ABnai%2C%20Raitinink%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/naujasis-skansenas-naujas-butas-vilniuje-snipiskes-linkmenu-g-naujasis-skansenas-566702
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Linkmen%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/9-bijunai-naujas-butas-klaipedoje-centras-bijunu-g-gyvenimas-be-rupesciu-istisus-566683
+MapLink|    https://maps.google.com/maps?q=Klaip%C4%97da%2C%20Centras%2C%20Bij%C5%ABn%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/piliamiestis-naujas-butas-kaune-vilijampole-brastos-g-desiniajame-neries-krante-504804
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Vilijampol%C4%97%2C%20Brastos%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/horizon-naujas-butas-vilniuje-virsuliskes-virsuliskiu-skg-504871
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Vir%C5%A1uli%C5%A1k%C4%97s%2C%20Vir%C5%A1uli%C5%A1ki%C5%B3%20skg.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
