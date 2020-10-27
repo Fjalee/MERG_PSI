@@ -6,41 +6,40 @@ using GMap.NET.WindowsForms.ToolTips;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MERG_PSI
 {
     public partial class Form1 : Form
     {
-        readonly GMapOverlay markOverlay = new GMapOverlay("marker");
+        private GMapOverlay markOverlay = new GMapOverlay("marker");
         public Form1()
         {
             InitializeComponent();
-            var tekstas = "";
-            var Data = (new Data()).SampleData;
-            foreach (var eilute in Data)
-            {
-                tekstas = tekstas + eilute;
-            }
-            richTextBox1.Text = tekstas;
-            //string bilderis
-            MapLoad();
-            LoadMarkers(Data);
+            var data = (new Data()).SampleData;
+     //       Map_Load();
+      //      Load_markers(data);
+
         }
 
-        private void MapLoad()
+        private void Map_Load()
         {
             map.ShowCenter = false;
             map.DragButton = MouseButtons.Left;
             map.MapProvider = GMapProviders.GoogleMap; 
             map.Position = new PointLatLng(55.233400, 23.894970);
+            //map.MinZoom = 1;
+            //map.MaxZoom = 24;
+            //map.Zoom = 5;
         }
 
-        private void LoadMarkers(List<RealEstate> filteredList)
+        private void Load_markers(List<RealEstate> filteredList)
         {
             var darray = new double[2];
+
             markOverlay.Markers.Clear();
+
+
             foreach (var i in filteredList)
             {
                 var c = i.MapCoords.Split(',');
@@ -48,10 +47,11 @@ namespace MERG_PSI
                 darray[1] = double.Parse(c[1]);
                 var marker = new GMarkerGoogle(new PointLatLng(darray[0], darray[1]), GMarkerGoogleType.red);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
-                marker.ToolTipText = $"Kambariai: {i.NumberOfRooms}, miestas: {i.Municipality.ToString()}, plotas: {i.Area.ToString()}, kaina: {i.PricePerSqM.ToString()}\n";
+                marker.ToolTipText = $"Kambariai: {i.NumberOfRooms}, miestas: {i.Municipality}, plotas: {i.Area}, kaina: {i.PricePerSqM}\n";
                 markOverlay.Markers.Add(marker);
             }
             map.Overlays.Add(markOverlay);
+            
         }
 
        
@@ -323,24 +323,43 @@ namespace MERG_PSI
 
         private void Search_Click(object sender, EventArgs e)
         {
-            var Inspection = new Inspection();
-            var filtersValues = new List<String> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text,buildYearTo.Text,numberOfRoomsFrom.Text,numberOfRoomsTo.Text};
-            var ListOfRealEstate = new Data().SampleData;
+            var inspection = new Inspection();
+            var filtersValues = new List<string> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text,buildYearTo.Text,numberOfRoomsFrom.Text,numberOfRoomsTo.Text};
+            var listOfRealEstate = new Data().SampleData;
             var noInfoBuild = noInfoBuildYear.Checked;
             var noInfoRooms = noInfoRoomNumber.Checked;
-            var filteredList = Inspection.GetFilteredListOFRealEstate(ListOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
-            richTextBox1.Text = ListToDisplay(filteredList); 
-            LoadMarkers(filteredList);
-        }
+            var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
+     //       Load_markers(filteredList);
 
-        private String ListToDisplay (List<RealEstate> RealEstateList)
-        {
-            var textToPrint = new StringBuilder();
-            foreach (var realEstate in RealEstateList)
-            {
-                textToPrint.Append(realEstate);
-            }
-            return textToPrint.ToString();
+
+
         }
+        //private List<String> GetAdress(PointLatLng point)
+        //{
+        //    List<Placemark> placemarks = null;
+        //    var statusCode = GMapProviders.GoogleMap.GetPlacemarks(point, out placemarks);
+        //    if (statusCode == GeoCoderStatusCode.OK && placemarks != null)
+        //    {
+        //        List<String> addresses = new List<string>();
+        //        foreach (var placemark in placemarks)
+        //        {
+        //            addresses.Add(placemark.Address);
+        //        }
+        //        return addresses;
+        //    }
+        //    return null;
+        //}
+
+
+        //       //var address = GetAdress(point)
+        //       //String.Join(", ", address.ToArray())
+        /*
+        private void showAdList_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var openForm2 = new Form2();
+            openForm2.ShowDialog();
+            this.Close();
+        }*/
     }
 }

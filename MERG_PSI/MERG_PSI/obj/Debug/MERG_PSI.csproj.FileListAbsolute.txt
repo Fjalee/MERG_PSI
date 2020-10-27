@@ -38,3 +38,15 @@ C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\System.Data.SQLite.xml
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\Greta\Desktop\MERG_PSI\MERG_PSI\MERG_PSI\obj\Debug\MERG_PSI.csproj.CopyComplete
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\EntityFramework.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\GMap.NET.Core.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\GMap.NET.WindowsForms.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\GMap.NET.WindowsPresentation.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\System.Data.SQLite.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\EntityFramework.xml
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\System.Data.SQLite.xml
+C:\Users\micku\OneDrive\Desktop\MERG\MERG_PSI\MERG_PSI\MERG_PSI\bin\Debug\System.Data.SQLite.dll.config
