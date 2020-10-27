@@ -65,7 +65,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GoogleMapsScraper.cs" />
     <Compile Include="InsideAdScraper.cs" />
     <Compile Include="MyLog.cs" />
     <Compile Include="OutputToJson.cs" />
