@@ -17,23 +17,20 @@ namespace MERG_PSI
         {
             InitializeComponent();
             var data = (new Data()).SampleData;
-            Map_Load();
-            Load_markers(data);
+            MapLoad();
+            LoadMarkers(data);
 
         }
 
-        private void Map_Load()
+        private void MapLoad()
         {
             map.ShowCenter = false;
             map.DragButton = MouseButtons.Left;
             map.MapProvider = GMapProviders.GoogleMap; 
             map.Position = new PointLatLng(55.233400, 23.894970);
-            //map.MinZoom = 1;
-            //map.MaxZoom = 24;
-            //map.Zoom = 5;
         }
 
-        private void Load_markers(List<RealEstate> filteredList)
+        private void LoadMarkers(List<RealEstate> filteredList)
         {
             var darray = new double[2];
 
@@ -329,37 +326,7 @@ namespace MERG_PSI
             var noInfoBuild = noInfoBuildYear.Checked;
             var noInfoRooms = noInfoRoomNumber.Checked;
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
-            Load_markers(filteredList);
-
-
-
+            LoadMarkers(filteredList);
         }
-        //private List<String> GetAdress(PointLatLng point)
-        //{
-        //    List<Placemark> placemarks = null;
-        //    var statusCode = GMapProviders.GoogleMap.GetPlacemarks(point, out placemarks);
-        //    if (statusCode == GeoCoderStatusCode.OK && placemarks != null)
-        //    {
-        //        List<String> addresses = new List<string>();
-        //        foreach (var placemark in placemarks)
-        //        {
-        //            addresses.Add(placemark.Address);
-        //        }
-        //        return addresses;
-        //    }
-        //    return null;
-        //}
-
-
-        //       //var address = GetAdress(point)
-        //       //String.Join(", ", address.ToArray())
-        /*
-        private void showAdList_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            var openForm2 = new Form2();
-            openForm2.ShowDialog();
-            this.Close();
-        }*/
     }
 }
