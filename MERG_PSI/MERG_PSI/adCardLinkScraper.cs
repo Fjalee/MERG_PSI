@@ -17,7 +17,7 @@ namespace MERG_PSI
     {
         private string _siteUrl, _classNameForAdCard;
         public override IHtmlDocument Document { get; set; }
-        public List<string> Links { get; set; }
+        public List<string> Links { get; set; } // fix
         public AdCardLinkScraper(string siteUrl, string className)
         {
             _siteUrl = siteUrl;
