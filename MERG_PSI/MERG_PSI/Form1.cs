@@ -38,7 +38,7 @@ namespace MERG_PSI
             {
                 var marker = new GMarkerGoogle(new PointLatLng(SplitCoordinates(i.MapCoords)[0], SplitCoordinates(i.MapCoords)[1]), GMarkerGoogleType.red);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
-                marker.ToolTipText = $"Kambariai: {i.NumberOfRooms}, miestas: {i.Municipality}, plotas: {i.Area}, kaina: {i.PricePerSqM}\n";
+                marker.ToolTipText = $"\n Kaina: {i.PricePerSqM}€\n Nuoroda: {i.Link}\n Plotas: {i.Area}\n Kambariai: {i.NumberOfRooms}\n";
                 markOverlay.Markers.Add(marker);
             }
             map.Overlays.Add(markOverlay);          
@@ -323,7 +323,7 @@ namespace MERG_PSI
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            var filtersValues = new List<string> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text,buildYearTo.Text,numberOfRoomsFrom.Text,numberOfRoomsTo.Text};
+            var filtersValues = new List<string> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text, buildYearTo.Text, numberOfRoomsFrom.Text, numberOfRoomsTo.Text};
             var listOfRealEstate = new Data().SampleData;
             var noInfoBuild = noInfoBuildYear.Checked;
             var noInfoRooms = noInfoRoomNumber.Checked;
