@@ -6,6 +6,7 @@ using GMap.NET.WindowsForms.ToolTips;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace MERG_PSI
@@ -32,7 +33,6 @@ namespace MERG_PSI
 
         private void LoadMarkers(List<RealEstate> filteredList)
         {
-            var darray = new double[2];
             markOverlay.Markers.Clear();
             foreach (var i in filteredList)
             {
@@ -48,8 +48,8 @@ namespace MERG_PSI
         {
             var darray = new double[2];
             var c = coords.Split(',');
-            darray[0] = double.Parse(c[0]);
-            darray[1] = double.Parse(c[1]);
+            darray[0] = double.Parse(c[0], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
+            darray[1] = double.Parse(c[1], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
             return darray;
         }
 
