@@ -2,14 +2,14 @@
 
 namespace MERG_PSI
 {
-    class RealEstate
+    public class RealEstate
     {
         public string Link { get; set; }
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
         public string Floor { get; set; }
-        private double _calculatedPrice { get; set; }
+        private readonly double _calculatedPrice;
         public double ScrapedPrice { get; set; }
         public double Price { get; set; }
         public string MapLink { get; set; }
