@@ -28,65 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.ScrapeButton = new System.Windows.Forms.Button();
+            this.TextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // ScrapeButton
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(612, 372);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.ScrapeButton.Location = new System.Drawing.Point(12, 318);
+            this.ScrapeButton.Name = "ScrapeButton";
+            this.ScrapeButton.Size = new System.Drawing.Size(460, 31);
+            this.ScrapeButton.TabIndex = 1;
+            this.ScrapeButton.Text = "Scrape";
+            this.ScrapeButton.UseVisualStyleBackColor = true;
+            this.ScrapeButton.Click += new System.EventHandler(this.ButtonScrape_Click);
             // 
-            // button1
+            // TextBox1
             // 
-            this.button1.Location = new System.Drawing.Point(1285, 723);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 61);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(630, 12);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(612, 372);
-            this.richTextBox2.TabIndex = 2;
-            this.richTextBox2.Text = "";
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Location = new System.Drawing.Point(12, 390);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(612, 372);
-            this.richTextBox3.TabIndex = 3;
-            this.richTextBox3.Text = "";
-            // 
-            // richTextBox4
-            // 
-            this.richTextBox4.Location = new System.Drawing.Point(630, 390);
-            this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(612, 372);
-            this.richTextBox4.TabIndex = 4;
-            this.richTextBox4.Text = "";
+            this.TextBox1.Location = new System.Drawing.Point(12, 12);
+            this.TextBox1.Name = "TextBox1";
+            this.TextBox1.Size = new System.Drawing.Size(460, 300);
+            this.TextBox1.TabIndex = 2;
+            this.TextBox1.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1440, 796);
-            this.Controls.Add(this.richTextBox4);
-            this.Controls.Add(this.richTextBox3);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.richTextBox1);
+            this.ClientSize = new System.Drawing.Size(484, 361);
+            this.Controls.Add(this.TextBox1);
+            this.Controls.Add(this.ScrapeButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -94,12 +64,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.Button ScrapeButton;
+        private System.Windows.Forms.RichTextBox TextBox1;
     }
 }
 

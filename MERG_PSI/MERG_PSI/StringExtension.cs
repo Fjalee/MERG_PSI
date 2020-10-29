@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MERG_PSI
 {
@@ -11,8 +6,7 @@ namespace MERG_PSI
     {
         public static double ParseToDoubleLogIfCant(this string stringToParse)
         {
-            double returnVal;
-            var parsable = Double.TryParse(stringToParse, out returnVal);
+            var parsable = Double.TryParse(stringToParse, out var returnVal);
 
             if (!parsable)
             {
@@ -23,8 +17,7 @@ namespace MERG_PSI
         }
         public static int ParseToIntLogIfCant(this string stringToParse)
         {
-            int returnVal;
-            var parsable = Int32.TryParse(stringToParse, out returnVal);
+            var parsable = Int32.TryParse(stringToParse, out var returnVal);
 
             if (!parsable)
             {
@@ -33,6 +26,5 @@ namespace MERG_PSI
 
             return returnVal;
         }
-
     }
 }

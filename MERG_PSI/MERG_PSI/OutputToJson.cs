@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -10,18 +6,12 @@ namespace MERG_PSI
 {
     class OutputToJson
     {
-        //fix to relative
-        private string _filePath = @"scrapedData.txt";
-        private string _jsonToWrite;
+        private readonly string _filePath = @"scrapedData.txt";
+        private readonly string _jsonToWrite;
 
         public OutputToJson(List<RealEstate> listToConvert)
         {
-            _jsonToWrite = ConvertToJson(listToConvert);
-        }
-
-        private string ConvertToJson(List<RealEstate> listToConvert)
-        {
-            return JsonConvert.SerializeObject(listToConvert);
+            _jsonToWrite = JsonConvert.SerializeObject(listToConvert);
         }
 
         public void WriteToFile()

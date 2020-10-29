@@ -13,7 +13,7 @@ namespace MERG_PSI
     class InsideAdScraper : Scraper
     {
         public override IHtmlDocument Document { get; set; }
-        private Dictionary<string, string> _buildingInfo;
+        private readonly Dictionary<string, string> _buildingInfo = new Dictionary<string, string>();
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
@@ -22,11 +22,10 @@ namespace MERG_PSI
         public string MapLink { get; set; }
         public string MapCoords { get; set; }
         public double Price { get; set; }
-        private string _link;
+        private readonly string _link;
         public InsideAdScraper(string link)
         {
             _link = link;
-            _buildingInfo = new Dictionary<string, string>();
         }
 
         public override void Scrape()
@@ -60,6 +59,7 @@ namespace MERG_PSI
                 }
             }
         }
+
         private void ScrapeMapLink()
         {
             if (Document == null)
@@ -84,6 +84,7 @@ namespace MERG_PSI
                 MapLink = "";
             }
         }
+
         private void ScrapePrice()
         {
             if (Document == null)
@@ -121,6 +122,7 @@ namespace MERG_PSI
 
             return htmlClassContent;
         }
+
         private IEnumerable<IElement> GetMapLinkHtml()
         {
             IEnumerable<IElement> htmlClassContent = null;
@@ -133,6 +135,7 @@ namespace MERG_PSI
 
             return htmlClassContent;
         }
+
         private IEnumerable<IElement> GetPriceHtml()
         {
             IEnumerable<IElement> htmlClassContent = null;
@@ -147,8 +150,8 @@ namespace MERG_PSI
         private void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
         {
             var parsedValue = "";
-            var parsedLabel = "";
-
+            string parsedLabel;
+            
             try
             {
                 parsedValue = lineHtml.FirstElementChild.InnerHtml;
@@ -164,9 +167,10 @@ namespace MERG_PSI
 
             _buildingInfo.Add(parsedLabel, parsedValue);
         }
+
         private String ParseMapLinkToCoords(string linkString)
         {
-            Uri link = new Uri(linkString);
+            var link = new Uri(linkString);
             var location = HttpUtility.ParseQueryString(link.Query).Get("q");
 
             if (Regex.IsMatch(location, @"^[0-9,.]+$"))
@@ -188,16 +192,15 @@ namespace MERG_PSI
             var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybų metai:");
             var floorIEn = dictionary.Where(x => x.Key == "Aukštas:");
 
-
             if (floorIEn.Count() == 1)
             {
                 Floor = floorIEn.First().Value;
             }
             else
             {
+                Floor = "";
                 if (floorIEn.Count() != 0)
                 {
-                    Floor = "";
                     MyLog.IEnCountInvalid(_link, floorIEn.Count(), "Floor");
                 }
             }
@@ -208,9 +211,9 @@ namespace MERG_PSI
             }
             else
             {
+                Area = 0;
                 if (areaIEn.Count() != 0)
                 {
-                    Area = 0;
                     MyLog.IEnCountInvalid(_link, areaIEn.Count(), "Area");
                 }
             }
@@ -221,9 +224,9 @@ namespace MERG_PSI
             }
             else
             {
+                PricePerSqM = 0;
                 if (pricePerSqMIEn.Count() != 0)
                 {
-                    PricePerSqM = 0;
                     MyLog.IEnCountInvalid(_link, pricePerSqMIEn.Count(), "PricePerSqM");
                 }
             }
@@ -233,18 +236,19 @@ namespace MERG_PSI
                 var buildYearString = buildYearParsableIEn.First().Value;
                 if (buildYearString.Length >= 4)
                 {
-                    buildYearString.Substring(0, 4).ParseToIntLogIfCant();
+                    BuildYear = buildYearString.Substring(0, 4).ParseToIntLogIfCant();
                 }
                 else
                 {
+                    BuildYear = 0;
                     MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
                 }
             }
             else
             {
+                BuildYear = 0;
                 if (buildYearParsableIEn.Count() != 0)
                 {
-                    BuildYear = 0;
                     MyLog.IEnCountInvalid(_link, buildYearParsableIEn.Count(), "BuildYear");
                 }
             }
@@ -255,9 +259,9 @@ namespace MERG_PSI
             }
             else
             {
+                NumberOfRooms = 0;
                 if (numberOfRoomsIEn.Count() != 0)
                 {
-                    NumberOfRooms = 0;
                     MyLog.IEnCountInvalid(_link, numberOfRoomsIEn.Count(), "NumberOfRooms");
                 }
             }
