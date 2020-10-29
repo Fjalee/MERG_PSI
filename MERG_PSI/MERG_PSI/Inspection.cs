@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace MERG_PSI
 {
     class Inspection
     {
-
         public bool IsFilterValueSelected(string filterValue1, string filterValue2)
         {
             if (filterValue1.Equals("Nuo") || filterValue1.Equals("Iki") || filterValue2.Equals("Nuo") || filterValue2.Equals("Iki"))
@@ -37,5 +35,4 @@ namespace MERG_PSI
             return filteredList;
         }
     }
-
 }

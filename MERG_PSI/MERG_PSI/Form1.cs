@@ -47,9 +47,9 @@ namespace MERG_PSI
         private double[] SplitCoordinates(string coords)
         {
             var darray = new double[2];
-            var c = coords.Split(',');
-            darray[0] = double.Parse(c[0], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
-            darray[1] = double.Parse(c[1], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
+            var latAndLong = coords.Split(',');
+            darray[0] = double.Parse(latAndLong[0], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
+            darray[1] = double.Parse(latAndLong[1], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
             return darray;
         }
 
@@ -57,263 +57,189 @@ namespace MERG_PSI
         #region TextBox Input 
         private void Municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var ch = e.KeyChar;
-            if (!char.IsControl(ch) && !char.IsLetter(ch) && !char.IsWhiteSpace(ch) && ch != 46)
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigitLetter(e);
         }
 
         private void Street_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var ch = e.KeyChar;
-            if (!char.IsControl(ch) && !char.IsLetter(ch) && !char.IsWhiteSpace(ch) && ch != 46)
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigitLetter(e);
         }
 
         private void PriceFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
 
         private void PriceTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
 
         private void AreaFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
 
         private void AreaTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
+
         private void PricePerSqMFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
+
         private void PricePerSqMTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
+
         private void BuildYearFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
+
         private void BuildYearTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
+
         private void NumberOfRoomsFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            AllowOnlyKeysControlDigit(e);
         }
+
         private void NumberOfRoomsTo_KeyPress(object sender, KeyPressEventArgs e)
         {
+            AllowOnlyKeysControlDigit(e);
+        }
+
+        private void AllowOnlyKeysControlDigit(KeyPressEventArgs e)
+        {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
 
-        #endregion
-        #region Prompt text
-
-        private void PriceFrom_Enter(object sender, EventArgs e)
+        private void AllowOnlyKeysControlDigitLetter(KeyPressEventArgs e)
         {
-            if (priceFrom.Text == "Nuo")
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != 46)
             {
-                priceFrom.Text = "";
-                priceFrom.ForeColor = Color.Black;
+                e.Handled = true;
             }
+        }
+        
+
+    #endregion
+    #region Prompt text
+
+    private void PriceFrom_Enter(object sender, EventArgs e)
+        {
+            SetupTextBoxIf(priceFrom, "Nuo", "", Color.Black);
         }
 
         private void PriceFrom_Leave(object sender, EventArgs e)
         {
-            if (priceFrom.Text == "")
-            {
-                priceFrom.Text = "Nuo";
-                priceFrom.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(priceFrom, "", "Nuo", Color.Silver);
         }
 
         private void PriceTo_Enter(object sender, EventArgs e)
         {
-            if (priceTo.Text == "Iki")
-            {
-                priceTo.Text = "";
-                priceTo.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(priceTo, "Iki", "", Color.Black);
         }
 
         private void PriceTo_Leave(object sender, EventArgs e)
         {
-            if (priceTo.Text == "")
-            {
-                priceTo.Text = "Iki";
-                priceTo.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(priceTo, "", "Iki", Color.Silver);
         }
+
         private void PricePerSqMFrom_Enter(object sender, EventArgs e)
         {
-            if (pricePerSqMFrom.Text == "Nuo")
-            {
-                pricePerSqMFrom.Text = "";
-                pricePerSqMFrom.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(pricePerSqMFrom, "Nuo", "", Color.Black);
         }
+
         private void PricePerSqMFrom_Leave(object sender, EventArgs e)
         {
-            if (pricePerSqMFrom.Text == "")
-            {
-                pricePerSqMFrom.Text = "Nuo";
-                pricePerSqMFrom.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(pricePerSqMFrom, "", "Nuo", Color.Silver);
         }
+
         private void PricePerSqMTo_Enter(object sender, EventArgs e)
         {
-            if (pricePerSqMTo.Text == "Iki")
-            {
-                pricePerSqMTo.Text = "";
-                pricePerSqMTo.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(pricePerSqMTo, "Iki", "", Color.Black);
         }
+
         private void PricePerSqMTo_Leave(object sender, EventArgs e)
         {
-            if (pricePerSqMTo.Text == "")
-            {
-                pricePerSqMTo.Text = "Iki";
-                pricePerSqMTo.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(pricePerSqMTo, "", "Iki", Color.Silver);
         }
+
         private void BuildYearFrom_Enter(object sender, EventArgs e)
         {
-            if (buildYearFrom.Text == "Nuo")
-            {
-                buildYearFrom.Text = "";
-                buildYearFrom.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(buildYearFrom, "Nuo", "", Color.Black);
         }
+
         private void BuildYearFrom_Leave(object sender, EventArgs e)
         {
-            if (buildYearFrom.Text == "")
-            {
-                buildYearFrom.Text = "Nuo";
-                buildYearFrom.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(buildYearFrom, "", "Nuo", Color.Silver);
         }
+
         private void BuildYearTo_Enter(object sender, EventArgs e)
         {
-            if (buildYearTo.Text == "Iki")
-            {
-                buildYearTo.Text = "";
-                buildYearTo.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(buildYearTo, "Iki", "", Color.Black);
         }
+
         private void BuildYearTo_Leave(object sender, EventArgs e)
         {
-            if (buildYearTo.Text == "")
-            {
-                buildYearTo.Text = "Iki";
-                buildYearTo.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(buildYearTo, "", "Iki", Color.Silver);
         }
+
         private void NumberOfRoomsFrom_Enter(object sender, EventArgs e)
         {
-            if (numberOfRoomsFrom.Text == "Nuo")
-            {
-                numberOfRoomsFrom.Text = "";
-                numberOfRoomsFrom.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(numberOfRoomsFrom, "Nuo", "", Color.Black);
         }
+
         private void NumberOfRoomsFrom_Leave(object sender, EventArgs e)
         {
-            if (numberOfRoomsFrom.Text == "")
-            {
-                numberOfRoomsFrom.Text = "Nuo";
-                numberOfRoomsFrom.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(numberOfRoomsFrom, "", "Nuo", Color.Silver);
         }
+
         private void NumberOfRoomsTo_Enter(object sender, EventArgs e)
         {
-            if (numberOfRoomsTo.Text == "Iki")
-            {
-                numberOfRoomsTo.Text = "";
-                numberOfRoomsTo.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(numberOfRoomsTo, "Iki", "", Color.Black);
         }
+
         private void NumberOfRoomsTo_Leave(object sender, EventArgs e)
         {
-            if (numberOfRoomsTo.Text == "")
-            {
-                numberOfRoomsTo.Text = "Iki";
-                numberOfRoomsTo.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(numberOfRoomsTo, "", "Iki", Color.Silver);
         }
+
         private void AreaFrom_Enter(object sender, EventArgs e)
         {
-            if (areaFrom.Text == "Nuo")
-            {
-                areaFrom.Text = "";
-                areaFrom.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(areaFrom, "Nuo", "", Color.Black);
         }
 
         private void AreaFrom_Leave(object sender, EventArgs e)
         {
-            if (areaFrom.Text == "")
-            {
-                areaFrom.Text = "Nuo";
-                areaFrom.ForeColor = Color.Silver;
-            }
+            SetupTextBoxIf(areaFrom, "", "Nuo", Color.Silver);
         }
 
         private void AreaTo_Enter(object sender, EventArgs e)
         {
-            if (areaTo.Text == "Iki")
-            {
-                areaTo.Text = "";
-                areaTo.ForeColor = Color.Black;
-            }
+            SetupTextBoxIf(areaTo, "Iki", "", Color.Black);
         }
 
         private void AreaTo_Leave(object sender, EventArgs e)
         {
-            if (areaTo.Text == "")
+            SetupTextBoxIf(areaTo, "", "Iki", Color.Silver);
+        }
+        private void SetupTextBoxIf(TextBox textBox, string ifText, string textToSet, Color color)
+        {
+            if (textBox.Text == ifText)
             {
-                areaTo.Text = "Iki";
-                areaTo.ForeColor = Color.Silver;
+                textBox.Text = textToSet;
+                textBox.ForeColor = color;
             }
         }
 
