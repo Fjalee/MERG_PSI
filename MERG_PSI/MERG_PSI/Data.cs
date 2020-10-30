@@ -8,7 +8,7 @@ namespace MERG_PSI
         public List<RealEstate> SampleData { get; set; }
         public Data()
         {
-            var des =new  DeserializationFromJson();
+            var des = new DeserializationFromJson();
             SampleData = des.Data;
         }
     }

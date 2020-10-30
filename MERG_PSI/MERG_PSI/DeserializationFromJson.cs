@@ -4,23 +4,27 @@ using Newtonsoft.Json;
 
 namespace MERG_PSI
 {
-
-    class DeserializationFromJson
+    public class DeserializationFromJson
     {
+        private readonly string _filePath = @"../../scrapedData.txt";
         public List<RealEstate> Data { get; set; }
+
         public DeserializationFromJson()
         {
-            var filePath = "../../scrapedData.txt";
+            var jsonFromFile = ReadFromFile();
+            Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFile);
+        }
 
-            string jsonFromFIle;
-            using (var reader = new StreamReader(filePath))
+        private string ReadFromFile()
+        {
+            var textFromFile = "";
+            using (var reader = new StreamReader(_filePath))
             {
-                jsonFromFIle = reader.ReadToEnd();
+                textFromFile = reader.ReadToEnd();
                 reader.Close();
             }
 
-            Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFIle);
-
+            return textFromFile;
         }
     }
 }
