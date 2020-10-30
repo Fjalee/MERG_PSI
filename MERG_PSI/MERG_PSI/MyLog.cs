@@ -30,7 +30,7 @@ namespace MERG_PSI
             }
         }
 
-        static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street)
+        static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street, string mapCoords)
         {
             var message = $"Link|    {link}\n" +
                 $"MapLink|    {mapLink}\n" +
@@ -38,6 +38,7 @@ namespace MERG_PSI
                 $"ScrapedPrice|    {scrapedPrice}\n" +
                 $"PricePerSqM|    {pricePerSqM}\n" +
                 $"Area|    {area}\n" +
+                $"MapCoodinates|    {mapCoords}\n" +
                 $"Municipality|    {municipality}\n" +
                 $"Street|    {street}\n";
 

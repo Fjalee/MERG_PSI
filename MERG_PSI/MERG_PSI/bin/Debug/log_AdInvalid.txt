@@ -52,6 +52,15 @@ Area|    0
 Municipality|    
 Street|    
 
+Link|    https://www.kampas.lt/skelbimai/butas-palangoje-lauku-g-2-kambariu-butas-lauku-g-palangoje-1988m-statybos-murinis-583757
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
 Link|    https://www.kampas.lt/projektas/naujoji-dainava-naujas-butas-kaune-dainava-garazu-g-wwwnaujojidainavaltnaujoji-569664
 MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20Gara%C5%BE%C5%B3%20g.
 NumberOfRooms|    0
@@ -142,6 +151,15 @@ Area|    0
 Municipality|    
 Street|    
 
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zvejybos-uostas-baltijos-pr-4-kamb-butas-klaipedoje-baltijos-pr-373728
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
 Link|    https://www.kampas.lt/projektas/naujasis-skansenas-naujas-butas-vilniuje-snipiskes-linkmenu-g-naujasis-skansenas-566702
 MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Linkmen%C5%B3%20g.
 NumberOfRooms|    0
@@ -175,6 +193,663 @@ NumberOfRooms|    0
 ScrapedPrice|    0
 PricePerSqM|    0
 Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/senamiescio-arka-naujas-butas-vilniuje-senamiestis-placioji-g-504824
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Senamiestis%2C%20Pla%C4%8Dioji%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/zirmunu-skveras-naujas-butas-vilniuje-zirmunai-zirmunu-g-504807
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%BDirm%C5%ABnai%2C%20%C5%BDirm%C5%ABn%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/pilaites-terasos-butai-naujas-butas-vilniuje-pilaite-simono-grunau-g-pilaites-504883
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20Simono%20Grunau%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/zveryno-vakarai-naujas-butas-vilniuje-zverynas-saltoniskiu-g-504834
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%BDv%C4%97rynas%2C%20Saltoni%C5%A1ki%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/parko-namai-naujas-butas-kaune-centras-krevos-g-504890
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Centras%2C%20Kr%C4%97vos%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/koriai-naujas-butas-vilniuje-snipiskes-giedraiciu-g-543939
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Giedrai%C4%8Di%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/kopu-zuvedra-naujas-butas-klaipedoje-giruliai-pamario-g-504799
+MapLink|    https://maps.google.com/maps?q=Klaip%C4%97da%2C%20Giruliai%2C%20Pamario%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/aitvaru-namai-naujas-butas-vilniuje-lazdyneliai-lazdyneliu-g-524531
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Lazdyn%C4%97liai%2C%20Lazdyn%C4%97li%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/martyno-namai-naujas-butas-vilniuje-pilaite-m-mazvydo-g-524529
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pilait%C4%97%2C%20M.%20Ma%C5%BEvydo%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/kernaves-aveniu-naujas-butas-vilniuje-snipiskes-kernaves-g-susiklosciusi-situacija-559646
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Kernav%C4%97s%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/wow-city-eco-life-naujas-butas-vilniuje-snipiskes-giedraiciu-g-504852
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Giedrai%C4%8Di%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/akaciju-vilos-naujas-butas-kaune-silainiai-kalnu-g-akaciju-vilos-andnbsp-gamtos-504851
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20%C5%A0ilainiai%2C%20Kaln%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/lampedzio-takas-naujas-butas-kaune-lampedziai-ikalnes-aklg-lampedzio-takas-butai-504813
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Lamp%C4%97d%C5%BEiai%2C%20%C4%AEkaln%C4%97s%20aklg.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/apartamentai-kopose-naujas-butas-sventojoje-juros-g-504831
+MapLink|    https://maps.google.com/maps?q=%C5%A0ventoji%2C%20J%C5%ABros%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/leiciu-kiemas-naujas-butas-vilniuje-pasilaiciai-leiciu-g-504920
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Pa%C5%A1ilai%C4%8Diai%2C%20Lei%C4%8Di%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/p9-naujas-butas-vilniuje-uzupis-paplaujos-g-504886
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20U%C5%BEupis%2C%20Paplaujos%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/fontanu-namai-naujas-butas-vilniuje-naujininkai-eisiskiu-pl-504795
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujininkai%2C%20Ei%C5%A1i%C5%A1ki%C5%B3%20pl.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/neveroniu-dvaras-naujas-butas-kauno-rajone-neveroniu-k-davalgoniu-g-tai-dvieju-556751
+MapLink|    https://maps.google.com/maps?q=Kauno%20r.%20sav.%2C%20Neveronys%2C%20Davalgoni%C5%B3%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/lucky-homes-naujas-butas-vilniuje-naujamiestis-gerosios-vilties-g-lucky-homes-viskas-555792
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujamiestis%2C%20Gerosios%20Vilties%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/tower-naujas-butas-vilniuje-snipiskes-konstitucijos-pr-504910
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20Konstitucijos%20pr.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/cloud-namai-naujas-butas-vilniuje-snipiskes-zalgirio-g-cloud-namai-naujas-projektas-541090
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20%C5%A0nipi%C5%A1k%C4%97s%2C%20%C5%BDalgirio%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/auksine-kalva-naujas-butas-kaune-silainiai-k-cerbuleno-g-auksine-kalva-a-energetines-524574
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20%C5%A0ilainiai%2C%20K.%20%C4%8Cerbul%C4%97no%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/juodkrantes-terasos-naujas-butas-juodkranteje-kalno-g-juodkrantes-terasos-ypatingame-524147
+MapLink|    https://maps.google.com/maps?q=Juodkrant%C4%97%2C%20Kalno%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/projektas/bistrycios-namai-naujas-butas-vilniuje-antakalnis-bistrycios-g-bistrycios-namai-tai-524151
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Antakalnis%2C%20Bistry%C4%8Dios%20g.
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniuje-naujoji-vilnia-pramones-g-parduodamas-butas-su-baldais-ir-buitine-607017
+MapLink|    https://maps.google.com/maps?q=Vilnius%2C%20Naujoji%20Vilnia%2C%20Pramon%C4%97s%20g.
+NumberOfRooms|    1
+ScrapedPrice|    27499
+PricePerSqM|    1374
+Area|    20
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-vetrunge-kauno-g-parduodamas-prabangiai-irengtas-3-ju-kambariu-543503
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-alksnyne-taikos-pr-klaipeda-alksnynestaikos-pr-parduodamas-364713
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniuje-bajorai-fiziku-g-parduodamas-3-kambariu-7429-kv-m-5-aukste-labai-474853
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-senamiestis-rumpiskes-g-rumpiskes-g-parduodamas-1-kambario-butas-23-476606
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-vetrunge-paryziaus-komunos-g-parduodami-3-kambariu-64-kvm-586574
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zvejybos-uostas-naikupes-g-2-kamb-butas-naikupes-g-96a-48-kv-m-233513
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-vetrunge-kuosu-g-nauja-statyba-parduodamas-puikiai-irengtas-2k-205682
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-vetrunge-paryziaus-komunos-g-parduodamas-3-k-butas-paryziaus-204933
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zardininkai-taikos-pr-naujos-statybos-2-kamb-butas-prie-pc-big-204135
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-paupiai-liepu-g-parduodamas-1-kambario-butas-naujos-statybos-202911
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zvejybos-uostas-strevos-g-parduodamas-1-kamb-3516-kv-m-35-aukste-234750
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-sarlote-dragunu-g-klaipedoje-dragunu-g-parduodamas-2-ju-kambariu-202346
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-pempininkai-debreceno-g-2-kamb-butas-su-atskiru-iejimu-puikioje-201960
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zardininkai-smilteles-g-andnbspklaipedoje-parduodamas-butas-4-kamb-226691
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-banduziai-kuncu-g-3-kamb-butas-su-holu-kuncu-g-96a-78-kv-m-namas-297446
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zvejybos-uostas-baltijos-pr-1-kamb-butas-baltijos-pr-salia-silutes-316093
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-alksnyne-pietine-g-3-kamb-butas-pietine-g-alksnyne-raj-646-kvm-53a-321214
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zvejybos-uostas-baltijos-pr-parduodamas-tvarkingas-2-kambariu-butas-382352
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-debrecenas-naujakiemio-g-parduodamas-tvarkingas-3-kamb-butas-3-499113
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zardininkai-taikos-pr-didelis-kambarys-2-ju-kambariu-bute-debreceno-489308
+MapLink|    https://maps.google.com/maps?q=55.6759054,21.1677927
+NumberOfRooms|    0
+ScrapedPrice|    20000
+PricePerSqM|    869
+Area|    23
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-salcininkuose-salcininku-k-parduodamas-erdvus-4-kambariu-butas-597374
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-salcininkuose-salcininku-k-parduodamas-erdvus-3-kambariu-butas-597370
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniuje-pilaite-i-kanto-al-parduodamas-tvarkingas-70-kvm-3-ju-kambariu-butas-601738
+MapLink|    https://maps.google.com/maps?q=54.7044683,25.181868
+NumberOfRooms|    0
+ScrapedPrice|    86900
+PricePerSqM|    1259
+Area|    69
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniaus-rajone-didziosios-rieses-k-kooperatyvo-g-parduodamas-tvarkingas-2-588830
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniaus-rajone-pikeliskiu-k-avieciu-g-parduodamas-tvarkingas-2-kambariu-butas-588829
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniaus-rajone-glitiskiu-k-liepu-al-parduodamas-tvarkingas-2-kambariu-butas-588828
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniuje-pilaite-i-kanto-al-parduodamas-sviesus-ir-jaukus-butas-6199-kvm-579025
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-miskas-kastonu-g-2-kambariu-nestandartinis-butas-su-atskiru-iejimu-379426
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniuje-naujininkai-zanavyku-g-vos-kelios-minutes-iki-senamiescio-zanavyku-572424
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-palangoje-j-biliuno-g-pristatome-jums-naujus-butus-palangos-sirdyje-atokiau-567210
+MapLink|    
+NumberOfRooms|    0
+ScrapedPrice|    0
+PricePerSqM|    0
+Area|    0
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-palangoje-veziu-g-parduodami-naujos-statybos-butai-su-terasomis-600181
+MapLink|    https://maps.google.com/maps?q=Palanga%2C%20V%C4%97%C5%BEi%C5%B3%20g.
+NumberOfRooms|    2
+ScrapedPrice|    62000
+PricePerSqM|    1878
+Area|    33
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-kaune-dainava-pramones-pr-parduodamas-2-kambariu-butas-pramones-pr-labai-598463
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20Pramon%C4%97s%20pr.
+NumberOfRooms|    2
+ScrapedPrice|    35500
+PricePerSqM|    934
+Area|    38
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-kaune-eiguliai-ukmerges-g-parduodamas-4-kamb-butas-ukmerges-g-4-ame-589299
+MapLink|    https://maps.google.com/maps?q=54.9267287,23.9360633
+NumberOfRooms|    0
+ScrapedPrice|    62500
+PricePerSqM|    811
+Area|    77
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-siauliuose-lieporiai-aukstabalio-g-nera-aprasymo-595226
+MapLink|    https://maps.google.com/maps?q=55.915386,23.2876805
+NumberOfRooms|    0
+ScrapedPrice|    23800
+PricePerSqM|    793
+Area|    30
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-kaune-centras-savanoriu-pr-parduodamas-4-kambariu-butas-savanoriu-pr-labai-594410
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Centras%2C%20Savanori%C5%B3%20pr.
+NumberOfRooms|    4
+ScrapedPrice|    83900
+PricePerSqM|    1118
+Area|    75
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-kaune-dainava-pramones-pr-parduodamas-1-kambario-butas-pramones-pr-namas-589171
+MapLink|    https://maps.google.com/maps?q=Kaunas%2C%20Dainava%2C%20Pramon%C4%97s%20pr.
+NumberOfRooms|    1
+ScrapedPrice|    31900
+PricePerSqM|    1063
+Area|    30
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-centras-sausio-15-osios-g-parduodamas-butasteirautis-telefonu-583772
+MapLink|    https://maps.google.com/maps?q=Klaip%C4%97da%2C%20Centras%2C%20Sausio%2015-osios%20g.
+NumberOfRooms|    3
+ScrapedPrice|    102000
+PricePerSqM|    1529
+Area|    66.67
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-birzuose-birzu-m-maluno-g-parduodamas-isskirtinis-3-k-butas-muriniame-name-530093
+MapLink|    https://maps.google.com/maps?q=56.2081794,24.7674912
+NumberOfRooms|    0
+ScrapedPrice|    22700
+PricePerSqM|    302
+Area|    75
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-jonavoje-jonavos-m-paneriu-g-parduodamas-2-kambariu-butas-jonavoje-paneriu-g-578556
+MapLink|    https://maps.google.com/maps?q=55.0743789,24.2907565
+NumberOfRooms|    0
+ScrapedPrice|    32000
+PricePerSqM|    744
+Area|    43
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-vilniuje-pilaite-karaliauciaus-g-parduodamas-1-kambario-butas-isskirtineje-570447
+MapLink|    https://maps.google.com/maps?q=54.710435,25.1751075
+NumberOfRooms|    0
+ScrapedPrice|    51500
+PricePerSqM|    1661
+Area|    31
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-centras-paryziaus-komunos-g-seifo-durys-rakinama-laiptine-uzdaras-554831
+MapLink|    https://maps.google.com/maps?q=Klaip%C4%97da%2C%20Centras%2C%20Pary%C5%BEiaus%20Komunos%20g.
+NumberOfRooms|    3
+ScrapedPrice|    93000
+PricePerSqM|    1430
+Area|    65
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-kaune-senamiestis-d-poskos-g-kauno-miesto-sirdyje-senamiestyje-parduodamas-526437
+MapLink|    https://maps.google.com/maps?q=54.895917,23.900753
+NumberOfRooms|    0
+ScrapedPrice|    514000
+PricePerSqM|    2368
+Area|    217
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-kaune-zaliakalnis-s-moniuskos-g-geroje-ramioje-vietoje-parduodamas-erdvus-4-242232
+MapLink|    https://maps.google.com/maps?q=54.906455,23.93737
+NumberOfRooms|    0
+ScrapedPrice|    115000
+PricePerSqM|    804
+Area|    143
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-centras-i-kanto-g-parduodamas-150-kv-m-butas-per-du-aukstus-su-389327
+MapLink|    https://maps.google.com/maps?q=55.7168578,21.1240451
+NumberOfRooms|    0
+ScrapedPrice|    100000
+PricePerSqM|    666
+Area|    150
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-paupiai-ragaines-g-klaipedoje-ragaines-g-parduodamas-42-m2-butas-su-364660
+MapLink|    https://maps.google.com/maps?q=55.757075,21.183095
+NumberOfRooms|    0
+ScrapedPrice|    55000
+PricePerSqM|    1309
+Area|    42
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-siauliuose-lieporiai-geguziu-g-itin-patogioje-lokacijos-vietoje-parduodamas-2-496243
+MapLink|    https://maps.google.com/maps?q=55.9066451,23.2599272
+NumberOfRooms|    0
+ScrapedPrice|    28000
+PricePerSqM|    549
+Area|    51
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zardininkai-taikos-pr-parduodamas-butas-naujos-statybos-name-seb-14878
+MapLink|    https://maps.google.com/maps?q=55.6759054,21.1677927
+NumberOfRooms|    0
+ScrapedPrice|    95000
+PricePerSqM|    1507
+Area|    63
+Municipality|    
+Street|    
+
+Link|    https://www.kampas.lt/skelbimai/butas-klaipedoje-zardininkai-i-simonaitytes-g-parduodamas-1-kambario-butas-27248
+MapLink|    https://maps.google.com/maps?q=55.6733357,21.1876862
+NumberOfRooms|    0
+ScrapedPrice|    32000
+PricePerSqM|    941
+Area|    34
 Municipality|    
 Street|    
 

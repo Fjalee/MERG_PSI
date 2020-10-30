@@ -49,7 +49,7 @@ namespace MERG_PSI
 
                         else
                         {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", ""); //fix Municipality, Street instead of "", ""
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
                         }
                     }
                     websitePage++;
