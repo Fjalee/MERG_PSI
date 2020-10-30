@@ -92,17 +92,17 @@ namespace MERG_PSI
                 MyLog.ErrorNoDocument();
             }
 
-            var classContent = GetPriceHtml();
+            var priceStr = GetPriceStr();
 
-            if (classContent.Any())
+            if (priceStr.Any())
             {
-                if (classContent.Count() != 1)
+                if (priceStr.Count() != 1)
                 {
                     MessageBox.Show("error, ScrapeMapCoords()", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                var priceStrContainsOnlyDigits = classContent.First().TextContent.Substring(1).Replace(" ", "");
+                var priceStrContainsOnlyDigits = priceStr.First().Substring(1).Replace(" ", "");
                 Price = priceStrContainsOnlyDigits.ParseToDoubleLogIfCant();
             }
             else
@@ -136,13 +136,13 @@ namespace MERG_PSI
             return mapLink;
         }
 
-        private IEnumerable<IElement> GetPriceHtml()
+        private IEnumerable<string> GetPriceStr()
         {
-            IEnumerable<IElement> htmlClassContent = null;
-
-            htmlClassContent = Document.All.Where(x =>
-                x.LocalName == "div" &&
-                x.ClassList.Contains("price"));
+            var htmlClassContent = Document.All
+                .Where(x =>
+                    x.LocalName == "div" &&
+                    x.ClassList.Contains("price"))
+                .Select(x => x.TextContent);
 
             return htmlClassContent;
         }
