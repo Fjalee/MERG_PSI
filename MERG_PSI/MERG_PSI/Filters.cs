@@ -36,8 +36,7 @@ namespace MERG_PSI
         {
             if (noInfoNumberOfRooms)
             {
-                return houses.Where(house => (house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo))
-                             .Where(house => house.NumberOfRooms == 0).ToList();
+                return houses.Where(house => (house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
             }
             else
             {
@@ -49,8 +48,7 @@ namespace MERG_PSI
         {
             if (noInfoBuildYear)
             {
-                return houses.Where(house => (house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo))
-                             .Where(house => house.BuildYear == 0).ToList();
+                return houses.Where(house => (house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo) || house.BuildYear == 0).ToList();
             }
             else
             {
