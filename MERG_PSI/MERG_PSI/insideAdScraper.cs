@@ -76,6 +76,8 @@ namespace MERG_PSI
                     MessageBox.Show("error, ScrapeMapCoords()", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                MapLink = (mapLinks.First());
             }
             else
             {
@@ -184,54 +186,54 @@ namespace MERG_PSI
 
         private void DictionaryToProperties(Dictionary<string, string> dictionary)
         {
-            var areaIEn = dictionary.Where(x => x.Key == "Plotas m²:");
-            var pricePerSqMIEn = dictionary.Where(x => x.Key == "€/m²:");
-            var numberOfRoomsIEn = dictionary.Where(x => x.Key == "Kambariai:");
-            var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybų metai:");
-            var floorIEn = dictionary.Where(x => x.Key == "Aukštas:");
+            var areaVals = dictionary.Where(x => x.Key == "Plotas m²:").Select(x => x.Value);
+            var pricePerSqMVals = dictionary.Where(x => x.Key == "€/m²:").Select(x => x.Value);
+            var numberOfRoomsVals = dictionary.Where(x => x.Key == "Kambariai:").Select(x => x.Value);
+            var buildYearParsableVals = dictionary.Where(x => x.Key == "Statybų metai:").Select(x => x.Value);
+            var floorVals = dictionary.Where(x => x.Key == "Aukštas:").Select(x => x.Value);
 
-            if (floorIEn.Count() == 1)
+            if (floorVals.Count() == 1)
             {
-                Floor = floorIEn.First().Value;
+                Floor = floorVals.First();
             }
             else
             {
                 Floor = "";
-                if (floorIEn.Count() != 0)
+                if (floorVals.Count() != 0)
                 {
-                    MyLog.IEnCountInvalid(_link, floorIEn.Count(), "Floor");
+                    MyLog.IEnCountInvalid(_link, floorVals.Count(), "Floor");
                 }
             }
 
-            if (areaIEn.Count() == 1)
+            if (areaVals.Count() == 1)
             {
-                Area = areaIEn.First().Value.ParseToDoubleLogIfCant();
+                Area = areaVals.First().ParseToDoubleLogIfCant();
             }
             else
             {
                 Area = 0;
-                if (areaIEn.Count() != 0)
+                if (areaVals.Count() != 0)
                 {
-                    MyLog.IEnCountInvalid(_link, areaIEn.Count(), "Area");
+                    MyLog.IEnCountInvalid(_link, areaVals.Count(), "Area");
                 }
             }
 
-            if (pricePerSqMIEn.Count() == 1)
+            if (pricePerSqMVals.Count() == 1)
             {
-                PricePerSqM = pricePerSqMIEn.First().Value.ParseToDoubleLogIfCant();
+                PricePerSqM = pricePerSqMVals.First().ParseToDoubleLogIfCant();
             }
             else
             {
                 PricePerSqM = 0;
-                if (pricePerSqMIEn.Count() != 0)
+                if (pricePerSqMVals.Count() != 0)
                 {
-                    MyLog.IEnCountInvalid(_link, pricePerSqMIEn.Count(), "PricePerSqM");
+                    MyLog.IEnCountInvalid(_link, pricePerSqMVals.Count(), "PricePerSqM");
                 }
             }
 
-            if (buildYearParsableIEn.Count() == 1)
+            if (buildYearParsableVals.Count() == 1)
             {
-                var buildYearString = buildYearParsableIEn.First().Value;
+                var buildYearString = buildYearParsableVals.First();
                 if (buildYearString.Length >= 4)
                 {
                     BuildYear = buildYearString.Substring(0, 4).ParseToIntLogIfCant();
@@ -245,22 +247,22 @@ namespace MERG_PSI
             else
             {
                 BuildYear = 0;
-                if (buildYearParsableIEn.Count() != 0)
+                if (buildYearParsableVals.Count() != 0)
                 {
-                    MyLog.IEnCountInvalid(_link, buildYearParsableIEn.Count(), "BuildYear");
+                    MyLog.IEnCountInvalid(_link, buildYearParsableVals.Count(), "BuildYear");
                 }
             }
 
-            if (numberOfRoomsIEn.Count() == 1)
+            if (numberOfRoomsVals.Count() == 1)
             {
-                NumberOfRooms = numberOfRoomsIEn.First().Value.ParseToIntLogIfCant();
+                NumberOfRooms = numberOfRoomsVals.First().ParseToIntLogIfCant();
             }
             else
             {
                 NumberOfRooms = 0;
-                if (numberOfRoomsIEn.Count() != 0)
+                if (numberOfRoomsVals.Count() != 0)
                 {
-                    MyLog.IEnCountInvalid(_link, numberOfRoomsIEn.Count(), "NumberOfRooms");
+                    MyLog.IEnCountInvalid(_link, numberOfRoomsVals.Count(), "NumberOfRooms");
                 }
             }
         }
