@@ -38,8 +38,6 @@ namespace MERG_PSI
             {
                 MapCoords = ParseMapLinkToCoords(MapLink);
             }
-
-            DictionaryToProperties(_buildingInfo);
         }
 
         private void ScrapeBuildingInfo()
@@ -58,6 +56,8 @@ namespace MERG_PSI
                     ParseBuildingInfoLineLabelFromVal(element);
                 }
             }
+
+            DictionaryToProperties(_buildingInfo);
         }
 
         private void ScrapeMapLink()
@@ -68,7 +68,6 @@ namespace MERG_PSI
             }
 
             var mapLink = GetMapLink();
-
             MapLink = mapLink.Any() ? mapLink.First() : "";
         }
 
