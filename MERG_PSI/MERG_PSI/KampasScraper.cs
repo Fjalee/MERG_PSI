@@ -43,10 +43,6 @@ namespace MERG_PSI
 
                         if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
                         {
-                            if (ias.BuildYear != 0)
-                            {
-                                var x = "";
-                            }
                             ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
                             floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords)); //fix Municipality, Street instead of "", ""
                         }
