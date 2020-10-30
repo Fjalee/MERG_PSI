@@ -9,12 +9,12 @@ namespace MERG_PSI
     {
         public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double areaFrom, double areaTo)
         {
-            return houses.Where(house => house.Area >= areaFrom && house.Area <= areaTo).ToList();
+            return houses.Where(house => IsValueBetween(house.Area, areaFrom, areaTo)).ToList();
         }
 
         public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> houses, double priceFrom, double priceTo)
         {
-            return houses.Where(house => house.Price >= priceFrom && house.Price <= priceTo).ToList();
+            return houses.Where(house => IsValueBetween(house.Price, priceFrom, priceTo)).ToList();
         }
 
         public  List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
@@ -24,7 +24,7 @@ namespace MERG_PSI
 
         public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double pricePerSqMFrom, double pricePerSqMTo)
         {
-            return houses.Where(house => house.PricePerSqM >= pricePerSqMFrom && house.PricePerSqM <= pricePerSqMTo).ToList();
+            return houses.Where(house => IsValueBetween(house.PricePerSqM, pricePerSqMFrom, pricePerSqMTo)).ToList();
         }
 
         public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street)
@@ -36,11 +36,11 @@ namespace MERG_PSI
         {
             if (noInfoNumberOfRooms)
             {
-                return houses.Where(house => (house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
+                return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
             }
             else
             {
-                return houses.Where(house => house.NumberOfRooms >= numberOfRoomsFrom && house.NumberOfRooms <= numberOfRoomsTo).ToList();
+                return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo)).ToList();
             }
         }
 
@@ -48,11 +48,11 @@ namespace MERG_PSI
         {
             if (noInfoBuildYear)
             {
-                return houses.Where(house => (house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo) || house.BuildYear == 0).ToList();
+                return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo) || house.BuildYear == 0).ToList();
             }
             else
             {
-                return houses.Where(house => house.BuildYear >= buildYearFrom && house.BuildYear <= buildYearTo).ToList();
+                return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo)).ToList();
             }
         }
 
@@ -64,6 +64,11 @@ namespace MERG_PSI
         public List<RealEstate> FilterByRealEstateWhenNoInfoNumberOfRooms(List<RealEstate> houses)
         {
             return houses.Where(house => house.NumberOfRooms == 0).ToList();
+        }
+
+        private bool IsValueBetween(double value, double critFrom, double critTo)
+        {
+            return value >= critFrom && value <= critTo;
         }
     }
 }
