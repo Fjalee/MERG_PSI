@@ -29,32 +29,32 @@ namespace MERG_PSI
                 MyLog.ErrorNoDocument();
             }
 
-            var adCardsHtml = GetAdCardsHtml();
+            var adCardsPaths = GetAdCardsPaths();
 
-            Links = ParseAllLinks(adCardsHtml);
+            Links = ParseAllLinks(adCardsPaths);
         }
 
-        private IEnumerable<IElement> GetAdCardsHtml()
+        private IEnumerable<string> GetAdCardsPaths()
         {
-            IEnumerable<IElement> adCardsHtml = null;
+            var adCardsPaths = Document.All
+                .Where(x =>
+                    x.LocalName == "a" &&
+                    x.ParentElement.LocalName == "div" &&
+                    x.ParentElement.ClassList.Contains(_classNameForAdCard))
+                .Select(x => ((IHtmlAnchorElement)x).PathName);
 
-            adCardsHtml = Document.All.Where(x =>
-                x.LocalName == "a" &&
-                x.ParentElement.LocalName == "div" &&
-                x.ParentElement.ClassList.Contains(_classNameForAdCard));
-
-            return adCardsHtml;
+            return adCardsPaths;
         }
 
-        private List<string> ParseAllLinks(IEnumerable<IElement> adCardsHtml)
+        private List<string> ParseAllLinks(IEnumerable<string> adCardsPaths)
         {
             var allLinks = new List<string>();
 
-            if (adCardsHtml.Any())
+            if (adCardsPaths.Any())
             {
-                foreach (var element in adCardsHtml)
+                foreach (var path in adCardsPaths)
                 {
-                    var url = _siteUrl + ((IHtmlAnchorElement)element).PathName;
+                    var url = _siteUrl + path;
                     allLinks.Add(url);
                 }
             }
