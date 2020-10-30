@@ -7,9 +7,9 @@ namespace MERG_PSI
 {
     public class KampasScraper
     {
-        private readonly string _websiteLink = "https://www.kampas.lt";
-        private readonly string _subdirectory = "/butai";
-        private readonly string _pageQueryString = "page=";
+        private const string _websiteLink = @"https://www.kampas.lt";
+        private const string _subdirectory = @"/butai";
+        private const string _pageQueryString = @"page=";
         public List<RealEstate> ScrapedRealEstate { get; set; } = new List<RealEstate>();
         private bool _reachedPageNoAds = false;
 
