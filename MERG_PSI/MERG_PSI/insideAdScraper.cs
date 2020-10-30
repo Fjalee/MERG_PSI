@@ -67,17 +67,15 @@ namespace MERG_PSI
                 MyLog.ErrorNoDocument();
             }
 
-            var mapLinkHtml = GetMapLinkHtml();
+            var mapLinks = GetMapLinks();
 
-            if (mapLinkHtml.Any())
+            if (mapLinks.Any())
             {
-                if (mapLinkHtml.Count() != 1)
+                if (mapLinks.Count() != 1)
                 {
                     MessageBox.Show("error, ScrapeMapCoords()", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                MapLink = ((IHtmlAnchorElement)mapLinkHtml.First()).Href;
             }
             else
             {
@@ -123,17 +121,17 @@ namespace MERG_PSI
             return htmlClassContent;
         }
 
-        private IEnumerable<IElement> GetMapLinkHtml()
+        private IEnumerable<string> GetMapLinks()
         {
-            IEnumerable<IElement> htmlClassContent = null;
+            var mapLink = Document.All
+                .Where(x =>
+                    x.LocalName == "a" &&
+                    ((IHtmlAnchorElement)x).HostName == "maps.google.com" &&
+                    x.ParentElement.LocalName == "li" &&
+                    x.ParentElement.ClassList.Contains("li-map-preview"))
+                .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            htmlClassContent = (Document).All.Where(x =>
-                x.LocalName == "a" &&
-                ((IHtmlAnchorElement)x).HostName == "maps.google.com" &&
-                x.ParentElement.LocalName == "li" &&
-                x.ParentElement.ClassList.Contains("li-map-preview"));
-
-            return htmlClassContent;
+            return mapLink;
         }
 
         private IEnumerable<IElement> GetPriceHtml()
