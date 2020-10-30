@@ -85,14 +85,12 @@ namespace MERG_PSI
 
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
         {
-            IEnumerable<IElement> htmlClassContent = null;
-
-            htmlClassContent = Document.All.Where(x =>
+            var buildingInfoLinesHtml = Document.All.Where(x =>
                 x.ClassName == "label" &&
                 x.ParentElement.LocalName == "div" &&
                 x.ParentElement.ClassList.Contains("k-classified-icon-item"));
 
-            return htmlClassContent;
+            return buildingInfoLinesHtml;
         }
 
         private IEnumerable<string> GetMapLink()
