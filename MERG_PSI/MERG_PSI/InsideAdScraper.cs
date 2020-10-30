@@ -85,10 +85,10 @@ namespace MERG_PSI
 
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
         {
-            var buildingInfoLinesHtml = Document.All.Where(x =>
-                x.ClassName == "label" &&
-                x.ParentElement.LocalName == "div" &&
-                x.ParentElement.ClassList.Contains("k-classified-icon-item"));
+            var buildingInfoLinesHtml = Document.All
+                .Where(x => x.ClassName == "label")
+                .Where(x => x.ParentElement.LocalName == "div")
+                .Where(x => x.ParentElement.ClassList.Contains("k-classified-icon-item"));
 
             return buildingInfoLinesHtml;
         }
@@ -96,11 +96,10 @@ namespace MERG_PSI
         private IEnumerable<string> GetMapLink()
         {
             var mapLink = Document.All
-                .Where(x =>
-                    x.LocalName == "a" &&
-                    ((IHtmlAnchorElement)x).HostName == "maps.google.com" &&
-                    x.ParentElement.LocalName == "li" &&
-                    x.ParentElement.ClassList.Contains("li-map-preview"))
+                .Where(x => x.LocalName == "a")
+                .Where(x => ((IHtmlAnchorElement)x).HostName == "maps.google.com")
+                .Where(x => x.ParentElement.LocalName == "li")
+                .Where(x => x.ParentElement.ClassList.Contains("li-map-preview"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
             LogIfCountIncorrect(mapLink, "MapLink");
@@ -111,9 +110,8 @@ namespace MERG_PSI
         private IEnumerable<string> GetPriceStr()
         {
             var priceStr = Document.All
-                .Where(x =>
-                    x.LocalName == "div" &&
-                    x.ClassList.Contains("price"))
+                .Where(x => x.LocalName == "div")
+                .Where(x => x.ClassList.Contains("price"))
                 .Select(x => x.TextContent);
 
             LogIfCountIncorrect(priceStr, "Price");

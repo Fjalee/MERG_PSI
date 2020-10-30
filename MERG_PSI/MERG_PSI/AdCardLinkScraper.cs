@@ -37,10 +37,9 @@ namespace MERG_PSI
         private IEnumerable<string> GetAdCardsPaths()
         {
             var adCardsPaths = Document.All
-                .Where(x =>
-                    x.LocalName == "a" &&
-                    x.ParentElement.LocalName == "div" &&
-                    x.ParentElement.ClassList.Contains(_classNameForAdCard))
+                .Where(x => x.LocalName == "a")
+                .Where(x => x.ParentElement.LocalName == "div")
+                .Where(x => x.ParentElement.ClassList.Contains(_classNameForAdCard))
                 .Select(x => ((IHtmlAnchorElement)x).PathName);
 
             return adCardsPaths;
