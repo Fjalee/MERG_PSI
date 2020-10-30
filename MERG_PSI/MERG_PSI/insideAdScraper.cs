@@ -103,11 +103,7 @@ namespace MERG_PSI
                     x.ParentElement.ClassList.Contains("li-map-preview"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            if (mapLink.Count() != 1 && mapLink.Count() != 0)
-            {
-                MessageBox.Show("error, ScrapeMapCoords()", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            LogIfCountIncorrect(mapLink, "MapLink");
 
             return mapLink;
         }
@@ -120,11 +116,7 @@ namespace MERG_PSI
                     x.ClassList.Contains("price"))
                 .Select(x => x.TextContent);
 
-            if (priceStr.Count() != 1 || priceStr.Count() != 0)
-            {
-                MessageBox.Show("error, ScrapeMapCoords()", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            LogIfCountIncorrect(priceStr, "Price");
 
             return priceStr;
         }
