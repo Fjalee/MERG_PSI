@@ -67,22 +67,9 @@ namespace MERG_PSI
                 MyLog.ErrorNoDocument();
             }
 
-            var mapLinks = GetMapLinks();
+            var mapLink = GetMapLink();
 
-            if (mapLinks.Any())
-            {
-                if (mapLinks.Count() != 1)
-                {
-                    MessageBox.Show("error, ScrapeMapCoords()", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                MapLink = (mapLinks.First());
-            }
-            else
-            {
-                MapLink = "";
-            }
+            MapLink = mapLink.Any() ? mapLink.First() : "";
         }
 
         private void ScrapePrice()
@@ -94,21 +81,7 @@ namespace MERG_PSI
 
             var priceStr = GetPriceStr();
 
-            if (priceStr.Any())
-            {
-                if (priceStr.Count() != 1)
-                {
-                    MessageBox.Show("error, ScrapeMapCoords()", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                var priceStrContainsOnlyDigits = priceStr.First().Substring(1).Replace(" ", "");
-                Price = priceStrContainsOnlyDigits.ParseToDoubleLogIfCant();
-            }
-            else
-            {
-                Price = 0;
-            }
+            Price = priceStr.Any() ? priceStr.First().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant() : 0;
         }
 
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
@@ -123,7 +96,7 @@ namespace MERG_PSI
             return htmlClassContent;
         }
 
-        private IEnumerable<string> GetMapLinks()
+        private IEnumerable<string> GetMapLink()
         {
             var mapLink = Document.All
                 .Where(x =>
@@ -133,18 +106,30 @@ namespace MERG_PSI
                     x.ParentElement.ClassList.Contains("li-map-preview"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
+            if (mapLink.Count() != 1 && mapLink.Count() != 0)
+            {
+                MessageBox.Show("error, ScrapeMapCoords()", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             return mapLink;
         }
 
         private IEnumerable<string> GetPriceStr()
         {
-            var htmlClassContent = Document.All
+            var priceStr = Document.All
                 .Where(x =>
                     x.LocalName == "div" &&
                     x.ClassList.Contains("price"))
                 .Select(x => x.TextContent);
 
-            return htmlClassContent;
+            if (priceStr.Count() != 1 || priceStr.Count() != 0)
+            {
+                MessageBox.Show("error, ScrapeMapCoords()", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return priceStr;
         }
 
         private void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
