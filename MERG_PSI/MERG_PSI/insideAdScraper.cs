@@ -161,7 +161,7 @@ namespace MERG_PSI
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
             Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant() : 0;
             PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant() : 0;
-            BuildYear = buildYearParsableIEn.Count() == 1 ? parseBuildYearToInt(buildYearParsableIEn) : 0;
+            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn) : 0;
             NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
 
             LogIfCountIncorrect(floorIEn, "Floor");
@@ -171,7 +171,7 @@ namespace MERG_PSI
             LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms");
         }
 
-        private int parseBuildYearToInt(IEnumerable<string> buildYearParsableIEn)
+        private int ParseBuildYearToInt(IEnumerable<string> buildYearParsableIEn)
         {
             var buildYearString = buildYearParsableIEn.First();
             if (buildYearString.Length >= 4)
