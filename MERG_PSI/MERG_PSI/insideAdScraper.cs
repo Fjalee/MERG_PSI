@@ -157,97 +157,49 @@ namespace MERG_PSI
             var link = new Uri(linkString);
             var location = HttpUtility.ParseQueryString(link.Query).Get("q");
 
-            if (Regex.IsMatch(location, @"^[0-9,.]+$"))
-            {
-                return location;
-            }
-            else
-            {
-                MyLog.DnContainCoords(_link);
-                return "";
-            }
+            return Regex.IsMatch(location, @"^[0-9,.]+$") ? location : "";
         }
 
         private void DictionaryToProperties(Dictionary<string, string> dictionary)
         {
-            var areaVals = dictionary.Where(x => x.Key == "Plotas m²:").Select(x => x.Value);
-            var pricePerSqMVals = dictionary.Where(x => x.Key == "€/m²:").Select(x => x.Value);
-            var numberOfRoomsVals = dictionary.Where(x => x.Key == "Kambariai:").Select(x => x.Value);
-            var buildYearParsableVals = dictionary.Where(x => x.Key == "Statybų metai:").Select(x => x.Value);
-            var floorVals = dictionary.Where(x => x.Key == "Aukštas:").Select(x => x.Value);
+            var areaIEn = dictionary.Where(x => x.Key == "Plotas m²:").Select(x => x.Value);
+            var pricePerSqMIEn = dictionary.Where(x => x.Key == "€/m²:").Select(x => x.Value);
+            var numberOfRoomsIEn = dictionary.Where(x => x.Key == "Kambariai:").Select(x => x.Value);
+            var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybų metai:").Select(x => x.Value);
+            var floorIEn = dictionary.Where(x => x.Key == "Aukštas:").Select(x => x.Value);
 
-            if (floorVals.Count() == 1)
+            Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
+            Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant() : 0;
+            PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant() : 0;
+            BuildYear = buildYearParsableIEn.Count() == 1 ? parseBuildYearToInt(buildYearParsableIEn) : 0;
+            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
+
+            LogIfCountIncorrect(floorIEn, "Floor");
+            LogIfCountIncorrect(areaIEn, "Area");
+            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM");
+            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear");
+            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms");
+        }
+
+        private int parseBuildYearToInt(IEnumerable<string> buildYearParsableIEn)
+        {
+            var buildYearString = buildYearParsableIEn.First();
+            if (buildYearString.Length >= 4)
             {
-                Floor = floorVals.First();
+                return buildYearString.Substring(0, 4).ParseToIntLogIfCant();
             }
             else
             {
-                Floor = "";
-                if (floorVals.Count() != 0)
-                {
-                    MyLog.IEnCountInvalid(_link, floorVals.Count(), "Floor");
-                }
+                MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
+                return 0;
             }
+        }
 
-            if (areaVals.Count() == 1)
+        private void LogIfCountIncorrect(IEnumerable<string> IEn, string valName)
+        {
+            if (IEn.Count() != 1 && IEn.Count() != 0)
             {
-                Area = areaVals.First().ParseToDoubleLogIfCant();
-            }
-            else
-            {
-                Area = 0;
-                if (areaVals.Count() != 0)
-                {
-                    MyLog.IEnCountInvalid(_link, areaVals.Count(), "Area");
-                }
-            }
-
-            if (pricePerSqMVals.Count() == 1)
-            {
-                PricePerSqM = pricePerSqMVals.First().ParseToDoubleLogIfCant();
-            }
-            else
-            {
-                PricePerSqM = 0;
-                if (pricePerSqMVals.Count() != 0)
-                {
-                    MyLog.IEnCountInvalid(_link, pricePerSqMVals.Count(), "PricePerSqM");
-                }
-            }
-
-            if (buildYearParsableVals.Count() == 1)
-            {
-                var buildYearString = buildYearParsableVals.First();
-                if (buildYearString.Length >= 4)
-                {
-                    BuildYear = buildYearString.Substring(0, 4).ParseToIntLogIfCant();
-                }
-                else
-                {
-                    BuildYear = 0;
-                    MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
-                }
-            }
-            else
-            {
-                BuildYear = 0;
-                if (buildYearParsableVals.Count() != 0)
-                {
-                    MyLog.IEnCountInvalid(_link, buildYearParsableVals.Count(), "BuildYear");
-                }
-            }
-
-            if (numberOfRoomsVals.Count() == 1)
-            {
-                NumberOfRooms = numberOfRoomsVals.First().ParseToIntLogIfCant();
-            }
-            else
-            {
-                NumberOfRooms = 0;
-                if (numberOfRoomsVals.Count() != 0)
-                {
-                    MyLog.IEnCountInvalid(_link, numberOfRoomsVals.Count(), "NumberOfRooms");
-                }
+                MyLog.IEnCountInvalid(_link, IEn.Count(), valName);
             }
         }
     }
