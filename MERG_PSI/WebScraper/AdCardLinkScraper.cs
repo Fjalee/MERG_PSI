@@ -3,7 +3,7 @@ using AngleSharp.Html.Dom;using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     class AdCardLinkScraper : Scraper
     {

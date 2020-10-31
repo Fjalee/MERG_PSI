@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{37DA45CD-0FD4-4284-9B49-4023BFB7E33B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MERG_PSI</RootNamespace>
-    <AssemblyName>MERG_PSI</AssemblyName>
+    <RootNamespace>WebScraper</RootNamespace>
+    <AssemblyName>WebScraper</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -88,6 +88,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

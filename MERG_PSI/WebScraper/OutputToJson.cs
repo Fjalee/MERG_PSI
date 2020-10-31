@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.IO;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     class OutputToJson
     {

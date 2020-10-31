@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     public class ScrapingDomainEventArgs : EventArgs
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     public class RealEstate
     {

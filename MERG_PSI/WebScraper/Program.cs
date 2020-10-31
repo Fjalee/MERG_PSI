@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     static class Program
     {

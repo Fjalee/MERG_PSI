@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Web;
 using System.Text.RegularExpressions;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     class InsideAdScraper : Scraper
     {

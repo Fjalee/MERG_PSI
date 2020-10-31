@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     public partial class Form1 : Form
     {

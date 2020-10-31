@@ -1,4 +1,4 @@
-﻿namespace MERG_PSI
+﻿namespace WebScraper
 {
     partial class Form1
     {

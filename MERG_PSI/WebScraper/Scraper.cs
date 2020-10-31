@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MERG_PSI
+namespace WebScraper
 {
     abstract class Scraper
     {
