@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace MERG_PSI
+namespace App
 {
     public partial class Form1 : Form
     {

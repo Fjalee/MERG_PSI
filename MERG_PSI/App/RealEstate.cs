@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MERG_PSI
+namespace App
 {
     public class RealEstate
     {

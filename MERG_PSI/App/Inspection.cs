@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MERG_PSI
+namespace App
 {
     class Inspection
     {

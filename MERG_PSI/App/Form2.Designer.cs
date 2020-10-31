@@ -1,4 +1,4 @@
-﻿namespace MERG_PSI
+﻿namespace App
 {
     partial class Form2
     {

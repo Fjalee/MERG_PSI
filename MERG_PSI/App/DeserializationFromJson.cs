@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace MERG_PSI
+namespace App
 {
     public class DeserializationFromJson
     {
