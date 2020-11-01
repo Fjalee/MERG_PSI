@@ -2,7 +2,7 @@
 
 namespace App
 {
-    public class RealEstate
+    class RealEstate
     {
         public string Link { get; set; }
         public double Area { get; set; }

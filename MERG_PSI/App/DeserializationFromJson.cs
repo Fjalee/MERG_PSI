@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace App
 {
-    public class DeserializationFromJson
+    class DeserializationFromJson
     {
         private const string _filePath = @"../../scrapedData.txt";
         public List<RealEstate> Data { get; set; }

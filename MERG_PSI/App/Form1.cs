@@ -13,7 +13,7 @@ namespace App
 {
     public partial class Form1 : Form
     {
-        private readonly GMapOverlay markOverlay = new GMapOverlay("marker");
+        private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
         public Form1()
         {
             InitializeComponent();
@@ -27,13 +27,13 @@ namespace App
         {
             map.ShowCenter = false;
             map.DragButton = MouseButtons.Left;
-            map.MapProvider = GMapProviders.GoogleMap; 
+            map.MapProvider = GMapProviders.GoogleMap;
             map.Position = new PointLatLng(55.233400, 23.894970);
         }
 
         private void LoadMarkers(List<RealEstate> filteredList)
         {
-            markOverlay.Markers.Clear();
+            _markOverlay.Markers.Clear();
             foreach (var i in filteredList)
             {
                 var marker = new GMarkerGoogle(new PointLatLng(SplitCoordinates(i.MapCoords)[0], SplitCoordinates(i.MapCoords)[1]), GMarkerGoogleType.red);
@@ -43,9 +43,9 @@ namespace App
                 marker.ToolTip.Foreground = Brushes.White;
                 marker.ToolTip.Stroke = Pens.Black;
                 marker.ToolTip.TextPadding = new Size(20, 20);
-                markOverlay.Markers.Add(marker);
+                _markOverlay.Markers.Add(marker);
             }
-            map.Overlays.Add(markOverlay);          
+            map.Overlays.Add(_markOverlay);
         }
 
         private double[] SplitCoordinates(string coords)
@@ -57,7 +57,7 @@ namespace App
             return darray;
         }
 
-       
+
         #region TextBox Input 
         private void Municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -134,12 +134,12 @@ namespace App
                 e.Handled = true;
             }
         }
-        
 
-    #endregion
-    #region Prompt text
 
-    private void PriceFrom_Enter(object sender, EventArgs e)
+        #endregion
+        #region Prompt text
+
+        private void PriceFrom_Enter(object sender, EventArgs e)
         {
             SetupTextBoxIf(priceFrom, "Nuo", "", Color.Black);
         }
@@ -253,7 +253,7 @@ namespace App
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            var filtersValues = new List<string> {priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text,street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text, buildYearTo.Text, numberOfRoomsFrom.Text, numberOfRoomsTo.Text};
+            var filtersValues = new List<string> { priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text, street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text, buildYearTo.Text, numberOfRoomsFrom.Text, numberOfRoomsTo.Text };
             var listOfRealEstate = new Data().SampleData;
             var noInfoBuild = noInfoBuildYear.Checked;
             var noInfoRooms = noInfoRoomNumber.Checked;
