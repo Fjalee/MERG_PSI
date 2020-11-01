@@ -1,5 +1,5 @@
-﻿using AngleSharp.Dom;
-using AngleSharp.Html.Dom;using System.Collections.Generic;
+﻿using AngleSharp.Html.Dom;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
