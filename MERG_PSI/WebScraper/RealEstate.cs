@@ -1,5 +1,5 @@
-﻿using System;
-using System.CodeDom.Compiler;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace WebScraper
 {
@@ -10,7 +10,9 @@ namespace WebScraper
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
         public string Floor { get; set; }
+        [JsonIgnore]
         private readonly double _calculatedPrice;
+        [JsonIgnore]
         public double ScrapedPrice { get; set; }
         public double Price { get; set; }
         public string MapLink { get; set; }
