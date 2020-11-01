@@ -57,20 +57,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.map = new GMap.NET.WindowsForms.GMapControl();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(194)))), ((int)(((byte)(241)))));
+            this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.Controls.Add(this.noInfoRoomNumber);
             this.panel2.Controls.Add(this.numberOfRoomsTo);
@@ -97,9 +92,10 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(0, 6);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 91);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(327, 949);
+            this.panel2.Size = new System.Drawing.Size(327, 958);
             this.panel2.TabIndex = 0;
             // 
             // noInfoRoomNumber
@@ -561,33 +557,16 @@
             this.panel1.Size = new System.Drawing.Size(1602, 91);
             this.panel1.TabIndex = 0;
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 91);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.panel2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.map);
-            this.splitContainer1.Panel2.Controls.Add(this.panel4);
-            this.splitContainer1.Size = new System.Drawing.Size(1602, 958);
-            this.splitContainer1.SplitterDistance = 324;
-            this.splitContainer1.TabIndex = 1;
-            // 
             // map
             // 
             this.map.Bearing = 0F;
             this.map.CanDragMap = true;
+            this.map.Dock = System.Windows.Forms.DockStyle.Fill;
             this.map.EmptyTileColor = System.Drawing.Color.Navy;
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemory = 5;
-            this.map.Location = new System.Drawing.Point(4, 0);
+            this.map.Location = new System.Drawing.Point(327, 91);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 24;
             this.map.MinZoom = 3;
@@ -601,17 +580,17 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(1266, 928);
+            this.map.Size = new System.Drawing.Size(1275, 958);
             this.map.TabIndex = 1;
             this.map.Zoom = 7D;
             // 
-            // panel4
+            // panel3
             // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 926);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1274, 32);
-            this.panel4.TabIndex = 0;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(327, 1023);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1275, 26);
+            this.panel3.TabIndex = 2;
             // 
             // Form1
             // 
@@ -619,17 +598,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1602, 1049);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.map);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -652,8 +629,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button showAdList;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button search;
         private System.Windows.Forms.TextBox pricePerSqMTo;
         private System.Windows.Forms.TextBox pricePerSqMFrom;
@@ -667,6 +642,7 @@
         private System.Windows.Forms.TextBox buildYearFrom;
         private System.Windows.Forms.Label label8;
         private GMap.NET.WindowsForms.GMapControl map;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 
