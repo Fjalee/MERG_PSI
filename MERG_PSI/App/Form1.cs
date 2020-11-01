@@ -38,7 +38,11 @@ namespace App
             {
                 var marker = new GMarkerGoogle(new PointLatLng(SplitCoordinates(i.MapCoords)[0], SplitCoordinates(i.MapCoords)[1]), GMarkerGoogleType.red);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
-                marker.ToolTipText = $"\n Kaina: {i.PricePerSqM}€\n Nuoroda: {i.Link}\n Plotas: {i.Area}\n Kambariai: {i.NumberOfRooms}\n";
+                marker.ToolTipText = $"\n Kaina: {i.PricePerSqM * i.Area} €\n Nuoroda: {i.Link}\n Kaina/m²: {i.PricePerSqM} €/m²\n Plotas: {i.Area} m²\n Kambariai: {i.NumberOfRooms}\n";
+                marker.ToolTip.Fill = Brushes.Black;
+                marker.ToolTip.Foreground = Brushes.White;
+                marker.ToolTip.Stroke = Pens.Black;
+                marker.ToolTip.TextPadding = new Size(20, 20);
                 markOverlay.Markers.Add(marker);
             }
             map.Overlays.Add(markOverlay);          
