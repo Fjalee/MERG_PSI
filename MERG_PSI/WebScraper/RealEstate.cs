@@ -76,7 +76,7 @@ namespace WebScraper
         public bool IsValuesClose(double value1, double value2, int roundErr)
         {
             var diff = value1 - value2;
-            if ((diff < roundErr && diff > 0) || (diff < 0 && diff > -roundErr))
+            if ((diff <= roundErr && diff >= 0) || (diff <= 0 && diff >= -roundErr))
             {
                 return true;
             }
