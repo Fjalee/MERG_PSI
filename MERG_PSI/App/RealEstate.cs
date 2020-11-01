@@ -38,21 +38,7 @@ namespace App
         override
         public string ToString()
         {
-            //return $"NT yra {Municipality}, šio namo kaina {_calculatedPrice} €, plotas {Area} m2\n";
-            return $"Link|    {Link}\n" +
-                   $"Area|    {Area}\n" +
-                   $"PricePerSqM|    {PricePerSqM}\n" +
-                   $"NumberOfRooms|    {NumberOfRooms}\n" +
-                   $"Floor|    {Floor}\n" +
-                   $"_calculatedPrice|    {_calculatedPrice}\n" +
-                   $"ScrapedPrice|    {ScrapedPrice}\n" +
-                   $"Price|    {Price}\n" +
-                   $"MapLink|    {MapLink}\n" +
-                   $"Municipality|    {Municipality}\n" +
-                   $"Street|    {Street}\n" +
-                   $"BuildYear|    {BuildYear}\n" +
-                   $"MapCoords|    {MapCoords}\n" +
-                   $"\n\n\n";
+            return $"\n Kaina: {Price} €\n Nuoroda: {Link}\n Kaina/m²: {PricePerSqM} €/m²\n Plotas: {Area} m²\n Kambariai: {NumberOfRooms}\n";
         }
 
         public void SetPrice()

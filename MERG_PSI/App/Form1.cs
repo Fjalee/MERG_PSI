@@ -34,11 +34,11 @@ namespace App
         private void LoadMarkers(List<RealEstate> filteredList)
         {
             _markOverlay.Markers.Clear();
-            foreach (var i in filteredList)
+            foreach (var ad in filteredList)
             {
-                var marker = new GMarkerGoogle(new PointLatLng(SplitCoordinates(i.MapCoords)[0], SplitCoordinates(i.MapCoords)[1]), GMarkerGoogleType.red);
+                var marker = new GMarkerGoogle(new PointLatLng(SplitCoordinates(ad.MapCoords)[0], SplitCoordinates(ad.MapCoords)[1]), GMarkerGoogleType.red);
                 marker.ToolTip = new GMapRoundedToolTip(marker);
-                marker.ToolTipText = $"\n Kaina: {i.PricePerSqM * i.Area} €\n Nuoroda: {i.Link}\n Kaina/m²: {i.PricePerSqM} €/m²\n Plotas: {i.Area} m²\n Kambariai: {i.NumberOfRooms}\n";
+                marker.ToolTipText = ad.ToString();
                 marker.ToolTip.Fill = Brushes.Black;
                 marker.ToolTip.Foreground = Brushes.White;
                 marker.ToolTip.Stroke = Pens.Black;

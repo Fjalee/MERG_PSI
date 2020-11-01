@@ -16,37 +16,36 @@ namespace App
         public List<RealEstate> GetFilteredListOFRealEstate(List<RealEstate> listOfRealEstate, List<string> filtersValue, bool noInfoBuildYear, bool noInfoRoomsNumber)
         {
             var filters = new Filters();
-            var filteredList = listOfRealEstate;
 
-            filteredList = IsFilterValueSelected(filtersValue[0], filtersValue[1])
-                ? filters.FilterRealEstateByPrice(filteredList, priceFrom: int.Parse(filtersValue[0]), priceTo: int.Parse(filtersValue[1]))
-                : filteredList;
+            listOfRealEstate = IsFilterValueSelected(filtersValue[0], filtersValue[1])
+                ? filters.FilterRealEstateByPrice(listOfRealEstate, priceFrom: int.Parse(filtersValue[0]), priceTo: int.Parse(filtersValue[1]))
+                : listOfRealEstate;
 
-            filteredList = IsFilterValueSelected(filtersValue[2], filtersValue[3])
-                ? filters.FilterRealEstateByArea(filteredList, areaFrom: int.Parse(filtersValue[2]), areaTo: int.Parse(filtersValue[3]))
-                : filteredList;
+            listOfRealEstate = IsFilterValueSelected(filtersValue[2], filtersValue[3])
+                ? filters.FilterRealEstateByArea(listOfRealEstate, areaFrom: int.Parse(filtersValue[2]), areaTo: int.Parse(filtersValue[3]))
+                : listOfRealEstate;
 
-            filteredList = !string.IsNullOrEmpty(filtersValue[4])
-                ? filters.FilterRealEstateByMunicipality(filteredList, municipality: filtersValue[4])
-                : filteredList;
+            listOfRealEstate = !string.IsNullOrEmpty(filtersValue[4])
+                ? filters.FilterRealEstateByMunicipality(listOfRealEstate, municipality: filtersValue[4])
+                : listOfRealEstate;
 
-            filteredList = !string.IsNullOrEmpty(filtersValue[5])
-                ? filters.FilterRealEstateByStreet(filteredList, street: filtersValue[5])
-                : filteredList;
+            listOfRealEstate = !string.IsNullOrEmpty(filtersValue[5])
+                ? filters.FilterRealEstateByStreet(listOfRealEstate, street: filtersValue[5])
+                : listOfRealEstate;
 
-            filteredList = IsFilterValueSelected(filtersValue[6], filtersValue[7])
-                ? filters.FilterRealEstateByPricePerSqM(filteredList, pricePerSqMFrom: int.Parse(filtersValue[6]), pricePerSqMTo: int.Parse(filtersValue[7]))
-                : filteredList;
+            listOfRealEstate = IsFilterValueSelected(filtersValue[6], filtersValue[7])
+                ? filters.FilterRealEstateByPricePerSqM(listOfRealEstate, pricePerSqMFrom: int.Parse(filtersValue[6]), pricePerSqMTo: int.Parse(filtersValue[7]))
+                : listOfRealEstate;
 
-            filteredList = IsFilterValueSelected(filtersValue[8], filtersValue[9])
-                ? filters.FilterRealEstateByBuildYear(filteredList, buildYearFrom: int.Parse(filtersValue[8]), buildYearTo: int.Parse(filtersValue[9]), noInfoBuildYear)
-                : noInfoBuildYear ? filters.FilterByRealEstateWhenNoInfoBuildYear(filteredList) : filteredList;
+            listOfRealEstate = IsFilterValueSelected(filtersValue[8], filtersValue[9])
+                ? filters.FilterRealEstateByBuildYear(listOfRealEstate, buildYearFrom: int.Parse(filtersValue[8]), buildYearTo: int.Parse(filtersValue[9]), noInfoBuildYear)
+                : noInfoBuildYear ? filters.FilterByRealEstateWhenNoInfoBuildYear(listOfRealEstate) : listOfRealEstate;
 
-            filteredList = IsFilterValueSelected(filtersValue[10], filtersValue[11])
-                ? filters.FilterRealEstateByNumberOfRooms(filteredList, numberOfRoomsFrom: int.Parse(filtersValue[10]), numberOfRoomsTo: int.Parse(filtersValue[11]), noInfoRoomsNumber)
-                : noInfoRoomsNumber ? filters.FilterByRealEstateWhenNoInfoNumberOfRooms(filteredList) : filteredList;
+            listOfRealEstate = IsFilterValueSelected(filtersValue[10], filtersValue[11])
+                ? filters.FilterRealEstateByNumberOfRooms(listOfRealEstate, numberOfRoomsFrom: int.Parse(filtersValue[10]), numberOfRoomsTo: int.Parse(filtersValue[11]), noInfoRoomsNumber)
+                : noInfoRoomsNumber ? filters.FilterByRealEstateWhenNoInfoNumberOfRooms(listOfRealEstate) : listOfRealEstate;
 
-            return filteredList;
+            return listOfRealEstate;
         }
     }
 }
