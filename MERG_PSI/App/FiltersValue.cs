@@ -16,8 +16,10 @@ namespace App
         public Tuple<bool, int> NumberOfRoomsTo { get;}
         public Tuple<bool, int> PricePerSqMFrom { get; }
         public Tuple<bool, int> PricePerSqMTo { get; }
+        public bool NoBuildYearInfo { get; }
+        public bool NoNumberOfRoomsInfo { get; }
 
-        public FiltersValue (Tuple<bool, int> priceFrom, Tuple<bool,int> priceTo, Tuple<bool,int> areaFrom, Tuple<bool,int> areaTo, Tuple<bool,int> buildYearFrom, Tuple<bool,int> buildYearTo, Tuple<bool,int> numberOfRoomsFrom, Tuple<bool,int> numberOfRoomsTo, Tuple<bool, int> pricePerSqMFrom, Tuple<bool, int> pricePerSqMTo)
+        public FiltersValue (Tuple<bool, int> priceFrom, Tuple<bool,int> priceTo, Tuple<bool,int> areaFrom, Tuple<bool,int> areaTo, Tuple<bool,int> buildYearFrom, Tuple<bool,int> buildYearTo, Tuple<bool,int> numberOfRoomsFrom, Tuple<bool,int> numberOfRoomsTo, Tuple<bool, int> pricePerSqMFrom, Tuple<bool, int> pricePerSqMTo, bool noBuildYearInfo, bool noNumberOfRoomsInfo)
         {
             PriceFrom = priceFrom;
             PriceTo = priceTo;
@@ -29,6 +31,8 @@ namespace App
             NumberOfRoomsTo = numberOfRoomsTo;
             PricePerSqMFrom = pricePerSqMFrom;
             PricePerSqMTo = pricePerSqMTo;
+            NoBuildYearInfo = noBuildYearInfo;
+            NoNumberOfRoomsInfo = noNumberOfRoomsInfo;
         }
     }
 }
