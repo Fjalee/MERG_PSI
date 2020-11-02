@@ -278,16 +278,10 @@ namespace App
         }
         private FiltersValue GetFiltersValue ()
         {
-            var priceFromTuple = ConvertToInt(priceFrom.Text);
-            var priceToTuple = ConvertToInt(priceTo.Text);
-            var areaFromTuple = ConvertToInt(areaFrom.Text);
-            var areaToTuple = ConvertToInt(areaTo.Text);
-            var buildYearFromTuple = ConvertToInt(buildYearFrom.Text);
-            var buildYearToTuple = ConvertToInt(buildYearTo.Text);
-            var numberOfRoomsFromTuple = ConvertToInt(numberOfRoomsFrom.Text);
-            var numberOfRoomsToTuple = ConvertToInt(numberOfRoomsTo.Text);
-
-            return new FiltersValue(priceFrom: priceFromTuple, priceTo: priceToTuple, areaFrom: areaFromTuple, areaTo: areaToTuple, buildYearFrom: buildYearFromTuple, buildYearTo: buildYearToTuple, numberOfRoomsFrom: numberOfRoomsFromTuple, numberOfRoomsTo: numberOfRoomsToTuple);
+            return new FiltersValue(priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text), 
+              areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text), 
+              buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text), 
+              numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text));
         }
     }
 }
