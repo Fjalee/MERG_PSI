@@ -583,6 +583,7 @@
             this.map.Size = new System.Drawing.Size(1275, 958);
             this.map.TabIndex = 1;
             this.map.Zoom = 7D;
+            this.map.OnMarkerDoubleClick += new GMap.NET.WindowsForms.MarkerDoubleClick(this.Map_OnMarkerDoubleClick_1);
             // 
             // panel3
             // 

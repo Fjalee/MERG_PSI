@@ -17,7 +17,7 @@
         override
         public string ToString()
         {
-            return $"\n Kaina: {Price} €\n Nuoroda: {Link}\n Kaina/m²: {PricePerSqM} €/m²\n Plotas: {Area} m²\n Metai: {BuildYear}\n Kambariai: {NumberOfRooms}\n";
+            return $"\nKaina: {Price} €\nKaina/m²: {PricePerSqM} €/m²\nPlotas: {Area} m²\nMetai: {BuildYear}\nKambariai: {NumberOfRooms}\n";
         }
     }
 }

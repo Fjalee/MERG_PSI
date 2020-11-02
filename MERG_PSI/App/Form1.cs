@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace App
@@ -14,12 +16,12 @@ namespace App
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
+        private readonly List<RealEstate> _data = (new Data()).SampleData;
         public Form1()
         {
             InitializeComponent();
-            var data = (new Data()).SampleData;
             MapLoad();
-            LoadMarkers(data);
+            LoadMarkers(_data);
 
         }
 
@@ -253,7 +255,7 @@ namespace App
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            var listOfRealEstate = new Data().SampleData;     
+            var listOfRealEstate = new Data().SampleData;
             var filtersValue = GetFiltersValue();
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValue);
             LoadMarkers(filteredList);
@@ -270,14 +272,21 @@ namespace App
             return new Tuple<bool, int>(succes, 0);
 
         }
-        private FiltersValue GetFiltersValue ()
+        private FiltersValue GetFiltersValue()
         {
-            return new FiltersValue(priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text), 
-              areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text), 
-              buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text), 
+            return new FiltersValue(priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
+              areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text),
+              buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text),
               numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text),
               pricePerSqMFrom: ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: ConvertToInt(pricePerSqMTo.Text),
               noBuildYearInfo: noInfoBuildYear.Checked, noNumberOfRoomsInfo: noInfoRoomNumber.Checked);
+        }
+
+        private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
+        {
+            var pointCoord = String.Format(item.Position.Lat + "," + item.Position.Lng);
+            var link = _data.Where(x => x.MapCoords == pointCoord).Select(x => x.Link).First();
+            System.Diagnostics.Process.Start(link);
         }
     }
 }
