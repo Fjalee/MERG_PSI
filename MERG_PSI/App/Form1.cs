@@ -284,7 +284,7 @@ namespace App
 
         private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
         {
-            var pointCoord = String.Format(item.Position.Lat + "," + item.Position.Lng);
+            var pointCoord = string.Format(item.Position.Lat + "," + item.Position.Lng);
             var link = _data.Where(x => x.MapCoords == pointCoord).Select(x => x.Link).First();
             System.Diagnostics.Process.Start(link);
         }
