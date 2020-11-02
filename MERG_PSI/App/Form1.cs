@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace App
@@ -285,8 +284,11 @@ namespace App
         private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
         {
             var pointCoord = string.Format(item.Position.Lat + "," + item.Position.Lng);
-            var link = _data.Where(x => x.MapCoords == pointCoord).Select(x => x.Link).First();
-            System.Diagnostics.Process.Start(link);
+            var links = _data.Where(x => x.MapCoords == pointCoord).Select(x => x.Link);
+            foreach (var link in links)
+            {
+                System.Diagnostics.Process.Start(link);
+            }
         }
     }
 }
