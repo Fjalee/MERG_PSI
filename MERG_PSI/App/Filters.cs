@@ -83,7 +83,9 @@ namespace App
             }
             else if (numberOfRoomsToState)
             {
-                return houses.Where(house => house.NumberOfRooms <= numberOfRoomsTo).ToList();
+                return houses.Where(house => house.NumberOfRooms <= numberOfRoomsTo)
+                    .Where(house => house.NumberOfRooms != 0)
+                    .ToList();
             }
             else if (noNumberOfRoomsInfo)
             {
@@ -92,11 +94,23 @@ namespace App
             return houses;
         }
 
-        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool buildYearFromState, bool buildYearToState)
+        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool buildYearFromState, bool buildYearToState, bool noBuildYearInfo)
         {
-            if (buildYearFromState && buildYearToState)
+            if (buildYearFromState && buildYearToState && noBuildYearInfo)
+            {
+                return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo) || house.BuildYear == 0).ToList();
+            }
+            else if (buildYearFromState && buildYearToState)
             {
                 return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo)).ToList();
+            }
+            else if (buildYearFromState && noBuildYearInfo)
+            {
+                return houses.Where(house => house.BuildYear >= buildYearFrom || house.BuildYear == 0).ToList();
+            }
+            else if (buildYearToState && noBuildYearInfo)
+            {
+                return houses.Where(house => house.BuildYear <= buildYearTo || house.BuildYear == 0).ToList();
             }
             else if (buildYearFromState)
             {
@@ -104,7 +118,13 @@ namespace App
             }
             else if (buildYearToState)
             {
-                return houses.Where(house => house.BuildYear <= buildYearTo).ToList();
+                return houses.Where(house => house.BuildYear <= buildYearTo)
+                    .Where(house => house.BuildYear != 0)
+                    .ToList();
+            }
+            else if (noBuildYearInfo)
+            {
+                return houses.Where(house => house.BuildYear == 0).ToList();
             }
             return houses;
         }
