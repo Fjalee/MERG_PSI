@@ -42,11 +42,6 @@ namespace App
             return houses;
         }
 
-        public  List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
-        {
-            return houses.Where(house => (house.Municipality).ToLower().Contains(municipality.ToLower())).ToList();
-        }
-
         public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double pricePerSqMFrom, double pricePerSqMTo, bool pricePerSqMFromState, bool pricePerSqMToState)
         {
             if(pricePerSqMFromState && pricePerSqMToState)
@@ -62,11 +57,6 @@ namespace App
                 return houses.Where(house => house.PricePerSqM <= pricePerSqMTo).ToList();
             }
             return houses;
-        }
-
-        public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street)
-        {
-            return houses.Where(house => (house.Street).ToLower().Contains(street.ToLower())).ToList();
         }
 
         public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState)
@@ -101,16 +91,6 @@ namespace App
                 return houses.Where(house => house.BuildYear <= buildYearTo).ToList();
             }
             return houses;
-        }
-
-        public List<RealEstate> FilterByRealEstateWhenNoInfoBuildYear(List<RealEstate> houses)
-        {
-            return houses.Where(house => house.BuildYear == 0).ToList();
-        }
-
-        public List<RealEstate> FilterByRealEstateWhenNoInfoNumberOfRooms(List<RealEstate> houses)
-        {
-            return houses.Where(house => house.NumberOfRooms == 0).ToList();
         }
 
         private bool IsValueBetween(double value, double critFrom, double critTo)
