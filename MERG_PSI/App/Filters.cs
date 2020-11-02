@@ -69,16 +69,21 @@ namespace App
             return houses.Where(house => (house.Street).ToLower().Contains(street.ToLower())).ToList();
         }
 
-        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool noInfoNumberOfRooms, bool numberOfRoomsFromState, bool numberOfRoomsToState)
+        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState)
         {
-            if (noInfoNumberOfRooms)
-            {
-                return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
-            }
-            else
+            if(numberOfRoomsFromState && numberOfRoomsToState)
             {
                 return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo)).ToList();
             }
+            else if (numberOfRoomsFromState)
+            {
+                return houses.Where(house => house.NumberOfRooms >= numberOfRoomsFrom).ToList();
+            }
+            else if (numberOfRoomsToState)
+            {
+                return houses.Where(house => house.NumberOfRooms <= numberOfRoomsTo).ToList();
+            }
+            return houses;
         }
 
         public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool noInfoBuildYear, bool buildYearFromState, bool buildYearToState)
