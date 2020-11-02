@@ -5,21 +5,24 @@ namespace WebScraper
 {
     public class RealEstate
     {
-        public string Link { get; set; }
-        public double Area { get; set; }
-        public double PricePerSqM { get; set; }
-        public int NumberOfRooms { get; set; }
-        public string Floor { get; set; }
+        public string Link { get; }
+        public double Area { get; }
+        public double PricePerSqM { get; }
+        public int NumberOfRooms { get; }
+        public string Floor { get; }
+
         [JsonIgnore]
         private readonly double _calculatedPrice;
+
         [JsonIgnore]
-        public double ScrapedPrice { get; set; }
-        public double Price { get; set; }
-        public string MapLink { get; set; }
-        public string Municipality { get; set; }
-        public string Street { get; set; }
-        public int BuildYear { get; set; }
-        public string MapCoords { get; set; }
+        private readonly double _scraperPrice;
+        public double Price { get; }
+        public string MapLink { get; }
+
+        public string Municipality { get; }
+        public string Street { get; }
+        public int BuildYear { get; }
+        public string MapCoords { get; }
 
         public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string street = "", int buildYear = 0, string mapCoords = "")
         {
@@ -28,7 +31,7 @@ namespace WebScraper
             PricePerSqM = pricePerSqM;
             NumberOfRooms = numberOfRooms;
             Floor = floor;
-            ScrapedPrice = scrapedPrice;
+            _scraperPrice = scrapedPrice;
             MapLink = mapLink;
             Municipality = municipality;
             Street = street;
@@ -36,7 +39,7 @@ namespace WebScraper
             MapCoords = mapCoords;
 
             _calculatedPrice = pricePerSqM * area;
-            SetPrice();
+            Price = DeterminePrice();
         }
         override
         public string ToString()
@@ -47,7 +50,7 @@ namespace WebScraper
                    $"NumberOfRooms|    {NumberOfRooms}\n" +
                    $"Floor|    {Floor}\n" +
                    $"_calculatedPrice|    {_calculatedPrice}\n" +
-                   $"ScrapedPrice|    {ScrapedPrice}\n" +
+                   $"ScrapedPrice|    {_scraperPrice}\n" +
                    $"Price|    {Price}\n" +
                    $"MapLink|    {MapLink}\n" +
                    $"Municipality|    {Municipality}\n" +
@@ -57,19 +60,24 @@ namespace WebScraper
                    $"\n\n\n";
         }
 
-        public void SetPrice()
+        public double DeterminePrice()
         {
-            if (_calculatedPrice != 0 && ScrapedPrice != 0 && IsValuesClose(_calculatedPrice, ScrapedPrice, 1000))
+            if (_calculatedPrice != 0 && _scraperPrice != 0 && IsValuesClose(_calculatedPrice, _scraperPrice, 1000))
             {
-                Price = Math.Round(ScrapedPrice / 1000) * 1000;
+                return Math.Round(_scraperPrice / 1000) * 1000;
             }
-            else if (_calculatedPrice != 0 && ScrapedPrice == 0)
+            else if (_calculatedPrice != 0 && _scraperPrice == 0)
             {
-                Price = Math.Round(_calculatedPrice / 1000) * 1000;
+                return Math.Round(_calculatedPrice / 1000) * 1000;
             }
-            else if (_calculatedPrice == 0 && ScrapedPrice != 0)
+            else if (_calculatedPrice == 0 && _scraperPrice != 0)
             {
-                Price = Math.Round(ScrapedPrice / 1000) * 1000;
+                return Math.Round(_scraperPrice / 1000) * 1000;
+            }
+            else
+            {
+                MyLog.Msg($"Assigned Price 0 to\n{Link}\n");
+                return 0;
             }
         }
 
