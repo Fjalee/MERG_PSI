@@ -49,7 +49,11 @@ namespace App
         //}
         public List<RealEstate> GetFilteredListOFRealEstate(List<RealEstate> listOfRealEstate, FiltersValue filtersValue)
         {
-            return new List<RealEstate>();
+            var filters = new Filters();
+
+            listOfRealEstate = filters.FilterRealEstateByArea(houses: listOfRealEstate, areaFrom: filtersValue.AreaFrom.Item2, areaTo: filtersValue.AreaTo.Item2, areaFromState: filtersValue.AreaFrom.Item1, areaToState: filtersValue.AreaTo.Item1);
+
+            return listOfRealEstate;
         }
     }
 }

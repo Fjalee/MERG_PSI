@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FiltersValue.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DeserializationFromJson.cs" />
     <Compile Include="Filters.cs" />

@@ -254,7 +254,7 @@ namespace App
         {
             var inspection = new Inspection();
             //var filtersValues = new List<string> { priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text, street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text, buildYearTo.Text, numberOfRoomsFrom.Text, numberOfRoomsTo.Text };
-            //var listOfRealEstate = new Data().SampleData;
+            var listOfRealEstate = new Data().SampleData;
             //var noInfoBuild = noInfoBuildYear.Checked;
             //var noInfoRooms = noInfoRoomNumber.Checked;
             //var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
@@ -262,7 +262,8 @@ namespace App
 
            
             var filtersValue = GetFiltersValue();
-            //LoadMarkers(filteredList);
+            var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValue);
+            LoadMarkers(filteredList);
         }
 
         private Tuple<bool, int> ConvertToInt(string text)

@@ -7,12 +7,24 @@ namespace App
    
      class Filters
     {
-        public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double areaFrom, double areaTo)
+        public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double areaFrom, double areaTo, bool areaFromState,bool areaToState)
         {
-            return houses.Where(house => IsValueBetween(house.Area, areaFrom, areaTo)).ToList();
+            if (areaFromState && areaToState)
+            {
+                return houses.Where(house => IsValueBetween(house.Area, areaFrom, areaTo)).ToList();
+            }
+            else if (areaFromState)
+            {
+                return houses.Where(house => house.Area > areaFrom).ToList();
+            }
+            else if (areaToState)
+            {
+                return houses.Where(house => house.Area < areaTo).ToList();
+            }
+            return houses;
         }
 
-        public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> houses, double priceFrom, double priceTo)
+        public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> houses, double priceFrom, double priceTo, bool priceFromState, bool priceToState)
         {
             return houses.Where(house => IsValueBetween(house.Price, priceFrom, priceTo)).ToList();
         }
@@ -32,7 +44,7 @@ namespace App
             return houses.Where(house => (house.Street).ToLower().Contains(street.ToLower())).ToList();
         }
 
-        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool noInfoNumberOfRooms)
+        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool noInfoNumberOfRooms, bool numberOfRoomsFromState, bool numberOfRoomsToState)
         {
             if (noInfoNumberOfRooms)
             {
@@ -44,7 +56,7 @@ namespace App
             }
         }
 
-        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool noInfoBuildYear)
+        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool noInfoBuildYear, bool buildYearFromState, bool buildYearToState)
         {
             if (noInfoBuildYear)
             {
