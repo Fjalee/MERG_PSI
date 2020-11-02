@@ -16,6 +16,8 @@ namespace App
 
             listOfRealEstate = filters.FilterRealEstateByNumberOfRooms(houses: listOfRealEstate, numberOfRoomsFrom: filtersValue.NumberOfRoomsFrom.Item2, numberOfRoomsTo: filtersValue.NumberOfRoomsTo.Item2, numberOfRoomsFromState: filtersValue.NumberOfRoomsFrom.Item1, numberOfRoomsToState: filtersValue.NumberOfRoomsTo.Item1);
 
+            listOfRealEstate = filters.FilterRealEstateByBuildYear(houses: listOfRealEstate, buildYearFrom: filtersValue.BuildYearFrom.Item2, buildYearTo: filtersValue.BuildYearTo.Item2, buildYearFromState: filtersValue.BuildYearFrom.Item1, buildYearToState: filtersValue.BuildYearTo.Item1);
+
             return listOfRealEstate;
         }
     }

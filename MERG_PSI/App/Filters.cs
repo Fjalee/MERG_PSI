@@ -86,16 +86,21 @@ namespace App
             return houses;
         }
 
-        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool noInfoBuildYear, bool buildYearFromState, bool buildYearToState)
+        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool buildYearFromState, bool buildYearToState)
         {
-            if (noInfoBuildYear)
-            {
-                return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo) || house.BuildYear == 0).ToList();
-            }
-            else
+            if (buildYearFromState && buildYearToState)
             {
                 return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo)).ToList();
             }
+            else if (buildYearFromState)
+            {
+                return houses.Where(house => house.BuildYear >= buildYearFrom).ToList();
+            }
+            else if (buildYearToState)
+            {
+                return houses.Where(house => house.BuildYear <= buildYearTo).ToList();
+            }
+            return houses;
         }
 
         public List<RealEstate> FilterByRealEstateWhenNoInfoBuildYear(List<RealEstate> houses)
