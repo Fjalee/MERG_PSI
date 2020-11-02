@@ -253,12 +253,16 @@ namespace App
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            var filtersValues = new List<string> { priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text, street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text, buildYearTo.Text, numberOfRoomsFrom.Text, numberOfRoomsTo.Text };
-            var listOfRealEstate = new Data().SampleData;
-            var noInfoBuild = noInfoBuildYear.Checked;
-            var noInfoRooms = noInfoRoomNumber.Checked;
-            var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
-            LoadMarkers(filteredList);
+            //var filtersValues = new List<string> { priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text, street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text, buildYearTo.Text, numberOfRoomsFrom.Text, numberOfRoomsTo.Text };
+            //var listOfRealEstate = new Data().SampleData;
+            //var noInfoBuild = noInfoBuildYear.Checked;
+            //var noInfoRooms = noInfoRoomNumber.Checked;
+            //var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
+           
+
+           
+            var filtersValue = GetFiltersValue();
+            //LoadMarkers(filteredList);
         }
 
         private Tuple<bool, int> ConvertToInt(string text)
@@ -271,6 +275,19 @@ namespace App
             }
             return new Tuple<bool, int>(succes, 0);
 
+        }
+        private FiltersValue GetFiltersValue ()
+        {
+            var priceFromTuple = ConvertToInt(priceFrom.Text);
+            var priceToTuple = ConvertToInt(priceTo.Text);
+            var areaFromTuple = ConvertToInt(areaFrom.Text);
+            var areaToTuple = ConvertToInt(areaTo.Text);
+            var buildYearFromTuple = ConvertToInt(buildYearFrom.Text);
+            var buildYearToTuple = ConvertToInt(buildYearTo.Text);
+            var numberOfRoomsFromTuple = ConvertToInt(numberOfRoomsFrom.Text);
+            var numberOfRoomsToTuple = ConvertToInt(numberOfRoomsTo.Text);
+
+            return new FiltersValue(priceFrom: priceFromTuple.Item2, priceTo: priceToTuple.Item2, areaFrom: areaFromTuple.Item2, areaTo: areaToTuple.Item2, buildYearFrom: buildYearFromTuple.Item2, buildYearTo: buildYearToTuple.Item2, numberOfRoomsFrom: numberOfRoomsFromTuple.Item2, numberOfRoomsTo: numberOfRoomsToTuple.Item2);
         }
     }
 }
