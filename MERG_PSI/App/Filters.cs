@@ -47,9 +47,21 @@ namespace App
             return houses.Where(house => (house.Municipality).ToLower().Contains(municipality.ToLower())).ToList();
         }
 
-        public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double pricePerSqMFrom, double pricePerSqMTo)
+        public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double pricePerSqMFrom, double pricePerSqMTo, bool pricePerSqMFromState, bool pricePerSqMToState)
         {
-            return houses.Where(house => IsValueBetween(house.PricePerSqM, pricePerSqMFrom, pricePerSqMTo)).ToList();
+            if(pricePerSqMFromState && pricePerSqMToState)
+            {
+                return houses.Where(house => IsValueBetween(house.PricePerSqM, pricePerSqMFrom, pricePerSqMTo)).ToList();
+            }
+            else if (pricePerSqMFromState)
+            {
+                return houses.Where(house => house.PricePerSqM >= pricePerSqMFrom).ToList();
+            }
+            else if (pricePerSqMToState)
+            {
+                return houses.Where(house => house.PricePerSqM <= pricePerSqMTo).ToList();
+            }
+            return houses;
         }
 
         public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street)

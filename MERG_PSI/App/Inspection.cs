@@ -12,6 +12,8 @@ namespace App
 
             listOfRealEstate = filters.FilterRealEstateByPrice(houses: listOfRealEstate, priceFrom: filtersValue.PriceFrom.Item2, priceTo: filtersValue.PriceTo.Item2, priceFromState: filtersValue.PriceFrom.Item1, priceToState: filtersValue.PriceTo.Item1);
 
+            listOfRealEstate = filters.FilterRealEstateByPricePerSqM(houses: listOfRealEstate, pricePerSqMFrom: filtersValue.PricePerSqMFrom.Item2, pricePerSqMTo: filtersValue.PricePerSqMTo.Item2, pricePerSqMFromState: filtersValue.PricePerSqMFrom.Item1, pricePerSqMToState: filtersValue.PricePerSqMTo.Item1);
+
             return listOfRealEstate;
         }
     }
