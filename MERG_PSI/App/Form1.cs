@@ -276,7 +276,8 @@ namespace App
               areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text), 
               buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text), 
               numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text),
-              pricePerSqMFrom: ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: ConvertToInt(pricePerSqMTo.Text));
+              pricePerSqMFrom: ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: ConvertToInt(pricePerSqMTo.Text),
+              noBuildYearInfo: noInfoBuildYear.Checked, noNumberOfRoomsInfo: noInfoRoomNumber.Checked);
         }
     }
 }

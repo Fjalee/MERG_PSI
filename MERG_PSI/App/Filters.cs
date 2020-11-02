@@ -59,11 +59,23 @@ namespace App
             return houses;
         }
 
-        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState)
+        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState, bool noNumberOfRoomsInfo)
         {
-            if(numberOfRoomsFromState && numberOfRoomsToState)
+            if(numberOfRoomsFromState && numberOfRoomsToState && noNumberOfRoomsInfo)
+            {
+                return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
+            }
+            else if (numberOfRoomsFromState && numberOfRoomsToState)
             {
                 return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo)).ToList();
+            }
+            else if (numberOfRoomsFromState && noNumberOfRoomsInfo)
+            {
+                return houses.Where(house => house.NumberOfRooms >= numberOfRoomsFrom || house.NumberOfRooms == 0).ToList();
+            }
+            else if (numberOfRoomsToState && noNumberOfRoomsInfo)
+            {
+                return houses.Where(house => house.NumberOfRooms <= numberOfRoomsTo || house.NumberOfRooms == 0).ToList();
             }
             else if (numberOfRoomsFromState)
             {
@@ -72,6 +84,10 @@ namespace App
             else if (numberOfRoomsToState)
             {
                 return houses.Where(house => house.NumberOfRooms <= numberOfRoomsTo).ToList();
+            }
+            else if (noNumberOfRoomsInfo)
+            {
+                return houses.Where(house =>  house.NumberOfRooms == 0).ToList();
             }
             return houses;
         }
