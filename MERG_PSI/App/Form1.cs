@@ -287,7 +287,7 @@ namespace App
             var numberOfRoomsFromTuple = ConvertToInt(numberOfRoomsFrom.Text);
             var numberOfRoomsToTuple = ConvertToInt(numberOfRoomsTo.Text);
 
-            return new FiltersValue(priceFrom: priceFromTuple.Item2, priceTo: priceToTuple.Item2, areaFrom: areaFromTuple.Item2, areaTo: areaToTuple.Item2, buildYearFrom: buildYearFromTuple.Item2, buildYearTo: buildYearToTuple.Item2, numberOfRoomsFrom: numberOfRoomsFromTuple.Item2, numberOfRoomsTo: numberOfRoomsToTuple.Item2);
+            return new FiltersValue(priceFrom: priceFromTuple, priceTo: priceToTuple, areaFrom: areaFromTuple, areaTo: areaToTuple, buildYearFrom: buildYearFromTuple, buildYearTo: buildYearToTuple, numberOfRoomsFrom: numberOfRoomsFromTuple, numberOfRoomsTo: numberOfRoomsToTuple);
         }
     }
 }
