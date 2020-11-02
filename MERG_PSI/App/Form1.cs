@@ -35,6 +35,7 @@ namespace App
         private void LoadMarkers(List<RealEstate> filteredList)
         {
             _markOverlay.Markers.Clear();
+            map.Overlays.Remove(_markOverlay);
             foreach (var ad in filteredList)
             {
                 var marker = new GMarkerGoogle(new PointLatLng(SplitCoordinates(ad.MapCoords)[0], SplitCoordinates(ad.MapCoords)[1]), GMarkerGoogleType.red);
