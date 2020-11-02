@@ -53,6 +53,8 @@ namespace App
 
             listOfRealEstate = filters.FilterRealEstateByArea(houses: listOfRealEstate, areaFrom: filtersValue.AreaFrom.Item2, areaTo: filtersValue.AreaTo.Item2, areaFromState: filtersValue.AreaFrom.Item1, areaToState: filtersValue.AreaTo.Item1);
 
+            listOfRealEstate = filters.FilterRealEstateByPrice(houses: listOfRealEstate, priceFrom: filtersValue.PriceFrom.Item2, priceTo: filtersValue.PriceTo.Item2, priceFromState: filtersValue.PriceFrom.Item1, priceToState: filtersValue.PriceTo.Item1);
+
             return listOfRealEstate;
         }
     }

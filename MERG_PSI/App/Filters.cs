@@ -15,18 +15,31 @@ namespace App
             }
             else if (areaFromState)
             {
-                return houses.Where(house => house.Area > areaFrom).ToList();
+                return houses.Where(house => house.Area >= areaFrom).ToList();
             }
             else if (areaToState)
             {
-                return houses.Where(house => house.Area < areaTo).ToList();
+                return houses.Where(house => house.Area <= areaTo).ToList();
             }
             return houses;
         }
 
         public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> houses, double priceFrom, double priceTo, bool priceFromState, bool priceToState)
         {
-            return houses.Where(house => IsValueBetween(house.Price, priceFrom, priceTo)).ToList();
+           
+            if (priceFromState && priceToState)
+            {
+                return houses.Where(house => IsValueBetween(house.Price, priceFrom, priceTo)).ToList();
+            }
+            else if (priceFromState)
+            {
+                return houses.Where(house => house.Price >= priceFrom).ToList();
+            }
+            else if (priceToState)
+            {
+                return houses.Where(house => house.Price <= priceTo).ToList();
+            }
+            return houses;
         }
 
         public  List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
