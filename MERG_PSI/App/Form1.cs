@@ -253,14 +253,7 @@ namespace App
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            //var filtersValues = new List<string> { priceFrom.Text, priceTo.Text, areaFrom.Text, areaTo.Text, municipality.Text, street.Text, pricePerSqMFrom.Text, pricePerSqMTo.Text, buildYearFrom.Text, buildYearTo.Text, numberOfRoomsFrom.Text, numberOfRoomsTo.Text };
-            var listOfRealEstate = new Data().SampleData;
-            //var noInfoBuild = noInfoBuildYear.Checked;
-            //var noInfoRooms = noInfoRoomNumber.Checked;
-            //var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValues, noInfoBuild, noInfoRooms);
-           
-
-           
+            var listOfRealEstate = new Data().SampleData;     
             var filtersValue = GetFiltersValue();
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValue);
             LoadMarkers(filteredList);
@@ -282,7 +275,8 @@ namespace App
             return new FiltersValue(priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text), 
               areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text), 
               buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text), 
-              numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text));
+              numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text),
+              pricePerSqMFrom: ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: ConvertToInt(pricePerSqMTo.Text));
         }
     }
 }

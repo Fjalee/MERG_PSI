@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Windows.Forms;
 
 namespace App
 {
@@ -13,8 +14,10 @@ namespace App
         public Tuple<bool, int> BuildYearTo { get; }
         public Tuple<bool, int> NumberOfRoomsFrom { get; }
         public Tuple<bool, int> NumberOfRoomsTo { get;}
+        public Tuple<bool, int> PricePerSqMFrom { get; }
+        public Tuple<bool, int> PricePerSqMTo { get; }
 
-        public FiltersValue (Tuple<bool, int> priceFrom, Tuple<bool,int> priceTo , Tuple<bool,int> areaFrom , Tuple<bool,int> areaTo , Tuple<bool,int> buildYearFrom , Tuple<bool,int> buildYearTo , Tuple<bool,int> numberOfRoomsFrom , Tuple<bool,int> numberOfRoomsTo )
+        public FiltersValue (Tuple<bool, int> priceFrom, Tuple<bool,int> priceTo, Tuple<bool,int> areaFrom, Tuple<bool,int> areaTo, Tuple<bool,int> buildYearFrom, Tuple<bool,int> buildYearTo, Tuple<bool,int> numberOfRoomsFrom, Tuple<bool,int> numberOfRoomsTo, Tuple<bool, int> pricePerSqMFrom, Tuple<bool, int> pricePerSqMTo)
         {
             PriceFrom = priceFrom;
             PriceTo = priceTo;
@@ -24,6 +27,8 @@ namespace App
             BuildYearTo = buildYearTo;
             NumberOfRoomsFrom = numberOfRoomsFrom;
             NumberOfRoomsTo = numberOfRoomsTo;
+            PricePerSqMFrom = pricePerSqMFrom;
+            PricePerSqMTo = pricePerSqMTo;
         }
     }
 }
