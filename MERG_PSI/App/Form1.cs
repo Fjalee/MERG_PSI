@@ -284,7 +284,13 @@ namespace App
 
         private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
         {
-            var pointCoord = string.Format(item.Position.Lat + "," + item.Position.Lng);
+            var numberFormatInfo = new NumberFormatInfo
+            {
+                NumberDecimalSeparator = "."
+            };
+            var lat = item.Position.Lat.ToString(numberFormatInfo);
+            var lng = item.Position.Lng.ToString(numberFormatInfo);
+            var pointCoord = lat +","+ lng;
             var links = _data.Where(x => x.MapCoords == pointCoord).Select(x => x.Link);
             foreach (var link in links)
             {
