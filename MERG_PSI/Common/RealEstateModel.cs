@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Common
+namespace CommonLibrary
 {
-    public class RealEstate
+    public class RealEstateModel
     {
         public string Link { get; set; }
         public double Area { get; set; }

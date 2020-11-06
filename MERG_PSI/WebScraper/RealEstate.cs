@@ -1,28 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿using CommonLibrary;
+using Newtonsoft.Json;
 using System;
 
 namespace WebScraper
 {
-    public class RealEstate
+    public class RealEstate : RealEstateModel
+
     {
-        public string Link { get; }
-        public double Area { get; }
-        public double PricePerSqM { get; }
-        public int NumberOfRooms { get; }
-        public string Floor { get; }
 
         [JsonIgnore]
         private readonly double _calculatedPrice;
 
         [JsonIgnore]
         private readonly double _scraperPrice;
-        public double Price { get; }
-        public string MapLink { get; }
 
-        public string Municipality { get; }
-        public string Street { get; }
-        public int BuildYear { get; }
-        public string MapCoords { get; }
 
         public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string street = "", int buildYear = 0, string mapCoords = "")
         {
