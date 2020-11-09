@@ -11,7 +11,7 @@
                 <Label Text="Nekilnojamasis turtas" TextColor="DarkGray" FontSize="20" FontAttributes="Bold"/>
                 
             </StackLayout>
-            <CollectionView x:Name="myItem">
+            <CollectionView x:Name="myItem" SelectionMode="Single" SelectionChanged="MyItem_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 

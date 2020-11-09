@@ -1,7 +1,5 @@
 ﻿using App.Services;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace App
 {
