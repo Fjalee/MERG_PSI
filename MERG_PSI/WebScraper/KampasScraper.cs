@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,17 +6,14 @@ namespace WebScraper
 {
     public class KampasScraper : SiteScraper
     {
-        public List<RealEstate> ScrapedRealEstate { get; set; } = new List<RealEstate>();
-        private bool _reachedPageNoAds = false;
+        override public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
 
-        public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
-
-        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageQueryString)
+        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)
         {
             ScrapingDomain += myUI.OnScrapingDomain;
             _websiteLink = websiteLink;
             _subdirectory = subdirectory;
-            _pageQueryString = pageQueryString;
+            _pageString = pageString;
         }
 
         public async Task ScrapeKampasWebsite()
@@ -26,7 +22,7 @@ namespace WebScraper
             while (!_reachedPageNoAds)
             //while (websitePage < 5) //Temporary, for testing purpose
             {
-                var linkWithPage = _websiteLink + _subdirectory + "?" + _pageQueryString + websitePage.ToString();
+                var linkWithPage = _websiteLink + _subdirectory + "?" + _pageString + websitePage.ToString();
                 ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
 
                 var adCardLinkScraper = new AdCardLinkScraper(_websiteLink, "k-ad-card-wide");
