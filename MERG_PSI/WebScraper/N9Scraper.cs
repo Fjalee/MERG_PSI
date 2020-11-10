@@ -27,7 +27,7 @@ namespace WebScraper
                 var linkWithPage = _websiteLink + _subdirectory + "/" + _pageString + websitePage.ToString();
                 ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
 
-                var adCardLinkScraper2 = new AdCardLinkScraper2(_websiteLink, "card");
+                var adCardLinkScraper2 = new N9AdCardLinkScraper(_websiteLink, "card");
                 adCardLinkScraper2.Document = await adCardLinkScraper2.GetIHtmlDoc(linkWithPage);
                 adCardLinkScraper2.Scrape();
 

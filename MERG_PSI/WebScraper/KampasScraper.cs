@@ -19,13 +19,13 @@ namespace WebScraper
         public async Task ScrapeKampasWebsite()
         {
             var websitePage = 1;
-            while (!_reachedPageNoAds)
-            //while (websitePage < 5) //Temporary, for testing purpose
+            //while (!_reachedPageNoAds)
+            while (websitePage < 5) //Temporary, for testing purpose
             {
                 var linkWithPage = _websiteLink + _subdirectory + "?" + _pageString + websitePage.ToString();
                 ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
 
-                var adCardLinkScraper = new AdCardLinkScraper(_websiteLink, "k-ad-card-wide");
+                var adCardLinkScraper = new KampasAdCardLinkScraper(_websiteLink, "k-ad-card-wide");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
                 adCardLinkScraper.Scrape();
 

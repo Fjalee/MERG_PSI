@@ -1,21 +1,15 @@
 ﻿using AngleSharp.Html.Dom;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 
 namespace WebScraper
 {
-    class AdCardLinkScraper : Scraper
+    abstract class AdCardLinkScraper : Scraper
     {
-        private readonly string _siteUrl;
-        private readonly string _classNameForAdCard;
+        public string _siteUrl { get; set; }
+        public string _classNameForAdCard { get; set; }
         public override IHtmlDocument Document { get; set; }
         public List<string> Links { get; set; } = new List<string>();
-        public AdCardLinkScraper(string siteUrl, string className)
-        {
-            _siteUrl = siteUrl;
-            _classNameForAdCard = className;
-        }
 
         public override void Scrape()
         {
@@ -34,16 +28,7 @@ namespace WebScraper
             Links = ParseAllLinks(adCardsPaths);
         }
 
-        private IEnumerable<string> GetAdCardsPaths()
-        {
-            var adCardsPaths = Document.All
-                .Where(x => x.LocalName == "a")
-                .Where(x => x.ParentElement.LocalName == "div")
-                .Where(x => x.ParentElement.ClassList.Contains(_classNameForAdCard))
-                .Select(x => ((IHtmlAnchorElement)x).PathName);
-
-            return adCardsPaths;
-        }
+        public abstract IEnumerable<string> GetAdCardsPaths();
 
         private List<string> ParseAllLinks(IEnumerable<string> adCardsPaths)
         {
