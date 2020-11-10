@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdCardLinkScraper.cs" />
+    <Compile Include="InsideAdScraper2.cs" />
     <Compile Include="N9AdCardLinkScraper.cs" />
     <Compile Include="AllScrapers.cs" />
     <Compile Include="Form1.cs">

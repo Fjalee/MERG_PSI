@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebScraper
@@ -27,32 +28,32 @@ namespace WebScraper
                 var linkWithPage = _websiteLink + _subdirectory + "/" + _pageString + websitePage.ToString();
                 ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
 
-                var adCardLinkScraper2 = new N9AdCardLinkScraper(_websiteLink, "card");
-                adCardLinkScraper2.Document = await adCardLinkScraper2.GetIHtmlDoc(linkWithPage);
-                adCardLinkScraper2.Scrape();
+                var adCardLinkScraper = new N9AdCardLinkScraper(_websiteLink, "card");
+                adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
+                adCardLinkScraper.Scrape();
 
-                //if (adCardLinkScraper2.Links.Any())
-                //{
-                //    foreach (var link in adCardLinkScraper2.Links)
-                //    {
-                //        var ias = new InsideAdScraper(link);
-                //        ias.Document = await ias.GetIHtmlDoc(link);
-                //        ias.Scrape();
+                if (adCardLinkScraper.Links.Any())
+                {
+                    foreach (var link in adCardLinkScraper.Links)
+                    {
+                        var ias = new InsideAdScraper2(link);
+                        ias.Document = await ias.GetIHtmlDoc(link);
+                        ias.Scrape();
 
-                //        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
-                //        {
-                //            ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
-                //            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords)); //fix Municipality, Street instead of "", ""
-                //        }
+                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
+                        {
+                            ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
+                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords)); //fix Municipality, Street instead of "", ""
+                        }
 
-                //        else
-                //        {
-                //            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
-                //        }
-                //    }
-                //    websitePage++;
-                //}
-                //else { _reachedPageNoAds = true; }
+                        else
+                        {
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
+                        }
+                    }
+                    websitePage++;
+                }
+                else { _reachedPageNoAds = true; }
             }
         }
     }
