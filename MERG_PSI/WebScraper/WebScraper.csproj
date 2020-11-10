@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdCardLinkScraper2.cs" />
     <Compile Include="AllScrapers.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
