@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace WebScraper
 {
@@ -16,7 +12,7 @@ namespace WebScraper
 
         public async Task ScrapeAllWebsites()
         {
-            var kampasScraper = new KampasScraper(_myUI);
+            var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=");
             await kampasScraper.ScrapeKampasWebsite();
 
             var output = new OutputToJson(kampasScraper.ScrapedRealEstate);

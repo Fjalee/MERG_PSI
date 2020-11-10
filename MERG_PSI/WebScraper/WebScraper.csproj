@@ -69,6 +69,7 @@
     <Compile Include="InsideAdScraper.cs" />
     <Compile Include="KampasScraper.cs" />
     <Compile Include="MyLog.cs" />
+    <Compile Include="N9Scraper.cs" />
     <Compile Include="OutputToJson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="RealEstate.cs" />
     <Compile Include="Scraper.cs" />
     <Compile Include="ScrapingDomainEventArgs.cs" />
+    <Compile Include="SiteScraper.cs" />
     <Compile Include="StringExtension.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
