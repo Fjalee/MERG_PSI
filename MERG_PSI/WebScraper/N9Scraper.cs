@@ -25,10 +25,10 @@ namespace WebScraper
             while (!_reachedPageNoAds)
             //while (websitePage < 5) //Temporary, for testing purpose
             {
-                var linkWithPage = _websiteLink + _subdirectory + "/" + _pageString + websitePage.ToString();
+                var linkWithPage = _websiteLink + _subdirectory + "&" + _pageString + websitePage.ToString() + "&slist = 100584040";
                 ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
 
-                var adCardLinkScraper = new N9AdCardLinkScraper(_websiteLink, "card");
+                var adCardLinkScraper = new DomoplusAdCardLinkScraper(_websiteLink, "item");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
                 adCardLinkScraper.Scrape();
 
@@ -40,16 +40,18 @@ namespace WebScraper
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
-                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
-                        {
-                            ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
-                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords)); //fix Municipality, Street instead of "", ""
-                        }
+                        //if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
+                        //{
+                        //    ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
+                        //    floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords)); //fix Municipality, Street instead of "", ""
+                        //}
 
-                        else
-                        {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
-                        }
+                        //else
+                        //{
+                        //    MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
+                        //}
+                        System.Diagnostics.Process.Start(link);
+
                     }
                     websitePage++;
                 }

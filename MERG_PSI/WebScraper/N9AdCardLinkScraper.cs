@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace WebScraper
 {
-    class N9AdCardLinkScraper : AdCardLinkScraper
+    class DomoplusAdCardLinkScraper : AdCardLinkScraper
     {
-        public N9AdCardLinkScraper(string siteUrl, string className)
+        public DomoplusAdCardLinkScraper(string siteUrl, string className)
         {
             _siteUrl = siteUrl;
             _classNameForAdCard = className;

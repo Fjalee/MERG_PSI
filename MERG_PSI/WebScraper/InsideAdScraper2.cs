@@ -94,9 +94,12 @@ namespace WebScraper
         private IEnumerable<string> GetMapLink()
         {
             var mapLink = Document.All
-            .Where(x => x.LocalName == "iframe")
-            .Where(x => x.ClassList.Contains("google-maps-linkNEPAEJOLAIKINAS")).Select(x => x.LocalName);
-            //fix with domoplius
+                .Where(x => x.LocalName == "a")
+                .Where(x => x.ClassList.Contains("link"))
+                //.Where(x => ((IHtmlAnchorElement)x).HostName == "maps.google.com")
+                .Where(x => x.ParentElement.LocalName == "li")
+                .Where(x => x.ParentElement.ClassList.Contains("li-map-preview"))
+                .Select(x => ((IHtmlAnchorElement)x).Href);
 
             LogIfCountIncorrect(mapLink, "MapLink");
 
