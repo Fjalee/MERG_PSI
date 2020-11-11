@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 
 namespace WebScraper
 {
@@ -29,7 +28,6 @@ namespace WebScraper
         public override void Scrape()
         {
             ScrapeBuildingInfo();
-            ScrapePrice();
             ScrapeMapLink();
 
             if (MapLink != "")
@@ -69,24 +67,12 @@ namespace WebScraper
             MapLink = mapLink.Any() ? mapLink.First() : "";
         }
 
-        private void ScrapePrice()
-        {
-            if (Document == null)
-            {
-                MyLog.ErrorNoDocument();
-            }
-
-            var priceStr = GetPriceStr();
-
-            Price = priceStr.Any() ? Regex.Replace(priceStr.First(), "[^0-9]", "").ParseToDoubleLogIfCant() : 0;
-        }
-
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
         {
             var buildingInfoLinesHtml = Document.All
-                .Where(x => x.ClassName == "col-sm-6")
-                .Where(x => x.ParentElement.LocalName == "div")
-                .Where(x => x.ParentElement.ClassList.Contains("ypatyb"));
+                .Where(x => x.LocalName == "tr")
+                .Where(x => x.ParentElement.ParentElement.LocalName == "table")
+                .Where(x => x.ParentElement.ParentElement.ClassName == "view-group" || x.ParentElement.ParentElement.ClassName == "view-group price-format");
 
             return buildingInfoLinesHtml;
         }
@@ -95,28 +81,14 @@ namespace WebScraper
         {
             var mapLink = Document.All
                 .Where(x => x.LocalName == "a")
-                .Where(x => x.ClassList.Contains("link"))
-                //.Where(x => ((IHtmlAnchorElement)x).HostName == "maps.google.com")
-                .Where(x => x.ParentElement.LocalName == "li")
-                .Where(x => x.ParentElement.ClassList.Contains("li-map-preview"))
+                .Where(x => ((IHtmlAnchorElement)x).HostName == "www.google.com")
+                .Where(x => x.ParentElement.LocalName == "div")
+                .Where(x => x.ParentElement.ClassList.Contains("maps"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
             LogIfCountIncorrect(mapLink, "MapLink");
 
             return mapLink;
-        }
-
-        private IEnumerable<string> GetPriceStr()
-        {
-            var priceStr = Document.All
-                .Where(x => x.LocalName == "div")
-                .Where(x => x.ClassList.Contains("kaina"))
-                .Where(x => x.ParentElement.ClassList.Contains("apa"))
-                .Select(x => x.TextContent);
-
-            LogIfCountIncorrect(priceStr, "Price");
-
-            return priceStr;
         }
 
         private void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
@@ -142,24 +114,42 @@ namespace WebScraper
         private String ParseMapLinkToCoords(string linkString)
         {
             var link = new Uri(linkString);
-            var location = HttpUtility.ParseQueryString(link.Query).Get("q");
+            if (link.Segments.Length == 4)
+            {
+                var location = link.Segments[3];
+                if (location != null)
+                {
+                    return Regex.IsMatch(location, @"^[0-9,.]+$") ? location : "";
+                }
+                else
+                {
+                    MyLog.Msg($"maps coords contained not only digits \".\" and \",\" : {_link}\n");
+                    return "";
+                }
+            }
+            else
+            {
+                MyLog.Msg($"maps link had {link.Segments.Length} segements rather than 4: {_link}\n");
+            }
 
-            return Regex.IsMatch(location, @"^[0-9,.]+$") ? location : "";
+            return "";
         }
 
         private void DictionaryToProperties(Dictionary<string, string> dictionary)
         {
-            var areaIEn = dictionary.Where(x => x.Key == "Plotas m²:").Select(x => x.Value);
-            var pricePerSqMIEn = dictionary.Where(x => x.Key == "€/m²:").Select(x => x.Value);
-            var numberOfRoomsIEn = dictionary.Where(x => x.Key == "Kambariai:").Select(x => x.Value);
-            var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybų metai:").Select(x => x.Value);
+            var areaIEn = dictionary.Where(x => x.Key == "Buto plotas (kv. m):").Select(x => x.Value);
+            var pricePerSqMIEn = dictionary.Where(x => x.Key == "1 kv. m kaina:").Select(x => x.Value);
+            var numberOfRoomsIEn = dictionary.Where(x => x.Key == "Kambarių skaičius:").Select(x => x.Value);
+            var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybos metai:").Select(x => x.Value);
             var floorIEn = dictionary.Where(x => x.Key == "Aukštas:").Select(x => x.Value);
+            var priceIEN = dictionary.Where(x => x.Key == "\n\t\tKaina\t\t\t").Select(x => x.Value);
 
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
-            Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant() : 0;
-            PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant() : 0;
+            Area = areaIEn.Count() == 1 ? areaIEn.First().Substring(0, areaIEn.First().IndexOf(" ")).ParseToDoubleLogIfCant() : 0;
+            PricePerSqM = pricePerSqMIEn.Count() == 1 ? ParsePriceToDigitOnlyStr(pricePerSqMIEn).ParseToDoubleLogIfCant() : 0;
             BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn) : 0;
             NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
+            Price = priceIEN.Count() == 1 ? ParsePriceToDigitOnlyStr(priceIEN).ParseToDoubleLogIfCant() : 0;
 
             LogIfCountIncorrect(floorIEn, "Floor");
             LogIfCountIncorrect(areaIEn, "Area");
@@ -180,6 +170,11 @@ namespace WebScraper
                 MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
                 return 0;
             }
+        }
+
+        private string ParsePriceToDigitOnlyStr(IEnumerable<string> priceIEN)
+        {
+            return Regex.Replace(priceIEN.First().Substring(0, priceIEN.First().IndexOf("€")).ToString(), "[^0-9]", "");
         }
 
         private void LogIfCountIncorrect(IEnumerable<string> IEn, string valName)

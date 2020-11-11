@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Windows.Forms;
-using System.Web;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace WebScraper
 {
@@ -123,7 +122,7 @@ namespace WebScraper
         {
             var parsedValue = "";
             string parsedLabel;
-            
+
             try
             {
                 parsedValue = lineHtml.FirstElementChild.InnerHtml;
