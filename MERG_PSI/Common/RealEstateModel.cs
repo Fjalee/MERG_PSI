@@ -14,7 +14,8 @@ namespace CommonLibrary
         public string Municipality { get; set; }
         public string Street { get; set; }
         public int BuildYear { get; set; }
-        public string MapCoords { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
     }
 }
