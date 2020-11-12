@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    public class N9Scraper : SiteScraper
+    public class DomosplusScraper : SiteScraper
     {
         override public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
         public List<RealEstate> ScrapedRealEstate { get; set; } = new List<RealEstate>();
         private bool _reachedPageNoAds = false;
 
-        public N9Scraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)
+        public DomosplusScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)
         {
             ScrapingDomain += myUI.OnScrapingDomain;
             _websiteLink = websiteLink;
