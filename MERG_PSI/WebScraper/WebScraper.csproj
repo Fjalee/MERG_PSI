@@ -69,6 +69,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsideAdScraper.cs" />
     <Compile Include="KampasInsideAdScraper.cs" />
     <Compile Include="KampasScraper.cs" />
     <Compile Include="MyLog.cs" />
