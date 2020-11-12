@@ -33,7 +33,7 @@ namespace WebScraper
                 {
                     foreach (var link in adCardLinkScraper.Links)
                     {
-                        var ias = new InsideAdScraper(link);
+                        var ias = new KampasInsideAdScraper(link);
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 

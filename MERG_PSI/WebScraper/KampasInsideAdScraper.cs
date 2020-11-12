@@ -9,7 +9,7 @@ using System.Web;
 
 namespace WebScraper
 {
-    class InsideAdScraper : Scraper
+    class KampasInsideAdScraper : Scraper
     {
         public override IHtmlDocument Document { get; set; }
         private readonly Dictionary<string, string> _buildingInfo = new Dictionary<string, string>();
@@ -22,7 +22,7 @@ namespace WebScraper
         public string MapCoords { get; set; }
         public double Price { get; set; }
         private readonly string _link;
-        public InsideAdScraper(string link)
+        public KampasInsideAdScraper(string link)
         {
             _link = link;
         }

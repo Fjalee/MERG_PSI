@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace WebScraper
 {
-    class InsideAdScraper2 : Scraper
+    class DomosplusInsideAdScraper : Scraper
     {
         public override IHtmlDocument Document { get; set; }
         private readonly Dictionary<string, string> _buildingInfo = new Dictionary<string, string>();
@@ -20,7 +20,7 @@ namespace WebScraper
         public string MapCoords { get; set; }
         public double Price { get; set; }
         private readonly string _link;
-        public InsideAdScraper2(string link)
+        public DomosplusInsideAdScraper(string link)
         {
             _link = link;
         }

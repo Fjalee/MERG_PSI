@@ -36,7 +36,7 @@ namespace WebScraper
                 {
                     foreach (var link in adCardLinkScraper.Links)
                     {
-                        var ias = new InsideAdScraper2(link);
+                        var ias = new DomosplusInsideAdScraper(link);
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
