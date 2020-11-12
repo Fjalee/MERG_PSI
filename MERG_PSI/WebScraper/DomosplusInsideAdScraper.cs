@@ -83,15 +83,15 @@ namespace WebScraper
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
             Area = areaIEn.Count() == 1 ? areaIEn.First().Substring(0, areaIEn.First().IndexOf(" ")).ParseToDoubleLogIfCant() : 0;
             PricePerSqM = pricePerSqMIEn.Count() == 1 ? ParsePriceToDigitOnlyStr(pricePerSqMIEn).ParseToDoubleLogIfCant() : 0;
-            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn) : 0;
+            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, _link) : 0;
             NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
             Price = priceIEN.Count() == 1 ? ParsePriceToDigitOnlyStr(priceIEN).ParseToDoubleLogIfCant() : 0;
 
-            LogIfCountIncorrect(floorIEn, "Floor");
-            LogIfCountIncorrect(areaIEn, "Area");
-            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM");
-            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear");
-            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms");
+            LogIfCountIncorrect(floorIEn, "Floor", _link);
+            LogIfCountIncorrect(areaIEn, "Area", _link);
+            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM", _link);
+            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear", _link);
+            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms", _link);
         }
 
         private void ScrapeBuildingInfo()
@@ -144,37 +144,14 @@ namespace WebScraper
                 .Where(x => x.ParentElement.ClassList.Contains("maps"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            LogIfCountIncorrect(mapLink, "MapLink");
+            LogIfCountIncorrect(mapLink, "MapLink", _link);
 
             return mapLink;
-        }
-
-        private int ParseBuildYearToInt(IEnumerable<string> buildYearParsableIEn)
-        {
-            var buildYearString = buildYearParsableIEn.First();
-            if (buildYearString.Length >= 4)
-            {
-                return buildYearString.Substring(0, 4).ParseToIntLogIfCant();
-            }
-            else
-            {
-                MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
-                return 0;
-            }
         }
 
         private string ParsePriceToDigitOnlyStr(IEnumerable<string> priceIEN)
         {
             return Regex.Replace(priceIEN.First().Substring(0, priceIEN.First().IndexOf("€")).ToString(), "[^0-9]", "");
         }
-
-        private void LogIfCountIncorrect(IEnumerable<string> IEn, string valName)
-        {
-            if (IEn.Count() != 1 && IEn.Count() != 0)
-            {
-                MyLog.IEnCountInvalid(_link, IEn.Count(), valName);
-            }
-        }
-
     }
 }
