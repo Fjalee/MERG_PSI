@@ -5,10 +5,10 @@ namespace WebScraper
 {
     public abstract class SiteScraper
     {
-        public List<RealEstate> ScrapedRealEstate { get; set; } = new List<RealEstate>();
-        protected string WebsiteLink { get; set; }
-        protected string Subdirectory { get; set; }
-        protected string PageString { get; set; }
+        public List<RealEstate> ScrapedRealEstate { get; } = new List<RealEstate>();
+        protected string WebsiteLink { get; }
+        protected string Subdirectory { get; }
+        protected string PageString { get; }
         protected bool ReachedPageNoAds { get; set; } = false;
 
         public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)

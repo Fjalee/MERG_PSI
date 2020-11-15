@@ -6,13 +6,13 @@ namespace WebScraper
     abstract class AdCardLinkScraper : Scraper
     {
         public List<string> Links { get; set; } = new List<string>();
-        protected readonly string _siteUrl;
-        protected readonly string _classNameForAdCard;
+        protected string ClassNameForAdCard { get; }
+        private readonly string _siteUrl;
 
         public AdCardLinkScraper(string siteUrl, string classNameForAdCard)
         {
             _siteUrl = siteUrl;
-            _classNameForAdCard = classNameForAdCard;
+            ClassNameForAdCard = classNameForAdCard;
         }
 
         public override void Scrape()
