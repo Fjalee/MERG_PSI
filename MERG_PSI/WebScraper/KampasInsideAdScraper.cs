@@ -18,6 +18,7 @@ namespace WebScraper
             ScrapeBuildingInfo();
             ScrapePrice();
             ScrapeMapLink();
+            ScrapeImage();
 
             if (MapLink != "")
             {
@@ -116,6 +117,29 @@ namespace WebScraper
             var priceStr = GetPriceStr();
 
             Price = priceStr.Any() ? priceStr.First().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant() : 0;
+        }
+
+        private void ScrapeImage()
+        {
+            if (Document == null)
+            {
+                MyLog.ErrorNoDocument();
+            }
+            var image = GetImage();
+            var Image = image.Any() ? image.First() : "";
+        }
+
+        private IEnumerable<string> GetImage()
+        {
+            var image = Document.All
+                .Where(x => x.LocalName == "a")
+                .Where(x => x.ParentElement.LocalName == "section")
+                .Where(x => x.ParentElement.ClassList.Contains("inner-post-page-cover"))
+                .Select(x => ((IHtmlAnchorElement)x).Href);
+
+            LogIfCountIncorrect(image, "AdImage", Link);
+
+            return image;
         }
 
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
