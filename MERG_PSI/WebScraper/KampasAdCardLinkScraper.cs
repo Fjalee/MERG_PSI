@@ -7,12 +7,8 @@ namespace WebScraper
 {
     class KampasAdCardLinkScraper : AdCardLinkScraper
     {
-        public KampasAdCardLinkScraper(string siteUrl, string className)
-        {
-            _siteUrl = siteUrl;
-            _classNameForAdCard = className;
-        }
-        override public IEnumerable<string> GetAdCardsPaths()
+        public KampasAdCardLinkScraper(string siteUrl, string className) : base(siteUrl, className) { }
+        override protected IEnumerable<string> GetAdCardsPaths()
         {
             var adCardsPaths = Document.All
                 .Where(x => x.LocalName == "a")

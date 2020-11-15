@@ -9,12 +9,7 @@ namespace WebScraper
 {
     class DomosplusInsideAdScraper : InsideAdScraper
     {
-        private readonly Dictionary<string, string> _buildingInfo = new Dictionary<string, string>();
-        private readonly string _link;
-        public DomosplusInsideAdScraper(string link)
-        {
-            _link = link;
-        }
+        public DomosplusInsideAdScraper(string link) : base(link) { }
 
         public override void Scrape()
         {
@@ -27,7 +22,7 @@ namespace WebScraper
             }
         }
 
-        public override void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
+        protected override void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
         {
             var parsedLabel = "";
             string parsedValue;
@@ -44,10 +39,10 @@ namespace WebScraper
                 parsedValue = fullInfoLine.Replace("\n", "").Trim();
             }
 
-            _buildingInfo.Add(parsedLabel, parsedValue);
+            BuildingInfo.Add(parsedLabel, parsedValue);
         }
 
-        public override string ParseMapLinkToCoords(string linkString)
+        protected override string ParseMapLinkToCoords(string linkString)
         {
             var link = new Uri(linkString);
             if (link.Segments.Length == 4)
@@ -59,19 +54,19 @@ namespace WebScraper
                 }
                 else
                 {
-                    MyLog.Msg($"maps coords contained not only digits \".\" and \",\" : {_link}\n");
+                    MyLog.Msg($"maps coords contained not only digits \".\" and \",\" : {Link}\n");
                     return "";
                 }
             }
             else
             {
-                MyLog.Msg($"maps link had {link.Segments.Length} segements rather than 4: {_link}\n");
+                MyLog.Msg($"maps link had {link.Segments.Length} segements rather than 4: {Link}\n");
             }
 
             return "";
         }
 
-        public override void DictionaryToProperties(Dictionary<string, string> dictionary)
+        protected override void DictionaryToProperties(Dictionary<string, string> dictionary)
         {
             var areaIEn = dictionary.Where(x => x.Key == "Buto plotas (kv. m):").Select(x => x.Value);
             var pricePerSqMIEn = dictionary.Where(x => x.Key == "1 kv. m kaina:").Select(x => x.Value);
@@ -83,15 +78,15 @@ namespace WebScraper
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
             Area = areaIEn.Count() == 1 ? areaIEn.First().Substring(0, areaIEn.First().IndexOf(" ")).ParseToDoubleLogIfCant() : 0;
             PricePerSqM = pricePerSqMIEn.Count() == 1 ? ParsePriceToDigitOnlyStr(pricePerSqMIEn).ParseToDoubleLogIfCant() : 0;
-            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, _link) : 0;
+            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, Link) : 0;
             NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
             Price = priceIEN.Count() == 1 ? ParsePriceToDigitOnlyStr(priceIEN).ParseToDoubleLogIfCant() : 0;
 
-            LogIfCountIncorrect(floorIEn, "Floor", _link);
-            LogIfCountIncorrect(areaIEn, "Area", _link);
-            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM", _link);
-            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear", _link);
-            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms", _link);
+            LogIfCountIncorrect(floorIEn, "Floor", Link);
+            LogIfCountIncorrect(areaIEn, "Area", Link);
+            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM", Link);
+            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear", Link);
+            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms", Link);
         }
 
         private void ScrapeBuildingInfo()
@@ -111,7 +106,7 @@ namespace WebScraper
                 }
             }
 
-            DictionaryToProperties(_buildingInfo);
+            DictionaryToProperties(BuildingInfo);
         }
 
         private void ScrapeMapLink()
@@ -144,7 +139,7 @@ namespace WebScraper
                 .Where(x => x.ParentElement.ClassList.Contains("maps"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            LogIfCountIncorrect(mapLink, "MapLink", _link);
+            LogIfCountIncorrect(mapLink, "MapLink", Link);
 
             return mapLink;
         }

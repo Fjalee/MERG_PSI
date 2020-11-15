@@ -6,14 +6,27 @@ namespace WebScraper
     public abstract class SiteScraper
     {
         public List<RealEstate> ScrapedRealEstate { get; set; } = new List<RealEstate>();
-        public string _websiteLink { get; set; }
-        public string _subdirectory { get; set; }
-        public string _pageString { get; set; }
-        public abstract event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
+        protected string WebsiteLink { get; set; }
+        protected string Subdirectory { get; set; }
+        protected string PageString { get; set; }
+        protected bool ReachedPageNoAds { get; set; } = false;
 
-        public bool _reachedPageNoAds { get; set; } = false;
+        public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)
+        {
+            ScrapingDomain += myUI.OnScrapingDomain;
+            WebsiteLink = websiteLink;
+            Subdirectory = subdirectory;
+            PageString = pageString;
+        }
 
-        public bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string mapCoords)
+        public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
+
+        protected void RaiseScrapingDomainEvent(string link)
+        {
+            ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(link));
+        }
+
+        protected bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string mapCoords)
         {
             var calculatedPrice = pricePerSqM * area;
             if (
@@ -33,7 +46,7 @@ namespace WebScraper
             else { return true; }
         }
 
-        public bool IsValuesClose(double value1, double value2, int roundErr)
+        protected bool IsValuesClose(double value1, double value2, int roundErr)
         {
             var diff = value1 - value2;
             if ((diff < roundErr && diff >= 0) || (diff <= 0 && diff > -roundErr))
@@ -42,5 +55,6 @@ namespace WebScraper
             }
             else { return false; }
         }
+
     }
 }

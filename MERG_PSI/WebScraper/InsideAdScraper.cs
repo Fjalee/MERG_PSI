@@ -1,5 +1,4 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +6,6 @@ namespace WebScraper
 {
     abstract class InsideAdScraper : Scraper
     {
-        public override IHtmlDocument Document { get; set; }
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
@@ -17,13 +15,21 @@ namespace WebScraper
         public string MapCoords { get; set; }
         public double Price { get; set; }
 
-        public abstract void ParseBuildingInfoLineLabelFromVal(IElement buildingInfoLine);
+        protected readonly string Link;
+        protected readonly Dictionary<string, string> BuildingInfo = new Dictionary<string, string>();
 
-        public abstract string ParseMapLinkToCoords(string link);
+        public InsideAdScraper(string link)
+        {
+            Link = link;
+        }
 
-        public abstract void DictionaryToProperties(Dictionary<string, string> dictionary);
+        protected abstract void ParseBuildingInfoLineLabelFromVal(IElement buildingInfoLine);
 
-        public void LogIfCountIncorrect(IEnumerable<string> iEn, string valName, string link)
+        protected abstract string ParseMapLinkToCoords(string link);
+
+        protected abstract void DictionaryToProperties(Dictionary<string, string> dictionary);
+
+        protected void LogIfCountIncorrect(IEnumerable<string> iEn, string valName, string link)
         {
             if (iEn.Count() != 1 && iEn.Count() != 0)
             {
@@ -31,7 +37,7 @@ namespace WebScraper
             }
         }
 
-        public int ParseBuildYearToInt(IEnumerable<string> buildYearParsableIEn, string link)
+        protected int ParseBuildYearToInt(IEnumerable<string> buildYearParsableIEn, string link)
         {
             var buildYearString = buildYearParsableIEn.First();
             if (buildYearString.Length >= 4)

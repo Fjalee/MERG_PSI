@@ -6,13 +6,9 @@ namespace WebScraper
 {
     class DomoplusAdCardLinkScraper : AdCardLinkScraper
     {
-        public DomoplusAdCardLinkScraper(string siteUrl, string className)
-        {
-            _siteUrl = siteUrl;
-            _classNameForAdCard = className;
-        }
+        public DomoplusAdCardLinkScraper(string siteUrl, string className) : base(siteUrl, className) { }
 
-        override public IEnumerable<string> GetAdCardsPaths()
+        override protected IEnumerable<string> GetAdCardsPaths()
         {
             var adCardsPaths = Document.All
                 .Where(x => x.LocalName == "a")

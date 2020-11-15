@@ -1,20 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebScraper
 {
     public class KampasScraper : SiteScraper
     {
-        override public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
-
-        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)
-        {
-            ScrapingDomain += myUI.OnScrapingDomain;
-            _websiteLink = websiteLink;
-            _subdirectory = subdirectory;
-            _pageString = pageString;
-        }
+        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString) : base(myUI, websiteLink, subdirectory, pageString) { }
 
         public async Task ScrapeKampasWebsite()
         {
@@ -22,10 +13,10 @@ namespace WebScraper
             //while (!_reachedPageNoAds)
             while (websitePage < 5) //Temporary, for testing purpose
             {
-                var linkWithPage = _websiteLink + _subdirectory + "?" + _pageString + websitePage.ToString();
-                ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
+                var linkWithPage = WebsiteLink + Subdirectory + "?" + PageString + websitePage.ToString();
+                base.RaiseScrapingDomainEvent(linkWithPage);
 
-                var adCardLinkScraper = new KampasAdCardLinkScraper(_websiteLink, "k-ad-card-wide");
+                var adCardLinkScraper = new KampasAdCardLinkScraper(WebsiteLink, "k-ad-card-wide");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
                 adCardLinkScraper.Scrape();
 
@@ -50,7 +41,7 @@ namespace WebScraper
                     }
                     websitePage++;
                 }
-                else { _reachedPageNoAds = true; }
+                else { ReachedPageNoAds = true; }
             }
         }
     }

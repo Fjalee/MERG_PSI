@@ -1,34 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebScraper
 {
     public class DomosplusScraper : SiteScraper
     {
-        override public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
-        public List<RealEstate> ScrapedRealEstate { get; set; } = new List<RealEstate>();
-        private bool _reachedPageNoAds = false;
+        public DomosplusScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString) : base(myUI, websiteLink, subdirectory, pageString) { }
 
-        public DomosplusScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)
-        {
-            ScrapingDomain += myUI.OnScrapingDomain;
-            _websiteLink = websiteLink;
-            _subdirectory = subdirectory;
-            _pageString = pageString;
-        }
-
-        public async Task ScrapeN9Website()
+        public async Task ScraperDomosplusWebsite()
         {
             var websitePage = 1;
             //while (!_reachedPageNoAds)
             while (websitePage < 5) //Temporary, for testing purpose
             {
-                var linkWithPage = _websiteLink + _subdirectory + "&" + _pageString + websitePage.ToString() + "&slist = 100584040";
-                ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
+                var linkWithPage = WebsiteLink + Subdirectory + "&" + PageString + websitePage.ToString() + "&slist = 100584040";
+                base.RaiseScrapingDomainEvent(linkWithPage);
 
-                var adCardLinkScraper = new DomoplusAdCardLinkScraper(_websiteLink, "item");
+                var adCardLinkScraper = new DomoplusAdCardLinkScraper(WebsiteLink, "item");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
                 adCardLinkScraper.Scrape();
 
@@ -50,11 +38,10 @@ namespace WebScraper
                         {
                             MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
                         }
-
                     }
                     websitePage++;
                 }
-                else { _reachedPageNoAds = true; }
+                else { ReachedPageNoAds = true; }
             }
         }
     }

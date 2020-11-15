@@ -11,12 +11,7 @@ namespace WebScraper
 {
     class KampasInsideAdScraper : InsideAdScraper
     {
-        private readonly Dictionary<string, string> _buildingInfo = new Dictionary<string, string>();
-        private readonly string _link;
-        public KampasInsideAdScraper(string link)
-        {
-            _link = link;
-        }
+        public KampasInsideAdScraper(string link) : base(link) { }
 
         public override void Scrape()
         {
@@ -30,7 +25,7 @@ namespace WebScraper
             }
         }
 
-        public override void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
+        protected override void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
         {
             var parsedValue = "";
             string parsedLabel;
@@ -48,10 +43,10 @@ namespace WebScraper
                 parsedLabel = fullInfoLine.Replace("\n", "").Trim();
             }
 
-            _buildingInfo.Add(parsedLabel, parsedValue);
+            BuildingInfo.Add(parsedLabel, parsedValue);
         }
 
-        public override string ParseMapLinkToCoords(string linkString)
+        protected override string ParseMapLinkToCoords(string linkString)
         {
             var link = new Uri(linkString);
             var location = HttpUtility.ParseQueryString(link.Query).Get("q");
@@ -59,7 +54,7 @@ namespace WebScraper
             return Regex.IsMatch(location, @"^[0-9,.]+$") ? location : "";
         }
 
-        public override void DictionaryToProperties(Dictionary<string, string> dictionary)
+        protected override void DictionaryToProperties(Dictionary<string, string> dictionary)
         {
             var areaIEn = dictionary.Where(x => x.Key == "Plotas m²:").Select(x => x.Value);
             var pricePerSqMIEn = dictionary.Where(x => x.Key == "€/m²:").Select(x => x.Value);
@@ -70,14 +65,14 @@ namespace WebScraper
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
             Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant() : 0;
             PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant() : 0;
-            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, _link) : 0;
+            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, Link) : 0;
             NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
 
-            LogIfCountIncorrect(floorIEn, "Floor", _link);
-            LogIfCountIncorrect(areaIEn, "Area", _link);
-            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM", _link);
-            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear", _link);
-            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms", _link);
+            LogIfCountIncorrect(floorIEn, "Floor", Link);
+            LogIfCountIncorrect(areaIEn, "Area", Link);
+            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM", Link);
+            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear", Link);
+            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms", Link);
         }
 
         private void ScrapeBuildingInfo()
@@ -97,7 +92,7 @@ namespace WebScraper
                 }
             }
 
-            DictionaryToProperties(_buildingInfo);
+            DictionaryToProperties(BuildingInfo);
         }
 
         private void ScrapeMapLink()
@@ -142,7 +137,7 @@ namespace WebScraper
                 .Where(x => x.ParentElement.ClassList.Contains("li-map-preview"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            LogIfCountIncorrect(mapLink, "MapLink", _link);
+            LogIfCountIncorrect(mapLink, "MapLink", Link);
 
             return mapLink;
         }
@@ -154,7 +149,7 @@ namespace WebScraper
                 .Where(x => x.ClassList.Contains("price"))
                 .Select(x => x.TextContent);
 
-            LogIfCountIncorrect(priceStr, "Price", _link);
+            LogIfCountIncorrect(priceStr, "Price", Link);
 
             return priceStr;
         }
