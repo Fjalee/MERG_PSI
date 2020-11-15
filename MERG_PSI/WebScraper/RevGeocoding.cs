@@ -22,24 +22,14 @@ namespace WebScraper
             var jsonResult = JsonConvert.DeserializeObject<GoogleGeoCodeResponse>(json);
 
             var status = jsonResult.Status;
-            var geoLocation = String.Empty;
 
             if (status == "OK")
             {
-                foreach (var i in jsonResult.Results)
+                foreach (var j in jsonResult.Results.SelectMany(i => i.Address_components.SelectMany(j => j.Types.Where(k => k == name).Select(k => j))))
                 {
-                    foreach (var j in i.Address_components)
-                    {
-                        foreach(var k in j.Types)
-                        {
-                            if (k == name)
-                            {
-                                return j.Long_name;
-                            }
-                        }
-                    }
+                    return j.Short_name;
                 }
-                return String.Empty;  
+                return string.Empty;  
             }
             else
             {
