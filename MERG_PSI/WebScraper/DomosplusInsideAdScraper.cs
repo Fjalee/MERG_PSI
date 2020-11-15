@@ -15,6 +15,7 @@ namespace WebScraper
         {
             ScrapeBuildingInfo();
             ScrapeMapLink();
+            ScrapeImage();
 
             if (MapLink != "")
             {
@@ -120,6 +121,29 @@ namespace WebScraper
             MapLink = mapLink.Any() ? mapLink.First() : "";
         }
 
+        private void ScrapeImage()
+        {
+            if (Document == null)
+            {
+                MyLog.ErrorNoDocument();
+            }
+            var image = GetImage();
+            Image = image.Any() ? image.First() : "";
+        }
+
+        private IEnumerable<string> GetImage()
+        {
+            var image = Document.All
+                .Where(x => x.LocalName == "img")
+                .Where(x => x.ParentElement.LocalName == "td")
+                .Where(x => x.ParentElement.ClassList.Contains("center"))
+                .Select(x => ((IHtmlImageElement)x).Source);
+
+            LogIfCountIncorrect(image, "AdImage", Link);
+
+            return image;
+        }
+
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
         {
             var buildingInfoLinesHtml = Document.All
@@ -140,8 +164,9 @@ namespace WebScraper
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
             LogIfCountIncorrect(mapLink, "MapLink", Link);
-
+            
             return mapLink;
+            //return null;
         }
 
         private string ParsePriceToDigitOnlyStr(IEnumerable<string> priceIEN)
