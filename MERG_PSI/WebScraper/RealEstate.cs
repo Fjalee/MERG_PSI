@@ -37,6 +37,11 @@ namespace WebScraper
 
             Latitude = SplitCoordinates()[0];
             Longitude = SplitCoordinates()[1];
+
+            var adress = new RevGeocoding();
+
+            Municipality = adress.CoordsToAdress(Latitude, Longitude, "administrative_area_level_2");
+            Street = adress.CoordsToAdress(Latitude, Longitude, "route");
         }
         override
         public string ToString()
