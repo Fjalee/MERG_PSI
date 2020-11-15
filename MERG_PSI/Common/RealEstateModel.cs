@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CommonLibrary
+﻿namespace CommonLibrary
 {
     public class RealEstateModel
     {
@@ -15,6 +13,7 @@ namespace CommonLibrary
         public string Street { get; set; }
         public int BuildYear { get; set; }
         public string MapCoords { get; set; }
+        public string Image { get; set; }
 
     }
 }
