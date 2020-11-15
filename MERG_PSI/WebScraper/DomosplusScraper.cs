@@ -10,8 +10,8 @@ namespace WebScraper
         public async Task ScraperDomosplusWebsite()
         {
             var websitePage = 1;
-            //while (!_reachedPageNoAds)
-            while (websitePage < 5) //Temporary, for testing purpose
+            while (!ReachedPageNoAds)
+            //while (websitePage < 5) //Temporary, for testing purpose
             {
                 var linkWithPage = WebsiteLink + Subdirectory + "&" + PageString + websitePage.ToString() + "&slist = 100584040";
                 base.RaiseScrapingDomainEvent(linkWithPage);
