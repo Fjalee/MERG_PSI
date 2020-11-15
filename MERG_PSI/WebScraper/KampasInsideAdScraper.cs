@@ -126,7 +126,7 @@ namespace WebScraper
                 MyLog.ErrorNoDocument();
             }
             var image = GetImage();
-            var Image = image.Any() ? image.First() : "";
+            Image = image.Any() ? image.First() : "";
         }
 
         private IEnumerable<string> GetImage()
