@@ -164,9 +164,8 @@ namespace WebScraper
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
             LogIfCountIncorrect(mapLink, "MapLink", Link);
-            
+
             return mapLink;
-            //return null;
         }
 
         private string ParsePriceToDigitOnlyStr(IEnumerable<string> priceIEN)
