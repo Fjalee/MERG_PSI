@@ -273,19 +273,6 @@ namespace App
 
         private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
         {
-            //var numberFormatInfo = new NumberFormatInfo
-            //{
-            //    NumberDecimalSeparator = "."
-            //};
-            //var lat = item.Position.Lat.ToString(numberFormatInfo);
-            //var lng = item.Position.Lng.ToString(numberFormatInfo);
-            //var pointCoord = lat +","+ lng;
-            //var links = _data.Where(x => x.MapCoords == pointCoord).Select(x => x.Link);
-            //foreach (var link in links)
-            //{
-            //    System.Diagnostics.Process.Start(link);
-            //}
-
             var lat = item.Position.Lat;
             var lng = item.Position.Lng;
             var links = _data.Where(x => x.Latitude == lat && x.Longitude == lng).Select(x => x.Link);
