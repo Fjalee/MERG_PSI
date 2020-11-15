@@ -5,7 +5,6 @@ using System;
 namespace WebScraper
 {
     public class RealEstate : RealEstateModel
-
     {
 
         [JsonIgnore]
@@ -33,6 +32,7 @@ namespace WebScraper
             _calculatedPrice = pricePerSqM * area;
             Price = DeterminePrice();
         }
+        
         override
         public string ToString()
         {

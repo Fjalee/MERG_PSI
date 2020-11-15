@@ -14,6 +14,5 @@
         public int BuildYear { get; set; }
         public string MapCoords { get; set; }
         public string Image { get; set; }
-
     }
 }

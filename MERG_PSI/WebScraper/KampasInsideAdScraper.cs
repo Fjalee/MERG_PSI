@@ -118,7 +118,7 @@ namespace WebScraper
 
             Price = priceStr.Any() ? priceStr.First().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant() : 0;
         }
-
+        
         private void ScrapeImage()
         {
             if (Document == null)
