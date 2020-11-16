@@ -12,6 +12,7 @@ namespace CommonLibrary
         public double Price { get; set; }
         public string MapLink { get; set; }
         public string Municipality { get; set; }
+        public string Microdistrict { get; set; }
         public string Street { get; set; }
         public int BuildYear { get; set; }
         public double Latitude { get; set; }

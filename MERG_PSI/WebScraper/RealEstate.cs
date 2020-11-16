@@ -18,7 +18,7 @@ namespace WebScraper
         private readonly string _mapCoords;
 
 
-        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string street = "", int buildYear = 0, string mapCoords = "")
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string microdistrict = "", string street = "", int buildYear = 0, string mapCoords = "")
         {
             Link = link;
             Area = area;
@@ -28,6 +28,7 @@ namespace WebScraper
             _scraperPrice = scrapedPrice;
             MapLink = mapLink;
             Municipality = municipality;
+            Microdistrict = microdistrict;
             Street = street;
             BuildYear = buildYear;
             _mapCoords = mapCoords;
@@ -38,10 +39,11 @@ namespace WebScraper
             Latitude = SplitCoordinates()[0];
             Longitude = SplitCoordinates()[1];
 
-            var adress = new RevGeocoding();
+            var adress = new RevGeocoding(Latitude, Longitude);
 
-            Municipality = adress.CoordsToAdress(Latitude, Longitude, "administrative_area_level_2");
-            Street = adress.CoordsToAdress(Latitude, Longitude, "route");
+            Municipality = adress.Municipality;
+            Microdistrict = adress.Microdistrict;
+            Street = adress.Street;
         }
         override
         public string ToString()
