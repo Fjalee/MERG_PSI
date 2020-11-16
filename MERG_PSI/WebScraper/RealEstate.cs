@@ -40,7 +40,6 @@ namespace WebScraper
             Longitude = SplitCoordinates()[1];
 
             var adress = new RevGeocoding(Latitude, Longitude);
-
             Municipality = adress.Municipality;
             Microdistrict = adress.Microdistrict;
             Street = adress.Street;

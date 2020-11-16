@@ -29,7 +29,6 @@ namespace WebScraper
         {
             var jsonResult = JsonResults();
             var status = jsonResult.Status;
-
             if (status == "OK")
             {
                 Municipality = FindRightAdress(jsonResult, "administrative_area_level_2");
@@ -38,7 +37,7 @@ namespace WebScraper
             }
             else
             {
-               //error 
+                //error 
             }
 
         }
@@ -54,9 +53,7 @@ namespace WebScraper
             return JsonConvert.DeserializeObject<GoogleGeoCodeResponse>(json);
         }
 
-
-
-        private string FindRightAdress (GoogleGeoCodeResponse jsonResult, string name)
+        private string FindRightAdress(GoogleGeoCodeResponse jsonResult, string name)
         {
             foreach (var j in jsonResult.Results.SelectMany(i => i.Address_components.SelectMany(j => j.Types.Where(k => k == name).Select(k => j))))
             {
@@ -64,49 +61,5 @@ namespace WebScraper
             }
             return string.Empty;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //public string CoordsToAdress(double latitude, double longitude, string name)
-        //{
-        //    var wc = new WebClient
-        //    {
-        //        Encoding = Encoding.UTF8
-        //    };
-        //    var json = wc.DownloadString(_baseUrlRGC + latitude + ","
-        //        + longitude + _plusUrl);
-        //    var jsonResult = JsonConvert.DeserializeObject<GoogleGeoCodeResponse>(json);
-
-        //    var status = jsonResult.Status;
-
-        //    if (status == "OK")
-        //    {
-        //        foreach (var j in jsonResult.Results.SelectMany(i => i.Address_components.SelectMany(j => j.Types.Where(k => k == name).Select(k => j))))
-        //        {
-        //            return j.Short_name;
-        //        }
-        //        return string.Empty;  
-        //    }
-        //    else
-        //    {
-        //        return status;
-        //    }
-
-        //}
     }
 }
