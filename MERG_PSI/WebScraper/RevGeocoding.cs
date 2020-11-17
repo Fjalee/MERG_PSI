@@ -20,18 +20,18 @@ namespace WebScraper
         {
             _latitude = latitude;
             _longitude = longitude;
-            CoordsToAdress();
+            CoordsToAddress();
         }
 
-        private void CoordsToAdress()
+        private void CoordsToAddress()
         {
             var jsonResult = JsonResults();
             
             if (jsonResult.Status == "OK")
             {
-                Municipality = FindRightAdress(jsonResult, "administrative_area_level_2");
-                Microdistrict = FindRightAdress(jsonResult, "locality");
-                Street = FindRightAdress(jsonResult, "route");
+                Municipality = FindRightAddress(jsonResult, "administrative_area_level_2");
+                Microdistrict = FindRightAddress(jsonResult, "locality");
+                Street = FindRightAddress(jsonResult, "route");
             }
             else
             {
@@ -51,7 +51,7 @@ namespace WebScraper
             return JsonConvert.DeserializeObject<GoogleGeoCodeResponse>(json);
         }
 
-        private string FindRightAdress(GoogleGeoCodeResponse jsonResult, string name)
+        private string FindRightAddress(GoogleGeoCodeResponse jsonResult, string name)
         {
             var address = jsonResult.Results.SelectMany(i => i.Address_components
                                                             .SelectMany(j => j.Types
@@ -59,9 +59,6 @@ namespace WebScraper
                                                                               .Select(k => j)))
                                          .Select(x => x.Short_name)
                                          .First();
-
-
-
             return address;
         }
     }
