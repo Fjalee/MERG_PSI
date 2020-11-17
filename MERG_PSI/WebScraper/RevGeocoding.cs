@@ -37,7 +37,9 @@ namespace WebScraper
             }
             else
             {
-                //error 
+                Municipality = "";
+                Microdistrict = "";
+                Street = "";
             }
 
         }
