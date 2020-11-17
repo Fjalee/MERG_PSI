@@ -36,7 +36,7 @@
             // 
             this.ScrapeButton.Location = new System.Drawing.Point(12, 318);
             this.ScrapeButton.Name = "ScrapeButton";
-            this.ScrapeButton.Size = new System.Drawing.Size(460, 31);
+            this.ScrapeButton.Size = new System.Drawing.Size(652, 31);
             this.ScrapeButton.TabIndex = 1;
             this.ScrapeButton.Text = "Scrape";
             this.ScrapeButton.UseVisualStyleBackColor = true;
@@ -46,7 +46,7 @@
             // 
             this.TextBox1.Location = new System.Drawing.Point(12, 12);
             this.TextBox1.Name = "TextBox1";
-            this.TextBox1.Size = new System.Drawing.Size(460, 300);
+            this.TextBox1.Size = new System.Drawing.Size(652, 300);
             this.TextBox1.TabIndex = 2;
             this.TextBox1.Text = "";
             // 
@@ -54,7 +54,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 361);
+            this.ClientSize = new System.Drawing.Size(676, 361);
             this.Controls.Add(this.TextBox1);
             this.Controls.Add(this.ScrapeButton);
             this.Name = "Form1";

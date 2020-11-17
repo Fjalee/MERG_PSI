@@ -3,20 +3,20 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    public class KampasScraper : SiteScraper
+    public class DomosplusScraper : SiteScraper
     {
-        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString) : base(myUI, websiteLink, subdirectory, pageString) { }
+        public DomosplusScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString) : base(myUI, websiteLink, subdirectory, pageString) { }
 
-        public async Task ScrapeKampasWebsite()
+        public async Task ScraperDomosplusWebsite()
         {
             var websitePage = 1;
             while (!ReachedPageNoAds)
             //while (websitePage < 5) //Temporary, for testing purpose
             {
-                var linkWithPage = WebsiteLink + Subdirectory + "?" + PageString + websitePage.ToString();
+                var linkWithPage = WebsiteLink + Subdirectory + "&" + PageString + websitePage.ToString() + "&slist = 100584040";
                 base.RaiseScrapingDomainEvent(linkWithPage);
 
-                var adCardLinkScraper = new KampasAdCardLinkScraper(WebsiteLink, "k-ad-card-wide");
+                var adCardLinkScraper = new DomoplusAdCardLinkScraper(WebsiteLink, "item");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
                 adCardLinkScraper.Scrape();
 
@@ -24,7 +24,7 @@ namespace WebScraper
                 {
                     foreach (var link in adCardLinkScraper.Links)
                     {
-                        var ias = new KampasInsideAdScraper(link);
+                        var ias = new DomosplusInsideAdScraper(link);
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 

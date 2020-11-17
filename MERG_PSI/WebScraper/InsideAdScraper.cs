@@ -1,19 +1,11 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
-using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Windows.Forms;
-using System.Web;
-using System.Text.RegularExpressions;
 
 namespace WebScraper
 {
-    class InsideAdScraper : Scraper
+    abstract class InsideAdScraper : Scraper
     {
-        public override IHtmlDocument Document { get; set; }
-        private readonly Dictionary<string, string> _buildingInfo = new Dictionary<string, string>();
         public double Area { get; set; }
         public double PricePerSqM { get; set; }
         public int NumberOfRooms { get; set; }
@@ -22,154 +14,30 @@ namespace WebScraper
         public string MapLink { get; set; }
         public string MapCoords { get; set; }
         public double Price { get; set; }
-        private readonly string _link;
+
+        protected readonly string Link;
+        protected readonly Dictionary<string, string> BuildingInfo = new Dictionary<string, string>();
+
         public InsideAdScraper(string link)
         {
-            _link = link;
+            Link = link;
         }
 
-        public override void Scrape()
-        {
-            ScrapeBuildingInfo();
-            ScrapePrice();
-            ScrapeMapLink();
+        protected abstract void ParseBuildingInfoLineLabelFromVal(IElement buildingInfoLine);
 
-            if (MapLink != "")
+        protected abstract string ParseMapLinkToCoords(string link);
+
+        protected abstract void DictionaryToProperties(Dictionary<string, string> dictionary);
+
+        protected void LogIfCountIncorrect(IEnumerable<string> iEn, string valName, string link)
+        {
+            if (iEn.Count() != 1 && iEn.Count() != 0)
             {
-                MapCoords = ParseMapLinkToCoords(MapLink);
+                MyLog.IEnCountInvalid(link, iEn.Count(), valName);
             }
         }
 
-        private void ScrapeBuildingInfo()
-        {
-            if (Document == null)
-            {
-                MyLog.ErrorNoDocument();
-            }
-
-            var buildingInfoLineHtml = GetBuildingInfoLinesHtml();
-
-            if (buildingInfoLineHtml.Any())
-            {
-                foreach (var element in buildingInfoLineHtml)
-                {
-                    ParseBuildingInfoLineLabelFromVal(element);
-                }
-            }
-
-            DictionaryToProperties(_buildingInfo);
-        }
-
-        private void ScrapeMapLink()
-        {
-            if (Document == null)
-            {
-                MyLog.ErrorNoDocument();
-            }
-
-            var mapLink = GetMapLink();
-            MapLink = mapLink.Any() ? mapLink.First() : "";
-        }
-
-        private void ScrapePrice()
-        {
-            if (Document == null)
-            {
-                MyLog.ErrorNoDocument();
-            }
-
-            var priceStr = GetPriceStr();
-
-            Price = priceStr.Any() ? priceStr.First().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant() : 0;
-        }
-
-        private IEnumerable<IElement> GetBuildingInfoLinesHtml()
-        {
-            var buildingInfoLinesHtml = Document.All
-                .Where(x => x.ClassName == "label")
-                .Where(x => x.ParentElement.LocalName == "div")
-                .Where(x => x.ParentElement.ClassList.Contains("k-classified-icon-item"));
-
-            return buildingInfoLinesHtml;
-        }
-
-        private IEnumerable<string> GetMapLink()
-        {
-            var mapLink = Document.All
-                .Where(x => x.LocalName == "a")
-                .Where(x => ((IHtmlAnchorElement)x).HostName == "maps.google.com")
-                .Where(x => x.ParentElement.LocalName == "li")
-                .Where(x => x.ParentElement.ClassList.Contains("li-map-preview"))
-                .Select(x => ((IHtmlAnchorElement)x).Href);
-
-            LogIfCountIncorrect(mapLink, "MapLink");
-
-            return mapLink;
-        }
-
-        private IEnumerable<string> GetPriceStr()
-        {
-            var priceStr = Document.All
-                .Where(x => x.LocalName == "div")
-                .Where(x => x.ClassList.Contains("price"))
-                .Select(x => x.TextContent);
-
-            LogIfCountIncorrect(priceStr, "Price");
-
-            return priceStr;
-        }
-
-        private void ParseBuildingInfoLineLabelFromVal(IElement lineHtml)
-        {
-            var parsedValue = "";
-            string parsedLabel;
-            
-            try
-            {
-                parsedValue = lineHtml.FirstElementChild.InnerHtml;
-
-                var fullInfoLine = lineHtml.TextContent;
-                parsedLabel = fullInfoLine.Substring(0, fullInfoLine.IndexOf(parsedValue)).Replace("\n", "").Trim();
-            }
-            catch (NullReferenceException)
-            {
-                var fullInfoLine = lineHtml.TextContent;
-                parsedLabel = fullInfoLine.Replace("\n", "").Trim();
-            }
-
-            _buildingInfo.Add(parsedLabel, parsedValue);
-        }
-
-        private String ParseMapLinkToCoords(string linkString)
-        {
-            var link = new Uri(linkString);
-            var location = HttpUtility.ParseQueryString(link.Query).Get("q");
-
-            return Regex.IsMatch(location, @"^[0-9,.]+$") ? location : "";
-        }
-
-        private void DictionaryToProperties(Dictionary<string, string> dictionary)
-        {
-            var areaIEn = dictionary.Where(x => x.Key == "Plotas m²:").Select(x => x.Value);
-            var pricePerSqMIEn = dictionary.Where(x => x.Key == "€/m²:").Select(x => x.Value);
-            var numberOfRoomsIEn = dictionary.Where(x => x.Key == "Kambariai:").Select(x => x.Value);
-            var buildYearParsableIEn = dictionary.Where(x => x.Key == "Statybų metai:").Select(x => x.Value);
-            var floorIEn = dictionary.Where(x => x.Key == "Aukštas:").Select(x => x.Value);
-
-            Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
-            Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant() : 0;
-            PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant() : 0;
-            BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn) : 0;
-            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
-
-            LogIfCountIncorrect(floorIEn, "Floor");
-            LogIfCountIncorrect(areaIEn, "Area");
-            LogIfCountIncorrect(pricePerSqMIEn, "PricePerSqM");
-            LogIfCountIncorrect(buildYearParsableIEn, "BuildYear");
-            LogIfCountIncorrect(numberOfRoomsIEn, "NumberOfRooms");
-        }
-
-        private int ParseBuildYearToInt(IEnumerable<string> buildYearParsableIEn)
+        protected int ParseBuildYearToInt(IEnumerable<string> buildYearParsableIEn, string link)
         {
             var buildYearString = buildYearParsableIEn.First();
             if (buildYearString.Length >= 4)
@@ -178,16 +46,8 @@ namespace WebScraper
             }
             else
             {
-                MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{_link}");
+                MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{link}");
                 return 0;
-            }
-        }
-
-        private void LogIfCountIncorrect(IEnumerable<string> IEn, string valName)
-        {
-            if (IEn.Count() != 1 && IEn.Count() != 0)
-            {
-                MyLog.IEnCountInvalid(_link, IEn.Count(), valName);
             }
         }
     }
