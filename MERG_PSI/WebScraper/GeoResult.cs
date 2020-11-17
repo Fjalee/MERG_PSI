@@ -2,10 +2,8 @@
 {
     public class GoogleGeoCodeResponse
     {
-
         public string Status { get; set; }
         public Results[] Results { get; set; }
-
     }
 
     public class Results
