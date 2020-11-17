@@ -11,8 +11,8 @@ namespace WebScraper
         public string Microdistrict { get; set; }
         public string Street { get; set; }
         private const string _apiKey = "AIzaSyBNcsDmpKTd-qo5XLSkgFZcd1WYh_SvOiw";
-        private readonly string _baseUrlRGC = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
-        private readonly string _plusUrl = "&key=" + _apiKey + "&sensor=false";
+        private const string _baseUrlRGC = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
+        private const string _plusUrl = "&key=" + _apiKey + "&sensor=false";
         private readonly double _latitude;
         private readonly double _longitude;
 
