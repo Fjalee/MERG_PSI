@@ -7,10 +7,51 @@
              >
     <ContentPage.Content>
     <StackLayout>
-            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
+            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10" >
                 <Label Text="Nekilnojamasis turtas" TextColor="DarkGray" FontSize="20" FontAttributes="Bold"/>
+
+                
+                
+
+            </StackLayout>
+            <StackLayout Margin="5">
+                
+                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                        <Entry x:Name ="municipality" Placeholder="Savivaldybė" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Municipality_TextChanged"/>
+                        <Entry x:Name="street" Placeholder="Gatvė" Keyboard="Text" HorizontalOptions="Fill" WidthRequest="200" TextChanged="Street_TextChanged"/>
+                    </StackLayout>
+
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Entry x:Name="priceFrom" Placeholder="Kaina nuo" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
+                    <Entry x:Name="priceTo" Placeholder="Kaina iki" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="200" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Entry x:Name="areaFrom" Placeholder="Plotas nuo" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
+                    <Entry x:Name="areaTo" Placeholder="Plotas iki" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="200" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Entry x:Name="pricePerSqMFrom" Placeholder="Kv. metro kaina nuo" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
+                    <Entry x:Name="pricePerSqMTo" Placeholder="Kv. metro kaina iki" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="200" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Entry x:Name="buildYearFrom" Placeholder="Pastatymo m nuo" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="200"/>
+                    <Entry x:Name="buildYearTo" Placeholder="Pastatymo m iki" Keyboard="Numeric" HorizontalOptions="Fill"  />
+                    <CheckBox x:Name="noInfoBuildYear"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Entry x:Name="numberOfRoomsFrom" Placeholder="Kambarių sk. nuo" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="200"/>
+                    <Entry x:Name="numberOfRoomsTo" Placeholder="Kambarių sk. iki" Keyboard="Numeric" HorizontalOptions="Fill" />
+                    <CheckBox x:Name="noInfoRoomNumber"/>
+                </StackLayout>
+
+                <Button Text="Paieška" Clicked="Button_Clicked" />
                 
             </StackLayout>
+        
             <CollectionView x:Name="myItem" SelectionMode="Single" SelectionChanged="MyItem_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
