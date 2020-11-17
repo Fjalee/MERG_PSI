@@ -116,7 +116,7 @@ namespace WebScraper
             {
                 MyLog.ErrorNoDocument();
             }
-
+            
             MapLink = GetMapLink();
         }
 
@@ -151,7 +151,7 @@ namespace WebScraper
 
             return buildingInfoLinesHtml;
         }
-
+        
         private string GetMapLink()
         {
             var mapLinkIen = Document.All

@@ -1,11 +1,11 @@
 ﻿using CommonLibrary;
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 
 namespace WebScraper
 {
     public class RealEstate : RealEstateModel
-
     {
 
         [JsonIgnore]
@@ -13,9 +13,11 @@ namespace WebScraper
 
         [JsonIgnore]
         private readonly double _scraperPrice;
+        [JsonIgnore]
+        private readonly string _mapCoords;
 
 
-        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string street = "", int buildYear = 0, string mapCoords = "", string image = "")
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string mapCoords = "", string image = "")
         {
             Link = link;
             Area = area;
@@ -24,15 +26,22 @@ namespace WebScraper
             Floor = floor;
             _scraperPrice = scrapedPrice;
             MapLink = mapLink;
-            Municipality = municipality;
-            Street = street;
             BuildYear = buildYear;
-            MapCoords = mapCoords;
             Image = image;
+            _mapCoords = mapCoords;
 
             _calculatedPrice = pricePerSqM * area;
             Price = DeterminePrice();
+
+            Latitude = SplitCoordinates()[0];
+            Longitude = SplitCoordinates()[1];
+
+            var adress = new RevGeocoding(Latitude, Longitude);
+            Municipality = adress.Municipality;
+            Microdistrict = adress.Microdistrict;
+            Street = adress.Street;
         }
+        
         override
         public string ToString()
         {
@@ -48,7 +57,8 @@ namespace WebScraper
                    $"Municipality|    {Municipality}\n" +
                    $"Street|    {Street}\n" +
                    $"BuildYear|    {BuildYear}\n" +
-                   $"MapCoords|    {MapCoords}\n" +
+                   $"Latitude|    {Latitude}\n" +
+                   $"Longitude|    {Longitude}\n" +
                    $"\n\n\n";
         }
 
@@ -81,6 +91,15 @@ namespace WebScraper
                 return true;
             }
             else { return false; }
+        }
+
+        public double[] SplitCoordinates()
+        {
+            var darray = new double[2];
+            var latAndLong = _mapCoords.Split(',');
+            darray[0] = double.Parse(latAndLong[0], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
+            darray[1] = double.Parse(latAndLong[1], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
+            return darray;
         }
     }
 }
