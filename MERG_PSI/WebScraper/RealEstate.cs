@@ -6,7 +6,6 @@ using System.Globalization;
 namespace WebScraper
 {
     public class RealEstate : RealEstateModel
-
     {
 
         [JsonIgnore]
@@ -18,7 +17,7 @@ namespace WebScraper
         private readonly string _mapCoords;
 
 
-        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string microdistrict = "", string street = "", int buildYear = 0, string mapCoords = "")
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string microdistrict = "", string street = "", int buildYear = 0, string mapCoords = "", string image = "")
         {
             Link = link;
             Area = area;
@@ -31,6 +30,7 @@ namespace WebScraper
             Microdistrict = microdistrict;
             Street = street;
             BuildYear = buildYear;
+            Image = image;
             _mapCoords = mapCoords;
 
             _calculatedPrice = pricePerSqM * area;
@@ -44,6 +44,7 @@ namespace WebScraper
             Microdistrict = adress.Microdistrict;
             Street = adress.Street;
         }
+        
         override
         public string ToString()
         {
