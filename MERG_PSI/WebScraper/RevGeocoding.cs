@@ -7,16 +7,14 @@ namespace WebScraper
 {
     class RevGeocoding
     {
-        private const string _apiKey = "AIzaSyBNcsDmpKTd-qo5XLSkgFZcd1WYh_SvOiw";
-        private readonly string _baseUrlRGC = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
-        private readonly string _plusUrl = "&key=" + _apiKey + "&sensor=false";
         public string Municipality { get; set; }
         public string Microdistrict { get; set; }
         public string Street { get; set; }
-
+        private const string _apiKey = "AIzaSyBNcsDmpKTd-qo5XLSkgFZcd1WYh_SvOiw";
+        private readonly string _baseUrlRGC = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
+        private readonly string _plusUrl = "&key=" + _apiKey + "&sensor=false";
         private readonly double _latitude;
         private readonly double _longitude;
-
 
         public RevGeocoding(double latitude, double longitude)
         {
@@ -28,8 +26,8 @@ namespace WebScraper
         private void CoordsToAdress()
         {
             var jsonResult = JsonResults();
-            var status = jsonResult.Status;
-            if (status == "OK")
+            
+            if (jsonResult.Status == "OK")
             {
                 Municipality = FindRightAdress(jsonResult, "administrative_area_level_2");
                 Microdistrict = FindRightAdress(jsonResult, "locality");
@@ -41,7 +39,6 @@ namespace WebScraper
                 Microdistrict = "";
                 Street = "";
             }
-
         }
 
         private GoogleGeoCodeResponse JsonResults()
@@ -50,8 +47,7 @@ namespace WebScraper
             {
                 Encoding = Encoding.UTF8
             };
-            var json = wc.DownloadString(_baseUrlRGC + _latitude + ","
-                + _longitude + _plusUrl);
+            var json = wc.DownloadString(_baseUrlRGC + _latitude + "," + _longitude + _plusUrl);
             return JsonConvert.DeserializeObject<GoogleGeoCodeResponse>(json);
         }
 
