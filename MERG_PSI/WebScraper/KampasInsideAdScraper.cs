@@ -103,8 +103,7 @@ namespace WebScraper
                 MyLog.ErrorNoDocument();
             }
 
-            var mapLink = GetMapLink();
-            MapLink = mapLink.Any() ? mapLink.First() : "";
+            MapLink = GetMapLink();
         }
 
         private void ScrapePrice()
@@ -114,32 +113,28 @@ namespace WebScraper
                 MyLog.ErrorNoDocument();
             }
 
-            var priceStr = GetPriceStr();
-
-            Price = priceStr.Any() ? priceStr.First().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant() : 0;
+            Price = GetPriceStr().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant();
         }
-        
         private void ScrapeImage()
         {
             if (Document == null)
             {
                 MyLog.ErrorNoDocument();
             }
-            var image = GetImage();
-            Image = image.Any() ? image.First() : "";
+            Image = GetImage();
         }
 
-        private IEnumerable<string> GetImage()
+        private string GetImage()
         {
-            var image = Document.All
+            var imageIEn = Document.All
                 .Where(x => x.LocalName == "a")
                 .Where(x => x.ParentElement.LocalName == "section")
                 .Where(x => x.ParentElement.ClassList.Contains("inner-post-page-cover"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            LogIfCountIncorrect(image, "AdImage", Link);
+            LogIfCountIncorrect(imageIEn, "AdImage", Link);
 
-            return image;
+            return imageIEn.Any() ? imageIEn.First() : "";
         }
 
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
@@ -152,30 +147,30 @@ namespace WebScraper
             return buildingInfoLinesHtml;
         }
 
-        private IEnumerable<string> GetMapLink()
+        private string GetMapLink()
         {
-            var mapLink = Document.All
+            var mapLinkIen = Document.All
                 .Where(x => x.LocalName == "a")
                 .Where(x => ((IHtmlAnchorElement)x).HostName == "maps.google.com")
                 .Where(x => x.ParentElement.LocalName == "li")
                 .Where(x => x.ParentElement.ClassList.Contains("li-map-preview"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            LogIfCountIncorrect(mapLink, "MapLink", Link);
+            LogIfCountIncorrect(mapLinkIen, "MapLink", Link);
 
-            return mapLink;
+            return mapLinkIen.Any() ? mapLinkIen.First() : "";
         }
 
-        private IEnumerable<string> GetPriceStr()
+        private string GetPriceStr()
         {
-            var priceStr = Document.All
+            var priceStrIen = Document.All
                 .Where(x => x.LocalName == "div")
                 .Where(x => x.ClassList.Contains("price"))
                 .Select(x => x.TextContent);
 
-            LogIfCountIncorrect(priceStr, "Price", Link);
+            LogIfCountIncorrect(priceStrIen, "Price", Link);
 
-            return priceStr;
+            return priceStrIen.Any() ? priceStrIen.First() : "€0";
         }
     }
 }

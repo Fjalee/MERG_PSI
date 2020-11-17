@@ -116,9 +116,8 @@ namespace WebScraper
             {
                 MyLog.ErrorNoDocument();
             }
-
-            var mapLink = GetMapLink();
-            MapLink = mapLink.Any() ? mapLink.First() : "";
+            
+            MapLink = GetMapLink();
         }
 
         private void ScrapeImage()
@@ -127,21 +126,20 @@ namespace WebScraper
             {
                 MyLog.ErrorNoDocument();
             }
-            var image = GetImage();
-            Image = image.Any() ? image.First() : "";
+            Image = GetImage();
         }
 
-        private IEnumerable<string> GetImage()
+        private string GetImage()
         {
-            var image = Document.All
+            var imageIen = Document.All
                 .Where(x => x.LocalName == "img")
                 .Where(x => x.ParentElement.LocalName == "td")
                 .Where(x => x.ParentElement.ClassList.Contains("center"))
                 .Select(x => ((IHtmlImageElement)x).Source);
 
-            LogIfCountIncorrect(image, "AdImage", Link);
+            LogIfCountIncorrect(imageIen, "AdImage", Link);
 
-            return image;
+            return imageIen.Any() ? imageIen.First() : "";
         }
 
         private IEnumerable<IElement> GetBuildingInfoLinesHtml()
@@ -153,19 +151,19 @@ namespace WebScraper
 
             return buildingInfoLinesHtml;
         }
-
-        private IEnumerable<string> GetMapLink()
+        
+        private string GetMapLink()
         {
-            var mapLink = Document.All
+            var mapLinkIen = Document.All
                 .Where(x => x.LocalName == "a")
                 .Where(x => ((IHtmlAnchorElement)x).HostName == "www.google.com")
                 .Where(x => x.ParentElement.LocalName == "div")
                 .Where(x => x.ParentElement.ClassList.Contains("maps"))
                 .Select(x => ((IHtmlAnchorElement)x).Href);
 
-            LogIfCountIncorrect(mapLink, "MapLink", Link);
+            LogIfCountIncorrect(mapLinkIen, "MapLink", Link);
 
-            return mapLink;
+            return mapLinkIen.Any() ? mapLinkIen.First() : "";
         }
 
         private string ParsePriceToDigitOnlyStr(IEnumerable<string> priceIEN)

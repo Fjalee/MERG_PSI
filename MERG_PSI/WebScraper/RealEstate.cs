@@ -17,7 +17,7 @@ namespace WebScraper
         private readonly string _mapCoords;
 
 
-        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string microdistrict = "", string street = "", int buildYear = 0, string mapCoords = "", string image = "")
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string mapCoords = "", string image = "")
         {
             Link = link;
             Area = area;
@@ -26,9 +26,6 @@ namespace WebScraper
             Floor = floor;
             _scraperPrice = scrapedPrice;
             MapLink = mapLink;
-            Municipality = municipality;
-            Microdistrict = microdistrict;
-            Street = street;
             BuildYear = buildYear;
             Image = image;
             _mapCoords = mapCoords;
