@@ -260,9 +260,11 @@ namespace App
             return new Tuple<bool, int>(succes, 0);
 
         }
+
         private FiltersValue GetFiltersValue()
         {
-            return new FiltersValue(priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
+            return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
+               priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
               areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text),
               buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text),
               numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text),
