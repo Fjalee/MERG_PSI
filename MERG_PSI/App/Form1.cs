@@ -49,7 +49,7 @@ namespace App
             }
             map.Overlays.Add(_markOverlay);
         }
-        
+
         #region TextBox Input 
         private void Municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -240,7 +240,6 @@ namespace App
         }
 
         #endregion
-        
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
@@ -276,7 +275,7 @@ namespace App
             var lat = item.Position.Lat;
             var lng = item.Position.Lng;
             var links = _data.Where(x => x.Latitude == lat && x.Longitude == lng).Select(x => x.Link);
-            
+
             foreach (var link in links)
             {
                 System.Diagnostics.Process.Start(link);

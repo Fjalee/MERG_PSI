@@ -120,6 +120,7 @@
       <Name>CommonLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+
   <ItemGroup>
     <Content Include="scrapedData.txt" />
   </ItemGroup>

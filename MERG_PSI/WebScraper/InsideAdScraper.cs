@@ -15,9 +15,8 @@ namespace WebScraper
         public string MapCoords { get; set; }
         public double Price { get; set; }
         public string Image { get; set; }
-
-        protected readonly string Link;
-        protected readonly Dictionary<string, string> BuildingInfo = new Dictionary<string, string>();
+        protected string Link { get; }
+        protected Dictionary<string, string> BuildingInfo { get; } = new Dictionary<string, string>();
 
         public InsideAdScraper(string link)
         {

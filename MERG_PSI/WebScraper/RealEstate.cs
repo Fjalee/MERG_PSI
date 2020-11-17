@@ -13,6 +13,7 @@ namespace WebScraper
 
         [JsonIgnore]
         private readonly double _scraperPrice;
+
         [JsonIgnore]
         private readonly string _mapCoords;
 

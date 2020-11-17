@@ -13,7 +13,7 @@ namespace WebScraper
             var adCardsPaths = Document.All
                 .Where(x => x.LocalName == "a")
                 .Where(x => x.ParentElement.LocalName == "div")
-                .Where(x => x.ParentElement.ClassList.Contains(_classNameForAdCard))
+                .Where(x => x.ParentElement.ClassList.Contains(ClassNameForAdCard))
                 .Select(x => ((IHtmlAnchorElement)x).PathName);
 
             return adCardsPaths;
