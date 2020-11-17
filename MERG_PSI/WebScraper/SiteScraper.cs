@@ -55,6 +55,5 @@ namespace WebScraper
             }
             else { return false; }
         }
-
     }
 }

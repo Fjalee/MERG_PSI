@@ -69,6 +69,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="GeoResult.cs" />
     <Compile Include="InsideAdScraper.cs" />
     <Compile Include="KampasInsideAdScraper.cs" />
     <Compile Include="KampasScraper.cs" />
@@ -79,6 +81,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KampasAdCardLinkScraper.cs" />
     <Compile Include="RealEstate.cs" />
+
+    <Compile Include="RevGeocoding.cs" />
     <Compile Include="Scraper.cs" />
     <Compile Include="ScrapingDomainEventArgs.cs" />
     <Compile Include="SiteScraper.cs" />
@@ -115,6 +119,10 @@
       <Project>{0F84E5B8-886F-4C99-9151-3B95781248DA}</Project>
       <Name>CommonLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="scrapedData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
