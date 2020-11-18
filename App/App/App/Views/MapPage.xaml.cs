@@ -9,6 +9,15 @@ namespace App.Views
     public partial class MapPage : ContentPage
     {
         readonly RealEstateModel MyValue = new RealEstateModel();
+        public MapPage ()
+        {
+            InitializeComponent();
+            
+            var position = new Position(55.1694, 23.8813);
+            var mapSpan = new MapSpan(position, 4, 4);
+            var map = new Map(mapSpan);
+            container.Children.Add(map);
+        }
         public MapPage(RealEstateModel realEstate)
         {
             InitializeComponent();
