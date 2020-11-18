@@ -9,29 +9,17 @@ namespace App
     {
         public List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
         {
-            if (!string.IsNullOrEmpty(municipality))
-            {
-                return houses.Where(house => house.Municipality == municipality).ToList();
-            }
-            return houses;
+            return !string.IsNullOrEmpty(municipality) ? houses.Where(house => house.Municipality.Contains(municipality)).ToList() : houses;
         }
 
         public List<RealEstate> FilterRealEstateByMicrodistrict(List<RealEstate> houses, string microdistrict)
         {
-            if (!string.IsNullOrEmpty(microdistrict))
-            {
-                return houses.Where(house => house.Microdistrict == microdistrict).ToList();
-            }
-            return houses;
+            return !string.IsNullOrEmpty(microdistrict) ? houses.Where(house => house.Microdistrict.Contains(microdistrict)).ToList() : houses;
         }
 
         public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street)
         {
-            if (!string.IsNullOrEmpty(street))
-            {
-                return houses.Where(house => house.Street == street).ToList();
-            }
-            return houses;
+            return !string.IsNullOrEmpty(street) ? houses.Where(house => house.Street.Contains(street)).ToList() : houses;
         }
 
         public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double areaFrom, double areaTo, bool areaFromState,bool areaToState)
