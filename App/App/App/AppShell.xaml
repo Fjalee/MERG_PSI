@@ -18,27 +18,28 @@
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property ="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}"/>
                 <Setter Property ="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value ="#95FFFFFF"/>
-                <Setter Property ="Shell.TabBarTitleColor" Value ="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value ="Black"/>
+                <Setter Property ="Shell.TabBarTitleColor" Value ="Black"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
         </ResourceDictionary>
     </Shell.Resources>
-    
+
     <TabBar>
-        <Tab Title="Map" Icon="tab_feed.png">
-            <ShellContent ContentTemplate ="{DataTemplate local:HomePage}"/>
-        </Tab>
-        
-        <Tab Title="Home" Icon="tab_about.png">
-            <ShellContent ContentTemplate ="{DataTemplate local:HomePage}"/>
-        </Tab>
-        
-        <Tab Title="About" Icon="tab_about.png">
+
+        <Tab Title="Home" Icon="https://img.icons8.com/ios/50/000000/home--v1.png">
             <ShellContent ContentTemplate ="{DataTemplate local:HomePage}"/>
         </Tab>
 
-        <Tab Title="Favourites" Icon="tab_about.png">
+        <Tab Title="Map" Icon="https://img.icons8.com/ios/24/000000/world.png">
+            <ShellContent ContentTemplate ="{DataTemplate local:HomePage}"/>
+        </Tab>
+
+        <Tab Title="About" Icon="https://img.icons8.com/ios/24/000000/about.png">
+            <ShellContent ContentTemplate ="{DataTemplate local:HomePage}"/>
+        </Tab>
+
+        <Tab Title="Favourites" Icon="https://img.icons8.com/ios/24/000000/add-to-favorites--v1.png">
             <ShellContent ContentTemplate ="{DataTemplate local:HomePage}"/>
         </Tab>
     </TabBar>
