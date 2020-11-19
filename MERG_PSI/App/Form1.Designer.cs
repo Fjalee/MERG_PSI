@@ -59,6 +59,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.map = new GMap.NET.WindowsForms.GMapControl();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.microdistrict = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -85,11 +87,13 @@
             this.panel2.Controls.Add(this.areaFrom);
             this.panel2.Controls.Add(this.priceFrom);
             this.panel2.Controls.Add(this.street);
+            this.panel2.Controls.Add(this.microdistrict);
             this.panel2.Controls.Add(this.municipality);
             this.panel2.Controls.Add(this.objTipe);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -303,156 +307,83 @@
             // 
             // street
             // 
-            this.street.AutoCompleteCustomSource.AddRange(new string[] {
-            "Mokyklos g.",
-            "Nadruvos g. ",
-            "V. Nagevičiaus g. ",
-            "Nakvišų g. ",
-            "T. Narbuto g. ",
-            "Naručio g. ",
-            "Stanislovo Narutavičiaus g. ",
-            "Nasturtų g. ",
-            "Naugarduko g. ",
-            "Naujakiemio g. ",
-            "Naujakurių g. ",
-            "Naujakurių g. ",
-            "Naujakurių g. ",
-            "Naujakurių g. ",
-            "Naujakurių g. ",
-            "Naujanerių g. ",
-            "Naujanerių Sodų 1-oji g. ",
-            "Naujanerių Sodų 2-oji g. ",
-            "Naujanerių Sodų 3-ioji g.",
-            "Naujanerių Sodų 4-oji g. ",
-            "Naujanerių Sodų 5-oji g. ",
-            "Naujanerių Sodų 6-oji g. ",
-            "Naujanerių Sodų 7-oji g. ",
-            "Adutiškio g.",
-            "Afindevičių g. ",
-            "Agrastų g. ",
-            "Aguonų g. ",
-            "Aido g. ",
-            "Aidukaičių g.",
-            "Airių g. ",
-            "Jono Aisčio g. ",
-            "Aismarių g. ",
-            "Aitvarų g. ",
-            "Ajerų g. ",
-            "Akacijų g. ",
-            "Akademijos g. ",
-            "Akmenės g. ",
-            "Akmenų g. ",
-            "Alantos g. ",
-            "Algirdo g. ",
-            "Alytaus g. ",
-            "Alko g. ",
-            "Alksnyno g.",
-            "Antavilių Sodų 1-oji g. ",
-            "Antavilių Sodų 2-oji g.",
-            "Antavilių Sodų 3-ioji g.",
-            "Antavilių Sodų 4-oji g.",
-            "Antavilių Sodų 5-oji g.",
-            "Antavilių Sodų 6-oji g.",
-            "Antavilių Sodų 7-oji g.",
-            "Antavilių Sodų 8-oji g. ",
-            "Antavilių Sodų 9-oji g. ",
-            "Antavilių Sodų 10-oji g.",
-            "Antavilių Sodų 11-oji g.",
-            "Antavilių Sodų 12-oji g.",
-            "Antežerių g. ",
-            "M. Antokolskio g.",
-            "Edinburgo g. ",
-            "Eglinės Sodų g. ",
-            "Eglinės Sodų 1-oji g. ",
-            "Eglinės Sodų 2-oji g. ",
-            "Eglinės Sodų 3-ioji g.",
-            "Eglinės Sodų 4-oji g. ",
-            "Eglinės Sodų 5-oji g. ",
-            "Eglinės Sodų 6-oji g. ",
-            "Eglinės Sodų 7-oji g. ",
-            "Basanavičiaus g.",
-            "Pievų g.",
-            "Sodų g."});
-            this.street.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.street.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.street.Location = new System.Drawing.Point(21, 191);
             this.street.Multiline = true;
             this.street.Name = "street";
             this.street.Size = new System.Drawing.Size(182, 29);
             this.street.TabIndex = 2;
-            this.street.Visible = false;
             this.street.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Street_KeyPress);
             // 
             // municipality
             // 
             this.municipality.AutoCompleteCustomSource.AddRange(new string[] {
-            "",
-            "Alytaus m.",
-            "Alytaus r.",
-            "Anykščių r.",
-            "Birštono",
-            "Biržų r.",
-            "Druskininkų",
-            "Elektrėnų",
-            "Ignalinos r.",
-            "Jonavos r.",
-            "Joniškio r.",
-            "Jurbarko r.",
-            "Kaišiadorių r.",
-            "Kalvarijos",
-            "Kauno m.",
-            "Kauno r.",
-            "Kazlų Rūdos",
-            "Kelmės r.",
-            "Kėdainių r.",
-            "Klaipėdos m.",
-            "Klaipėdos r.",
-            "Kretingos r.",
-            "Kupiškio r.",
-            "Lazdijų r.",
-            "Marijampolės",
-            "Mažeikių r.",
-            "Molėtų r.",
-            "Neringos",
-            "Pagėgių",
-            "Pakruojo r.",
-            "Palangos m.",
-            "Panevėžio m.",
-            "Panevėžio r.",
-            "Pasvalio r.",
-            "Plungės r.",
-            "Prienų r.",
-            "Radviliškio r.",
-            "Raseinių r.",
-            "Rietavo",
-            "Rokiškio r.",
-            "Skuodo r.",
-            "Šakių r.",
-            "Šalčininkų r.",
-            "Šiaulių m.",
-            "Šiaulių r.",
-            "Šilalės r.",
-            "Šilutės r.",
-            "Širvintų r.",
-            "Švenčionių r.",
-            "Tauragės r.",
-            "Telšių r.",
-            "Trakų r.",
-            "Ukmergės r.",
-            "Utenos r.",
-            "Varėnos r.",
-            "Vilkaviškio r.",
-            "Vilniaus m.",
-            "Vilniaus r.",
-            "Visagino m.",
-            "Zarasų r."});
+            "Akmenės r. sav.",
+            "Alytaus m. sav.",
+            "Alytaus r. sav.",
+            "Anykščių r. sav.",
+            "Birštono sav.",
+            "Biržų r. sav.",
+            "Druskininkų sav.",
+            "Elektrėnų sav.",
+            "Ignalinos r. sav.",
+            "Jonavos r. sav.",
+            "Joniškio r. sav.",
+            "Jurbarko r. sav.",
+            "Kaišiadorių r. sav.",
+            "Kalvarijos sav.",
+            "Kauno m. sav.",
+            "Kauno r. sav.",
+            "Kazlų Rūdos sav.",
+            "Kėdainių r. sav.",
+            "Kelmės r. sav.",
+            "Klaipėdos m. sav.",
+            "Klaipėdos r. sav.",
+            "Kretingos r. sav.",
+            "Kupiškio r. sav.",
+            "Lazdijų r. sav.",
+            "Marijampolės sav.",
+            "Mažeikių r. sav.",
+            "Molėtų r. sav.",
+            "Neringos sav.",
+            "Pagėgių sav.",
+            "Pakruojo r. sav.",
+            "Palangos m. sav.",
+            "Panevėžio m. sav.",
+            "Panevėžio r. sav.",
+            "Pasvalio r. sav.",
+            "Plungės r. sav.",
+            "Prienų r. sav.",
+            "Radviliškio r. sav.",
+            "Raseinių r. sav.",
+            "Rietavo sav.",
+            "Rokiškio r. sav.",
+            "Skuodo r. sav.",
+            "Šakių r. sav.",
+            "Šalčininkų r. sav.",
+            "Šiaulių miesto sav.",
+            "Šiaulių r. sav.",
+            "Šilalės r. sav.",
+            "Šilutės r. sav.",
+            "Širvintų r. sav.",
+            "Švenčionių r. sav.",
+            "Tauragės r. sav.",
+            "Telšių r. sav.",
+            "Trakų r. sav.",
+            "Ukmergės r. sav.",
+            "Utenos r. sav.",
+            "Varėnos r. sav.",
+            "Vilkaviškio r. sav.",
+            "Vilniaus m. sav.",
+            "Vilniaus r. sav.",
+            "Visagino sav.",
+            "Zarasų r. sav."});
             this.municipality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.municipality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.municipality.Location = new System.Drawing.Point(21, 125);
+            this.municipality.Location = new System.Drawing.Point(19, 54);
             this.municipality.Name = "municipality";
             this.municipality.Size = new System.Drawing.Size(182, 26);
             this.municipality.TabIndex = 2;
-            this.municipality.Visible = false;
             this.municipality.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Municipality_KeyPress);
             // 
             // objTipe
@@ -469,7 +400,7 @@
             "Patalpos nuomai",
             "Sklypas pardavimui",
             "Sklypas nuomai"});
-            this.objTipe.Location = new System.Drawing.Point(21, 65);
+            this.objTipe.Location = new System.Drawing.Point(139, 4);
             this.objTipe.Name = "objTipe";
             this.objTipe.Size = new System.Drawing.Size(182, 28);
             this.objTipe.TabIndex = 1;
@@ -510,7 +441,6 @@
             this.label4.Size = new System.Drawing.Size(60, 24);
             this.label4.TabIndex = 0;
             this.label4.Text = "Gatvė";
-            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -518,12 +448,11 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Modern No. 20", 11F);
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(16, 95);
+            this.label3.Location = new System.Drawing.Point(18, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 24);
             this.label3.TabIndex = 0;
             this.label3.Text = "Savivaldybė";
-            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -531,7 +460,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(16, 32);
+            this.label2.Location = new System.Drawing.Point(-4, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 24);
             this.label2.TabIndex = 0;
@@ -593,6 +522,27 @@
             this.panel3.Size = new System.Drawing.Size(1275, 26);
             this.panel3.TabIndex = 2;
             // 
+            // microdistrict
+            // 
+            this.microdistrict.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.microdistrict.Location = new System.Drawing.Point(19, 134);
+            this.microdistrict.Name = "microdistrict";
+            this.microdistrict.Size = new System.Drawing.Size(182, 26);
+            this.microdistrict.TabIndex = 2;
+            this.microdistrict.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Municipality_KeyPress);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Modern No. 20", 11F);
+            this.label10.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label10.Location = new System.Drawing.Point(18, 93);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(200, 36);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Mikrorajonas";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -644,6 +594,8 @@
         private System.Windows.Forms.Label label8;
         private GMap.NET.WindowsForms.GMapControl map;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox microdistrict;
+        private System.Windows.Forms.Label label10;
     }
 }
 
