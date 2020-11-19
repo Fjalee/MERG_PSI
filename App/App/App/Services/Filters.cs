@@ -7,6 +7,20 @@ namespace App.Services
 {
     class Filters
     {
+        public List<RealEstateModel> FilterRealEstateByMunicipality(List<RealEstateModel> houses, string municipality)
+        {
+            return !string.IsNullOrEmpty(municipality) ? houses.Where(house => house.Municipality.Contains(municipality)).ToList() : houses;
+        }
+
+        public List<RealEstateModel> FilterRealEstateByMicrodistrict(List<RealEstateModel> houses, string microdistrict)
+        {
+            return !string.IsNullOrEmpty(microdistrict) ? houses.Where(house => house.Microdistrict.Contains(microdistrict)).ToList() : houses;
+        }
+
+        public List<RealEstateModel> FilterRealEstateByStreet(List<RealEstateModel> houses, string street)
+        {
+            return !string.IsNullOrEmpty(street) ? houses.Where(house => house.Street.Contains(street)).ToList() : houses;
+        }
         public List<RealEstateModel> FilterRealEstateByArea(List<RealEstateModel> houses, double areaFrom, double areaTo, bool areaFromState, bool areaToState)
         {
             if (areaFromState && areaToState)

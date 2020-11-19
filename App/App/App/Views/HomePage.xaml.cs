@@ -68,7 +68,9 @@ namespace App.Views
         }
         private FiltersValue GetFiltersValue()
         {
-            return new FiltersValue(priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
+            return new FiltersValue(
+              municipality: municipality.Text, street: street.Text, microdistrict: microdistrict.Text,
+              priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
               areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text),
               buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text),
               numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text),
@@ -85,6 +87,15 @@ namespace App.Views
             }
             return new Tuple<bool, int>(succes, 0);
 
+        }
+
+        private void Microdistrict_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+            }
         }
     }
 }

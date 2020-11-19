@@ -18,8 +18,13 @@
                 
                     <StackLayout Grid.Row="1" Orientation="Horizontal">
                         <Entry x:Name ="municipality" Placeholder="Savivaldybė" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Municipality_TextChanged"/>
-                        <Entry x:Name="street" Placeholder="Gatvė" Keyboard="Text" HorizontalOptions="Fill" WidthRequest="200" TextChanged="Street_TextChanged"/>
-                    </StackLayout>
+                    <Entry x:Name ="microdistrict" Placeholder="Mikrorajonas" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Microdistrict_TextChanged"/>
+                    <Entry x:Name="street" Placeholder="Gatvė" Keyboard="Text" HorizontalOptions="Fill" WidthRequest="150" TextChanged="Street_TextChanged"/>
+                    
+                </StackLayout>
+                <StackLayout >
+                   
+                </StackLayout>
 
                 <StackLayout Grid.Row="1" Orientation="Horizontal">
                     <Entry x:Name="priceFrom" Placeholder="Kaina nuo" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
