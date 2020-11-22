@@ -30,7 +30,7 @@ namespace WebScraper
             }
         }
 
-        static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street, double latitude, double longitude)
+        static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, double latitude, double longitude, string municipality, string microdistrict, string street)
         {
             var message = $"Link|    {link}\n" +
                 $"MapLink|    {mapLink}\n" +
@@ -40,7 +40,8 @@ namespace WebScraper
                 $"Area|    {area}\n" +
                 $"Coordinates|    {latitude},{longitude}\n" +
                 $"Municipality|    {municipality}\n" +
-                $"Street|    {street}\n";
+                $"Street|    {street}\n" +
+                $"Microdisctrict|    {microdistrict}\n";
 
             using (var w = File.AppendText(_fileNameLogAdInvalid))
             {

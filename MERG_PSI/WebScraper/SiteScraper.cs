@@ -46,15 +46,20 @@ namespace WebScraper
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
-                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude))
+                        var adress = new RevGeocoding(ias.Latitude, ias.Longitude);
+                        var municipality = adress.Municipality;
+                        var microdistrict = adress.Microdistrict;
+                        var street = adress.Street;
+
+                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude, municipality, microdistrict, street))
                         {
                             ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
-                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, image: ias.Image, latitude: ias.Latitude, longitude: ias.Longitude));
+                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, image: ias.Image, latitude: ias.Latitude, longitude: ias.Longitude, municipality: municipality, microdistrict: microdistrict, street: street));
                         }
 
                         else
                         {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.Latitude, ias.Longitude);
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude, municipality, microdistrict, street);
                         }
                     }
                     websitePage++;
@@ -67,17 +72,22 @@ namespace WebScraper
 
         protected abstract InsideAdScraper InstanciateInsideAdScraperObject(string link);
 
-        protected bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, double latitude, double longitude)
+        //fix to private
+        protected bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, double latitude, double longitude, string municipality, string microdistrict, string street)
         {
             var calculatedPrice = pricePerSqM * area;
             if (
-                latitude == 0 ||
-                longitude == 0 ||
-                link == "" ||
-                mapLink == "" ||
-                numberOfRooms == 0 ||
-                (calculatedPrice == 0 && scrapedPrice == 0) ||
-                !IsValuesClose(calculatedPrice, scrapedPrice, 1000))
+                    latitude == 0 ||
+                    longitude == 0 ||
+                    link == "" ||
+                    mapLink == "" ||
+                    numberOfRooms == 0 ||
+                    (calculatedPrice == 0 && scrapedPrice == 0) ||
+                    !IsValuesClose(calculatedPrice, scrapedPrice, 1000) ||
+                    municipality == "" ||
+                    street == "" ||
+                    microdistrict == "" 
+                )
             {
                 return false;
             }

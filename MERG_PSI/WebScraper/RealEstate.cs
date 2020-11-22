@@ -14,7 +14,7 @@ namespace WebScraper
         [JsonIgnore]
         private readonly double _scraperPrice;
 
-        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string image = "", double latitude = 0, double longitude = 0)
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string image = "", double latitude = 0, double longitude = 0, string municipality = "", string microdistrict = "" , string street = "")
         {
             Link = link;
             Area = area;
@@ -27,18 +27,15 @@ namespace WebScraper
             Image = image;
             Latitude = latitude;
             Longitude = longitude;
+            Municipality = municipality;
+            Microdistrict = microdistrict;
+            Street = street;
 
             _calculatedPrice = pricePerSqM * area;
             Price = DeterminePrice();
-
-            var adress = new RevGeocoding(Latitude, Longitude);
-            Municipality = adress.Municipality;
-            Microdistrict = adress.Microdistrict;
-            Street = adress.Street;
         }
         
-        override
-        public string ToString()
+        override public string ToString()
         {
             return $"Link|    {Link}\n" +
                    $"Area|    {Area}\n" +
