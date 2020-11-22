@@ -30,7 +30,7 @@ namespace WebScraper
             }
         }
 
-        static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street, string mapCoords)
+        static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street, double latitude, double longitude)
         {
             var message = $"Link|    {link}\n" +
                 $"MapLink|    {mapLink}\n" +
@@ -38,7 +38,7 @@ namespace WebScraper
                 $"ScrapedPrice|    {scrapedPrice}\n" +
                 $"PricePerSqM|    {pricePerSqM}\n" +
                 $"Area|    {area}\n" +
-                $"MapCoodinates|    {mapCoords}\n" +
+                $"Coordinates|    {latitude},{longitude}\n" +
                 $"Municipality|    {municipality}\n" +
                 $"Street|    {street}\n";
 

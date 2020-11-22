@@ -14,11 +14,7 @@ namespace WebScraper
         [JsonIgnore]
         private readonly double _scraperPrice;
 
-        [JsonIgnore]
-        private readonly string _mapCoords;
-
-
-        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string mapCoords = "", string image = "")
+        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string image = "", double latitude = 0, double longitude = 0)
         {
             Link = link;
             Area = area;
@@ -29,13 +25,11 @@ namespace WebScraper
             MapLink = mapLink;
             BuildYear = buildYear;
             Image = image;
-            _mapCoords = mapCoords;
+            Latitude = latitude;
+            Longitude = longitude;
 
             _calculatedPrice = pricePerSqM * area;
             Price = DeterminePrice();
-
-            Latitude = SplitCoordinates()[0];
-            Longitude = SplitCoordinates()[1];
 
             var adress = new RevGeocoding(Latitude, Longitude);
             Municipality = adress.Municipality;
@@ -92,15 +86,6 @@ namespace WebScraper
                 return true;
             }
             else { return false; }
-        }
-
-        public double[] SplitCoordinates()
-        {
-            var darray = new double[2];
-            var latAndLong = _mapCoords.Split(',');
-            darray[0] = double.Parse(latAndLong[0], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
-            darray[1] = double.Parse(latAndLong[1], NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
-            return darray;
         }
     }
 }

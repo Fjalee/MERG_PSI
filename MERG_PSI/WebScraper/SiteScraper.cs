@@ -46,15 +46,15 @@ namespace WebScraper
                         ias.Document = await ias.GetIHtmlDoc(link);
                         ias.Scrape();
 
-                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
+                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude))
                         {
                             ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
-                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords, image: ias.Image)); //fix Municipality, Street instead of "", ""
+                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, image: ias.Image, latitude: ias.Latitude, longitude: ias.Longitude));
                         }
 
                         else
                         {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.Latitude, ias.Longitude);
                         }
                     }
                     websitePage++;
@@ -67,20 +67,17 @@ namespace WebScraper
 
         protected abstract InsideAdScraper InstanciateInsideAdScraperObject(string link);
 
-        protected bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string mapCoords)
+        protected bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, double latitude, double longitude)
         {
             var calculatedPrice = pricePerSqM * area;
             if (
-                //fix put area and priceerarea
-
-                mapCoords == "" ||
+                latitude == 0 ||
+                longitude == 0 ||
                 link == "" ||
                 mapLink == "" ||
                 numberOfRooms == 0 ||
                 (calculatedPrice == 0 && scrapedPrice == 0) ||
-                !IsValuesClose(calculatedPrice, scrapedPrice, 1000)
-                /*Municipality == /*fix to be implemented*/
-                /*Street == /*fix to be implemented*/)
+                !IsValuesClose(calculatedPrice, scrapedPrice, 1000))
             {
                 return false;
             }
