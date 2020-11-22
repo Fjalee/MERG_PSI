@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    abstract class Scraper
-    {
+   abstract class Scraper
+   {
         public IHtmlDocument Document { get; set; }
 
         public async Task<IHtmlDocument> GetIHtmlDoc(string siteUrl)
@@ -30,5 +30,5 @@ namespace WebScraper
         }
 
         public abstract void Scrape();
-    }
+   }
 }

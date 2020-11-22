@@ -3,46 +3,18 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    public class KampasScraper : SiteScraper
+    class KampasScraper : SiteScraper
     {
-        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString) : base(myUI, websiteLink, subdirectory, pageString) { }
+        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol) : base(myUI, websiteLink, subdirectory, pageString, symbol) { }
 
-        public async Task ScrapeKampasWebsite()
+        protected override AdCardLinkScraper InstanciateAdCardLinkScraperObject()
         {
-            var websitePage = 1;
-            while (!ReachedPageNoAds)
-            //while (websitePage < 5) //Temporary, for testing purpose
-            {
-                var linkWithPage = WebsiteLink + Subdirectory + "?" + PageString + websitePage.ToString();
-                base.RaiseScrapingDomainEvent(linkWithPage);
+            return new KampasAdCardLinkScraper(WebsiteLink, "k-ad-card-wide");
+        }
 
-                var adCardLinkScraper = new KampasAdCardLinkScraper(WebsiteLink, "k-ad-card-wide");
-                adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
-                adCardLinkScraper.Scrape();
-
-                if (adCardLinkScraper.Links.Any())
-                {
-                    foreach (var link in adCardLinkScraper.Links)
-                    {
-                        var ias = new KampasInsideAdScraper(link);
-                        ias.Document = await ias.GetIHtmlDoc(link);
-                        ias.Scrape();
-
-                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
-                        {
-                            ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
-                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords, image: ias.Image)); //fix Municipality, Street instead of "", ""
-                        }
-
-                        else
-                        {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
-                        }
-                    }
-                    websitePage++;
-                }
-                else { ReachedPageNoAds = true; }
-            }
+        protected override InsideAdScraper InstanciateInsideAdScraperObject(string link)
+        {
+            return new KampasInsideAdScraper(link);
         }
     }
 }
