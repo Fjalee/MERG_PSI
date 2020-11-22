@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WebScraper
@@ -12,6 +13,8 @@ namespace WebScraper
         static readonly string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
         static readonly string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
 
+        static readonly ReaderWriterLockSlim _rwLock = new ReaderWriterLockSlim();
+
         static MyLog()
         {
             DelFileIfExist(_fileNameLogMsg);
@@ -24,10 +27,7 @@ namespace WebScraper
 
         static public void Msg(string message)
         {
-            using (var w = File.AppendText(_fileNameLogMsg))
-            {
-                w.WriteLine(message);
-            }
+            ThreadSafeWrite(message);
         }
 
         static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string municipality, string street, string mapCoords)
@@ -42,40 +42,28 @@ namespace WebScraper
                 $"Municipality|    {municipality}\n" +
                 $"Street|    {street}\n";
 
-            using (var w = File.AppendText(_fileNameLogAdInvalid))
-            {
-                w.WriteLine(message);
-            }
+            ThreadSafeWrite(message);
         }
 
         static public void IEnCountInvalid(string link, int count, string name)
         {
             var message = $"Invalid IEnumerable count: {name} count is {count}\n{link}";
 
-            using (var w = File.AppendText(_fileNameLogIEnCountInvalid))
-            {
-                w.WriteLine(message);
-            }
+            ThreadSafeWrite(message);
         }
 
         static public void CantParse(string valToParse)
         {
             var message = $"Couldn't parse value: \"{valToParse}\"";
 
-            using (var w = File.AppendText(_fileNameLogCantParse))
-            {
-                w.WriteLine(message);
-            }
+            ThreadSafeWrite(message);
         }
 
         static public void ErrorNoDocument()
         {
             var message = "Didnt get IHTMLDocument first";
 
-            using (var w = File.AppendText(_fileNameLogErrorNoDocument))
-            {
-                w.WriteLine(message);
-            }
+            ThreadSafeWrite(message);
 
             MessageBox.Show("Didnt get IHTMLDocument first", "Error",
             MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -85,10 +73,7 @@ namespace WebScraper
         {
             var message = $"Link doesn't contain coordinates: \"{link}\"";
 
-            using (var w = File.AppendText(_fileNameLogDnContainCoords))
-            {
-                w.WriteLine(message);
-            }
+            ThreadSafeWrite(message);
         }
 
         static private void DelFileIfExist(string fileName)
@@ -96,6 +81,23 @@ namespace WebScraper
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
+            }
+        }
+
+        static private void ThreadSafeWrite(string text)
+        {
+            _rwLock.EnterWriteLock();
+
+            try
+            {
+                using (var w = File.AppendText(_fileNameLogMsg))
+                {
+                    w.WriteLine(text);
+                }
+            }
+            finally
+            {
+                _rwLock.ExitWriteLock();
             }
         }
     }
