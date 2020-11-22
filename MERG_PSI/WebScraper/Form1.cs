@@ -20,7 +20,11 @@ namespace WebScraper
 
         public void OnScrapingDomain(object source, ScrapingDomainEventArgs e)
         {
-            TextBox1.AppendText("\n" + "Scraping domain...  " + e.Domain + "\n");
+            TextBox1.BeginInvoke
+            (
+                new Action<string>((domain) => TextBox1.AppendText("\n" + "Scraping domain...  " + domain + "\n"))
+                , e.Domain
+            );
         }
     }
 }
