@@ -53,12 +53,15 @@ namespace WebScraper
 
         private string FindRightAddress(GoogleGeoCodeResponse jsonResult, string name)
         {
-            var address = jsonResult.Results.SelectMany(i => i.Address_components
+            var addresses = jsonResult.Results.SelectMany(i => i.Address_components
                                                             .SelectMany(j => j.Types
                                                                               .Where(k => k == name)
                                                                               .Select(k => j)))
-                                         .Select(x => x.Short_name)
-                                         .First();
+                                         .Select(x => x.Short_name);
+
+            var address = addresses.Any() ? addresses.First() : "";
+            //need to log if !addresses.Any()
+
             return address;
         }
     }

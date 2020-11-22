@@ -28,8 +28,8 @@ namespace WebScraper
         public async Task ScrapeWebsite()
         {
             var websitePage = 1;
-            while (!ReachedPageNoAds)
-            //while (websitePage < 5) //Temporary, for testing purpose
+            //while (!ReachedPageNoAds)
+            while (websitePage < 5) //Temporary, for testing purpose
             {
                 var linkWithPage = WebsiteLink + Subdirectory + Symbol + PageString + websitePage.ToString();
 
