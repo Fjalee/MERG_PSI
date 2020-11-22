@@ -7,14 +7,15 @@ namespace WebScraper
     {
         public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString) : base(myUI, websiteLink, subdirectory, pageString) { }
 
-        public async Task ScrapeKampasWebsite()
+        public async void ScrapeKampasWebsite()
         {
             var websitePage = 1;
-            while (!ReachedPageNoAds)
-            //while (websitePage < 5) //Temporary, for testing purpose
+            //while (!ReachedPageNoAds)
+            while (websitePage < 5) //Temporary, for testing purpose
             {
                 var linkWithPage = WebsiteLink + Subdirectory + "?" + PageString + websitePage.ToString();
                 base.RaiseScrapingDomainEvent(linkWithPage);
+                System.Console.WriteLine(linkWithPage);
 
                 var adCardLinkScraper = new KampasAdCardLinkScraper(WebsiteLink, "k-ad-card-wide");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);

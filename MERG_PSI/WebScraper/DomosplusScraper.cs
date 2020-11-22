@@ -7,14 +7,15 @@ namespace WebScraper
     {
         public DomosplusScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString) : base(myUI, websiteLink, subdirectory, pageString) { }
 
-        public async Task ScraperDomosplusWebsite()
+        public async void ScraperDomosplusWebsite()
         {
             var websitePage = 1;
-            while (!ReachedPageNoAds)
-            //while (websitePage < 5) //Temporary, for testing purpose
+            //while (!ReachedPageNoAds)
+            while (websitePage < 5) //Temporary, for testing purpose
             {
                 var linkWithPage = WebsiteLink + Subdirectory + "&" + PageString + websitePage.ToString() + "&slist = 100584040";
                 base.RaiseScrapingDomainEvent(linkWithPage);
+                System.Console.WriteLine(linkWithPage);
 
                 var adCardLinkScraper = new DomoplusAdCardLinkScraper(WebsiteLink, "item");
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);

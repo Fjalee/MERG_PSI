@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebScraper
@@ -11,16 +12,18 @@ namespace WebScraper
             _myUI = myUI;
         }
 
-        public async Task ScrapeAllWebsites()
+        public async void ScrapeAllWebsites()
         {
             var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=");
-            var task1 = kampasScraper.ScrapeKampasWebsite();
+            var thread1 = new Thread(kampasScraper.ScrapeKampasWebsite);
+            thread1.Start();
 
             var domosplusScraper = new DomosplusScraper(_myUI, @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=");
-            var task2 = domosplusScraper.ScraperDomosplusWebsite();
+            var thread2 = new Thread(new ThreadStart(domosplusScraper.ScraperDomosplusWebsite));
+            thread2.Start();
 
-            await Task.WhenAll(task1, task2);
-
+            thread1.Join();
+            thread2.Join();
             var allScrapedRealEstate = new List<RealEstate>();
             allScrapedRealEstate.AddRange(domosplusScraper.ScrapedRealEstate);
             allScrapedRealEstate.AddRange(kampasScraper.ScrapedRealEstate);

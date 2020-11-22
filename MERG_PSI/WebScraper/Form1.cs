@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WebScraper
@@ -13,7 +14,9 @@ namespace WebScraper
         public async void ButtonScrape_Click(object sender, EventArgs e)
         {
             var allScrapers = new AllScrapers(this);
-            await allScrapers.ScrapeAllWebsites();
+
+            var thread = new Thread(allScrapers.ScrapeAllWebsites);
+            thread.Start();
 
             TextBox1.AppendText("Done\n");
         }
