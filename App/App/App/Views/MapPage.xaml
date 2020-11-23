@@ -5,6 +5,7 @@
              x:Class="App.Views.MapPage">
     <ContentPage.Content>
         <StackLayout x:Name="container">
+
             
         </StackLayout>
     </ContentPage.Content>
