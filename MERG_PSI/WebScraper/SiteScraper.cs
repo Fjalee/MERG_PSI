@@ -72,8 +72,7 @@ namespace WebScraper
 
         protected abstract InsideAdScraper InstanciateInsideAdScraperObject(string link);
 
-        //fix to private
-        protected bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, double latitude, double longitude, string municipality, string microdistrict, string street)
+        private bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, double latitude, double longitude, string municipality, string microdistrict, string street)
         {
             var calculatedPrice = pricePerSqM * area;
             if (
@@ -94,7 +93,7 @@ namespace WebScraper
             else { return true; }
         }
 
-        protected bool IsValuesClose(double value1, double value2, int roundErr)
+        private bool IsValuesClose(double value1, double value2, int roundErr)
         {
             var diff = value1 - value2;
             if ((diff < roundErr && diff >= 0) || (diff <= 0 && diff > -roundErr))
