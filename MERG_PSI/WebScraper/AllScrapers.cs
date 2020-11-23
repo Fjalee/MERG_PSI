@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    public class AllScrapers
+    class AllScrapers
     {
         readonly Form1 _myUI;
         public AllScrapers(Form1 myUI)
@@ -13,11 +14,11 @@ namespace WebScraper
 
         public async Task ScrapeAllWebsites()
         {
-            var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=");
-            var task1 = kampasScraper.ScrapeKampasWebsite();
+            var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=", "?");
+            var task1 = kampasScraper.ScrapeWebsite();
 
-            var domosplusScraper = new DomosplusScraper(_myUI, @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=");
-            var task2 = domosplusScraper.ScraperDomosplusWebsite();
+            var domosplusScraper = new DomosplusScraper(_myUI, @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=", "&");
+            var task2 = domosplusScraper.ScrapeWebsite();
 
             await Task.WhenAll(task1, task2);
 

@@ -51,7 +51,7 @@ namespace WebScraper
                 var location = link.Segments[3];
                 if (location != null)
                 {
-                    return Regex.IsMatch(location, @"^[0-9,.]+$") ? location : "";
+                    return Regex.IsMatch(location, @"^[0-9,.-]+%2C[0-9,.-]+$") ? location.Replace("%2C", ",") : "";
                 }
                 else
                 {

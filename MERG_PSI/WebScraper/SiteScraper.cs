@@ -1,30 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    public abstract class SiteScraper
+    abstract class SiteScraper
     {
         public List<RealEstate> ScrapedRealEstate { get; } = new List<RealEstate>();
         protected string WebsiteLink { get; }
         protected string Subdirectory { get; }
         protected string PageString { get; }
+        protected string Symbol { get; }
         protected bool ReachedPageNoAds { get; set; } = false;
 
-        public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString)
+        public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol)
         {
             ScrapingDomain += myUI.OnScrapingDomain;
             WebsiteLink = websiteLink;
             Subdirectory = subdirectory;
             PageString = pageString;
+            Symbol = symbol;
         }
 
         public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
 
-        protected void RaiseScrapingDomainEvent(string link)
+        public async Task ScrapeWebsite()
         {
-            ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(link));
+            var websitePage = 1;
+            //while (!ReachedPageNoAds)
+            while (websitePage < 5) //Temporary, for testing purpose
+            {
+                var linkWithPage = WebsiteLink + Subdirectory + Symbol + PageString + websitePage.ToString();
+
+                ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
+
+                var adCardLinkScraper = InstanciateAdCardLinkScraperObject();
+                adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
+                adCardLinkScraper.Scrape();
+                if (adCardLinkScraper.Links.Any())
+                {
+                    foreach (var link in adCardLinkScraper.Links)
+                    {
+                        var ias = InstanciateInsideAdScraperObject(link);
+                        ias.Document = await ias.GetIHtmlDoc(link);
+                        ias.Scrape();
+
+                        if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.MapCoords))
+                        {
+                            ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
+                            floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, mapCoords: ias.MapCoords, image: ias.Image)); //fix Municipality, Street instead of "", ""
+                        }
+
+                        else
+                        {
+                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, "", "", ias.MapCoords); //fix Municipality, Street instead of "", ""
+                        }
+                    }
+                    websitePage++;
+                }
+                else { ReachedPageNoAds = true; }
+            }
         }
+
+        protected abstract AdCardLinkScraper InstanciateAdCardLinkScraperObject();
+
+        protected abstract InsideAdScraper InstanciateInsideAdScraperObject(string link);
 
         protected bool IsAdHasAllNeededData(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, string mapCoords)
         {
