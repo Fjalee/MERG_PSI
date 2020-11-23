@@ -6,24 +6,16 @@
              
              >
     <ContentPage.Content>
-    <StackLayout>
+        <StackLayout>
             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10" >
                 <Label Text="Nekilnojamasis turtas" TextColor="DarkGray" FontSize="20" FontAttributes="Bold"/>
-
-                
-                
-
             </StackLayout>
             <StackLayout Margin="5">
-                
-                    <StackLayout Grid.Row="1" Orientation="Horizontal">
-                        <Entry x:Name ="municipality" Placeholder="Savivaldybė" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Municipality_TextChanged"/>
+
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Entry x:Name ="municipality" Placeholder="Savivaldybė" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Municipality_TextChanged"/>
                     <Entry x:Name ="microdistrict" Placeholder="Mikrorajonas" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Microdistrict_TextChanged"/>
                     <Entry x:Name="street" Placeholder="Gatvė" Keyboard="Text" HorizontalOptions="Fill" WidthRequest="150" TextChanged="Street_TextChanged"/>
-                    
-                </StackLayout>
-                <StackLayout >
-                   
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Orientation="Horizontal">
@@ -53,10 +45,12 @@
                     <CheckBox x:Name="noInfoRoomNumber"/>
                 </StackLayout>
 
-                <Button Text="Paieška" Clicked="Button_Clicked" />
-                
+                <StackLayout  Grid.Row="1" Orientation="Horizontal">
+                    <Button Text="Paieška" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Eiti į žemėlapį" Clicked="Button_Clicked_1" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
             </StackLayout>
-        
+
             <CollectionView x:Name="myItem" SelectionMode="Single" SelectionChanged="MyItem_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -67,7 +61,7 @@
                                 <Frame BackgroundColor="White" HasShadow="True" Margin="0" HeightRequest="55" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                                     <StackLayout Margin="20,10,5,5" Padding="0">
                                         <Label Text="{Binding Municipality}" Margin="80,-5,0,0" TextColor="DarkGray" FontSize="16" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Link}" Margin="100,-10,-10,0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Microdistrict}" Margin="100,-10,-10,0" TextColor="DarkGray" FontSize="12" FontAttributes="Bold"/>
                                         <Label Text="{Binding Price}" Margin="100,-10,-10,0" TextColor="Green" FontSize="13" FontAttributes="Italic"/>
 
                                     </StackLayout>
@@ -79,8 +73,8 @@
                                 </StackLayout>
                             </Grid>
                         </StackLayout>
-                        
-                        
+
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

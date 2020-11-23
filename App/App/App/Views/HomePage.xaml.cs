@@ -13,6 +13,7 @@ namespace App.Views
     {
         RealEstate Mock => DependencyService.Get<RealEstate>();
         const string NumberRegex = @"^[a-zA-Z]+$";
+        public System.Collections.Generic.List<RealEstateModel> FilteredList = new System.Collections.Generic.List<RealEstateModel>();
         public HomePage()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace App.Views
         {
            
             var newItem = await Mock.GetRealEstates();
-
+            FilteredList = newItem;
             myItem.ItemsSource = newItem;
         }
 
@@ -37,8 +38,9 @@ namespace App.Views
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
             var items = GetReal().Result;
-            var filteredItems = inspection.GetFilteredListOFRealEstate(items, filtersValues);
-            myItem.ItemsSource = filteredItems;
+            items = inspection.GetFilteredListOFRealEstate(items, filtersValues);
+            FilteredList = items;
+            myItem.ItemsSource = items;
            
         }
         public async System.Threading.Tasks.Task<System.Collections.Generic.List<RealEstateModel>> GetReal()
@@ -96,6 +98,11 @@ namespace App.Views
                 var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
                 ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
             }
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new FullMapPage(FilteredList));
         }
     }
 }
