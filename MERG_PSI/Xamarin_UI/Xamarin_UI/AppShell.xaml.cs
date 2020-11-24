@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace Xamarin_UI
 {
-    public partial class MainPage : ContentPage
+    public partial class AppShell : ContentPage
     {
-        public MainPage()
+        public AppShell()
         {
             InitializeComponent();
         }
