@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App\App.csproj">
-      <Project>{82AB14E2-2B23-42FF-8A8B-50F024F8C27A}</Project>
+      <Project>{EE81B649-D8CA-49AC-A247-44DF17F56744}</Project>
       <Name>App</Name>
     </ProjectReference>
   </ItemGroup>
