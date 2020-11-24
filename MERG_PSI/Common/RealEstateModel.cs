@@ -1,6 +1,10 @@
-﻿namespace MERG_BackEnd
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Common
 {
-    public class RealEstateModel
+    public abstract class RealEstateModel
     {
         public string Link { get; set; }
         public double Area { get; set; }
@@ -16,11 +20,5 @@
         public string Image { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-
-        override
-           public string ToString()
-        {
-            return $"\nKaina: {Price} €\nKaina/m²: {PricePerSqM} €/m²\nPlotas: {Area} m²\nMetai: {BuildYear}\nKambariai: {NumberOfRooms}\nSavivaldybė: {Municipality}\nMikrorajonas: {Microdistrict}\nGatvė: {Street}";
-        }
     }
 }
