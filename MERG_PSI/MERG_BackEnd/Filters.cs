@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.Linq;
 
 
-namespace App
+namespace MERG_BackEnd
 {
    
      class Filters
     {
-        public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double areaFrom, double areaTo, bool areaFromState,bool areaToState)
+        public  List<RealEstateModel> FilterRealEstateByArea(List<RealEstateModel> houses, double areaFrom, double areaTo, bool areaFromState,bool areaToState)
         {
             if (areaFromState && areaToState)
             {
@@ -24,7 +25,7 @@ namespace App
             return houses;
         }
 
-        public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> houses, double priceFrom, double priceTo, bool priceFromState, bool priceToState)
+        public  List<RealEstateModel> FilterRealEstateByPrice(List<RealEstateModel> houses, double priceFrom, double priceTo, bool priceFromState, bool priceToState)
         {
            
             if (priceFromState && priceToState)
@@ -42,7 +43,7 @@ namespace App
             return houses;
         }
 
-        public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double pricePerSqMFrom, double pricePerSqMTo, bool pricePerSqMFromState, bool pricePerSqMToState)
+        public  List<RealEstateModel> FilterRealEstateByPricePerSqM(List<RealEstateModel> houses, double pricePerSqMFrom, double pricePerSqMTo, bool pricePerSqMFromState, bool pricePerSqMToState)
         {
             if(pricePerSqMFromState && pricePerSqMToState)
             {
@@ -59,7 +60,7 @@ namespace App
             return houses;
         }
 
-        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState, bool noNumberOfRoomsInfo)
+        public List<RealEstateModel> FilterRealEstateByNumberOfRooms(List<RealEstateModel> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState, bool noNumberOfRoomsInfo)
         {
             if(numberOfRoomsFromState && numberOfRoomsToState && noNumberOfRoomsInfo)
             {
@@ -94,7 +95,7 @@ namespace App
             return houses;
         }
 
-        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool buildYearFromState, bool buildYearToState, bool noBuildYearInfo)
+        public List<RealEstateModel> FilterRealEstateByBuildYear(List<RealEstateModel> houses, int buildYearFrom, int buildYearTo, bool buildYearFromState, bool buildYearToState, bool noBuildYearInfo)
         {
             if (buildYearFromState && buildYearToState && noBuildYearInfo)
             {

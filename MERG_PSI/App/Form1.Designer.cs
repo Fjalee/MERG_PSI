@@ -1,4 +1,4 @@
-﻿namespace App
+﻿namespace WindowsForms_UI
 {
     partial class Form1
     {

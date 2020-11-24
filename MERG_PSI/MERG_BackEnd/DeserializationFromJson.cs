@@ -1,18 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace App
+namespace MERG_BackEnd
 {
     class DeserializationFromJson
     {
         private const string _filePath = @"../../scrapedData.txt";
-        public List<RealEstate> Data { get; set; }
+        public List<RealEstateModel> Data { get; set; }
 
         public DeserializationFromJson()
         {
             var jsonFromFile = ReadFromFile();
-            Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFile);
+            Data = JsonConvert.DeserializeObject<List<RealEstateModel>>(jsonFromFile);
         }
 
         private string ReadFromFile()

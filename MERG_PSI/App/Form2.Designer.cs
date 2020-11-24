@@ -1,4 +1,4 @@
-﻿namespace App
+﻿namespace WindowsForms_UI
 {
     partial class Form2
     {
@@ -90,7 +90,7 @@
             this.showMap.TabIndex = 0;
             this.showMap.Text = "Rodyti žemėlapį";
             this.showMap.UseVisualStyleBackColor = false;
-            this.showMap.Click += new System.EventHandler(this.showMap_Click);
+            this.showMap.Click += new System.EventHandler(this.ShowMap_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -142,7 +142,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(223, 334);
             this.panel3.TabIndex = 0;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel3_Paint);
             // 
             // panel9
             // 

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace App
+namespace WindowsForms_UI
 {
     public partial class Form2 : Form
     {
@@ -17,7 +17,7 @@ namespace App
             InitializeComponent();
         }
 
-        private void showMap_Click(object sender, EventArgs e)
+        private void ShowMap_Click(object sender, EventArgs e)
         {
             this.Hide();
             var openForm1 = new Form1();
@@ -25,7 +25,7 @@ namespace App
             this.Close();
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void Panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -105,9 +105,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\CommonLibrary.csproj">
-      <Project>{0F84E5B8-886F-4C99-9151-3B95781248DA}</Project>
-      <Name>CommonLibrary</Name>
+    <ProjectReference Include="..\MERG_BackEnd\MERG_BackEnd.csproj">
+      <Project>{A8A3E30B-3B85-4C3F-892F-E8A03548E3CA}</Project>
+      <Name>MERG_BackEnd</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

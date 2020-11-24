@@ -1,10 +1,10 @@
 ﻿
 using System;
-using System.Windows.Forms;
 
-namespace App
+
+namespace MERG_BackEnd
 {
-    class FiltersValue
+    public class FiltersValue
     {
         public Tuple<bool,int> PriceFrom { get; }
         public Tuple<bool, int> PriceTo { get; }

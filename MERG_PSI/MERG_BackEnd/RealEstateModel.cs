@@ -1,6 +1,5 @@
-﻿using System;
-
-namespace CommonLibrary
+﻿
+namespace MERG_BackEnd
 {
     public class RealEstateModel
     {
@@ -15,6 +14,12 @@ namespace CommonLibrary
         public string Street { get; set; }
         public int BuildYear { get; set; }
         public string MapCoords { get; set; }
+
+        override
+        public string ToString()
+        {
+            return $"\nKaina: {Price} €\nKaina/m²: {PricePerSqM} €/m²\nPlotas: {Area} m²\nMetai: {BuildYear}\nKambariai: {NumberOfRooms}\n";
+        }
 
     }
 }
