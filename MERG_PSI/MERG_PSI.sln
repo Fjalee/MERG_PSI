@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScraper", "WebScraper\WebScraper.csproj", "{37DA45CD-0FD4-4284-9B49-4023BFB7E33B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms_UI", "App\WindowsForms_UI.csproj", "{B1231A4C-BC45-444D-A6F6-09ECD4552A9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms_UI", "WindowsForms_UI\WindowsForms_UI.csproj", "{B1231A4C-BC45-444D-A6F6-09ECD4552A9F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C95DE6FC-9BE7-4BC2-8A9F-F3543BE26577}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MERG_BackEnd", "MERG_BackEnd\MERG_BackEnd.csproj", "{C5A0B218-2D94-49C9-978F-1D874749B3A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{DAC05E00-E2FA-4A2D-B728-631D1CCB958F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{DAC05E00-E2FA-4A2D-B728-631D1CCB958F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace WebScraper
 {
-    class DomoplusAdCardLinkScraper : AdCardLinkScraper
+    public class DomoplusAdCardLinkScraper : AdCardLinkScraper
     {
         public DomoplusAdCardLinkScraper(string siteUrl, string className) : base(siteUrl, className) { }
 

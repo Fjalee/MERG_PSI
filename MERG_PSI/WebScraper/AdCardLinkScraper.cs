@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace WebScraper
 {
-    abstract class AdCardLinkScraper : Scraper
+    public abstract class AdCardLinkScraper : Scraper
     {
         public List<string> Links { get; set; } = new List<string>();
         protected string ClassNameForAdCard { get; }

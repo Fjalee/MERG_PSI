@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    class KampasScraper : SiteScraper
+    public class KampasScraper : SiteScraper
     {
         public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol) : base(myUI, websiteLink, subdirectory, pageString, symbol) { }
 

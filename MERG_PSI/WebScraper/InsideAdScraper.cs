@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WebScraper
 {
-    abstract class InsideAdScraper : Scraper
+    public abstract class InsideAdScraper : Scraper
     {
         public double Area { get; set; }
         public double PricePerSqM { get; set; }

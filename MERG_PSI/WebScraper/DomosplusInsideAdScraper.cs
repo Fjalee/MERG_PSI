@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace WebScraper
 {
-    class DomosplusInsideAdScraper : InsideAdScraper
+    public class DomosplusInsideAdScraper : InsideAdScraper
     {
         public DomosplusInsideAdScraper(string link) : base(link) { }
 

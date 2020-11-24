@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WebScraper
 {
-    class KampasAdCardLinkScraper : AdCardLinkScraper
+    public class KampasAdCardLinkScraper : AdCardLinkScraper
     {
         public KampasAdCardLinkScraper(string siteUrl, string className) : base(siteUrl, className) { }
         override protected IEnumerable<string> GetAdCardsPaths()
