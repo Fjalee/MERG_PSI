@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Merg"
+             xmlns:views="clr-namespace:Xamarin_UI.Views"
              x:Class="Xamarin_UI.AppShell">
     
     <Shell.Resources>
@@ -25,6 +26,7 @@
     <TabBar>
 
         <Tab Title="Home" Icon="https://img.icons8.com/ios/50/000000/home--v1.png">
+            <ShellContent ContentTemplate ="{DataTemplate views:HomePage}"/>
         </Tab>
 
         <Tab Title="About" Icon="https://img.icons8.com/ios/24/000000/about.png">
