@@ -14,7 +14,8 @@ namespace WindowsForms_UI
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        private readonly List<RealEstate> _data = (new Data()).SampleData;
+        private readonly List<RealEstate> _data = new Data().SampleData;
+
         public Form1()
         {
             InitializeComponent();
