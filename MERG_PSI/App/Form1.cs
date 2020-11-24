@@ -3,25 +3,24 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
+using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 
-namespace App
+namespace WindowsForms_UI
 {
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        private readonly List<RealEstate> _data = (new Data()).SampleData;
+        private readonly List<RealEstate> _data = new Data().SampleData;
+
         public Form1()
         {
             InitializeComponent();
             MapLoad();
             LoadMarkers(_data);
-
         }
 
         private void MapLoad()
@@ -230,6 +229,7 @@ namespace App
         {
             SetupTextBoxIf(areaTo, "", "Iki", Color.Silver);
         }
+        
         private void SetupTextBoxIf(TextBox textBox, string ifText, string textToSet, Color color)
         {
             if (textBox.Text == ifText)
@@ -240,6 +240,7 @@ namespace App
         }
 
         #endregion
+        
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
@@ -249,39 +250,22 @@ namespace App
             LoadMarkers(filteredList);
         }
 
-        private Tuple<bool, int> ConvertToInt(string text)
-        {
-
-            var succes = int.TryParse(text, out var number);
-            if (succes)
-            {
-                return new Tuple<bool, int>(succes, number);
-            }
-            return new Tuple<bool, int>(succes, 0);
-
-        }
-
         private FiltersValue GetFiltersValue()
         {
+            var tools = new MERG_BackEnd.Tools();
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
-               priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
-              areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text),
-              buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text),
-              numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text),
-              pricePerSqMFrom: ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: ConvertToInt(pricePerSqMTo.Text),
+               priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
+              areaFrom: areaFrom.Text.ConvertToInt(), areaTo: areaTo.Text.ConvertToInt(),
+              buildYearFrom: buildYearFrom.Text.ConvertToInt(), buildYearTo: buildYearTo.Text.ConvertToInt(),
+              numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
+              pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.Checked, noNumberOfRoomsInfo: noInfoRoomNumber.Checked);
         }
 
         private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
         {
-            var lat = item.Position.Lat;
-            var lng = item.Position.Lng;
-            var links = _data.Where(x => x.Latitude == lat && x.Longitude == lng).Select(x => x.Link);
-
-            foreach (var link in links)
-            {
-                System.Diagnostics.Process.Start(link);
-            }
+            var tools = new MERG_BackEnd.Tools();
+            tools.OpenLinks(item.Position.Lat, item.Position.Lng, _data);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
 
-namespace App
+namespace MERG_BackEnd
 {
-     class Data
+     public class Data
     {
         public List<RealEstate> SampleData { get; set; }
         public Data()

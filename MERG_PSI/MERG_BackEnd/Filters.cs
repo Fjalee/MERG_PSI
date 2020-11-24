@@ -2,10 +2,10 @@
 using System.Linq;
 
 
-namespace App
+namespace MERG_BackEnd
 {
    
-     class Filters
+     public class Filters
     {
         public List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
         {

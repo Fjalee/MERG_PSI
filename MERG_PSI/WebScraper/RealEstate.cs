@@ -1,7 +1,7 @@
-﻿using CommonLibrary;
+﻿using Common;
 using Newtonsoft.Json;
 using System;
-using System.Globalization;
+
 
 namespace WebScraper
 {

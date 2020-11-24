@@ -1,6 +1,10 @@
-﻿namespace CommonLibrary
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Common
 {
-    public class RealEstateModel
+    public abstract class RealEstateModel
     {
         public string Link { get; set; }
         public double Area { get; set; }

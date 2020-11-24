@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace App
+namespace MERG_BackEnd
 {
-    class DeserializationFromJson
+    public class DeserializationFromJson
     {
         private const string _filePath = @"../../scrapedData.txt";
         public List<RealEstate> Data { get; set; }
