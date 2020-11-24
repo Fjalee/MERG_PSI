@@ -7,7 +7,6 @@ using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,7 +21,6 @@ namespace WindowsForms_UI
             InitializeComponent();
             MapLoad();
             LoadMarkers(_data);
-
         }
 
         private void MapLoad()
