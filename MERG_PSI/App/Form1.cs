@@ -7,7 +7,6 @@ using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,7 +21,6 @@ namespace WindowsForms_UI
             InitializeComponent();
             MapLoad();
             LoadMarkers(_data);
-
         }
 
         private void MapLoad()
@@ -250,20 +248,9 @@ namespace WindowsForms_UI
             LoadMarkers(filteredList);
         }
 
-        private Tuple<bool, int> ConvertToInt(string text)
-        {
-
-            var succes = int.TryParse(text, out var number);
-            if (succes)
-            {
-                return new Tuple<bool, int>(succes, number);
-            }
-            return new Tuple<bool, int>(succes, 0);
-
-        }
-
         private FiltersValue GetFiltersValue()
         {
+            var tools = new MERG_BackEnd.Tools();
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
                priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
               areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text),
