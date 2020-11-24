@@ -4,7 +4,7 @@ namespace MERG_BackEnd
 {
     public class Inspection
     {
-        public List<RealEstateModel> GetFilteredListOFRealEstate(List<RealEstateModel> listOfRealEstate, FiltersValue filtersValue)
+        public List<RealEstate> GetFilteredListOFRealEstate(List<RealEstate> listOfRealEstate, FiltersValue filtersValue)
         {
             var filters = new Filters();
 

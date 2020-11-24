@@ -16,7 +16,7 @@ namespace WindowsForms_UI
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        private readonly List<RealEstateModel> _data = (new Data()).SampleData;
+        private readonly List<RealEstate> _data = (new Data()).SampleData;
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace WindowsForms_UI
             map.Position = new PointLatLng(55.233400, 23.894970);
         }
 
-        private void LoadMarkers(List<RealEstateModel> filteredList)
+        private void LoadMarkers(List<RealEstate> filteredList)
         {
             _markOverlay.Markers.Clear();
             map.Overlays.Remove(_markOverlay);

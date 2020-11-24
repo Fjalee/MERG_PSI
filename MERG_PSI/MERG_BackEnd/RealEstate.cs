@@ -3,7 +3,7 @@ using Common;
 
 namespace MERG_BackEnd
 {
-    class RealEstate : RealEstateModel
+    public class RealEstate : RealEstateModel
     {
 
         override

@@ -7,22 +7,22 @@ namespace MERG_BackEnd
    
      public class Filters
     {
-        public List<RealEstateModel> FilterRealEstateByMunicipality(List<RealEstateModel> houses, string municipality)
+        public List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
         {
             return !string.IsNullOrEmpty(municipality) ? houses.Where(house => house.Municipality.Contains(municipality)).ToList() : houses;
         }
 
-        public List<RealEstateModel> FilterRealEstateByMicrodistrict(List<RealEstateModel> houses, string microdistrict)
+        public List<RealEstate> FilterRealEstateByMicrodistrict(List<RealEstate> houses, string microdistrict)
         {
             return !string.IsNullOrEmpty(microdistrict) ? houses.Where(house => house.Microdistrict.Contains(microdistrict)).ToList() : houses;
         }
 
-        public List<RealEstateModel> FilterRealEstateByStreet(List<RealEstateModel> houses, string street)
+        public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street)
         {
             return !string.IsNullOrEmpty(street) ? houses.Where(house => house.Street.Contains(street)).ToList() : houses;
         }
 
-        public  List<RealEstateModel> FilterRealEstateByArea(List<RealEstateModel> houses, double areaFrom, double areaTo, bool areaFromState,bool areaToState)
+        public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double areaFrom, double areaTo, bool areaFromState,bool areaToState)
         {
             if (areaFromState && areaToState)
             {
@@ -39,7 +39,7 @@ namespace MERG_BackEnd
             return houses;
         }
 
-        public  List<RealEstateModel> FilterRealEstateByPrice(List<RealEstateModel> houses, double priceFrom, double priceTo, bool priceFromState, bool priceToState)
+        public  List<RealEstate> FilterRealEstateByPrice(List<RealEstate> houses, double priceFrom, double priceTo, bool priceFromState, bool priceToState)
         {
            
             if (priceFromState && priceToState)
@@ -57,7 +57,7 @@ namespace MERG_BackEnd
             return houses;
         }
 
-        public  List<RealEstateModel> FilterRealEstateByPricePerSqM(List<RealEstateModel> houses, double pricePerSqMFrom, double pricePerSqMTo, bool pricePerSqMFromState, bool pricePerSqMToState)
+        public  List<RealEstate> FilterRealEstateByPricePerSqM(List<RealEstate> houses, double pricePerSqMFrom, double pricePerSqMTo, bool pricePerSqMFromState, bool pricePerSqMToState)
         {
             if(pricePerSqMFromState && pricePerSqMToState)
             {
@@ -74,7 +74,7 @@ namespace MERG_BackEnd
             return houses;
         }
 
-        public List<RealEstateModel> FilterRealEstateByNumberOfRooms(List<RealEstateModel> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState, bool noNumberOfRoomsInfo)
+        public List<RealEstate> FilterRealEstateByNumberOfRooms(List<RealEstate> houses, int numberOfRoomsFrom, int numberOfRoomsTo, bool numberOfRoomsFromState, bool numberOfRoomsToState, bool noNumberOfRoomsInfo)
         {
             if(numberOfRoomsFromState && numberOfRoomsToState && noNumberOfRoomsInfo)
             {
@@ -109,7 +109,7 @@ namespace MERG_BackEnd
             return houses;
         }
 
-        public List<RealEstateModel> FilterRealEstateByBuildYear(List<RealEstateModel> houses, int buildYearFrom, int buildYearTo, bool buildYearFromState, bool buildYearToState, bool noBuildYearInfo)
+        public List<RealEstate> FilterRealEstateByBuildYear(List<RealEstate> houses, int buildYearFrom, int buildYearTo, bool buildYearFromState, bool buildYearToState, bool noBuildYearInfo)
         {
             if (buildYearFromState && buildYearToState && noBuildYearInfo)
             {

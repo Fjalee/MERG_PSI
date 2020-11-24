@@ -5,7 +5,7 @@ namespace MERG_BackEnd
 {
      public class Data
     {
-        public List<RealEstateModel> SampleData { get; set; }
+        public List<RealEstate> SampleData { get; set; }
         public Data()
         {
             var des = new DeserializationFromJson();

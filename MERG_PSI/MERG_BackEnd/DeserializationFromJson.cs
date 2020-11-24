@@ -7,12 +7,12 @@ namespace MERG_BackEnd
     public class DeserializationFromJson
     {
         private const string _filePath = @"../../scrapedData.txt";
-        public List<RealEstateModel> Data { get; set; }
+        public List<RealEstate> Data { get; set; }
 
         public DeserializationFromJson()
         {
             var jsonFromFile = ReadFromFile();
-            Data = JsonConvert.DeserializeObject<List<RealEstateModel>>(jsonFromFile);
+            Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFile);
         }
 
         private string ReadFromFile()
