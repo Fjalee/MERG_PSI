@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-   abstract class Scraper
+   public abstract class Scraper
    {
         public IHtmlDocument Document { get; set; }
 

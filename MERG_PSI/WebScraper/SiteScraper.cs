@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    abstract class SiteScraper
+    public abstract class SiteScraper
     {
         public List<RealEstate> ScrapedRealEstate { get; } = new List<RealEstate>();
         protected string WebsiteLink { get; }

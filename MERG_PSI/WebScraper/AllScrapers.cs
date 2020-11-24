@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    class AllScrapers
+    public class AllScrapers
     {
         readonly Form1 _myUI;
         public AllScrapers(Form1 myUI)

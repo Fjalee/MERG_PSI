@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WebScraper
 {
-    static class MyLog
+    public static class MyLog
     {
         static readonly string _fileNameLogMsg = @"log_Msg.txt";
         static readonly string _fileNameLogAdInvalid = @"log_AdInvalid.txt";

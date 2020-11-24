@@ -9,7 +9,7 @@ using System.Web;
 
 namespace WebScraper
 {
-    class KampasInsideAdScraper : InsideAdScraper
+    public class KampasInsideAdScraper : InsideAdScraper
     {
         public KampasInsideAdScraper(string link) : base(link) { }
 

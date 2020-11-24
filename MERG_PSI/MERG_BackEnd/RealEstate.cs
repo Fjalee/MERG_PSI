@@ -1,5 +1,4 @@
-﻿
-using Common;
+﻿using Common;
 
 namespace MERG_BackEnd
 {
