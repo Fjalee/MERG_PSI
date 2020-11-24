@@ -1,6 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Merg"
              x:Class="Xamarin_UI.AppShell">
+    
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key ="NavigationPrimary">#FFB6C1</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White"/>
+                <Setter Property="Shell.TitleColor" Value=" Black"/>
+                <Setter Property="Shell.DisabledColor" Value="#84FFFFFF"/>
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property ="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}"/>
+                <Setter Property ="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value ="Black"/>
+                <Setter Property ="Shell.TabBarTitleColor" Value ="Black"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+
+        <Tab Title="Home" Icon="https://img.icons8.com/ios/50/000000/home--v1.png">
+        </Tab>
+
+        <Tab Title="About" Icon="https://img.icons8.com/ios/24/000000/about.png">
+        </Tab>
+
+        <Tab Title="Favourites" Icon="https://img.icons8.com/ios/24/000000/add-to-favorites--v1.png">
+        </Tab>
+        
+    </TabBar>
 
 </Shell>
