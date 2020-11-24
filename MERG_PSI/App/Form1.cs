@@ -7,7 +7,6 @@ using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsForms_UI
@@ -229,6 +228,7 @@ namespace WindowsForms_UI
         {
             SetupTextBoxIf(areaTo, "", "Iki", Color.Silver);
         }
+        
         private void SetupTextBoxIf(TextBox textBox, string ifText, string textToSet, Color color)
         {
             if (textBox.Text == ifText)
@@ -239,6 +239,7 @@ namespace WindowsForms_UI
         }
 
         #endregion
+        
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
@@ -252,11 +253,11 @@ namespace WindowsForms_UI
         {
             var tools = new MERG_BackEnd.Tools();
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
-               priceFrom: tools.ConvertToInt(priceFrom.Text), priceTo: tools.ConvertToInt(priceTo.Text),
-              areaFrom: tools.ConvertToInt(areaFrom.Text), areaTo: tools.ConvertToInt(areaTo.Text),
-              buildYearFrom: tools.ConvertToInt(buildYearFrom.Text), buildYearTo: tools.ConvertToInt(buildYearTo.Text),
-              numberOfRoomsFrom: tools.ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: tools.ConvertToInt(numberOfRoomsTo.Text),
-              pricePerSqMFrom: tools.ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: tools.ConvertToInt(pricePerSqMTo.Text),
+               priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
+              areaFrom: areaFrom.Text.ConvertToInt(), areaTo: areaTo.Text.ConvertToInt(),
+              buildYearFrom: buildYearFrom.Text.ConvertToInt(), buildYearTo: buildYearTo.Text.ConvertToInt(),
+              numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
+              pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.Checked, noNumberOfRoomsInfo: noInfoRoomNumber.Checked);
         }
 
