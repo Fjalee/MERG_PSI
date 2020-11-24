@@ -252,24 +252,18 @@ namespace WindowsForms_UI
         {
             var tools = new MERG_BackEnd.Tools();
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
-               priceFrom: ConvertToInt(priceFrom.Text), priceTo: ConvertToInt(priceTo.Text),
-              areaFrom: ConvertToInt(areaFrom.Text), areaTo: ConvertToInt(areaTo.Text),
-              buildYearFrom: ConvertToInt(buildYearFrom.Text), buildYearTo: ConvertToInt(buildYearTo.Text),
-              numberOfRoomsFrom: ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: ConvertToInt(numberOfRoomsTo.Text),
-              pricePerSqMFrom: ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: ConvertToInt(pricePerSqMTo.Text),
+               priceFrom: tools.ConvertToInt(priceFrom.Text), priceTo: tools.ConvertToInt(priceTo.Text),
+              areaFrom: tools.ConvertToInt(areaFrom.Text), areaTo: tools.ConvertToInt(areaTo.Text),
+              buildYearFrom: tools.ConvertToInt(buildYearFrom.Text), buildYearTo: tools.ConvertToInt(buildYearTo.Text),
+              numberOfRoomsFrom: tools.ConvertToInt(numberOfRoomsFrom.Text), numberOfRoomsTo: tools.ConvertToInt(numberOfRoomsTo.Text),
+              pricePerSqMFrom: tools.ConvertToInt(pricePerSqMFrom.Text), pricePerSqMTo: tools.ConvertToInt(pricePerSqMTo.Text),
               noBuildYearInfo: noInfoBuildYear.Checked, noNumberOfRoomsInfo: noInfoRoomNumber.Checked);
         }
 
         private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
         {
-            var lat = item.Position.Lat;
-            var lng = item.Position.Lng;
-            var links = _data.Where(x => x.Latitude == lat && x.Longitude == lng).Select(x => x.Link);
-
-            foreach (var link in links)
-            {
-                System.Diagnostics.Process.Start(link);
-            }
+            var tools = new MERG_BackEnd.Tools();
+            tools.OpenLinks(item.Position.Lat, item.Position.Lng, _data);
         }
     }
 }
