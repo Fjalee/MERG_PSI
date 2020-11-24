@@ -3,19 +3,20 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
+using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
+
 using System.Linq;
 using System.Windows.Forms;
 
-namespace App
+namespace WindowsForms_UI
 {
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        private readonly List<RealEstate> _data = (new Data()).SampleData;
+        private readonly List<RealEstateModel> _data = (new Data()).SampleData;
         public Form1()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace App
             map.Position = new PointLatLng(55.233400, 23.894970);
         }
 
-        private void LoadMarkers(List<RealEstate> filteredList)
+        private void LoadMarkers(List<RealEstateModel> filteredList)
         {
             _markOverlay.Markers.Clear();
             map.Overlays.Remove(_markOverlay);

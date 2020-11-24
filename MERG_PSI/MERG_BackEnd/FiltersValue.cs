@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
 
-namespace App
+namespace MERG_BackEnd
 {
-    class FiltersValue
+    public class FiltersValue
     {
         public string Municipality { get; }
         public string Microdistrict { get; }

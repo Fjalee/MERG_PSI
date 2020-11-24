@@ -1,4 +1,4 @@
-﻿namespace CommonLibrary
+﻿namespace MERG_BackEnd
 {
     public class RealEstateModel
     {
@@ -16,5 +16,11 @@
         public string Image { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        override
+           public string ToString()
+        {
+            return $"\nKaina: {Price} €\nKaina/m²: {PricePerSqM} €/m²\nPlotas: {Area} m²\nMetai: {BuildYear}\nKambariai: {NumberOfRooms}\nSavivaldybė: {Municipality}\nMikrorajonas: {Microdistrict}\nGatvė: {Street}";
+        }
     }
 }
