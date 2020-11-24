@@ -117,6 +117,10 @@
     <Content Include="scrapedData.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DAC05E00-E2FA-4A2D-B728-631D1CCB958F}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MERG_BackEnd\MERG_BackEnd.csproj">
       <Project>{C5A0B218-2D94-49C9-978F-1D874749B3A1}</Project>
       <Name>MERG_BackEnd</Name>
