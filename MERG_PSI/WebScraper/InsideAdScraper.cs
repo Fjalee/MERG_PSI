@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace WebScraper
@@ -12,9 +13,10 @@ namespace WebScraper
         public string Floor { get; set; }
         public int BuildYear { get; set; }
         public string MapLink { get; set; }
-        public string MapCoords { get; set; }
         public double Price { get; set; }
         public string Image { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         protected string Link { get; }
         protected Dictionary<string, string> BuildingInfo { get; } = new Dictionary<string, string>();
 
@@ -25,7 +27,7 @@ namespace WebScraper
 
         protected abstract void ParseBuildingInfoLineLabelFromVal(IElement buildingInfoLine);
 
-        protected abstract string ParseMapLinkToCoords(string link);
+        protected abstract double[] ParseMapLinkToCoords(string link);
 
         protected abstract void DictionaryToProperties(Dictionary<string, string> dictionary);
 
@@ -49,6 +51,22 @@ namespace WebScraper
                 MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{link}");
                 return 0;
             }
+        }
+
+        protected double[] SplitCoordinates(string coords)
+        {
+            var latAndLong = coords.Split(',');
+
+            if (latAndLong.Length != 2)
+            {
+                MyLog.Msg($"incorrect coordinates {coords} in {Link}");
+                return new double[2] { 0, 0 };
+            }
+
+            return new double[2] {
+                latAndLong[0].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo),
+                latAndLong[1].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo)
+            };
         }
     }
 }

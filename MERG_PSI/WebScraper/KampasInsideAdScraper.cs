@@ -22,7 +22,9 @@ namespace WebScraper
 
             if (MapLink != "")
             {
-                MapCoords = ParseMapLinkToCoords(MapLink);
+                var mapCoords = ParseMapLinkToCoords(MapLink);
+                Latitude = mapCoords[0];
+                Longitude = mapCoords[1];
             }
         }
 
@@ -47,12 +49,19 @@ namespace WebScraper
             BuildingInfo.Add(parsedLabel, parsedValue);
         }
 
-        protected override string ParseMapLinkToCoords(string linkString)
+        protected override double[] ParseMapLinkToCoords(string linkString)
         {
             var link = new Uri(linkString);
             var location = HttpUtility.ParseQueryString(link.Query).Get("q");
 
-            return Regex.IsMatch(location, @"^[0-9,.]+$") ? location : "";
+            if (Regex.IsMatch(location, @"^[0-9,.-]+$"))
+            {
+                return SplitCoordinates(location);
+            }
+            else
+            {
+                return new double[2] { 0, 0 };
+            }
         }
 
         protected override void DictionaryToProperties(Dictionary<string, string> dictionary)

@@ -19,7 +19,9 @@ namespace WebScraper
 
             if (MapLink != "")
             {
-                MapCoords = ParseMapLinkToCoords(MapLink);
+                var mapCoords = ParseMapLinkToCoords(MapLink);
+                Latitude = mapCoords[0];
+                Longitude = mapCoords[1];
             }
         }
 
@@ -43,28 +45,35 @@ namespace WebScraper
             BuildingInfo.Add(parsedLabel, parsedValue);
         }
 
-        protected override string ParseMapLinkToCoords(string linkString)
+        protected override double[] ParseMapLinkToCoords(string linkString)
         {
             var link = new Uri(linkString);
+
             if (link.Segments.Length == 4)
             {
                 var location = link.Segments[3];
                 if (location != null)
                 {
-                    return Regex.IsMatch(location, @"^[0-9,.-]+%2C[0-9,.-]+$") ? location.Replace("%2C", ",") : "";
+                    if (Regex.IsMatch(location, @"^[0-9,.-]+%2C[0-9,.-]+$"))
+                    {
+                        return SplitCoordinates(location.Replace("%2C", ","));
+                    }
+                    else
+                    {
+                        return new double[2] { 0, 0 };
+                    }
                 }
                 else
                 {
                     MyLog.Msg($"maps coords contained not only digits \".\" and \",\" : {Link}\n");
-                    return "";
+                    return new double[2] { 0, 0 };
                 }
             }
             else
             {
                 MyLog.Msg($"maps link had {link.Segments.Length} segements rather than 4: {Link}\n");
+                return new double[2] { 0, 0 };
             }
-
-            return "";
         }
 
         protected override void DictionaryToProperties(Dictionary<string, string> dictionary)
