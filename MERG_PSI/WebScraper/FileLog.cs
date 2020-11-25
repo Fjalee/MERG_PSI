@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WebScraper
 {
-    public class LogForms : ILog
+    public class FileLog : ILog
     {
         private readonly string _fileNameLogMsg = @"log_Msg.txt";
         private readonly string _fileNameLogAdInvalid = @"log_AdInvalid.txt";
@@ -12,7 +12,7 @@ namespace WebScraper
         private readonly string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
         private readonly string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
 
-        LogForms()
+        FileLog()
         {
             DelFileIfExist(_fileNameLogMsg);
             DelFileIfExist(_fileNameLogAdInvalid);
