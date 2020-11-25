@@ -11,7 +11,7 @@ namespace WebScraper
 {
     public class KampasInsideAdScraper : InsideAdScraper
     {
-        public KampasInsideAdScraper(string link) : base(link) { }
+        public KampasInsideAdScraper(string link, ILog logger) : base(link, logger) { }
 
         public override void Scrape()
         {
@@ -73,10 +73,10 @@ namespace WebScraper
             var floorIEn = dictionary.Where(x => x.Key == "Aukštas:").Select(x => x.Value);
 
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
-            Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant() : 0;
-            PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant() : 0;
+            Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant(Logger) : 0;
+            PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant(Logger) : 0;
             BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, Link) : 0;
-            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
+            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant(Logger) : 0;
 
             LogIfCountIncorrect(floorIEn, "Floor", Link);
             LogIfCountIncorrect(areaIEn, "Area", Link);
@@ -89,7 +89,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             var buildingInfoLineHtml = GetBuildingInfoLinesHtml();
@@ -109,7 +109,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             MapLink = GetMapLink();
@@ -119,17 +119,17 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
-            Price = GetPriceStr().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant();
+            Price = GetPriceStr().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant(Logger);
         }
 
         private void ScrapeImage()
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
             Image = GetImage();
         }

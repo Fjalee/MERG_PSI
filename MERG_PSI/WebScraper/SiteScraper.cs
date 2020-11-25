@@ -13,14 +13,16 @@ namespace WebScraper
         protected string PageString { get; }
         protected string Symbol { get; }
         protected bool ReachedPageNoAds { get; set; } = false;
+        protected ILog Logger { get; }
 
-        public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol)
+        public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol, ILog logger)
         {
             ScrapingDomain += myUI.OnScrapingDomain;
             WebsiteLink = websiteLink;
             Subdirectory = subdirectory;
             PageString = pageString;
             Symbol = symbol;
+            Logger = logger;
         }
 
         public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
@@ -53,13 +55,13 @@ namespace WebScraper
 
                         if (IsAdHasAllNeededData(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude, municipality, microdistrict, street))
                         {
-                            ScrapedRealEstate.Add(new RealEstate(link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
+                            ScrapedRealEstate.Add(new RealEstate(logger: Logger, link: link, area: ias.Area, pricePerSqM: ias.PricePerSqM, numberOfRooms: ias.NumberOfRooms,
                             floor: ias.Floor, scrapedPrice: ias.Price, mapLink: ias.MapLink, buildYear: ias.BuildYear, image: ias.Image, latitude: ias.Latitude, longitude: ias.Longitude, municipality: municipality, microdistrict: microdistrict, street: street));
                         }
 
                         else
                         {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude, municipality, microdistrict, street);
+                            Logger.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude, municipality, microdistrict, street);
                         }
                     }
                     websitePage++;

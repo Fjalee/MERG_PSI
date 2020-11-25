@@ -9,7 +9,7 @@ namespace WebScraper
         protected string ClassNameForAdCard { get; }
         private readonly string _siteUrl;
 
-        public AdCardLinkScraper(string siteUrl, string classNameForAdCard)
+        public AdCardLinkScraper(string siteUrl, string classNameForAdCard, ILog logger) : base(logger)
         {
             _siteUrl = siteUrl;
             ClassNameForAdCard = classNameForAdCard;
@@ -26,7 +26,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             var adCardsPaths = GetAdCardsPaths();

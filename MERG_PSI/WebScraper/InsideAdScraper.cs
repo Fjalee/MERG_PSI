@@ -20,7 +20,7 @@ namespace WebScraper
         protected string Link { get; }
         protected Dictionary<string, string> BuildingInfo { get; } = new Dictionary<string, string>();
 
-        public InsideAdScraper(string link)
+        public InsideAdScraper(string link, ILog logger) : base(logger)
         {
             Link = link;
         }
@@ -35,7 +35,7 @@ namespace WebScraper
         {
             if (iEn.Count() != 1 && iEn.Count() != 0)
             {
-                MyLog.IEnCountInvalid(link, iEn.Count(), valName);
+                Logger.IEnCountInvalid(link, iEn.Count(), valName);
             }
         }
 
@@ -44,11 +44,11 @@ namespace WebScraper
             var buildYearString = buildYearParsableIEn.First();
             if (buildYearString.Length >= 4)
             {
-                return buildYearString.Substring(0, 4).ParseToIntLogIfCant();
+                return buildYearString.Substring(0, 4).ParseToIntLogIfCant(Logger);
             }
             else
             {
-                MyLog.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{link}");
+                Logger.Msg($"Build Year \"{buildYearString}\" Doesn't contain 4 characters\n{link}");
                 return 0;
             }
         }
@@ -59,13 +59,13 @@ namespace WebScraper
 
             if (latAndLong.Length != 2)
             {
-                MyLog.Msg($"incorrect coordinates {coords} in {Link}");
+                Logger.Msg($"incorrect coordinates {coords} in {Link}");
                 return new double[2] { 0, 0 };
             }
 
             return new double[2] {
-                latAndLong[0].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo),
-                latAndLong[1].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo)
+                latAndLong[0].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, Logger),
+                latAndLong[1].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, Logger)
             };
         }
     }
