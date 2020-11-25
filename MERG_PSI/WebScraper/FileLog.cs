@@ -3,16 +3,16 @@ using System.Windows.Forms;
 
 namespace WebScraper
 {
-    public static class MyLog
+    public class LogForms : ILog
     {
-        static readonly string _fileNameLogMsg = @"log_Msg.txt";
-        static readonly string _fileNameLogAdInvalid = @"log_AdInvalid.txt";
-        static readonly string _fileNameLogIEnCountInvalid = @"log_IEnCountInvalid.txt";
-        static readonly string _fileNameLogCantParse = @"log_CantParse.txt";
-        static readonly string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
-        static readonly string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
+        private readonly string _fileNameLogMsg = @"log_Msg.txt";
+        private readonly string _fileNameLogAdInvalid = @"log_AdInvalid.txt";
+        private readonly string _fileNameLogIEnCountInvalid = @"log_IEnCountInvalid.txt";
+        private readonly string _fileNameLogCantParse = @"log_CantParse.txt";
+        private readonly string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
+        private readonly string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
 
-        static MyLog()
+        LogForms()
         {
             DelFileIfExist(_fileNameLogMsg);
             DelFileIfExist(_fileNameLogAdInvalid);
@@ -22,7 +22,7 @@ namespace WebScraper
             DelFileIfExist(_fileNameLogDnContainCoords);
         }
 
-        static public void Msg(string message)
+        public void Msg(string message)
         {
             using (var w = File.AppendText(_fileNameLogMsg))
             {
@@ -30,7 +30,8 @@ namespace WebScraper
             }
         }
 
-        static public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM, double area, double latitude, double longitude, string municipality, string microdistrict, string street)
+        public void AdInvalid(string link, string mapLink, int numberOfRooms, double scrapedPrice, double pricePerSqM,
+            double area, double latitude, double longitude, string municipality, string microdistrict, string street)
         {
             var message = $"Link|    {link}\n" +
                 $"MapLink|    {mapLink}\n" +
@@ -49,7 +50,7 @@ namespace WebScraper
             }
         }
 
-        static public void IEnCountInvalid(string link, int count, string name)
+        public void IEnCountInvalid(string link, int count, string name)
         {
             var message = $"Invalid IEnumerable count: {name} count is {count}\n{link}";
 
@@ -59,7 +60,7 @@ namespace WebScraper
             }
         }
 
-        static public void CantParse(string valToParse)
+        public void CantParse(string valToParse)
         {
             var message = $"Couldn't parse value: \"{valToParse}\"";
 
@@ -69,7 +70,7 @@ namespace WebScraper
             }
         }
 
-        static public void ErrorNoDocument()
+        public void ErrorNoDocument()
         {
             var message = "Didnt get IHTMLDocument first";
 
@@ -82,7 +83,7 @@ namespace WebScraper
             MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        static public void DnContainCoords(string link)
+        public void DnContainCoords(string link)
         {
             var message = $"Link doesn't contain coordinates: \"{link}\"";
 
@@ -92,7 +93,7 @@ namespace WebScraper
             }
         }
 
-        static private void DelFileIfExist(string fileName)
+        private void DelFileIfExist(string fileName)
         {
             if (File.Exists(fileName))
             {
