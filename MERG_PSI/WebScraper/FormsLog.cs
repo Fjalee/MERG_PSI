@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WebScraper
 {
     public partial class FormsLog : Form, ILog
     {
-        public FormsLog()
+        private static readonly Lazy<FormsLog>
+            _instance = new Lazy<FormsLog>
+                (() => new FormsLog());
+
+        public static FormsLog Instance { get { return _instance.Value; } }
+
+        private FormsLog() { }
+
+        static FormsLog()
         {
-            this.Show();
-            InitializeComponent();
+            Instance.Show();
+            Instance.InitializeComponent();
         }
 
         public void Msg(string message)
