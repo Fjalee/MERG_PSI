@@ -77,7 +77,7 @@ namespace Xamarin_UI.Views
 
         private void Button_Clicked_1(object sender, System.EventArgs e)
         {
-
+            App.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList));
         }
         private FiltersValue GetFiltersValue()
         {
