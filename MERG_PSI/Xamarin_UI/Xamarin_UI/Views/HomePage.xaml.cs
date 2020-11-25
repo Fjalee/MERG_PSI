@@ -1,5 +1,6 @@
 ﻿using MERG_BackEnd;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +28,8 @@ namespace Xamarin_UI.Views
 
         private void MyItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var myValue = e.CurrentSelection.FirstOrDefault() as RealEstate;
+            App.Current.MainPage.Navigation.PushAsync(new MapPage(myValue));
         }
     }
     

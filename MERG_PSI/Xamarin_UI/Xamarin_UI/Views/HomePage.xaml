@@ -9,7 +9,7 @@
             </StackLayout>
 
 
-            <CollectionView x:Name="myItem" SelectionMode="Single" SelectionChanged="MyItem_SelectionChange">
+            <CollectionView x:Name="myItem" SelectionMode="Single" SelectionChanged="MyItem_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
