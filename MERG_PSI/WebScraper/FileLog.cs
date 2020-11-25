@@ -102,11 +102,6 @@ namespace WebScraper
             }
         }
 
-        private void AllFilesDeleteIfExist()
-        {
-
-        }
-
         private void DelFileIfExist(string fileName)
         {
             if (File.Exists(fileName))
