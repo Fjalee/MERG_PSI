@@ -9,7 +9,7 @@ namespace WebScraper
 {
     public class DomosplusInsideAdScraper : InsideAdScraper
     {
-        public DomosplusInsideAdScraper(string link) : base(link) { }
+        public DomosplusInsideAdScraper(string link, ILog logger) : base(link, logger) { }
 
         public override void Scrape()
         {
@@ -65,13 +65,13 @@ namespace WebScraper
                 }
                 else
                 {
-                    MyLog.Msg($"maps coords contained not only digits \".\" and \",\" : {Link}\n");
+                    Logger.Msg($"maps coords contained not only digits \".\" and \",\" : {Link}\n");
                     return new double[2] { 0, 0 };
                 }
             }
             else
             {
-                MyLog.Msg($"maps link had {link.Segments.Length} segements rather than 4: {Link}\n");
+                Logger.Msg($"maps link had {link.Segments.Length} segements rather than 4: {Link}\n");
                 return new double[2] { 0, 0 };
             }
         }
@@ -103,7 +103,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             var buildingInfoLineHtml = GetBuildingInfoLinesHtml();
@@ -123,7 +123,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             MapLink = GetMapLink();
@@ -133,7 +133,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
             Image = GetImage();
         }

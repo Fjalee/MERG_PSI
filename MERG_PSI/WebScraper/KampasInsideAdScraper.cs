@@ -11,7 +11,7 @@ namespace WebScraper
 {
     public class KampasInsideAdScraper : InsideAdScraper
     {
-        public KampasInsideAdScraper(string link) : base(link) { }
+        public KampasInsideAdScraper(string link, ILog logger) : base(link, logger) { }
 
         public override void Scrape()
         {
@@ -89,7 +89,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             var buildingInfoLineHtml = GetBuildingInfoLinesHtml();
@@ -109,7 +109,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             MapLink = GetMapLink();
@@ -119,7 +119,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             Price = GetPriceStr().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant();
@@ -129,7 +129,7 @@ namespace WebScraper
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
             Image = GetImage();
         }
