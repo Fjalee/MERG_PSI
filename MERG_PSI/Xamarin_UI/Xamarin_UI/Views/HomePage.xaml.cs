@@ -25,6 +25,10 @@ namespace Xamarin_UI.Views
             myItem.ItemsSource = listOfRealEstates;
         }
 
+        private void MyItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
     
 }
