@@ -18,8 +18,8 @@ namespace WebScraper
 
         public RealEstate(ILog logger, string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string image = "", double latitude = 0, double longitude = 0, string municipality = "", string microdistrict = "" , string street = "")
         {
-            _logger = logger; Link = link;
-
+            _logger = logger;
+            Link = link;
             Area = area;
             PricePerSqM = pricePerSqM;
             NumberOfRooms = numberOfRooms;
