@@ -31,6 +31,31 @@ namespace Xamarin_UI.Views
             var myValue = e.CurrentSelection.FirstOrDefault() as RealEstate;
             App.Current.MainPage.Navigation.PushAsync(new MapPage(myValue));
         }
+
+        private void Municipality_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Microdistrict_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Street_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Clicked(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void Button_Clicked_1(object sender, System.EventArgs e)
+        {
+
+        }
     }
     
 }
