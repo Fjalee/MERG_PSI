@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MERG_BackEnd;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +16,14 @@ namespace Xamarin_UI.Views
         public HomePage()
         {
             InitializeComponent();
+
+            var assembly = typeof(HomePage).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
+            var listOfRealEstates = new Data(stream).SampleData;
+
+
         }
+
     }
+    
 }

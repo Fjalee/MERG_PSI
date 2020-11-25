@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.IO;
 
 namespace MERG_BackEnd
 {
@@ -9,6 +9,11 @@ namespace MERG_BackEnd
         public Data()
         {
             var des = new DeserializationFromJson();
+            SampleData = des.Data;
+        }
+        public Data(Stream stream)
+        {
+            var des = new DeserializationFromJson(stream);
             SampleData = des.Data;
         }
     }
