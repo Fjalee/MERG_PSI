@@ -252,7 +252,6 @@ namespace WindowsForms_UI
 
         private FiltersValue GetFiltersValue()
         {
-            var tools = new MERG_BackEnd.Tools();
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
                priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
               areaFrom: areaFrom.Text.ConvertToInt(), areaTo: areaTo.Text.ConvertToInt(),

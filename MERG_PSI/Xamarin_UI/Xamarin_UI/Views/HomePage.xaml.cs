@@ -1,7 +1,9 @@
 ﻿using MERG_BackEnd;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,14 +12,19 @@ namespace Xamarin_UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
+        const string NumberRegex = @"^[a-zA-Z]+$";
+        private readonly List<RealEstate> _listOfRealEstates = new List<RealEstate>();
+        private List<RealEstate> _filteredList { get; set; }
+
         public HomePage()
         {
             InitializeComponent();
 
             var assembly = typeof(HomePage).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
-            var listOfRealEstates = new Data(stream).SampleData;
-            Populate(listOfRealEstates);
+            _listOfRealEstates = new Data(stream).SampleData;
+            _filteredList = _listOfRealEstates;
+            Populate(_listOfRealEstates);
 
         }
 
@@ -34,27 +41,53 @@ namespace Xamarin_UI.Views
 
         private void Municipality_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+            }
 
         }
 
         private void Microdistrict_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+            }
         }
 
         private void Street_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+            }
         }
 
         private void Button_Clicked(object sender, System.EventArgs e)
         {
-
+            var inspection = new Inspection();
+            var filtersValues = GetFiltersValue();
+            _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates, filtersValues);
+            myItem.ItemsSource = _filteredList;
         }
 
         private void Button_Clicked_1(object sender, System.EventArgs e)
         {
 
+        }
+        private FiltersValue GetFiltersValue()
+        {
+            return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
+               priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
+              areaFrom: areaFrom.Text.ConvertToInt(), areaTo: areaTo.Text.ConvertToInt(),
+              buildYearFrom: buildYearFrom.Text.ConvertToInt(), buildYearTo: buildYearTo.Text.ConvertToInt(),
+              numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
+              pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
+              noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
         }
     }
     
