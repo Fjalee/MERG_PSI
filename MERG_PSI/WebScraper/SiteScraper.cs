@@ -13,14 +13,16 @@ namespace WebScraper
         protected string PageString { get; }
         protected string Symbol { get; }
         protected bool ReachedPageNoAds { get; set; } = false;
+        protected ILog Logger { get; }
 
-        public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol)
+        public SiteScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol, ILog logger)
         {
             ScrapingDomain += myUI.OnScrapingDomain;
             WebsiteLink = websiteLink;
             Subdirectory = subdirectory;
             PageString = pageString;
             Symbol = symbol;
+            Logger = logger;
         }
 
         public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
@@ -59,7 +61,7 @@ namespace WebScraper
 
                         else
                         {
-                            MyLog.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude, municipality, microdistrict, street);
+                            Logger.AdInvalid(link, ias.MapLink, ias.NumberOfRooms, ias.Price, ias.PricePerSqM, ias.Area, ias.Latitude, ias.Longitude, municipality, microdistrict, street);
                         }
                     }
                     websitePage++;

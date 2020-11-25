@@ -12,7 +12,7 @@ namespace WebScraper
         private readonly string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
         private readonly string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
 
-        FileLog()
+        public FileLog()
         {
             DelFileIfExist(_fileNameLogMsg);
             DelFileIfExist(_fileNameLogAdInvalid);
