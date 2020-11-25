@@ -70,10 +70,11 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GeoResult.cs" />
+    <Compile Include="ILog.cs" />
     <Compile Include="InsideAdScraper.cs" />
     <Compile Include="KampasInsideAdScraper.cs" />
     <Compile Include="KampasScraper.cs" />
-    <Compile Include="MyLog.cs" />
+    <Compile Include="FileLog.cs" />
     <Compile Include="DomosplusScraper.cs" />
     <Compile Include="OutputToJson.cs" />
     <Compile Include="Program.cs" />
