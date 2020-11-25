@@ -73,10 +73,10 @@ namespace WebScraper
             var floorIEn = dictionary.Where(x => x.Key == "Aukštas:").Select(x => x.Value);
 
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
-            Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant() : 0;
-            PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant() : 0;
+            Area = areaIEn.Count() == 1 ? areaIEn.First().ParseToDoubleLogIfCant(Logger) : 0;
+            PricePerSqM = pricePerSqMIEn.Count() == 1 ? pricePerSqMIEn.First().ParseToDoubleLogIfCant(Logger) : 0;
             BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, Link) : 0;
-            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
+            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant(Logger) : 0;
 
             LogIfCountIncorrect(floorIEn, "Floor", Link);
             LogIfCountIncorrect(areaIEn, "Area", Link);
@@ -122,7 +122,7 @@ namespace WebScraper
                 Logger.ErrorNoDocument();
             }
 
-            Price = GetPriceStr().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant();
+            Price = GetPriceStr().Substring(1).Replace(" ", "").ParseToDoubleLogIfCant(Logger);
         }
 
         private void ScrapeImage()

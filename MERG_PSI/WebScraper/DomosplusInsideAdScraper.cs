@@ -86,11 +86,11 @@ namespace WebScraper
             var priceIEN = dictionary.Where(x => x.Key == "\n\t\tKaina\t\t\t").Select(x => x.Value);
 
             Floor = floorIEn.Count() == 1 ? floorIEn.First() : "";
-            Area = areaIEn.Count() == 1 ? areaIEn.First().Substring(0, areaIEn.First().IndexOf(" ")).ParseToDoubleLogIfCant() : 0;
-            PricePerSqM = pricePerSqMIEn.Count() == 1 ? ParsePriceToDigitOnlyStr(pricePerSqMIEn).ParseToDoubleLogIfCant() : 0;
+            Area = areaIEn.Count() == 1 ? areaIEn.First().Substring(0, areaIEn.First().IndexOf(" ")).ParseToDoubleLogIfCant(Logger) : 0;
+            PricePerSqM = pricePerSqMIEn.Count() == 1 ? ParsePriceToDigitOnlyStr(pricePerSqMIEn).ParseToDoubleLogIfCant(Logger) : 0;
             BuildYear = buildYearParsableIEn.Count() == 1 ? ParseBuildYearToInt(buildYearParsableIEn, Link) : 0;
-            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant() : 0;
-            Price = priceIEN.Count() == 1 ? ParsePriceToDigitOnlyStr(priceIEN).ParseToDoubleLogIfCant() : 0;
+            NumberOfRooms = numberOfRoomsIEn.Count() == 1 ? numberOfRoomsIEn.First().ParseToIntLogIfCant(Logger) : 0;
+            Price = priceIEN.Count() == 1 ? ParsePriceToDigitOnlyStr(priceIEN).ParseToDoubleLogIfCant(Logger) : 0;
 
             LogIfCountIncorrect(floorIEn, "Floor", Link);
             LogIfCountIncorrect(areaIEn, "Area", Link);

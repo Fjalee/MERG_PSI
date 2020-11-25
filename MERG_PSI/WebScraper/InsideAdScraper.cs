@@ -44,7 +44,7 @@ namespace WebScraper
             var buildYearString = buildYearParsableIEn.First();
             if (buildYearString.Length >= 4)
             {
-                return buildYearString.Substring(0, 4).ParseToIntLogIfCant();
+                return buildYearString.Substring(0, 4).ParseToIntLogIfCant(Logger);
             }
             else
             {
@@ -64,8 +64,8 @@ namespace WebScraper
             }
 
             return new double[2] {
-                latAndLong[0].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo),
-                latAndLong[1].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo)
+                latAndLong[0].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, Logger),
+                latAndLong[1].ParseToDoubleLogIfCant(NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo, Logger)
             };
         }
     }
