@@ -14,7 +14,7 @@ namespace WindowsForms_UI
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        private readonly List<RealEstate> _data = new Data().SampleData;
+        private readonly List<RealEstate> _data = new Data(@"..\..\scrapedData.txt").SampleData;
 
         public Form1()
         {
@@ -244,7 +244,7 @@ namespace WindowsForms_UI
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            var listOfRealEstate = new Data().SampleData;
+            var listOfRealEstate = new Data(@"..\..\scrapeData.txt").SampleData;
             var filtersValue = GetFiltersValue();
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValue);
             LoadMarkers(filteredList);
