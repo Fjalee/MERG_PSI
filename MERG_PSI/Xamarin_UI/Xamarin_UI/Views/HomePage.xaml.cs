@@ -40,22 +40,24 @@ namespace Xamarin_UI.Views
         private void MyItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var myValue = e.CurrentSelection.FirstOrDefault() as RealEstate;
-            App.Current.MainPage.Navigation.PushAsync(new MapPage(myValue));
+            Application.Current.MainPage.Navigation.PushAsync(new MapPage(myValue));
         }
 
         private void Municipality_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Validate((Entry)sender, e.NewTextValue);
+
+            ((Entry)sender).Text = e.NewTextValue.Validate();
         }
 
         private void Microdistrict_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Validate((Entry)sender, e.NewTextValue);
+ 
+            ((Entry)sender).Text = e.NewTextValue.Validate();
         }
 
         private void Street_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Validate((Entry)sender, e.NewTextValue);
+            ((Entry)sender).Text = e.NewTextValue.Validate();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -68,16 +70,7 @@ namespace Xamarin_UI.Views
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            App.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList));
-        }
-        private void Validate(Entry textField, string text)
-        {
-            const string LettersRegex = @"^[a-zA-Z]+$";
-            if (!string.IsNullOrWhiteSpace(text))
-            {
-                var IsValid = Regex.IsMatch(text, LettersRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-                textField.Text = IsValid ? text : text.Remove(text.Length - 1);
-            }
+            Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList));
         }
         private FiltersValue GetFiltersValue()
         {

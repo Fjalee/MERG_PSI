@@ -8,8 +8,8 @@ namespace MERG_BackEnd
         public List<RealEstate> SampleData { get; set; }
         public Data()
         {
-            var des = new DeserializationFromJson();
-            SampleData = des.Data;
+            //var des = new DeserializationFromJson();
+            //SampleData = des.Data;
         }
         public Data(Stream stream)
         {
