@@ -41,30 +41,18 @@ namespace Xamarin_UI.Views
 
         private void Municipality_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
-            {
-                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
-            }
+            Validate(sender, e);
 
         }
 
         private void Microdistrict_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
-            {
-                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
-            }
+            Validate(sender, e);
         }
 
         private void Street_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
-            {
-                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
-            }
+            Validate(sender, e);
         }
 
         private void Button_Clicked(object sender, System.EventArgs e)
@@ -78,6 +66,14 @@ namespace Xamarin_UI.Views
         private void Button_Clicked_1(object sender, System.EventArgs e)
         {
             App.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList));
+        }
+        private void Validate(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+            }
         }
         private FiltersValue GetFiltersValue()
         {
