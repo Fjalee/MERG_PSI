@@ -14,7 +14,7 @@ namespace Xamarin_UI.Views
     public partial class HomePage : ContentPage
     {
         private readonly List<RealEstate> _listOfRealEstates = new List<RealEstate>();
-        private List<RealEstate> _filteredList;
+        private Lazy<List<RealEstate>> _filteredList;
 
         public HomePage()
         {
@@ -22,7 +22,7 @@ namespace Xamarin_UI.Views
 
             var stream = GetScrapedDataStream();
             _listOfRealEstates = new Data(stream).SampleData;
-            _filteredList = _listOfRealEstates;
+            _filteredList = new Lazy<List<RealEstate>>(() => _listOfRealEstates);
             Populate(_listOfRealEstates);
         }
 
@@ -64,13 +64,14 @@ namespace Xamarin_UI.Views
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
-            _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates, filtersValues);
-            myItem.ItemsSource = _filteredList;
+            var newfilteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates, filtersValues);
+            _filteredList = new Lazy<List<RealEstate>>(() => newfilteredList);
+            myItem.ItemsSource = _filteredList.Value;
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList));
+            Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList.Value));
         }
         private FiltersValue GetFiltersValue()
         {
