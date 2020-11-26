@@ -16,6 +16,13 @@ namespace Xamarin_UI.Views
             var position = new Position(55.1694, 23.8813);
             var mapSpan = new MapSpan(position, 4, 4);
             var map = new Map(mapSpan);
+
+            map = AddPinsToMap(realEstate, map);
+            container.Children.Add(map);
+        }
+
+        private Map AddPinsToMap(List<RealEstate> realEstate, Map map)
+        {
             foreach (var house in realEstate)
             {
                 var pin = new Pin
@@ -27,7 +34,7 @@ namespace Xamarin_UI.Views
                 };
                 map.Pins.Add(pin);
             }
-            container.Children.Add(map);
+            return map;
         }
     }
 }
