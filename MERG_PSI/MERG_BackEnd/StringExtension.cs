@@ -26,5 +26,22 @@ namespace MERG_BackEnd
             }
             return "";
         }
+        public static bool AllowOnlyKeysControlDigitLetter(this char symbol)
+        {
+           
+            if (!char.IsControl(symbol) && !char.IsLetter(symbol) && !char.IsWhiteSpace(symbol) && symbol != 46)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool AllowOnlyKeysControlDigit(this char symbol)
+        {
+            if (!char.IsControl(symbol) && !char.IsDigit(symbol))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

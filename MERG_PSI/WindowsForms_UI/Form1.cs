@@ -52,78 +52,63 @@ namespace WindowsForms_UI
         #region TextBox Input 
         private void Municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigitLetter(e);
+
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigitLetter();
         }
 
         private void Street_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigitLetter(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigitLetter();
         }
 
         private void PriceFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void PriceTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void AreaFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void AreaTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void PricePerSqMFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void PricePerSqMTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void BuildYearFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void BuildYearTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void NumberOfRoomsFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void NumberOfRoomsTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
-        }
-
-        private void AllowOnlyKeysControlDigit(KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void AllowOnlyKeysControlDigitLetter(KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != 46)
-            {
-                e.Handled = true;
-            }
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
 
