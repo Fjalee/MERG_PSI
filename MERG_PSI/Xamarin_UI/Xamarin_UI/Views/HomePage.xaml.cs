@@ -1,4 +1,4 @@
-﻿using MERG_BackEnd;
+using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,29 +6,33 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.IO;
 
 namespace Xamarin_UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        const string NumberRegex = @"^[a-zA-Z]+$";
         private readonly List<RealEstate> _listOfRealEstates = new List<RealEstate>();
-        private List<RealEstate> _filteredList { get; set; }
+        private List<RealEstate> _filteredList;
 
         public HomePage()
         {
             InitializeComponent();
 
-            var assembly = typeof(HomePage).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
+            var stream = GetScrapedDataStream();
             _listOfRealEstates = new Data(stream).SampleData;
             _filteredList = _listOfRealEstates;
             Populate(_listOfRealEstates);
-
         }
 
-        public void Populate (List<RealEstate> listOfRealEstates)
+        private Stream GetScrapedDataStream()
+        {
+            var assembly = typeof(HomePage).GetTypeInfo().Assembly;
+            return assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
+        }
+
+        private void Populate (List<RealEstate> listOfRealEstates)
         {
             myItem.ItemsSource = listOfRealEstates;
         }
@@ -41,21 +45,20 @@ namespace Xamarin_UI.Views
 
         private void Municipality_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Validate(sender, e);
-
+            Validate((Entry)sender, e.NewTextValue);
         }
 
         private void Microdistrict_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Validate(sender, e);
+            Validate((Entry)sender, e.NewTextValue);
         }
 
         private void Street_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Validate(sender, e);
+            Validate((Entry)sender, e.NewTextValue);
         }
 
-        private void Button_Clicked(object sender, System.EventArgs e)
+        private void Button_Clicked(object sender, EventArgs e)
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
@@ -63,16 +66,17 @@ namespace Xamarin_UI.Views
             myItem.ItemsSource = _filteredList;
         }
 
-        private void Button_Clicked_1(object sender, System.EventArgs e)
+        private void Button_Clicked_1(object sender, EventArgs e)
         {
             App.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList));
         }
-        private void Validate(object sender, TextChangedEventArgs e)
+        private void Validate(Entry textField, string text)
         {
-            if (!string.IsNullOrWhiteSpace(e.NewTextValue))
+            const string LettersRegex = @"^[a-zA-Z]+$";
+            if (!string.IsNullOrWhiteSpace(text))
             {
-                var IsValid = (Regex.IsMatch(e.NewTextValue, NumberRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
-                ((Entry)sender).Text = IsValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+                var IsValid = Regex.IsMatch(text, LettersRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+                textField.Text = IsValid ? text : text.Remove(text.Length - 1);
             }
         }
         private FiltersValue GetFiltersValue()
