@@ -85,6 +85,18 @@ namespace Xamarin_UI.Views
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
         }
+
+        private void Button_Clicked_2(object sender, EventArgs e)
+        {
+            if(filtersDisplay.IsVisible)
+            {
+                filtersDisplay.IsVisible = false;
+                buttonExpand.Text = "Išskleisti";
+                return;
+            }
+            filtersDisplay.IsVisible = true;
+            buttonExpand.Text = "Suskleisti";
+        }
     }
     
 }
