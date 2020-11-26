@@ -14,7 +14,7 @@ namespace WindowsForms_UI
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        private readonly List<RealEstate> _data = new Data().SampleData;
+        private readonly List<RealEstate> _data = new Data(@"..\..\scrapedData.txt").SampleData;
 
         public Form1()
         {
@@ -52,78 +52,63 @@ namespace WindowsForms_UI
         #region TextBox Input 
         private void Municipality_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigitLetter(e);
+
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigitLetter();
         }
 
         private void Street_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigitLetter(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigitLetter();
         }
 
         private void PriceFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void PriceTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void AreaFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void AreaTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void PricePerSqMFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void PricePerSqMTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void BuildYearFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void BuildYearTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void NumberOfRoomsFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
         private void NumberOfRoomsTo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            AllowOnlyKeysControlDigit(e);
-        }
-
-        private void AllowOnlyKeysControlDigit(KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void AllowOnlyKeysControlDigitLetter(KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != 46)
-            {
-                e.Handled = true;
-            }
+            e.Handled = e.KeyChar.AllowOnlyKeysControlDigit();
         }
 
 
@@ -244,7 +229,7 @@ namespace WindowsForms_UI
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            var listOfRealEstate = new Data().SampleData;
+            var listOfRealEstate = new Data(@"..\..\scrapeData.txt").SampleData;
             var filtersValue = GetFiltersValue();
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValue);
             LoadMarkers(filteredList);
@@ -252,7 +237,6 @@ namespace WindowsForms_UI
 
         private FiltersValue GetFiltersValue()
         {
-            var tools = new MERG_BackEnd.Tools();
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
                priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
               areaFrom: areaFrom.Text.ConvertToInt(), areaTo: areaTo.Text.ConvertToInt(),

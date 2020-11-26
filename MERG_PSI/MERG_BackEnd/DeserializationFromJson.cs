@@ -6,19 +6,23 @@ namespace MERG_BackEnd
 {
     public class DeserializationFromJson
     {
-        private const string _filePath = @"../../scrapedData.txt";
         public List<RealEstate> Data { get; set; }
 
-        public DeserializationFromJson()
+        public DeserializationFromJson(string filePath)
         {
-            var jsonFromFile = ReadFromFile();
+            var jsonFromFile = ReadFromFile(filePath);
+            Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFile);
+        }
+        public DeserializationFromJson(Stream stream)
+        {
+            var jsonFromFile = ReadFromFile(stream);
             Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFile);
         }
 
-        private string ReadFromFile()
+        private string ReadFromFile(string filePath)
         {
             var textFromFile = "";
-            using (var reader = new StreamReader(_filePath))
+            using (var reader = new StreamReader(filePath))
             {
                 textFromFile = reader.ReadToEnd();
                 reader.Close();
@@ -26,5 +30,17 @@ namespace MERG_BackEnd
 
             return textFromFile;
         }
+        private string ReadFromFile(Stream stream)
+        {
+            var textFromFile = "";
+            using (var reader = new StreamReader(stream))
+            {
+                textFromFile = reader.ReadToEnd();
+                reader.Close();
+            }
+
+            return textFromFile;
+        }
+ 
     }
 }
