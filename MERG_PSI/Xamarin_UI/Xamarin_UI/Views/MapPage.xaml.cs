@@ -8,21 +8,20 @@ namespace Xamarin_UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapPage : ContentPage
     {
-        readonly RealEstate MyValue = new RealEstate();
 
         public MapPage(RealEstate realEstate)
         {
             InitializeComponent();
-            MyValue = realEstate;
-            var position = new Position(MyValue.Latitude, MyValue.Longitude);
+     
+            var position = new Position(realEstate.Latitude, realEstate.Longitude);
             var mapSpan = new MapSpan(position, 0.1, 0.1);
             var map = new Map(mapSpan);
 
             var pin = new Pin
             {
-                Position = new Position(MyValue.Latitude, MyValue.Longitude),
-                Label = MyValue.Municipality,
-                Address = $"Kaina: { MyValue.Price} € Kaina / m²: { MyValue.PricePerSqM} €/ m² Plotas: { MyValue.Area}m² Metai: { MyValue.BuildYear} Kambariai: { MyValue.NumberOfRooms} Savivaldybė: { MyValue.Municipality} Mikrorajonas: { MyValue.Microdistrict} Gatvė: { MyValue.Street}"
+                Position = new Position(realEstate.Latitude, realEstate.Longitude),
+                Label = realEstate.Municipality,
+                Address = $"Kaina: { realEstate.Price} € Kaina / m²: { realEstate.PricePerSqM} €/ m² Plotas: { realEstate.Area}m² Metai: { realEstate.BuildYear} Kambariai: { realEstate.NumberOfRooms} Savivaldybė: { realEstate.Municipality} Mikrorajonas: { realEstate.Microdistrict} Gatvė: { realEstate.Street}"
 
             };
             map.Pins.Add(pin);

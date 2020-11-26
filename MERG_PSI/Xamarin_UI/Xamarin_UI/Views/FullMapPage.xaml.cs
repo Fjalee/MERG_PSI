@@ -1,11 +1,5 @@
-﻿using Common;
-using MERG_BackEnd;
-using System;
+﻿using MERG_BackEnd;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -19,11 +13,10 @@ namespace Xamarin_UI.Views
         {
             InitializeComponent();
 
-            var realEstates = realEstate;
             var position = new Position(55.1694, 23.8813);
             var mapSpan = new MapSpan(position, 4, 4);
             var map = new Map(mapSpan);
-            foreach (var house in realEstates)
+            foreach (var house in realEstate)
             {
                 var pin = new Pin
                 {
