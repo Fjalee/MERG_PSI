@@ -6,9 +6,9 @@ namespace MERG_BackEnd
      public class Data
     {
         public List<RealEstate> SampleData { get; set; }
-        public Data(string filePath)
+        public Data(string fileName)
         {
-            var des = new DeserializationFromJson(filePath);
+            var des = new DeserializationFromJson(fileName);
             SampleData = des.Data;
         }
         public Data(Stream stream)
