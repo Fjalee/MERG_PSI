@@ -34,21 +34,3 @@ namespace Xamarin_UI.Views
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
