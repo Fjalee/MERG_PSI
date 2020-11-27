@@ -19,11 +19,52 @@
 
             <StackLayout Margin="5">
 
-                <StackLayout Grid.Row="1" Orientation="Horizontal">
-                    <Entry x:Name ="municipality" Placeholder="Savivaldybė" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Municipality_TextChanged"/>
-                    <Entry x:Name ="microdistrict" Placeholder="Mikrorajonas" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Microdistrict_TextChanged"/>
-                    <Entry x:Name="street" Placeholder="Gatvė" Keyboard="Text" HorizontalOptions="Fill" WidthRequest="150" TextChanged="Street_TextChanged"/>
-                </StackLayout>
+                    <StackLayout Grid.Row="1" Orientation="Vertical">
+                        <Entry x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" FontSize="16" PlaceholderColor="Silver" Placeholder="Type here..." AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="municipalityListView" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame>
+                                            <StackLayout BackgroundColor="Transparent">
+                                                <Label FontSize="16" TextColor="Silver" BackgroundColor="Transparent"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+                        <Entry x:Name="microdistrict" TextChanged="MicrodistrictSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" FontSize="16" PlaceholderColor="Silver" Placeholder="Type here..." AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="microdistrictListView" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame>
+                                            <StackLayout BackgroundColor="Transparent">
+                                                <Label FontSize="16" TextColor="Silver"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+                        <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" FontSize="16" PlaceholderColor="Silver" Placeholder="Type here..." AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="streetListView" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame>
+                                            <StackLayout BackgroundColor="Transparent">
+                                                <Label FontSize="16" TextColor="Silver"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
 
                 <StackLayout Grid.Row="1" Orientation="Horizontal">
                     <Entry x:Name="priceFrom" Placeholder="Kaina nuo" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
