@@ -19,47 +19,88 @@
 
             <StackLayout Margin="5">
 
-                    <StackLayout Grid.Row="1" Orientation="Vertical">
+                    <StackLayout>
                         <Entry x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" FontSize="16" PlaceholderColor="Silver" Placeholder="Type here..." AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="municipalityListView" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <ListView x:Name="municipalityListView" ItemsSource="{Binding MunicipalityList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Frame>
-                                            <StackLayout BackgroundColor="Transparent">
-                                                <Label FontSize="16" TextColor="Silver" BackgroundColor="Transparent"/>
-                                            </StackLayout>
-                                        </Frame>
+                                        <StackLayout 
+                                            HorizontalOptions="FillAndExpand"
+                                            Margin="0"
+                                            Padding="0"
+                                            Spacing="0"
+                                            VerticalOptions="Fill">
+                                            <Label 
+                                                                        
+                                                BackgroundColor="Transparent"
+                                                FontSize="Large"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Margin="0" 
+                                                Text="{Binding Municipality}"
+                                                TextColor="Black"  
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                         
                         <Entry x:Name="microdistrict" TextChanged="MicrodistrictSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" FontSize="16" PlaceholderColor="Silver" Placeholder="Type here..." AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="microdistrictListView" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <ListView x:Name="microdistrictListView" ItemsSource="{Binding MunicipalityList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Frame>
-                                            <StackLayout BackgroundColor="Transparent">
-                                                <Label FontSize="16" TextColor="Silver"/>
-                                            </StackLayout>
-                                        </Frame>
+                                        <StackLayout 
+                                            HorizontalOptions="FillAndExpand"
+                                            Margin="0"
+                                            Padding="0"
+                                            Spacing="0"
+                                            VerticalOptions="Fill">
+                                                                    <Label 
+                                                                        
+                                                BackgroundColor="Transparent"
+                                                FontSize="Large"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Margin="0" 
+                                                Text="{Binding Municipality}"
+                                                TextColor="Black"  
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+
+
                         
                         <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" FontSize="16" PlaceholderColor="Silver" Placeholder="Type here..." AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
                         <ListView x:Name="streetListView" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Silver" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Frame>
-                                            <StackLayout BackgroundColor="Transparent">
-                                                <Label FontSize="16" TextColor="Silver"/>
-                                            </StackLayout>
-                                        </Frame>
+                                        <StackLayout 
+                                            HorizontalOptions="FillAndExpand"
+                                            Margin="0"
+                                            Padding="0"
+                                            Spacing="0"
+                                            VerticalOptions="Fill">
+                                            <Label 
+                                                                        
+                                                BackgroundColor="Transparent"
+                                                FontSize="Large"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Margin="0" 
+                                                Text="{Binding Municipality}"
+                                                TextColor="Black"  
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
