@@ -13,7 +13,7 @@ namespace Xamarin_UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly List<RealEstate> _listOfRealEstates = new List<RealEstate>();
+        private readonly Lazy<List<RealEstate>> _listOfRealEstates;
         private Lazy<List<RealEstate>> _filteredList;
 
         public HomePage()
@@ -21,9 +21,9 @@ namespace Xamarin_UI.Views
             InitializeComponent();
 
             var stream = GetScrapedDataStream();
-            _listOfRealEstates = new Data(stream).SampleData;
-            _filteredList = new Lazy<List<RealEstate>>(() => _listOfRealEstates);
-            Populate(_listOfRealEstates);
+            _listOfRealEstates = new Lazy<List<RealEstate>> (() => new Data(stream).SampleData);
+            _filteredList = new Lazy<List<RealEstate>>(() => _listOfRealEstates.Value);
+            //Populate(_listOfRealEstates);
         }
 
         private Stream GetScrapedDataStream()
@@ -32,10 +32,10 @@ namespace Xamarin_UI.Views
             return assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
         }
 
-        private void Populate (List<RealEstate> listOfRealEstates)
-        {
-            myItem.ItemsSource = listOfRealEstates;
-        }
+        //private void Populate (List<RealEstate> listOfRealEstates)
+        //{
+        //    myItem.ItemsSource = listOfRealEstates;
+        //}
 
         private void MyItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -64,7 +64,7 @@ namespace Xamarin_UI.Views
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
-            var newfilteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates, filtersValues);
+            var newfilteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValues);
             _filteredList = new Lazy<List<RealEstate>>(() => newfilteredList);
             myItem.ItemsSource = _filteredList.Value;
         }
