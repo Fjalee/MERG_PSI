@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace WebScraper
@@ -12,8 +14,10 @@ namespace WebScraper
 
         public async void ButtonScrape_Click(object sender, EventArgs e)
         {
-            var allScrapers = new AllScrapers(this);
-            await allScrapers.ScrapeAllWebsites(new FileLog());
+            var container = BuildContainer();
+            var scope = container.BeginLifetimeScope();
+
+            await scope.Resolve<AllScrapers>().ScrapeAllWebsites();
 
             TextBox1.AppendText("Done\n");
         }
@@ -21,6 +25,14 @@ namespace WebScraper
         public void OnScrapingDomain(object source, ScrapingDomainEventArgs e)
         {
             TextBox1.AppendText("\n" + "Scraping domain...  " + e.Domain + "\n");
+        }
+
+        private IContainer BuildContainer()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<FormsLog>().As<ILog>().SingleInstance();
+            builder.RegisterType<AllScrapers>().AsSelf().WithParameter(new NamedParameter("myUI", this));
+            return builder.Build();
         }
     }
 }

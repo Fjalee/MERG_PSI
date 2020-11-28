@@ -7,17 +7,19 @@ namespace WebScraper
     public class AllScrapers
     {
         private readonly Form1 _myUI;
-        public AllScrapers(Form1 myUI)
+        private readonly ILog _logger;
+        public AllScrapers(Form1 myUI, ILog logger)
         {
+            _logger = logger;
             _myUI = myUI;
         }
 
-        public async Task ScrapeAllWebsites(ILog logger)
+        public async Task ScrapeAllWebsites()
         {
-            var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=", "?", logger);
+            var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=", "?", _logger);
             var task1 = kampasScraper.ScrapeWebsite();
 
-            var domosplusScraper = new DomosplusScraper(_myUI, @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=", "&", logger);
+            var domosplusScraper = new DomosplusScraper(_myUI, @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=", "&", _logger);
             var task2 = domosplusScraper.ScrapeWebsite();
 
             await Task.WhenAll(task1, task2);
@@ -28,15 +30,6 @@ namespace WebScraper
 
             var output = new OutputToJson(allScrapedRealEstate);
             output.WriteToFile();
-        }
-
-        public IContainer BuildContainer()
-        {
-            NamedParameter(_myUI) NamedParameter(@"https://www.kampas.lt") NamedParameter(@"/butai") NamedParameter(@"page=") NamedParameter("?")
-            var builder = new ContainerBuilder();
-            builder.RegisterType<FileLog>().As<ILog>();
-            builder.RegisterType<KampasScraper>().AsSelf();
-            return builder.Build();
         }
     }
 }
