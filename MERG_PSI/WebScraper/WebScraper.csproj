@@ -100,7 +100,6 @@
     <Compile Include="GeoResult.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="InsideAdScraper.cs" />
-    <Compile Include="InsideAdScraperService.cs" />
     <Compile Include="KampasInsideAdScraper.cs" />
     <Compile Include="KampasScraper.cs" />
     <Compile Include="FileLog.cs" />

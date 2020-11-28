@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Autofac;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebScraper
@@ -27,6 +28,15 @@ namespace WebScraper
 
             var output = new OutputToJson(allScrapedRealEstate);
             output.WriteToFile();
+        }
+
+        public IContainer BuildContainer()
+        {
+            NamedParameter(_myUI) NamedParameter(@"https://www.kampas.lt") NamedParameter(@"/butai") NamedParameter(@"page=") NamedParameter("?")
+            var builder = new ContainerBuilder();
+            builder.RegisterType<FileLog>().As<ILog>();
+            builder.RegisterType<KampasScraper>().AsSelf();
+            return builder.Build();
         }
     }
 }

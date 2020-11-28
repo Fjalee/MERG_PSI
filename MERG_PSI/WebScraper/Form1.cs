@@ -13,7 +13,7 @@ namespace WebScraper
         public async void ButtonScrape_Click(object sender, EventArgs e)
         {
             var allScrapers = new AllScrapers(this);
-            await allScrapers.ScrapeAllWebsites(FileLog.Instance);
+            await allScrapers.ScrapeAllWebsites(new FileLog());
 
             TextBox1.AppendText("Done\n");
         }
