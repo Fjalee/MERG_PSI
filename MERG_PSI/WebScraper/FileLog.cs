@@ -13,22 +13,14 @@ namespace WebScraper
         private readonly string _fileNameLogErrorNoDocument = @"log_ErrorNoDocument.txt";
         private readonly string _fileNameLogDnContainCoords = @"log_DnContainCoords.txt";
 
-        private static readonly Lazy<FileLog>
-            _instance = new Lazy<FileLog>
-                (() => new FileLog());
-
-        public static FileLog Instance { get { return _instance.Value; } }
-
-        private FileLog() { }
-
-        static FileLog()
+        public FileLog()
         {
-            Instance.DelFileIfExist(Instance._fileNameLogMsg);
-            Instance.DelFileIfExist(Instance._fileNameLogAdInvalid);
-            Instance.DelFileIfExist(Instance._fileNameLogIEnCountInvalid);
-            Instance.DelFileIfExist(Instance._fileNameLogCantParse);
-            Instance.DelFileIfExist(Instance._fileNameLogErrorNoDocument);
-            Instance.DelFileIfExist(Instance._fileNameLogDnContainCoords);
+            DelFileIfExist(_fileNameLogMsg);
+            DelFileIfExist(_fileNameLogAdInvalid);
+            DelFileIfExist(_fileNameLogIEnCountInvalid);
+            DelFileIfExist(_fileNameLogCantParse);
+            DelFileIfExist(_fileNameLogErrorNoDocument);
+            DelFileIfExist(_fileNameLogDnContainCoords);
         }
 
         public void Msg(string message)
