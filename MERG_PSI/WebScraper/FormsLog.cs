@@ -5,18 +5,10 @@ namespace WebScraper
 {
     public partial class FormsLog : Form, ILog
     {
-        private static readonly Lazy<FormsLog>
-            _instance = new Lazy<FormsLog>
-                (() => new FormsLog());
-
-        public static FormsLog Instance { get { return _instance.Value; } }
-
-        private FormsLog() { }
-
-        static FormsLog()
+        public FormsLog()
         {
-            Instance.Show();
-            Instance.InitializeComponent();
+            Show();
+            InitializeComponent();
         }
 
         public void Msg(string message)
