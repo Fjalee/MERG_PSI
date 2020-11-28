@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebScraper
 {
     public class AllScrapers
     {
-        readonly Form1 _myUI;
+        private readonly Form1 _myUI;
         public AllScrapers(Form1 myUI)
         {
             _myUI = myUI;

@@ -2,7 +2,8 @@
 {
     public class DomosplusScraper : SiteScraper
     {
-        public DomosplusScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol, ILog logger) : base(myUI, websiteLink, subdirectory, pageString, symbol, logger) { }
+        public DomosplusScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol, ILog logger)
+            : base(myUI, websiteLink, subdirectory, pageString, symbol, logger) { }
 
         protected override AdCardLinkScraper InstanciateAdCardLinkScraperObject()
         {
