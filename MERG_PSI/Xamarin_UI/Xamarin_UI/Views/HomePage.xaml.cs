@@ -14,16 +14,14 @@ namespace Xamarin_UI.Views
     public partial class HomePage : ContentPage
     {
         private readonly Lazy<List<RealEstate>> _listOfRealEstates;
-        private Lazy<List<RealEstate>> _filteredList;
+        private List<RealEstate> _filteredList;
 
         public HomePage()
         {
             InitializeComponent();
 
-            var stream = GetScrapedDataStream();
-            _listOfRealEstates = new Lazy<List<RealEstate>> (() => new Data(stream).SampleData);
-            _filteredList = new Lazy<List<RealEstate>>(() => _listOfRealEstates.Value);
-            //Populate(_listOfRealEstates);
+            List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
+            _listOfRealEstates = new Lazy<List<RealEstate>> (getSampleData);
         }
 
         private Stream GetScrapedDataStream()
@@ -31,11 +29,6 @@ namespace Xamarin_UI.Views
             var assembly = typeof(HomePage).GetTypeInfo().Assembly;
             return assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
         }
-
-        //private void Populate (List<RealEstate> listOfRealEstates)
-        //{
-        //    myItem.ItemsSource = listOfRealEstates;
-        //}
 
         private void MyItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -64,15 +57,16 @@ namespace Xamarin_UI.Views
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
-            var newfilteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValues);
-            _filteredList = new Lazy<List<RealEstate>>(() => newfilteredList);
-            myItem.ItemsSource = _filteredList.Value;
+            _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValues);
+            myItem.ItemsSource = _filteredList;
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList.Value));
+            var list = _filteredList ?? _listOfRealEstates.Value;
+            Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(list));
         }
+
         private FiltersValue GetFiltersValue()
         {
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
