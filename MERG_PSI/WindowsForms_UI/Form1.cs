@@ -8,17 +8,21 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace WindowsForms_UI
 {
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        private readonly List<RealEstate> _data = new Data(@"..\..\scrapedData.txt").SampleData;
+        private string _fileName = ConfigurationManager.AppSettings.Get("SCRAPED_DATA");
+        private readonly List<RealEstate> _data;
 
         public Form1()
         {
             InitializeComponent();
+            _data = new Data(_fileName).SampleData;
             MapLoad();
             LoadMarkers(_data);
         }
@@ -229,7 +233,8 @@ namespace WindowsForms_UI
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            var listOfRealEstate = new Data(@"..\..\scrapeData.txt").SampleData;
+            _fileName = ConfigurationManager.AppSettings.Get("SCRAPED_DATA");
+            var listOfRealEstate = new Data(_fileName).SampleData;
             var filtersValue = GetFiltersValue();
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValue);
             LoadMarkers(filteredList);
@@ -238,7 +243,7 @@ namespace WindowsForms_UI
         private FiltersValue GetFiltersValue()
         {
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
-               priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
+              priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
               areaFrom: areaFrom.Text.ConvertToInt(), areaTo: areaTo.Text.ConvertToInt(),
               buildYearFrom: buildYearFrom.Text.ConvertToInt(), buildYearTo: buildYearTo.Text.ConvertToInt(),
               numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
