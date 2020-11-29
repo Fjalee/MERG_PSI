@@ -16,15 +16,13 @@ namespace WindowsForms_UI
     public partial class Form1 : Form
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
-        string fileName;
-        private List<RealEstate> _data => new Data(fileName).SampleData;
-
-        //private string fileName;
-        //private readonly List<RealEstate> _data = new Data(@"..\..\scrapedData.txt").SampleData; buvo vietoj 20 eilutes
+        private string _fileName = ConfigurationManager.AppSettings.Get("SCRAPED_DATA");
+        private readonly List<RealEstate> _data;
 
         public Form1()
         {
             InitializeComponent();
+            _data = new Data(_fileName).SampleData;
             MapLoad();
             LoadMarkers(_data);
         }
@@ -235,8 +233,8 @@ namespace WindowsForms_UI
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();
-            fileName = ConfigurationManager.AppSettings.Get("SCRAPED_DATA");
-            var listOfRealEstate = new Data(fileName).SampleData;
+            _fileName = ConfigurationManager.AppSettings.Get("SCRAPED_DATA");
+            var listOfRealEstate = new Data(_fileName).SampleData;
             var filtersValue = GetFiltersValue();
             var filteredList = inspection.GetFilteredListOFRealEstate(listOfRealEstate, filtersValue);
             LoadMarkers(filteredList);
