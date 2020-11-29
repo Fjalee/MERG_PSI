@@ -17,10 +17,10 @@ namespace WindowsForms_UI
     {
         private readonly GMapOverlay _markOverlay = new GMapOverlay("marker");
         string fileName;
-        private readonly List<RealEstate> _data = new Data(fileName).SampleData;
+        private List<RealEstate> _data => new Data(fileName).SampleData;
 
         //private string fileName;
-        //private readonly List<RealEstate> _data = new Data(@"..\..\scrapedData.txt").SampleData;
+        //private readonly List<RealEstate> _data = new Data(@"..\..\scrapedData.txt").SampleData; buvo vietoj 20 eilutes
 
         public Form1()
         {
@@ -256,7 +256,7 @@ namespace WindowsForms_UI
         private void Map_OnMarkerDoubleClick_1(GMapMarker item, MouseEventArgs e)
         {
             var tools = new MERG_BackEnd.Tools();
-            tools.OpenLinks(item.Position.Lat, item.Position.Lng, Data);
+            tools.OpenLinks(item.Position.Lat, item.Position.Lng, _data);
         }
     }
 }
