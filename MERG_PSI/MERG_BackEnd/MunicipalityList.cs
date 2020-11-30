@@ -4,20 +4,21 @@ using System.Threading.Tasks;
 
 namespace MERG_BackEnd
 {
-    public class MunicipalityList
+    public class MunicipalityList:IList
     {
-        
-        public string Municipality { get; }
+        public string Address { get; set; }
+
         public MunicipalityList( )
         {
         }
         public MunicipalityList(string municipality)
         {
-            Municipality = municipality;
+            Address = municipality;
         }
-        public async Task<ObservableCollection<MunicipalityList>> ListOfStore() //List of Countries  
+
+        public ObservableCollection<IList> GetList()
         {
-                var municipalityList =  new ObservableCollection<MunicipalityList>();
+                var municipalityList =  new ObservableCollection<IList>();
                 municipalityList.Add(new MunicipalityList("Akmenės r. sav."));
                 municipalityList.Add(new MunicipalityList("Alytaus m. sav."));
                 municipalityList.Add(new MunicipalityList("Alytaus r. sav."));

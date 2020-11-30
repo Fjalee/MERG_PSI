@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
@@ -17,8 +16,9 @@ namespace Xamarin_UI.Views
         private readonly List<RealEstate> _listOfRealEstates = new List<RealEstate>();
         private List<RealEstate> _filteredList;
 
-        private ObservableCollection<MunicipalityList> _municipalityList = new ObservableCollection<MunicipalityList>();
-
+        private readonly ObservableCollection<IList> _municipalityList = new ObservableCollection<IList>();
+        private readonly ObservableCollection<IList> _microdistrictList = new ObservableCollection<IList>();
+        private readonly ObservableCollection<IList> _streetList = new ObservableCollection<IList>();
         public HomePage()
         {
             InitializeComponent();
@@ -27,8 +27,17 @@ namespace Xamarin_UI.Views
             _listOfRealEstates = new Data(stream).SampleData;
             _filteredList = _listOfRealEstates;
             Populate(_listOfRealEstates);
+
             var munic = new MunicipalityList();
-            _municipalityList = munic.ListOfStore().Result;
+            _municipalityList = munic.GetList();
+
+            var micro = new MicrodistrictList();
+            _microdistrictList = micro.GetList();
+
+            var street = new StreetList();
+            _streetList = street.GetList();
+
+
         }
 
         private Stream GetScrapedDataStream()
@@ -90,11 +99,11 @@ namespace Xamarin_UI.Views
         }
         private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, microdistrictListView, _municipalityList);
+            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList);
         }
         private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, streetListView, _municipalityList);
+            OnTextChanged(e.NewTextValue, streetListView, _streetList);
         }
 
         private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
@@ -110,14 +119,14 @@ namespace Xamarin_UI.Views
             OnItemTapped(sender, e, streetListView, street);
         }
 
-        private void OnTextChanged(string text, ListView viewlist, ObservableCollection<MunicipalityList> dataList)
+        private void OnTextChanged(string text, ListView viewlist, ObservableCollection<IList> dataList)
         {
             viewlist.IsVisible = true;
             viewlist.BeginRefresh();
 
             try
             {
-                var data = dataList.Where(i => i.Municipality.ToLower().Contains(text.ToLower()));
+                var data = dataList.Where(i => i.Address.ToLower().Contains(text.ToLower()));
                 if (string.IsNullOrWhiteSpace(text))
                {
                     viewlist.IsVisible = false;
@@ -136,8 +145,8 @@ namespace Xamarin_UI.Views
 
         private void OnItemTapped(Object sender, ItemTappedEventArgs e, ListView viewlist, Entry name)
         {
-            var mun = e.Item as MunicipalityList;
-            name.Text = mun.Municipality;
+            var mun = e.Item as IList;
+            name.Text = mun.Address;
             viewlist.IsVisible = false;
             ((ListView)sender).SelectedItem = null;
         }
