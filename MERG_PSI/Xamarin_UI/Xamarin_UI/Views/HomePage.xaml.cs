@@ -53,18 +53,33 @@ namespace Xamarin_UI.Views
             ((Entry)sender).Text = e.NewTextValue.Validate();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
-            _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValues);
+            try
+            {
+                _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValues);
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+            }
             myItem.ItemsSource = _filteredList;
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            var list = _filteredList ?? _listOfRealEstates.Value;
-            Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(list));
+            try
+            {
+                var list = _filteredList ?? _listOfRealEstates.Value;
+                await Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(list));
+            }
+            catch (Exception)
+            {
+
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+            }
         }
 
         private FiltersValue GetFiltersValue()
