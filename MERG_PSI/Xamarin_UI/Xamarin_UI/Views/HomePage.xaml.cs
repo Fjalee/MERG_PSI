@@ -16,9 +16,9 @@ namespace Xamarin_UI.Views
         private readonly List<RealEstate> _listOfRealEstates = new List<RealEstate>();
         private List<RealEstate> _filteredList;
 
-        private readonly ObservableCollection<IList> _municipalityList = new ObservableCollection<IList>();
-        private readonly ObservableCollection<IList> _microdistrictList = new ObservableCollection<IList>();
-        private readonly ObservableCollection<IList> _streetList = new ObservableCollection<IList>();
+        private readonly Lazy<ObservableCollection<IList>> _municipalityList = new Lazy<ObservableCollection<IList>>();
+        private readonly Lazy<ObservableCollection<IList>> _microdistrictList = new Lazy<ObservableCollection<IList>>();
+        private readonly Lazy<ObservableCollection<IList>> _streetList = new Lazy<ObservableCollection<IList>>();
         public HomePage()
         {
             InitializeComponent();
@@ -28,14 +28,12 @@ namespace Xamarin_UI.Views
             _filteredList = _listOfRealEstates;
             Populate(_listOfRealEstates);
 
-            var munic = new MunicipalityList();
-            _municipalityList = munic.GetList();
+            
+            _municipalityList = new Lazy<ObservableCollection<IList>>(() => new MunicipalityList().GetList());
 
-            var micro = new MicrodistrictList();
-            _microdistrictList = micro.GetList();
+            _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
 
-            var street = new StreetList();
-            _streetList = street.GetList();
+            _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
 
 
         }
@@ -95,15 +93,15 @@ namespace Xamarin_UI.Views
        
         private void MunicipalitySearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList);
+            OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList.Value);
         }
         private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList);
+            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList.Value);
         }
         private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, streetListView, _streetList);
+            OnTextChanged(e.NewTextValue, streetListView, _streetList.Value);
         }
 
         private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
