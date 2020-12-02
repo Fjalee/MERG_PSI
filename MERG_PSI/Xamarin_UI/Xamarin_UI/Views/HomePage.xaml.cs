@@ -44,7 +44,7 @@ namespace Xamarin_UI.Views
             Application.Current.MainPage.Navigation.PushAsync(new MapPage(myValue));
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
