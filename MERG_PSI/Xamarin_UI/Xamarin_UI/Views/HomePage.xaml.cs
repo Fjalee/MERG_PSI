@@ -16,9 +16,10 @@ namespace Xamarin_UI.Views
         private readonly Lazy<List<RealEstate>> _listOfRealEstates;
         private List<RealEstate> _filteredList;
 
-        private readonly Lazy<ObservableCollection<IList>> _municipalityList = new Lazy<ObservableCollection<IList>>();
-        private readonly Lazy<ObservableCollection<IList>> _microdistrictList = new Lazy<ObservableCollection<IList>>();
-        private readonly Lazy<ObservableCollection<IList>> _streetList = new Lazy<ObservableCollection<IList>>();
+        private readonly Lazy<ObservableCollection<IList>> _municipalityList;
+        private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
+        private readonly Lazy<ObservableCollection<IList>> _streetList;
+        
         public HomePage()
         {
             InitializeComponent();
