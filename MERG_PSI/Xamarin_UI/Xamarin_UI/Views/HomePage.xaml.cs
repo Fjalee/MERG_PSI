@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Xamarin_UI.Views
 {
@@ -16,12 +16,21 @@ namespace Xamarin_UI.Views
         private readonly Lazy<List<RealEstate>> _listOfRealEstates;
         private List<RealEstate> _filteredList;
 
+        private readonly Lazy<ObservableCollection<IList>> _municipalityList;
+        private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
+        private readonly Lazy<ObservableCollection<IList>> _streetList;
+        
         public HomePage()
         {
             InitializeComponent();
+            
+            _municipalityList = new Lazy<ObservableCollection<IList>>(() => new MunicipalityList().GetList());
+            _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
+            _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>> (getSampleData);
+
         }
 
         private Stream GetScrapedDataStream()
@@ -34,23 +43,6 @@ namespace Xamarin_UI.Views
         {
             var myValue = e.CurrentSelection.FirstOrDefault() as RealEstate;
             Application.Current.MainPage.Navigation.PushAsync(new MapPage(myValue));
-        }
-
-        private void Municipality_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            ((Entry)sender).Text = e.NewTextValue.Validate();
-        }
-
-        private void Microdistrict_TextChanged(object sender, TextChangedEventArgs e)
-        {
- 
-            ((Entry)sender).Text = e.NewTextValue.Validate();
-        }
-
-        private void Street_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((Entry)sender).Text = e.NewTextValue.Validate();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -103,6 +95,65 @@ namespace Xamarin_UI.Views
             }
             filtersDisplay.IsVisible = true;
             buttonExpand.Text = "Suskleisti";
+        }
+
+       
+        private void MunicipalitySearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        {
+            OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList.Value);
+        }
+        private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        {
+            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList.Value);
+        }
+        private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        {
+            OnTextChanged(e.NewTextValue, streetListView, _streetList.Value);
+        }
+
+        private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
+        {
+            OnItemTapped(sender, e, municipalityListView, municipality);
+        }
+        private void MicrodistrictListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
+        {
+            OnItemTapped(sender, e, microdistrictListView, microdistrict);
+        }
+        private void StreetListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
+        {
+            OnItemTapped(sender, e, streetListView, street);
+        }
+
+        private void OnTextChanged(string text, ListView viewlist, ObservableCollection<IList> dataList)
+        {
+            viewlist.IsVisible = true;
+            viewlist.BeginRefresh();
+
+            try
+            {
+                var data = dataList.Where(i => i.Address.ToLower().Contains(text.ToLower()));
+                if (string.IsNullOrWhiteSpace(text))
+               {
+                    viewlist.IsVisible = false;
+                }
+                else
+                {
+                    viewlist.ItemsSource = data;
+            }
+            }
+            catch (Exception)
+            {
+                viewlist.IsVisible = false;
+            }
+            viewlist.EndRefresh();
+        }
+
+        private void OnItemTapped(Object sender, ItemTappedEventArgs e, ListView viewlist, Entry name)
+        {
+            var mun = e.Item as IList;
+            name.Text = mun.Address;
+            viewlist.IsVisible = false;
+            ((ListView)sender).SelectedItem = null;
         }
     }
     

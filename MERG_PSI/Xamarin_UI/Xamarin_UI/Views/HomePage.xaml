@@ -19,11 +19,93 @@
 
             <StackLayout Margin="5">
 
-                <StackLayout Grid.Row="1" Orientation="Horizontal">
-                    <Entry x:Name ="municipality" Placeholder="Savivaldybė" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Municipality_TextChanged"/>
-                    <Entry x:Name ="microdistrict" Placeholder="Mikrorajonas" Keyboard="Text" HorizontalOptions="FillAndExpand" TextChanged="Microdistrict_TextChanged"/>
-                    <Entry x:Name="street" Placeholder="Gatvė" Keyboard="Text" HorizontalOptions="Fill" WidthRequest="150" TextChanged="Street_TextChanged"/>
-                </StackLayout>
+                    <StackLayout>
+                        <Entry x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Savivaldybė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="municipalityListView" ItemsSource="{Binding MunicipalityList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout 
+                                            HorizontalOptions="FillAndExpand"
+                                            Margin="0"
+                                            Padding="0"
+                                            Spacing="0"
+                                            VerticalOptions="Fill">
+                                            <Label 
+                                                                        
+                                                BackgroundColor="Transparent"
+                                                FontSize="16"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Left"
+                                                Margin="0" 
+                                                Text="{Binding Address}"
+                                                TextColor="Black"  
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+                        <Entry x:Name="microdistrict" TextChanged="MicrodistrictSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Gyvenvietė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="microdistrictListView" ItemsSource="{Binding MicrodistrictList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout 
+                                            HorizontalOptions="FillAndExpand"
+                                            Margin="0"
+                                            Padding="0"
+                                            Spacing="0"
+                                            VerticalOptions="Fill">
+                                                                    <Label 
+                                                                        
+                                                BackgroundColor="Transparent"
+                                                FontSize="16"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Left"
+                                                Margin="0" 
+                                                Text="{Binding Address}"
+                                                TextColor="Black"  
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+
+                        
+                        <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Gatvė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="streetListView" ItemsSource="{Binding StreetList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout 
+                                            HorizontalOptions="FillAndExpand"
+                                            Margin="0"
+                                            Padding="0"
+                                            Spacing="0"
+                                            VerticalOptions="Fill">
+                                            <Label 
+                                                                        
+                                                BackgroundColor="Transparent"
+                                                FontSize="16"
+                                                HorizontalOptions="FillAndExpand"
+                                                HorizontalTextAlignment="Left"
+                                                Margin="0" 
+                                                Text="{Binding Address}"
+                                                TextColor="Black"  
+                                                VerticalOptions="FillAndExpand"
+                                                VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
 
                 <StackLayout Grid.Row="1" Orientation="Horizontal">
                     <Entry x:Name="priceFrom" Placeholder="Kaina nuo" Keyboard="Numeric" HorizontalOptions="FillAndExpand"/>
