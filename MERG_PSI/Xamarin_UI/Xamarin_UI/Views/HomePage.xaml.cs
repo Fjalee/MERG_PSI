@@ -13,7 +13,7 @@ namespace Xamarin_UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly List<RealEstate> _listOfRealEstates = new List<RealEstate>();
+        private readonly Lazy<List<RealEstate>> _listOfRealEstates;
         private List<RealEstate> _filteredList;
 
         private readonly Lazy<ObservableCollection<IList>> _municipalityList = new Lazy<ObservableCollection<IList>>();
@@ -22,19 +22,13 @@ namespace Xamarin_UI.Views
         public HomePage()
         {
             InitializeComponent();
-
-            var stream = GetScrapedDataStream();
-            _listOfRealEstates = new Data(stream).SampleData;
-            _filteredList = _listOfRealEstates;
-            Populate(_listOfRealEstates);
-
             
             _municipalityList = new Lazy<ObservableCollection<IList>>(() => new MunicipalityList().GetList());
-
             _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
-
             _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
 
+            List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
+            _listOfRealEstates = new Lazy<List<RealEstate>> (getSampleData);
 
         }
 
@@ -42,11 +36,6 @@ namespace Xamarin_UI.Views
         {
             var assembly = typeof(HomePage).GetTypeInfo().Assembly;
             return assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
-        }
-
-        private void Populate (List<RealEstate> listOfRealEstates)
-        {
-            myItem.ItemsSource = listOfRealEstates;
         }
 
         private void MyItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,14 +48,31 @@ namespace Xamarin_UI.Views
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
-            _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates, filtersValues);
+            try
+            {
+                _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValues);
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+            }
             myItem.ItemsSource = _filteredList;
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(_filteredList));
+            try
+            {
+                var list = _filteredList ?? _listOfRealEstates.Value;
+                await Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(list));
+            }
+            catch (Exception)
+            {
+
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+            }
         }
+
         private FiltersValue GetFiltersValue()
         {
             return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
