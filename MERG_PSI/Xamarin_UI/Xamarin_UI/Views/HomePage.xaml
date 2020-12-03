@@ -8,8 +8,8 @@
     
         <StackLayout>
             <StackLayout Grid.Row="1" Orientation="Horizontal">
-            <Button x:Name="buttonExpand" Text="Suskleisti" Clicked="Button_Clicked_2" WidthRequest="200"/>
-            <Button Text="Eiti į žemėlapį" Clicked="Button_Clicked_1" HorizontalOptions="FillAndExpand"/>
+            <Button x:Name="buttonExpand" Text="Suskleisti" Clicked="Button_Clicked_Expand" WidthRequest="200"/>
+            <Button Text="Eiti į žemėlapį" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
             <StackLayout x:Name="filtersDisplay">
                 <StackLayout  Grid.Row="1" HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10" >
@@ -135,7 +135,7 @@
                 </StackLayout>
 
                 <StackLayout  Grid.Row="1" Orientation="Horizontal">
-                    <Button Text="Paieška" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Paieška" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="FillAndExpand"/>
                     
                 </StackLayout>
             </StackLayout>
