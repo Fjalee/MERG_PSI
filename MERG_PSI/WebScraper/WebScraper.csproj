@@ -59,6 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdCardLinkScraper.cs" />
+    <Compile Include="DomosplusInsideAdScraper.cs" />
+    <Compile Include="DomosplusAdCardLinkScraper.cs" />
     <Compile Include="AllScrapers.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -66,19 +69,35 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLog.Designer.cs">
+      <DependentUpon>FormsLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeoResult.cs" />
+    <Compile Include="ILog.cs" />
     <Compile Include="InsideAdScraper.cs" />
+    <Compile Include="KampasInsideAdScraper.cs" />
     <Compile Include="KampasScraper.cs" />
-    <Compile Include="MyLog.cs" />
+    <Compile Include="FileLog.cs" />
+    <Compile Include="DomosplusScraper.cs" />
     <Compile Include="OutputToJson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AdCardLinkScraper.cs" />
+    <Compile Include="KampasAdCardLinkScraper.cs" />
     <Compile Include="RealEstate.cs" />
+    <Compile Include="RevGeocoding.cs" />
     <Compile Include="Scraper.cs" />
     <Compile Include="ScrapingDomainEventArgs.cs" />
+    <Compile Include="SiteScraper.cs" />
     <Compile Include="StringExtension.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLog.resx">
+      <DependentUpon>FormsLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +122,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scrapedData.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DAC05E00-E2FA-4A2D-B728-631D1CCB958F}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MERG_BackEnd\MERG_BackEnd.csproj">
+      <Project>{C5A0B218-2D94-49C9-978F-1D874749B3A1}</Project>
+      <Name>MERG_BackEnd</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

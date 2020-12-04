@@ -1,20 +1,18 @@
-﻿using AngleSharp.Html.Dom;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace WebScraper
 {
-    class AdCardLinkScraper : Scraper
+    public abstract class AdCardLinkScraper : Scraper
     {
-        private readonly string _siteUrl;
-        private readonly string _classNameForAdCard;
-        public override IHtmlDocument Document { get; set; }
         public List<string> Links { get; set; } = new List<string>();
-        public AdCardLinkScraper(string siteUrl, string className)
+        protected string ClassNameForAdCard { get; }
+        private readonly string _siteUrl;
+
+        public AdCardLinkScraper(string siteUrl, string classNameForAdCard, ILog logger) : base(logger)
         {
             _siteUrl = siteUrl;
-            _classNameForAdCard = className;
+            ClassNameForAdCard = classNameForAdCard;
         }
 
         public override void Scrape()
@@ -22,27 +20,18 @@ namespace WebScraper
             ScrapeUrls();
         }
 
+        protected abstract IEnumerable<string> GetAdCardsPaths();
+
         private void ScrapeUrls()
         {
             if (Document == null)
             {
-                MyLog.ErrorNoDocument();
+                Logger.ErrorNoDocument();
             }
 
             var adCardsPaths = GetAdCardsPaths();
 
             Links = ParseAllLinks(adCardsPaths);
-        }
-
-        private IEnumerable<string> GetAdCardsPaths()
-        {
-            var adCardsPaths = Document.All
-                .Where(x => x.LocalName == "a")
-                .Where(x => x.ParentElement.LocalName == "div")
-                .Where(x => x.ParentElement.ClassList.Contains(_classNameForAdCard))
-                .Select(x => ((IHtmlAnchorElement)x).PathName);
-
-            return adCardsPaths;
         }
 
         private List<string> ParseAllLinks(IEnumerable<string> adCardsPaths)

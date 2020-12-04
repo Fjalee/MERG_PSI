@@ -1,31 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿using Common;
+using Newtonsoft.Json;
 using System;
+
 
 namespace WebScraper
 {
-    public class RealEstate
+    public class RealEstate : RealEstateModel
     {
-        public string Link { get; }
-        public double Area { get; }
-        public double PricePerSqM { get; }
-        public int NumberOfRooms { get; }
-        public string Floor { get; }
+        [JsonIgnore]
+        private readonly ILog _logger;
 
         [JsonIgnore]
         private readonly double _calculatedPrice;
 
         [JsonIgnore]
         private readonly double _scraperPrice;
-        public double Price { get; }
-        public string MapLink { get; }
 
-        public string Municipality { get; }
-        public string Street { get; }
-        public int BuildYear { get; }
-        public string MapCoords { get; }
-
-        public RealEstate(string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", string municipality = "", string street = "", int buildYear = 0, string mapCoords = "")
+        public RealEstate(ILog logger, string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string image = "", double latitude = 0, double longitude = 0, string municipality = "", string microdistrict = "" , string street = "")
         {
+            _logger = logger;
             Link = link;
             Area = area;
             PricePerSqM = pricePerSqM;
@@ -33,16 +26,19 @@ namespace WebScraper
             Floor = floor;
             _scraperPrice = scrapedPrice;
             MapLink = mapLink;
-            Municipality = municipality;
-            Street = street;
             BuildYear = buildYear;
-            MapCoords = mapCoords;
+            Image = image;
+            Latitude = latitude;
+            Longitude = longitude;
+            Municipality = municipality;
+            Microdistrict = microdistrict;
+            Street = street;
 
             _calculatedPrice = pricePerSqM * area;
             Price = DeterminePrice();
         }
-        override
-        public string ToString()
+        
+        override public string ToString()
         {
             return $"Link|    {Link}\n" +
                    $"Area|    {Area}\n" +
@@ -56,7 +52,8 @@ namespace WebScraper
                    $"Municipality|    {Municipality}\n" +
                    $"Street|    {Street}\n" +
                    $"BuildYear|    {BuildYear}\n" +
-                   $"MapCoords|    {MapCoords}\n" +
+                   $"Latitude|    {Latitude}\n" +
+                   $"Longitude|    {Longitude}\n" +
                    $"\n\n\n";
         }
 
@@ -76,12 +73,12 @@ namespace WebScraper
             }
             else
             {
-                MyLog.Msg($"Assigned Price 0 to\n{Link}\n");
+                _logger.Msg($"Assigned Price 0 to\n{Link}\n");
                 return 0;
             }
         }
 
-        public bool IsValuesClose(double value1, double value2, int roundErr)
+        private bool IsValuesClose(double value1, double value2, int roundErr)
         {
             var diff = value1 - value2;
             if ((diff <= roundErr && diff >= 0) || (diff <= 0 && diff >= -roundErr))

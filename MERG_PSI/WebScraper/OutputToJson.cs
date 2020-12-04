@@ -4,7 +4,7 @@ using System.IO;
 
 namespace WebScraper
 {
-    class OutputToJson
+    public class OutputToJson
     {
         private const string _filePath = @"scrapedData.txt";
         private readonly string _jsonToWrite;
