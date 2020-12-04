@@ -45,7 +45,7 @@ namespace Xamarin_UI.Views
             Application.Current.MainPage.Navigation.PushAsync(new MapPage(myValue));
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked_SearchAsync(object sender, EventArgs e)
         {
             var inspection = new Inspection();
             var filtersValues = GetFiltersValue();
@@ -60,7 +60,7 @@ namespace Xamarin_UI.Views
             myItem.ItemsSource = _filteredList;
         }
 
-        private async void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Clicked_GoToMapAsync(object sender, EventArgs e)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace Xamarin_UI.Views
               noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
         }
 
-        private void Button_Clicked_2(object sender, EventArgs e)
+        private void Button_Clicked_Expand(object sender, EventArgs e)
         {
             if(filtersDisplay.IsVisible)
             {
