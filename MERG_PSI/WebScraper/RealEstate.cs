@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System;
 
-
 namespace WebScraper
 {
     public class RealEstate : RealEstateModel
@@ -16,7 +15,7 @@ namespace WebScraper
         [JsonIgnore]
         private readonly double _scraperPrice;
 
-        public RealEstate(ILog logger, string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string image = "", double latitude = 0, double longitude = 0, string municipality = "", string microdistrict = "" , string street = "")
+        public RealEstate(ILog logger, string link = "", double area = 0, double pricePerSqM = 0, int numberOfRooms = 0, string floor = "", double scrapedPrice = 0, string mapLink = "", int buildYear = 0, string image = "", double latitude = 0, double longitude = 0, string municipality = "", string microdistrict = "", string street = "")
         {
             _logger = logger;
             Link = link;
@@ -37,7 +36,7 @@ namespace WebScraper
             _calculatedPrice = pricePerSqM * area;
             Price = DeterminePrice();
         }
-        
+
         override public string ToString()
         {
             return $"Link|    {Link}\n" +

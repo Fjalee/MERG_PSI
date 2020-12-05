@@ -26,7 +26,7 @@ namespace WebScraper
         private void CoordsToAddress()
         {
             var jsonResult = JsonResults();
-            
+
             if (jsonResult.Status == "OK")
             {
                 Municipality = FindRightAddress(jsonResult, "administrative_area_level_2");

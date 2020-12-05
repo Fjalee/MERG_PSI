@@ -68,4 +68,3 @@
         private System.Windows.Forms.RichTextBox TextBox1;
     }
 }
-
