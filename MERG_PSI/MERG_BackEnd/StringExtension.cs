@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace MERG_BackEnd
@@ -16,6 +14,7 @@ namespace MERG_BackEnd
             }
             return new Tuple<bool, int>(succes, 0);
         }
+
         public static string Validate(this string text)
         {
             const string lettersRegex = @"^[a-zA-Ząčęėįšųū]+\s?[a-zA-Ząčęėįšųū]*$";
@@ -26,15 +25,17 @@ namespace MERG_BackEnd
             }
             return "";
         }
+
         public static bool AllowOnlyKeysControlDigitLetter(this char symbol)
         {
-           
+
             if (!char.IsControl(symbol) && !char.IsLetter(symbol) && !char.IsWhiteSpace(symbol) && symbol != 46)
             {
                 return true;
             }
             return false;
         }
+
         public static bool AllowOnlyKeysControlDigit(this char symbol)
         {
             if (!char.IsControl(symbol) && !char.IsDigit(symbol))

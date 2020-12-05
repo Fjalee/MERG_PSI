@@ -175,9 +175,6 @@ namespace WebScraper
             return mapLinkIen.Any() ? mapLinkIen.First() : "";
         }
 
-        private string ParsePriceToDigitOnlyStr(IEnumerable<string> priceIEN)
-        {
-            return Regex.Replace(priceIEN.First().Substring(0, priceIEN.First().IndexOf("€")).ToString(), "[^0-9]", "");
-        }
+        private string ParsePriceToDigitOnlyStr(IEnumerable<string> priceIEN) => Regex.Replace(priceIEN.First().Substring(0, priceIEN.First().IndexOf("€")).ToString(), "[^0-9]", "");
     }
 }

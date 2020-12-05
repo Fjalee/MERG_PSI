@@ -1,16 +1,15 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace MERG_BackEnd
 {
-    public class StreetList:IList
+    public class StreetList : IList
     {
-
         public string Address { get; set; }
 
         public StreetList()
         {
         }
+
         public StreetList(string street)
         {
             Address = street;

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebScraper
 {
-   public abstract class Scraper
-   {
+    public abstract class Scraper
+    {
         public IHtmlDocument Document { get; set; }
         protected ILog Logger { get; }
 
@@ -36,5 +36,5 @@ namespace WebScraper
         }
 
         public abstract void Scrape();
-   }
+    }
 }

@@ -87,7 +87,7 @@ namespace WebScraper
                     !IsValuesClose(calculatedPrice, scrapedPrice, 1000) ||
                     municipality == "" ||
                     street == "" ||
-                    microdistrict == "" 
+                    microdistrict == ""
                 )
             {
                 return false;

@@ -6,10 +6,9 @@ using GMap.NET.WindowsForms.ToolTips;
 using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Collections.Specialized;
 
 namespace WindowsForms_UI
 {
@@ -218,7 +217,7 @@ namespace WindowsForms_UI
         {
             SetupTextBoxIf(areaTo, "", "Iki", Color.Silver);
         }
-        
+
         private void SetupTextBoxIf(TextBox textBox, string ifText, string textToSet, Color color)
         {
             if (textBox.Text == ifText)
@@ -229,7 +228,7 @@ namespace WindowsForms_UI
         }
 
         #endregion
-        
+
         private void Search_Click(object sender, EventArgs e)
         {
             var inspection = new Inspection();

@@ -1,5 +1,4 @@
-﻿
-namespace WebScraper
+﻿namespace WebScraper
 {
     partial class FormsLog
     {
