@@ -1,12 +1,12 @@
 using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.IO;
-using System.Collections.ObjectModel;
 
 namespace Xamarin_UI.Views
 {
@@ -19,18 +19,17 @@ namespace Xamarin_UI.Views
         private readonly Lazy<ObservableCollection<IList>> _municipalityList;
         private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
         private readonly Lazy<ObservableCollection<IList>> _streetList;
-        
+
         public HomePage()
         {
             InitializeComponent();
-            
+
             _municipalityList = new Lazy<ObservableCollection<IList>>(() => new MunicipalityList().GetList());
             _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
             _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
-            _listOfRealEstates = new Lazy<List<RealEstate>> (getSampleData);
-
+            _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
         }
 
         private Stream GetScrapedDataStream()
@@ -87,7 +86,7 @@ namespace Xamarin_UI.Views
 
         private void Button_Clicked_Expand(object sender, EventArgs e)
         {
-            if(filtersDisplay.IsVisible)
+            if (filtersDisplay.IsVisible)
             {
                 filtersDisplay.IsVisible = false;
                 buttonExpand.Text = "Išskleisti";
@@ -97,15 +96,17 @@ namespace Xamarin_UI.Views
             buttonExpand.Text = "Suskleisti";
         }
 
-       
+
         private void MunicipalitySearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
             OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList.Value);
         }
+
         private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
             OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList.Value);
         }
+
         private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
             OnTextChanged(e.NewTextValue, streetListView, _streetList.Value);
@@ -115,10 +116,12 @@ namespace Xamarin_UI.Views
         {
             OnItemTapped(sender, e, municipalityListView, municipality);
         }
+
         private void MicrodistrictListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
             OnItemTapped(sender, e, microdistrictListView, microdistrict);
         }
+
         private void StreetListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
             OnItemTapped(sender, e, streetListView, street);
@@ -133,13 +136,13 @@ namespace Xamarin_UI.Views
             {
                 var data = dataList.Where(i => i.Address.ToLower().Contains(text.ToLower()));
                 if (string.IsNullOrWhiteSpace(text))
-               {
+                {
                     viewlist.IsVisible = false;
                 }
                 else
                 {
                     viewlist.ItemsSource = data;
-            }
+                }
             }
             catch (Exception)
             {
@@ -156,5 +159,4 @@ namespace Xamarin_UI.Views
             ((ListView)sender).SelectedItem = null;
         }
     }
-    
 }
