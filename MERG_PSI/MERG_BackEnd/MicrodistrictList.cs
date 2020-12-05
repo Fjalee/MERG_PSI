@@ -1,22 +1,19 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace MERG_BackEnd
 {
-    public class MicrodistrictList:IList
+    public class MicrodistrictList : IList
     {
-
-
         public string Address { get; set; }
 
         public MicrodistrictList()
         {
         }
+
         public MicrodistrictList(string microdistrict)
         {
             Address = microdistrict;
         }
-       
 
         public ObservableCollection<IList> GetList()
         {

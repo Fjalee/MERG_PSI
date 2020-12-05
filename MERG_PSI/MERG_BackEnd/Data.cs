@@ -3,7 +3,7 @@ using System.IO;
 
 namespace MERG_BackEnd
 {
-     public class Data
+    public class Data
     {
         public List<RealEstate> SampleData { get; set; }
 
@@ -12,6 +12,7 @@ namespace MERG_BackEnd
             var des = new DeserializationFromJson(fileName);
             SampleData = des.Data;
         }
+
         public Data(Stream stream)
         {
             var des = new DeserializationFromJson(stream);

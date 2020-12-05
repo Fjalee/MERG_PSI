@@ -13,6 +13,7 @@ namespace MERG_BackEnd
             var jsonFromFile = ReadFromFile(fileName);
             Data = JsonConvert.DeserializeObject<List<RealEstate>>(jsonFromFile);
         }
+
         public DeserializationFromJson(Stream stream)
         {
             var jsonFromFile = ReadFromFile(stream);
@@ -30,6 +31,7 @@ namespace MERG_BackEnd
 
             return textFromFile;
         }
+        
         private string ReadFromFile(Stream stream)
         {
             var textFromFile = "";
@@ -41,6 +43,5 @@ namespace MERG_BackEnd
 
             return textFromFile;
         }
- 
     }
 }

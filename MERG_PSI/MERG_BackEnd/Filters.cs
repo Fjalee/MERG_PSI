@@ -7,20 +7,14 @@ namespace MERG_BackEnd
    
      public class Filters
     {
-        public List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality)
-        {
-            return !string.IsNullOrEmpty(municipality) ? houses.Where(house => house.Municipality.Contains(municipality)).ToList() : houses;
-        }
+        public List<RealEstate> FilterRealEstateByMunicipality(List<RealEstate> houses, string municipality) => 
+            !string.IsNullOrEmpty(municipality) ? houses.Where(house => house.Municipality.Contains(municipality)).ToList() : houses;
 
-        public List<RealEstate> FilterRealEstateByMicrodistrict(List<RealEstate> houses, string microdistrict)
-        {
-            return !string.IsNullOrEmpty(microdistrict) ? houses.Where(house => house.Microdistrict.Contains(microdistrict)).ToList() : houses;
-        }
+        public List<RealEstate> FilterRealEstateByMicrodistrict(List<RealEstate> houses, string microdistrict) => 
+            !string.IsNullOrEmpty(microdistrict) ? houses.Where(house => house.Microdistrict.Contains(microdistrict)).ToList() : houses;
 
-        public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street)
-        {
-            return !string.IsNullOrEmpty(street) ? houses.Where(house => house.Street.Contains(street)).ToList() : houses;
-        }
+        public List<RealEstate> FilterRealEstateByStreet(List<RealEstate> houses, string street) => 
+            !string.IsNullOrEmpty(street) ? houses.Where(house => house.Street.Contains(street)).ToList() : houses;
 
         public  List<RealEstate> FilterRealEstateByArea(List<RealEstate> houses, double areaFrom, double areaTo, bool areaFromState,bool areaToState)
         {
@@ -28,11 +22,11 @@ namespace MERG_BackEnd
             {
                 return houses.Where(house => IsValueBetween(house.Area, areaFrom, areaTo)).ToList();
             }
-            else if (areaFromState)
+            if (areaFromState)
             {
                 return houses.Where(house => house.Area >= areaFrom).ToList();
             }
-            else if (areaToState)
+            if (areaToState)
             {
                 return houses.Where(house => house.Area <= areaTo).ToList();
             }
@@ -46,11 +40,11 @@ namespace MERG_BackEnd
             {
                 return houses.Where(house => IsValueBetween(house.Price, priceFrom, priceTo)).ToList();
             }
-            else if (priceFromState)
+            if (priceFromState)
             {
                 return houses.Where(house => house.Price >= priceFrom).ToList();
             }
-            else if (priceToState)
+            if (priceToState)
             {
                 return houses.Where(house => house.Price <= priceTo).ToList();
             }
@@ -63,11 +57,11 @@ namespace MERG_BackEnd
             {
                 return houses.Where(house => IsValueBetween(house.PricePerSqM, pricePerSqMFrom, pricePerSqMTo)).ToList();
             }
-            else if (pricePerSqMFromState)
+            if (pricePerSqMFromState)
             {
                 return houses.Where(house => house.PricePerSqM >= pricePerSqMFrom).ToList();
             }
-            else if (pricePerSqMToState)
+            if (pricePerSqMToState)
             {
                 return houses.Where(house => house.PricePerSqM <= pricePerSqMTo).ToList();
             }
@@ -80,29 +74,29 @@ namespace MERG_BackEnd
             {
                 return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo) || house.NumberOfRooms == 0).ToList();
             }
-            else if (numberOfRoomsFromState && numberOfRoomsToState)
+            if (numberOfRoomsFromState && numberOfRoomsToState)
             {
                 return houses.Where(house => IsValueBetween(house.NumberOfRooms, numberOfRoomsFrom, numberOfRoomsTo)).ToList();
             }
-            else if (numberOfRoomsFromState && noNumberOfRoomsInfo)
+            if (numberOfRoomsFromState && noNumberOfRoomsInfo)
             {
                 return houses.Where(house => house.NumberOfRooms >= numberOfRoomsFrom || house.NumberOfRooms == 0).ToList();
             }
-            else if (numberOfRoomsToState && noNumberOfRoomsInfo)
+            if (numberOfRoomsToState && noNumberOfRoomsInfo)
             {
                 return houses.Where(house => house.NumberOfRooms <= numberOfRoomsTo || house.NumberOfRooms == 0).ToList();
             }
-            else if (numberOfRoomsFromState)
+            if (numberOfRoomsFromState)
             {
                 return houses.Where(house => house.NumberOfRooms >= numberOfRoomsFrom).ToList();
             }
-            else if (numberOfRoomsToState)
+            if (numberOfRoomsToState)
             {
                 return houses.Where(house => house.NumberOfRooms <= numberOfRoomsTo)
                     .Where(house => house.NumberOfRooms != 0)
                     .ToList();
             }
-            else if (noNumberOfRoomsInfo)
+            if (noNumberOfRoomsInfo)
             {
                 return houses.Where(house =>  house.NumberOfRooms == 0).ToList();
             }
@@ -115,38 +109,35 @@ namespace MERG_BackEnd
             {
                 return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo) || house.BuildYear == 0).ToList();
             }
-            else if (buildYearFromState && buildYearToState)
+            if (buildYearFromState && buildYearToState)
             {
                 return houses.Where(house => IsValueBetween(house.BuildYear, buildYearFrom, buildYearTo)).ToList();
             }
-            else if (buildYearFromState && noBuildYearInfo)
+            if (buildYearFromState && noBuildYearInfo)
             {
                 return houses.Where(house => house.BuildYear >= buildYearFrom || house.BuildYear == 0).ToList();
             }
-            else if (buildYearToState && noBuildYearInfo)
+            if (buildYearToState && noBuildYearInfo)
             {
                 return houses.Where(house => house.BuildYear <= buildYearTo || house.BuildYear == 0).ToList();
             }
-            else if (buildYearFromState)
+            if (buildYearFromState)
             {
                 return houses.Where(house => house.BuildYear >= buildYearFrom).ToList();
             }
-            else if (buildYearToState)
+            if (buildYearToState)
             {
                 return houses.Where(house => house.BuildYear <= buildYearTo)
                     .Where(house => house.BuildYear != 0)
                     .ToList();
             }
-            else if (noBuildYearInfo)
+            if (noBuildYearInfo)
             {
                 return houses.Where(house => house.BuildYear == 0).ToList();
             }
             return houses;
         }
 
-        private bool IsValueBetween(double value, double critFrom, double critTo)
-        {
-            return value >= critFrom && value <= critTo;
-        }
+        private bool IsValueBetween(double value, double critFrom, double critTo) => value >= critFrom && value <= critTo;
     }
 }
