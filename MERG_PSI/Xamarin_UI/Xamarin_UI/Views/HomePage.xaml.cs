@@ -28,6 +28,8 @@ namespace Xamarin_UI.Views
             _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
             _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
 
+            //fix
+            //List<RealEstate> getSampleData() => ReqToAPIMethod(GetScrapedDataStream()).SampleData;
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
         }
