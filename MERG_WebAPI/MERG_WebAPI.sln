@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MERG_WebAPI", "MERG_WebAPI\MERG_WebAPI.csproj", "{9A9AF286-F8D9-4C13-A5AD-AE2DC9A2BE62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MERG_BackEnd", "MERG_BackEnd\MERG_BackEnd.csproj", "{5F7B29B0-0B69-4121-A512-C698B084F79C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{450A8D86-6D83-4CC3-B51C-F258BB25FC01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A9AF286-F8D9-4C13-A5AD-AE2DC9A2BE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A9AF286-F8D9-4C13-A5AD-AE2DC9A2BE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A9AF286-F8D9-4C13-A5AD-AE2DC9A2BE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A9AF286-F8D9-4C13-A5AD-AE2DC9A2BE62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F7B29B0-0B69-4121-A512-C698B084F79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F7B29B0-0B69-4121-A512-C698B084F79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F7B29B0-0B69-4121-A512-C698B084F79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F7B29B0-0B69-4121-A512-C698B084F79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{450A8D86-6D83-4CC3-B51C-F258BB25FC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{450A8D86-6D83-4CC3-B51C-F258BB25FC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{450A8D86-6D83-4CC3-B51C-F258BB25FC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{450A8D86-6D83-4CC3-B51C-F258BB25FC01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBBD82F8-13CA-4946-B5E0-98A22B1DDDF7}
+	EndGlobalSection
+EndGlobal
