@@ -128,7 +128,7 @@ namespace WebScraper
 
             MapLink = GetMapLink();
         }
-
+        
         private void ScrapeImage()
         {
             if (Document == null)

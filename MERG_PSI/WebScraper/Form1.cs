@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Windows.Forms;
 
 namespace WebScraper
@@ -12,8 +13,12 @@ namespace WebScraper
 
         public async void ButtonScrape_Click(object sender, EventArgs e)
         {
-            var allScrapers = new AllScrapers(this);
-            await allScrapers.ScrapeAllWebsites(new FormsLog());
+            var container = ContainerConfig.Configure();
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var allScrapers = scope.Resolve<AllScrapers>();
+                await allScrapers.ScrapeAllWebsites(this);
+            }
 
             TextBox1.AppendText("Done\n");
         }

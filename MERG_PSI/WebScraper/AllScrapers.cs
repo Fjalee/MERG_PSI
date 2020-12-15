@@ -5,28 +5,34 @@ namespace WebScraper
 {
     public class AllScrapers
     {
-        readonly Form1 _myUI;
-        public AllScrapers(Form1 myUI)
+        //private readonly Form1 _myUI;
+        private readonly KampasScraper _kampasScraper;
+        private readonly DomosplusScraper _domosplusScraper;
+        private readonly OutputToJson _output;
+        private readonly List<RealEstate> _allScrapedRealEstate;
+
+        public AllScrapers(/*Form1 myUI, */KampasScraper kampasScraper, DomosplusScraper domosplusScraper, OutputToJson output, List<RealEstate> allScrapedRealEstate)
         {
-            _myUI = myUI;
+            //_myUI = myUI;
+            _kampasScraper = kampasScraper;
+            _domosplusScraper = domosplusScraper;
+            _output = output;
+            _allScrapedRealEstate = allScrapedRealEstate;
         }
 
-        public async Task ScrapeAllWebsites(ILog logger)
+        public async Task ScrapeAllWebsites(Form1 myUI)
         {
-            var kampasScraper = new KampasScraper(/*_myUI,*/logger);
-            var task1 = kampasScraper.ScrapeWebsite();
-
-            var domosplusScraper = new DomosplusScraper(/*_myUI,*/logger);
-            var task2 = domosplusScraper.ScrapeWebsite();
+            var task1 = _kampasScraper.ScrapeWebsite(myUI);
+            var task2 = _domosplusScraper.ScrapeWebsite(myUI);
 
             await Task.WhenAll(task1, task2);
 
-            var allScrapedRealEstate = new List<RealEstate>();
-            allScrapedRealEstate.AddRange(domosplusScraper.ScrapedRealEstate);
-            allScrapedRealEstate.AddRange(kampasScraper.ScrapedRealEstate);
+            //var allScrapedRealEstate = new List<RealEstate>();
+            _allScrapedRealEstate.AddRange(_domosplusScraper.ScrapedRealEstate);
+            _allScrapedRealEstate.AddRange(_kampasScraper.ScrapedRealEstate);
 
-            var output = new OutputToJson(allScrapedRealEstate);
-            output.WriteToFile();
+            //var output = new OutputToJson();
+            _output.WriteToFile(_allScrapedRealEstate);
         }
     }
 }
