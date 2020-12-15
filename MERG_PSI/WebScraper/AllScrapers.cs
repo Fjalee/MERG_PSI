@@ -13,10 +13,10 @@ namespace WebScraper
 
         public async Task ScrapeAllWebsites(ILog logger)
         {
-            var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=", "?", logger);
+            var kampasScraper = new KampasScraper(/*_myUI,*/logger);
             var task1 = kampasScraper.ScrapeWebsite();
 
-            var domosplusScraper = new DomosplusScraper(_myUI, @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=", "&", logger);
+            var domosplusScraper = new DomosplusScraper(/*_myUI,*/logger);
             var task2 = domosplusScraper.ScrapeWebsite();
 
             await Task.WhenAll(task1, task2);
