@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 
 namespace MERG_WebAPI
@@ -17,19 +13,19 @@ namespace MERG_WebAPI
         {
              try
             {
-                var con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Myconnection"].ConnectionString);
-                var str = "select * from realestate";
-                var command = new MySqlCommand(str, con);
-                con.Open();
+                var conn = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+                var str = "select * from RealEstate";
+                var command = new MySqlCommand(str, conn);
+                conn.Open();
                 using (var r = command.ExecuteReader())
                 {
                     while(r.Read())
                     {
                         var first = r.GetString(0);
                         var second = r.GetValue(1);
+                        var third = r.GetString(2);
 
-                        Console.WriteLine($"{first}  {second}");
-
+                        Console.WriteLine($"{first}  {second} {third}");
                     }
                 }
                 Console.WriteLine("Pavyko");
