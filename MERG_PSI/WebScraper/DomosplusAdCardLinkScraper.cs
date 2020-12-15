@@ -6,7 +6,7 @@ namespace WebScraper
 {
     public class DomoplusAdCardLinkScraper : AdCardLinkScraper
     {
-        public DomoplusAdCardLinkScraper(string siteUrl, string className, ILog logger) : base(siteUrl, className, logger) { }
+        public DomoplusAdCardLinkScraper(ILog logger) : base(@"https://domoplius.lt", "item", logger) { }
 
         override protected IEnumerable<string> GetAdCardsPaths()
         {

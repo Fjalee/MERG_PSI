@@ -7,7 +7,7 @@
 
         protected override AdCardLinkScraper InstanciateAdCardLinkScraperObject()
         {
-            return new KampasAdCardLinkScraper(WebsiteLink, "k-ad-card-wide", Logger);
+            return new KampasAdCardLinkScraper(Logger);
         }
 
         protected override InsideAdScraper InstanciateInsideAdScraperObject(string link)
