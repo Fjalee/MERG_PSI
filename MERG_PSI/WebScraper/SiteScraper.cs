@@ -17,7 +17,6 @@ namespace WebScraper
 
         public SiteScraper(/*Form1 myUI,*/ string websiteLink, string subdirectory, string pageString, string symbol, ILog logger)
         {
-            //ScrapingDomain += myUI.OnScrapingDomain;
             WebsiteLink = websiteLink;
             Subdirectory = subdirectory;
             PageString = pageString;
@@ -25,17 +24,18 @@ namespace WebScraper
             Logger = logger;
         }
 
-        //public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
+        public event EventHandler<ScrapingDomainEventArgs> ScrapingDomain;
 
-        public async Task ScrapeWebsite()
+        public async Task ScrapeWebsite(Form1 myUI)
         {
+            ScrapingDomain += myUI.OnScrapingDomain;
             var websitePage = 1;
             //while (!ReachedPageNoAds)
             while (websitePage < 5) //Temporary, for testing purpose
             {
                 var linkWithPage = WebsiteLink + Subdirectory + Symbol + PageString + websitePage.ToString();
 
-                //ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
+                ScrapingDomain?.Invoke(this, new ScrapingDomainEventArgs(linkWithPage));
 
                 var adCardLinkScraper = InstanciateAdCardLinkScraperObject();
                 adCardLinkScraper.Document = await adCardLinkScraper.GetIHtmlDoc(linkWithPage);
