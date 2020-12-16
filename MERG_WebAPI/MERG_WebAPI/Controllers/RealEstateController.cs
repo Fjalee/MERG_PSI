@@ -12,12 +12,14 @@ namespace MERG_WebAPI.Controllers
     public class RealEstateController : ControllerBase
     {
         //dont delete comment below, its for testing
-        //https://localhost:44376/api/inspection/SampleMunicipality3/SampleMicrodistrict3/SampleStreet3/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/false
+        //https://localhost:44376/api/RealEstate/SampleMunicipality3/SampleMicrodistrict3/SampleStreet3/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/false
 
         private readonly List<RealEstate> _listOfRealEstates;   //fix, this should be deleted when data base is created
+        private readonly IInspection _inspection;
 
-        public RealEstateController()
+        public RealEstateController(IInspection inspection)
         {
+            _inspection = inspection;
             _listOfRealEstates = new DummyDB().ListOfRealEstates;
         }
 
@@ -30,7 +32,6 @@ namespace MERG_WebAPI.Controllers
             bool isPricePerSqMFrom, int pricePerSqMFrom, bool isPricePerSqMTo, int pricePerSqMTo,
             bool noInfoBuildYear, bool noInfoRoomNumber)
         {
-            var inspection = new Inspection();
 
             var filter = new FiltersValue(municipality: municipality, microdistrict: microdistrict, street: street,
                priceFrom: new Tuple<bool, int>(isPriceFrom, priceFrom),
@@ -47,7 +48,7 @@ namespace MERG_WebAPI.Controllers
 
             try
             {
-                return inspection.GetFilteredListOFRealEstate(_listOfRealEstates, filter);
+                return _inspection.GetFilteredListOFRealEstate(_listOfRealEstates, filter);
             }
             catch (Exception)
             {
