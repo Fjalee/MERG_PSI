@@ -23,7 +23,7 @@ namespace MERG_BackEnd
 
         public DummyDB()
         {
-            ListOfRealEstates[0].Link = "SampleLink0";
+            ListOfRealEstates[0].Link = "noSampleLink";
             ListOfRealEstates[1].Link = "SampleLink1";
             ListOfRealEstates[2].Link = "SampleLink2";
             ListOfRealEstates[3].Link = "SampleLink3";
@@ -89,7 +89,7 @@ namespace MERG_BackEnd
             ListOfRealEstates[8].Price = 80000;
             ListOfRealEstates[9].Price = 90000;
 
-            ListOfRealEstates[0].MapLink = "SampleMapLink0";
+            ListOfRealEstates[0].MapLink = "noSampleMapLink";
             ListOfRealEstates[1].MapLink = "SampleMapLink1";
             ListOfRealEstates[2].MapLink = "SampleMapLink2";
             ListOfRealEstates[3].MapLink = "SampleMapLink3";
@@ -100,7 +100,7 @@ namespace MERG_BackEnd
             ListOfRealEstates[8].MapLink = "SampleMapLink8";
             ListOfRealEstates[9].MapLink = "SampleMapLink9";
 
-            ListOfRealEstates[0].Municipality = "SampleMunicipality0";
+            ListOfRealEstates[0].Municipality = "noMunicipality";
             ListOfRealEstates[1].Municipality = "SampleMunicipality1";
             ListOfRealEstates[2].Municipality = "SampleMunicipality2";
             ListOfRealEstates[3].Municipality = "SampleMunicipality3";
@@ -111,7 +111,7 @@ namespace MERG_BackEnd
             ListOfRealEstates[8].Municipality = "SampleMunicipality8";
             ListOfRealEstates[9].Municipality = "SampleMunicipality9";
 
-            ListOfRealEstates[0].Microdistrict = "SampleMicrodistrict0";
+            ListOfRealEstates[0].Microdistrict = "noMicrodistrict";
             ListOfRealEstates[1].Microdistrict = "SampleMicrodistrict1";
             ListOfRealEstates[2].Microdistrict = "SampleMicrodistrict2";
             ListOfRealEstates[3].Microdistrict = "SampleMicrodistrict3";
@@ -122,7 +122,7 @@ namespace MERG_BackEnd
             ListOfRealEstates[8].Microdistrict = "SampleMicrodistrict8";
             ListOfRealEstates[9].Microdistrict = "SampleMicrodistrict9";
 
-            ListOfRealEstates[0].Street = "SampleStreet0";
+            ListOfRealEstates[0].Street = "noStreet";
             ListOfRealEstates[1].Street = "SampleStreet1";
             ListOfRealEstates[2].Street = "SampleStreet2";
             ListOfRealEstates[3].Street = "SampleStreet3";
@@ -144,7 +144,7 @@ namespace MERG_BackEnd
             ListOfRealEstates[8].BuildYear = 1998;
             ListOfRealEstates[9].BuildYear = 1999;
 
-            ListOfRealEstates[0].Image = "SampleImage0";
+            ListOfRealEstates[0].Image = "noImage";
             ListOfRealEstates[1].Image = "SampleImage1";
             ListOfRealEstates[2].Image = "SampleImage2";
             ListOfRealEstates[3].Image = "SampleImage3";

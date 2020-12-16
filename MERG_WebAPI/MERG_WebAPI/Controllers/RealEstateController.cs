@@ -9,14 +9,14 @@ namespace MERG_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InspectionController : ControllerBase
+    public class RealEstateController : ControllerBase
     {
         //dont delete comment below, its for testing
         //https://localhost:44376/api/inspection/SampleMunicipality3/SampleMicrodistrict3/SampleStreet3/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/false
 
         private readonly List<RealEstate> _listOfRealEstates;   //fix, this should be deleted when data base is created
 
-        public InspectionController()
+        public RealEstateController()
         {
             _listOfRealEstates = new DummyDB().ListOfRealEstates;
         }
