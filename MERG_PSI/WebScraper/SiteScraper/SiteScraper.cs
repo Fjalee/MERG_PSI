@@ -15,7 +15,7 @@ namespace WebScraper
         protected bool ReachedPageNoAds { get; set; } = false;
         protected ILog Logger { get; }
 
-        public SiteScraper(/*Form1 myUI,*/ string websiteLink, string subdirectory, string pageString, string symbol, ILog logger)
+        public SiteScraper(string websiteLink, string subdirectory, string pageString, string symbol, ILog logger)
         {
             WebsiteLink = websiteLink;
             Subdirectory = subdirectory;

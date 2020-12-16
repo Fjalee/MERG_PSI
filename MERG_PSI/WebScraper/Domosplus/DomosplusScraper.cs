@@ -2,8 +2,8 @@
 {
     public class DomosplusScraper : SiteScraper
     {
-        public DomosplusScraper(/*Form1 myUI,*/ ILog logger)
-            : base(/*myUI,*/ @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=", "&", logger) { }
+        public DomosplusScraper(ILog logger)
+        : base(@"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=", "&", logger) { }
 
         protected override AdCardLinkScraper InstanciateAdCardLinkScraperObject()
         {

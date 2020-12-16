@@ -15,7 +15,6 @@ namespace WebScraper
             builder.RegisterType<KampasScraper>().AsSelf();
             builder.RegisterType<DomosplusScraper>().AsSelf();
             builder.RegisterType<OutputToJson>().AsSelf();
-            builder.RegisterType<List<RealEstate>>().AsSelf();
             
             return builder.Build();
         }
