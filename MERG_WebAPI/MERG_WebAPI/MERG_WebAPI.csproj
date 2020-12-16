@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\MERGWebAPI20201216191928 - Web Deploy.pubxml.user" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MERG_BackEnd\MERG_BackEnd.csproj" />
   </ItemGroup>
 
 

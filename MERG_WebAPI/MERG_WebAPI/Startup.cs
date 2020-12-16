@@ -1,3 +1,4 @@
+using MERG_BackEnd;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace MERG_WebAPI
         {
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddScoped < IInspection, Inspection> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

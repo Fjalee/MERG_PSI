@@ -1,9 +1,11 @@
 using MERG_BackEnd;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,6 +21,10 @@ namespace Xamarin_UI.Views
         private readonly Lazy<ObservableCollection<IList>> _municipalityList;
         private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
         private readonly Lazy<ObservableCollection<IList>> _streetList;
+        private readonly Lazy<HttpClient> _httpClient;
+
+        private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
+        private const string _realEstateContrGetUri = @"api/RealEstate";
 
         public HomePage()
         {
@@ -27,6 +33,7 @@ namespace Xamarin_UI.Views
             _municipalityList = new Lazy<ObservableCollection<IList>>(() => new MunicipalityList().GetList());
             _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
             _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
+            _httpClient = new Lazy<HttpClient>(() => new HttpClient());
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
@@ -46,17 +53,37 @@ namespace Xamarin_UI.Views
 
         private async void Button_Clicked_SearchAsync(object sender, EventArgs e)
         {
-            var inspection = new Inspection();
-            var filtersValues = GetFiltersValue();
+            var filtersValue = GetFiltersValue();
+
+            var uri = new Uri($"{_webApiLink}/{_realEstateContrGetUri}/{filtersValue}");
+
             try
             {
-                _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValues);
+                var response = await _httpClient.Value.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (content != null)
+                    {
+                        _filteredList = JsonConvert.DeserializeObject<List<RealEstate>>(content);
+                        myItem.ItemsSource = _filteredList;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+                }
             }
             catch (Exception)
             {
                 await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
             }
-            myItem.ItemsSource = _filteredList;
         }
 
         private async void Button_Clicked_GoToMapAsync(object sender, EventArgs e)
@@ -75,13 +102,20 @@ namespace Xamarin_UI.Views
 
         private FiltersValue GetFiltersValue()
         {
-            return new FiltersValue(municipality: municipality.Text, microdistrict: microdistrict.Text, street: street.Text,
-               priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
+            var filtersValue = new FiltersValue(priceFrom: priceFrom.Text.ConvertToInt(), priceTo: priceTo.Text.ConvertToInt(),
               areaFrom: areaFrom.Text.ConvertToInt(), areaTo: areaTo.Text.ConvertToInt(),
               buildYearFrom: buildYearFrom.Text.ConvertToInt(), buildYearTo: buildYearTo.Text.ConvertToInt(),
               numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
+
+              
+
+            filtersValue.Municipality = municipality.Text ?? "noMunicipality";
+            filtersValue.Microdistrict = microdistrict.Text ?? "noMicrodistrict";
+            filtersValue.Street = street.Text ?? "noStreet";
+
+            return filtersValue;
         }
 
         private void Button_Clicked_Expand(object sender, EventArgs e)

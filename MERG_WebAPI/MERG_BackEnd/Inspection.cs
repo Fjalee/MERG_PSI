@@ -2,7 +2,7 @@
 
 namespace MERG_BackEnd
 {
-    public class Inspection
+    public class Inspection : IInspection
     {
         public List<RealEstate> GetFilteredListOFRealEstate(List<RealEstate> listOfRealEstate, FiltersValue filtersValue)
         {
