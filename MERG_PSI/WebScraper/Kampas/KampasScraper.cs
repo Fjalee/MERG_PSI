@@ -2,11 +2,14 @@
 {
     public class KampasScraper : SiteScraper
     {
-        public KampasScraper(Form1 myUI, string websiteLink, string subdirectory, string pageString, string symbol, ILog logger) : base(myUI, websiteLink, subdirectory, pageString, symbol, logger) { }
+        public KampasScraper(ILog logger)
+        : base(@"https://www.kampas.lt", @"/butai", @"page=", "?", logger)
+        {
+        }
 
         protected override AdCardLinkScraper InstanciateAdCardLinkScraperObject()
         {
-            return new KampasAdCardLinkScraper(WebsiteLink, "k-ad-card-wide", Logger);
+            return new KampasAdCardLinkScraper(Logger);
         }
 
         protected override InsideAdScraper InstanciateInsideAdScraperObject(string link)

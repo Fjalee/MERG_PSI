@@ -1,19 +1,19 @@
 ﻿using AngleSharp.Html.Dom;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace WebScraper
 {
-    public class DomoplusAdCardLinkScraper : AdCardLinkScraper
+    public class KampasAdCardLinkScraper : AdCardLinkScraper
     {
-        public DomoplusAdCardLinkScraper(string siteUrl, string className, ILog logger) : base(siteUrl, className, logger) { }
-
+        public KampasAdCardLinkScraper(ILog logger) : base(@"https://www.kampas.lt", "k-ad-card-wide", logger) { }
         override protected IEnumerable<string> GetAdCardsPaths()
         {
             var adCardsPaths = Document.All
                 .Where(x => x.LocalName == "a")
-                .Where(x => x.ParentElement.ParentElement.LocalName == "div")
-                .Where(x => x.ParentElement.ParentElement.ClassList.Contains(ClassNameForAdCard))
+                .Where(x => x.ParentElement.LocalName == "div")
+                .Where(x => x.ParentElement.ClassList.Contains(ClassNameForAdCard))
                 .Select(x => ((IHtmlAnchorElement)x).PathName);
 
             return adCardsPaths;
