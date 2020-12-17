@@ -11,7 +11,6 @@ namespace Database
         public DbSet<Street> Streets { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
