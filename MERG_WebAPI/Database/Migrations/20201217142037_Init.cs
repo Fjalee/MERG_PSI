@@ -10,33 +10,33 @@ namespace Database.Migrations
                 name: "Microdistricts",
                 columns: table => new
                 {
-                    MicrodistrictId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Microdistricts", x => x.MicrodistrictId);
+                    table.PrimaryKey("PK_Microdistricts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Municipalities",
                 columns: table => new
                 {
-                    MunicipalityId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Municipalities", x => x.MunicipalityId);
+                    table.PrimaryKey("PK_Municipalities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "RealEstates",
                 columns: table => new
                 {
-                    RealEstateId = table.Column<int>(nullable: false)
+                    RealEstateID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Link = table.Column<string>(nullable: true),
                     Area = table.Column<double>(nullable: false),
@@ -55,20 +55,20 @@ namespace Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RealEstates", x => x.RealEstateId);
+                    table.PrimaryKey("PK_RealEstates", x => x.RealEstateID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Streets",
                 columns: table => new
                 {
-                    StreetId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Streets", x => x.StreetId);
+                    table.PrimaryKey("PK_Streets", x => x.Id);
                 });
         }
 

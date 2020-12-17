@@ -2,7 +2,7 @@
 {
     public class RealEstate
     {
-        public int RealEstateId { get; set; }
+        public int RealEstateID { get; set; }
         public string Link { get; set; }
         public double Area { get; set; }
         public double PricePerSqM { get; set; }

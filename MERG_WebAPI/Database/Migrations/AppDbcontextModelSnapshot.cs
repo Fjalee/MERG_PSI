@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Database.Migrations
 {
-    [DbContext(typeof(AppDbcontext))]
-    partial class AppDbcontextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AppDbContext))]
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -20,37 +20,41 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Database.Entities.Microdistrict", b =>
                 {
-                    b.Property<int>("MicrodistrictId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
-                    b.HasKey("MicrodistrictId");
+                    b.HasKey("Id");
 
                     b.ToTable("Microdistricts");
                 });
 
             modelBuilder.Entity("Database.Entities.Municipality", b =>
                 {
-                    b.Property<int>("MunicipalityId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
-                    b.HasKey("MunicipalityId");
+                    b.HasKey("Id");
 
                     b.ToTable("Municipalities");
                 });
 
             modelBuilder.Entity("Database.Entities.RealEstate", b =>
                 {
-                    b.Property<int>("RealEstateId")
+                    b.Property<int>("RealEstateID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -97,22 +101,24 @@ namespace Database.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RealEstateId");
+                    b.HasKey("RealEstateID");
 
                     b.ToTable("RealEstates");
                 });
 
             modelBuilder.Entity("Database.Entities.Street", b =>
                 {
-                    b.Property<int>("StreetId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
-                    b.HasKey("StreetId");
+                    b.HasKey("Id");
 
                     b.ToTable("Streets");
                 });
