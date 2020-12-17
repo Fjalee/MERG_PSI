@@ -36,16 +36,38 @@
     <Reference Include="AngleSharp, Version=0.14.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.14.0\lib\net472\AngleSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.6.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encoding.CodePages.4.5.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -59,9 +81,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdCardLinkScraper.cs" />
-    <Compile Include="DomosplusInsideAdScraper.cs" />
-    <Compile Include="DomosplusAdCardLinkScraper.cs" />
+    <Compile Include="SiteScraper\AdCardLinkScraper.cs" />
+    <Compile Include="ContainerConfig.cs" />
+    <Compile Include="Domosplus\DomosplusInsideAdScraper.cs" />
+    <Compile Include="Domosplus\DomosplusAdCardLinkScraper.cs" />
     <Compile Include="AllScrapers.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -69,34 +92,34 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsLog.cs">
+    <Compile Include="Log\FormsLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsLog.Designer.cs">
+    <Compile Include="Log\FormsLog.Designer.cs">
       <DependentUpon>FormsLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeoResult.cs" />
-    <Compile Include="ILog.cs" />
-    <Compile Include="InsideAdScraper.cs" />
-    <Compile Include="KampasInsideAdScraper.cs" />
-    <Compile Include="KampasScraper.cs" />
-    <Compile Include="FileLog.cs" />
-    <Compile Include="DomosplusScraper.cs" />
+    <Compile Include="SiteScraper\GeoResult.cs" />
+    <Compile Include="Log\ILog.cs" />
+    <Compile Include="SiteScraper\InsideAdScraper.cs" />
+    <Compile Include="Kampas\KampasInsideAdScraper.cs" />
+    <Compile Include="Kampas\KampasScraper.cs" />
+    <Compile Include="Log\FileLog.cs" />
+    <Compile Include="Domosplus\DomosplusScraper.cs" />
     <Compile Include="OutputToJson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="KampasAdCardLinkScraper.cs" />
+    <Compile Include="Kampas\KampasAdCardLinkScraper.cs" />
     <Compile Include="RealEstate.cs" />
-    <Compile Include="RevGeocoding.cs" />
-    <Compile Include="Scraper.cs" />
-    <Compile Include="ScrapingDomainEventArgs.cs" />
-    <Compile Include="SiteScraper.cs" />
+    <Compile Include="SiteScraper\RevGeocoding.cs" />
+    <Compile Include="SiteScraper\Scraper.cs" />
+    <Compile Include="SiteScraper\ScrapingDomainEventArgs.cs" />
+    <Compile Include="SiteScraper\SiteScraper.cs" />
     <Compile Include="StringExtension.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsLog.resx">
+    <EmbeddedResource Include="Log\FormsLog.resx">
       <DependentUpon>FormsLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

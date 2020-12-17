@@ -5,28 +5,29 @@ namespace WebScraper
 {
     public class AllScrapers
     {
-        readonly Form1 _myUI;
-        public AllScrapers(Form1 myUI)
+        private readonly KampasScraper _kampasScraper;
+        private readonly DomosplusScraper _domosplusScraper;
+        private readonly OutputToJson _output;
+
+        public AllScrapers(KampasScraper kampasScraper, DomosplusScraper domosplusScraper, OutputToJson output)
         {
-            _myUI = myUI;
+            _kampasScraper = kampasScraper;
+            _domosplusScraper = domosplusScraper;
+            _output = output;
         }
 
-        public async Task ScrapeAllWebsites(ILog logger)
+        public async Task ScrapeAllWebsites(Form1 myUI)
         {
-            var kampasScraper = new KampasScraper(_myUI, @"https://www.kampas.lt", @"/butai", @"page=", "?", logger);
-            var task1 = kampasScraper.ScrapeWebsite();
-
-            var domosplusScraper = new DomosplusScraper(_myUI, @"https://domoplius.lt", @"/skelbimai/butai?action_type=1", @"page_nr=", "&", logger);
-            var task2 = domosplusScraper.ScrapeWebsite();
+            var task1 = _kampasScraper.ScrapeWebsite(myUI);
+            var task2 = _domosplusScraper.ScrapeWebsite(myUI);
 
             await Task.WhenAll(task1, task2);
 
             var allScrapedRealEstate = new List<RealEstate>();
-            allScrapedRealEstate.AddRange(domosplusScraper.ScrapedRealEstate);
-            allScrapedRealEstate.AddRange(kampasScraper.ScrapedRealEstate);
+            allScrapedRealEstate.AddRange(_domosplusScraper.ScrapedRealEstate);
+            allScrapedRealEstate.AddRange(_kampasScraper.ScrapedRealEstate);
 
-            var output = new OutputToJson(allScrapedRealEstate);
-            output.WriteToFile();
+            _output.WriteToFile(allScrapedRealEstate);
         }
     }
 }
