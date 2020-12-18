@@ -45,21 +45,21 @@ namespace Xamarin_UI.Views
         private async Task<ObservableCollection<string>> GetMunicipalitiesAsync()
         {
             var uri = new Uri(_webApiLink+@"api/Municipality");
-            var municipalities = new ObservableCollection<string>();
+            var municipalities = new List<string>();
             try
             {
                 var response = await _httpClient.Value.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    municipalities = JsonConvert.DeserializeObject<ObservableCollection<string>>(content);
+                    municipalities = JsonConvert.DeserializeObject<List<string>>(content);
                 }
             }
             catch (Exception)
             {
 
             }
-            return municipalities;
+            return new ObservableCollection<string>(municipalities);
         }
 
         private Stream GetScrapedDataStream()
