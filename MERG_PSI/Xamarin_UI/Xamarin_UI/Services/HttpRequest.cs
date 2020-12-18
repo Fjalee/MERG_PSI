@@ -13,7 +13,7 @@ namespace Xamarin_UI.Services
         private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
         private const string _municipalityUri = @"api/Municipality";
         private const string _microdistrictUri = @"api/Microdistrict";
-
+        private const string _streetUri = @"api/Street";
 
         public HttpRequest()
         {
@@ -69,6 +69,33 @@ namespace Xamarin_UI.Services
             var microdistrictList = new ObservableCollection<string>(microdistricts);
             return microdistrictList;
         }
+        
+        public async Task<ObservableCollection<string>> GetStreets()
+        {
+            var streets = new List<string>();
+            var uri = new Uri($"{_webApiLink}{_streetUri}");
+            try
+            {
+                var response = await _httpClient.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (content != null)
+                    {
+                        streets = JsonConvert.DeserializeObject<List<string>>(content);
+                        
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            var streetList = new ObservableCollection<string>(streets);
+            return streetList;
+        }
     }
+
 
 }
