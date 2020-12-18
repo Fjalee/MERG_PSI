@@ -19,9 +19,9 @@ namespace MERG_WebAPI.Controllers
         }
 
         [HttpGet]
-        public List<Municipality> Get()
+        public List<string> Get()
         {
-            var municipalities = _context.Municipalities.ToList();
+            var municipalities = _context.Municipalities.Select(x => x.Name).ToList();
             return municipalities;
         }
 
