@@ -28,7 +28,7 @@ namespace Xamarin_UI.Views
 
         private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
         private const string _realEstateContrGetUri = @"api/RealEstate";
-        private const string _streetUri = @"api/Street";
+        
 
         public HomePage()
         {
@@ -38,29 +38,6 @@ namespace Xamarin_UI.Views
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
-        }
-        private async void SetStreetAsync()
-        {
-
-            var uri = new Uri($"{_webApiLink}{_streetUri}");
-            try
-            {
-                var response = await _httpClient.Value.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-
-                    if (content != null)
-                    {
-                        var streets = JsonConvert.DeserializeObject<List<string>>(content);
-                        _streetList = new ObservableCollection<string>(streets);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
         }
 
 
@@ -175,11 +152,11 @@ namespace Xamarin_UI.Views
             OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList);
         }
 
-        private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        private async void StreetSearchBar_OnTextChangedAsync(Object sender, TextChangedEventArgs e)
         {
             if (_streetList == null)
             {
-                SetStreetAsync();
+                _streetList = await _httpRequest.Value.GetStreets();
             }
             OnTextChanged(e.NewTextValue, streetListView, _streetList);
         }
