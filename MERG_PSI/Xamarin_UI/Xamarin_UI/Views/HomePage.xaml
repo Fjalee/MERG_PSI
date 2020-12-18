@@ -79,7 +79,7 @@
 
                         
                         <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Gatvė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="streetListView" ItemsSource="{Binding StreetList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <ListView x:Name="streetListView" ItemsSource="{Binding _streetList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -96,7 +96,7 @@
                                                 HorizontalOptions="FillAndExpand"
                                                 HorizontalTextAlignment="Left"
                                                 Margin="0" 
-                                                Text="{Binding Address}"
+                                                Text="{Binding}"
                                                 TextColor="Black"  
                                                 VerticalOptions="FillAndExpand"
                                                 VerticalTextAlignment="Center"/>
