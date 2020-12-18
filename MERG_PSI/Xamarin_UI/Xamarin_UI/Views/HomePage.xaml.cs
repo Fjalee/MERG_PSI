@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin_UI.Services;
 
 namespace Xamarin_UI.Views
 {
@@ -23,10 +24,11 @@ namespace Xamarin_UI.Views
         private ObservableCollection<string> _microdistrictList;
         private ObservableCollection<string> _streetList;
         private readonly Lazy<HttpClient> _httpClient;
+        private readonly Lazy<HttpRequest> _httpRequest;
 
         private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
         private const string _realEstateContrGetUri = @"api/RealEstate";
-        private const string _municipalityUri = @"api/Municipality";
+        //private const string _municipalityUri = @"api/Municipality";
         private const string _microdistrictUri = @"api/Microdistrict";
         private const string _streetUri = @"api/Street";
 
@@ -34,7 +36,7 @@ namespace Xamarin_UI.Views
         {
             InitializeComponent();
             _httpClient = new Lazy<HttpClient>(() => new HttpClient());
-
+            _httpRequest = new Lazy<HttpRequest>(() => new HttpRequest());
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
@@ -42,26 +44,8 @@ namespace Xamarin_UI.Views
 
         private async void SetMunicipalitiesAsync()
         {
+            _municipalityList = await _httpRequest.Value.GetMunicipalities();
 
-            var uri = new Uri($"{_webApiLink}{_municipalityUri}");
-            try
-            {
-                var response = await _httpClient.Value.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-
-                    if (content != null)
-                    {
-                        var municipalities = JsonConvert.DeserializeObject<List<string>>(content);
-                        _municipalityList = new ObservableCollection<string>(municipalities);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
         }
         private async void SetStreetAsync()
         {
@@ -237,12 +221,12 @@ namespace Xamarin_UI.Views
 
         private void MicrodistrictListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
-           // OnItemTapped(sender, e, microdistrictListView, microdistrict);
+            OnItemTapped(sender, e, microdistrictListView, microdistrict);
         }
 
         private void StreetListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
-                //OnItemTapped(sender, e, streetListView, street);
+                OnItemTapped(sender, e, streetListView, street);
         }
 
         private void OnTextChanged(string text, ListView viewlist, ObservableCollection<string> dataList)
