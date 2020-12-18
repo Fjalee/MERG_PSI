@@ -21,13 +21,14 @@ namespace Xamarin_UI.Views
 
         private ObservableCollection<string> _municipalityList;
         private ObservableCollection<string> _microdistrictList;
-        //private readonly Lazy<ObservableCollection<IList>> _streetList;
+        private ObservableCollection<string> _streetList;
         private readonly Lazy<HttpClient> _httpClient;
 
         private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
         private const string _realEstateContrGetUri = @"api/RealEstate";
         private const string _municipalityUri = @"api/Municipality";
         private const string _microdistrictUri = @"api/Microdistrict";
+        private const string _streetUri = @"api/Street";
 
         public HomePage()
         {
@@ -55,6 +56,29 @@ namespace Xamarin_UI.Views
                     {
                         var municipalities = JsonConvert.DeserializeObject<List<string>>(content);
                         _municipalityList = new ObservableCollection<string>(municipalities);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private async void SetStreetAsync()
+        {
+
+            var uri = new Uri($"{_webApiLink}{_streetUri}");
+            try
+            {
+                var response = await _httpClient.Value.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (content != null)
+                    {
+                        var streets = JsonConvert.DeserializeObject<List<string>>(content);
+                        _streetList = new ObservableCollection<string>(streets);
                     }
                 }
             }
@@ -199,7 +223,11 @@ namespace Xamarin_UI.Views
 
         private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            //OnTextChanged(e.NewTextValue, streetListView, _streetList.Value);
+            if (_streetList == null)
+            {
+                SetStreetAsync();
+            }
+            OnTextChanged(e.NewTextValue, streetListView, _streetList);
         }
 
         private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
