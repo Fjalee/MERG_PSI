@@ -64,7 +64,6 @@ namespace Xamarin_UI.Views
             }
             catch (Exception)
             {
-                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
             }
         }
 
