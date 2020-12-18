@@ -21,7 +21,7 @@
 
                     <StackLayout>
                         <Entry x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Savivaldybė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="municipalityListView" ItemsSource="{Binding MunicipalityList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <ListView x:Name="municipalityListView" ItemsSource="{Binding _municipaliyList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -38,7 +38,7 @@
                                                 HorizontalOptions="FillAndExpand"
                                                 HorizontalTextAlignment="Left"
                                                 Margin="0" 
-                                                Text="{Binding Address}"
+                                                Text="{Binding}"
                                                 TextColor="Black"  
                                                 VerticalOptions="FillAndExpand"
                                                 VerticalTextAlignment="Center"/>

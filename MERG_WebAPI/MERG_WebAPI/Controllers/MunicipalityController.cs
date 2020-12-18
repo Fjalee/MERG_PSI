@@ -1,6 +1,4 @@
 ﻿using Database;
-using Database.Entities;
-using MERG_BackEnd;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
