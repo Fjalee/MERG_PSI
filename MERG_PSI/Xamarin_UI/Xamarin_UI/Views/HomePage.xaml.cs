@@ -18,9 +18,9 @@ namespace Xamarin_UI.Views
         private readonly Lazy<List<RealEstate>> _listOfRealEstates;
         private List<RealEstate> _filteredList;
 
-        private readonly Lazy<ObservableCollection<IList>> _municipalityList;
-        private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
-        private readonly Lazy<ObservableCollection<IList>> _streetList;
+        private readonly ObservableCollection<string> _municipalityList;
+        //private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
+        //private readonly Lazy<ObservableCollection<IList>> _streetList;
         private readonly Lazy<HttpClient> _httpClient;
 
         private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
@@ -30,9 +30,9 @@ namespace Xamarin_UI.Views
         {
             InitializeComponent();
 
-            _municipalityList = new Lazy<ObservableCollection<IList>>(() => new MunicipalityList().GetList());
-            _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
-            _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
+            //_municipalityList = new Lazy<ObservableCollection<string>>(() => new MunicipalityList().GetList());
+            //_microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
+            //_streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
             _httpClient = new Lazy<HttpClient>(() => new HttpClient());
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
@@ -133,18 +133,18 @@ namespace Xamarin_UI.Views
 
         private void MunicipalitySearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList.Value);
+            OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList);
         }
 
-        private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
-        {
-            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList.Value);
-        }
+        //private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        //{
+        //    OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList.Value);
+        //}
 
-        private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
-        {
-            OnTextChanged(e.NewTextValue, streetListView, _streetList.Value);
-        }
+        //private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        //{
+        //    OnTextChanged(e.NewTextValue, streetListView, _streetList.Value);
+        //}
 
         private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
@@ -161,14 +161,14 @@ namespace Xamarin_UI.Views
             OnItemTapped(sender, e, streetListView, street);
         }
 
-        private void OnTextChanged(string text, ListView viewlist, ObservableCollection<IList> dataList)
+        private void OnTextChanged(string text, ListView viewlist, ObservableCollection<string> dataList)
         {
             viewlist.IsVisible = true;
             viewlist.BeginRefresh();
 
             try
             {
-                var data = dataList.Where(i => i.Address.ToLower().Contains(text.ToLower()));
+                var data = dataList.Where(i => i.ToLower().Contains(text.ToLower()));
                 if (string.IsNullOrWhiteSpace(text))
                 {
                     viewlist.IsVisible = false;
@@ -187,8 +187,8 @@ namespace Xamarin_UI.Views
 
         private void OnItemTapped(Object sender, ItemTappedEventArgs e, ListView viewlist, Entry name)
         {
-            var mun = e.Item as IList;
-            name.Text = mun.Address;
+            var mun = e.Item as string;
+            name.Text = mun;
             viewlist.IsVisible = false;
             ((ListView)sender).SelectedItem = null;
         }
