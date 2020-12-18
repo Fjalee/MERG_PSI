@@ -20,22 +20,18 @@ namespace Xamarin_UI.Views
         private List<RealEstate> _filteredList;
 
         private ObservableCollection<string> _municipalityList;
-        //private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
+        private ObservableCollection<string> _microdistrictList;
         //private readonly Lazy<ObservableCollection<IList>> _streetList;
         private readonly Lazy<HttpClient> _httpClient;
 
         private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
         private const string _realEstateContrGetUri = @"api/RealEstate";
         private const string _municipalityUri = @"api/Municipality";
+        private const string _microdistrictUri = @"api/Microdistrict";
 
         public HomePage()
         {
             InitializeComponent();
-
-            //_municipalityList = new Lazy<ObservableCollection<string>>(() => new MunicipalityList().GetList());
-            //_microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
-            //_streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
-            
             _httpClient = new Lazy<HttpClient>(() => new HttpClient());
 
 
@@ -65,6 +61,29 @@ namespace Xamarin_UI.Views
             catch (Exception)
             {
             }
+        }
+        private async void SetMicrodistrictAsync()
+        {
+            var uri = new Uri($"{_webApiLink}{_microdistrictUri}");
+            try
+            {
+                var response = await _httpClient.Value.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (content != null)
+                    {
+                        var microdistricts = JsonConvert.DeserializeObject<List<string>>(content);
+                        _microdistrictList = new ObservableCollection<string>(microdistricts);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+
         }
 
 
@@ -171,7 +190,11 @@ namespace Xamarin_UI.Views
 
         private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
         {
-            //OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList.Value);
+            if (_microdistrictList == null)
+            {
+                SetMicrodistrictAsync();
+            }
+            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList);
         }
 
         private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
