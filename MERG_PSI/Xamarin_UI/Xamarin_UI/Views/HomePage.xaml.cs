@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,9 +35,31 @@ namespace Xamarin_UI.Views
             //_microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
             //_streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
             _httpClient = new Lazy<HttpClient>(() => new HttpClient());
+            _municipalityList = GetMunicipalitiesAsync().Result;
+
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
+        }
+
+        private async Task<ObservableCollection<string>> GetMunicipalitiesAsync()
+        {
+            var uri = new Uri(_webApiLink+@"api/Municipality");
+            var municipalities = new ObservableCollection<string>();
+            try
+            {
+                var response = await _httpClient.Value.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    municipalities = JsonConvert.DeserializeObject<ObservableCollection<string>>(content);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return municipalities;
         }
 
         private Stream GetScrapedDataStream()
