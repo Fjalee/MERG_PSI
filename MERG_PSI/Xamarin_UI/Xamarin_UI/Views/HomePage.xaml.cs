@@ -28,8 +28,6 @@ namespace Xamarin_UI.Views
 
         private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
         private const string _realEstateContrGetUri = @"api/RealEstate";
-        //private const string _municipalityUri = @"api/Municipality";
-        private const string _microdistrictUri = @"api/Microdistrict";
         private const string _streetUri = @"api/Street";
 
         public HomePage()
@@ -40,12 +38,6 @@ namespace Xamarin_UI.Views
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
-        }
-
-        private async void SetMunicipalitiesAsync()
-        {
-            _municipalityList = await _httpRequest.Value.GetMunicipalities();
-
         }
         private async void SetStreetAsync()
         {
@@ -70,29 +62,7 @@ namespace Xamarin_UI.Views
             {
             }
         }
-        private async void SetMicrodistrictAsync()
-        {
-            var uri = new Uri($"{_webApiLink}{_microdistrictUri}");
-            try
-            {
-                var response = await _httpClient.Value.GetAsync(uri);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-
-                    if (content != null)
-                    {
-                        var microdistricts = JsonConvert.DeserializeObject<List<string>>(content);
-                        _microdistrictList = new ObservableCollection<string>(microdistricts);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
-
-        }
 
 
         private Stream GetScrapedDataStream()
@@ -187,20 +157,20 @@ namespace Xamarin_UI.Views
         }
 
 
-        private void MunicipalitySearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        private async void MunicipalitySearchBar_OnTextChangedAsync(Object sender, TextChangedEventArgs e)
         {
             if (_municipalityList == null)
             {
-                SetMunicipalitiesAsync();
+                _municipalityList = await _httpRequest.Value.GetMunicipalities();
             }
             OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList);
         }
 
-        private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        private async void MicrodistrictSearchBar_OnTextChangedAsync(Object sender, TextChangedEventArgs e)
         {
             if (_microdistrictList == null)
             {
-                SetMicrodistrictAsync();
+                _microdistrictList = await _httpRequest.Value.GetMicrodistricts();
             }
             OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList);
         }
