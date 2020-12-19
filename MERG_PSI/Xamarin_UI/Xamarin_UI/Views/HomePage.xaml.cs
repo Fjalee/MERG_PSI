@@ -1,13 +1,10 @@
 using MERG_BackEnd;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin_UI.Services;
@@ -23,24 +20,16 @@ namespace Xamarin_UI.Views
         private ObservableCollection<string> _municipalityList;
         private ObservableCollection<string> _microdistrictList;
         private ObservableCollection<string> _streetList;
-        private readonly Lazy<HttpClient> _httpClient;
         private readonly Lazy<HttpRequest> _httpRequest;
-
-        private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
-        private const string _realEstateContrGetUri = @"api/RealEstate";
-        
 
         public HomePage()
         {
             InitializeComponent();
-            _httpClient = new Lazy<HttpClient>(() => new HttpClient());
             _httpRequest = new Lazy<HttpRequest>(() => new HttpRequest());
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
         }
-
-
 
         private Stream GetScrapedDataStream()
         {
@@ -58,30 +47,10 @@ namespace Xamarin_UI.Views
         {
             var filtersValue = GetFiltersValue();
 
-            var uri = new Uri($"{_webApiLink}/{_realEstateContrGetUri}/{filtersValue}");
-
             try
             {
-                var response = await _httpClient.Value.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-
-                    if (content != null)
-                    {
-                        _filteredList = JsonConvert.DeserializeObject<List<RealEstate>>(content);
-                        myItem.ItemsSource = _filteredList;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
-                }
+                _filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
+                myItem.ItemsSource = _filteredList;
             }
             catch (Exception)
             {
@@ -111,8 +80,6 @@ namespace Xamarin_UI.Views
               numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
-
-              
 
             filtersValue.Municipality = municipality.Text ?? "noMunicipality";
             filtersValue.Microdistrict = microdistrict.Text ?? "noMicrodistrict";

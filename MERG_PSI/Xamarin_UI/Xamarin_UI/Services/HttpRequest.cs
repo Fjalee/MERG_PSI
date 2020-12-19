@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MERG_BackEnd;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +15,7 @@ namespace Xamarin_UI.Services
         private const string _municipalityUri = @"api/Municipality";
         private const string _microdistrictUri = @"api/Microdistrict";
         private const string _streetUri = @"api/Street";
+        private const string _realEstateContrGetUri = @"api/RealEstate";
 
         public HttpRequest()
         {
@@ -94,6 +96,15 @@ namespace Xamarin_UI.Services
             }
             var streetList = new ObservableCollection<string>(streets);
             return streetList;
+        }
+        public async Task<List<RealEstate>> GetRealEstates(FiltersValue filtersValue)
+        {
+            var uri = new Uri($"{_webApiLink}/{_realEstateContrGetUri}/{filtersValue}");
+            var response = await _httpClient.GetAsync(uri);
+            var content = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
+            var realEstates = JsonConvert.DeserializeObject<List<RealEstate>>(content);
+
+            return realEstates;
         }
     }
 
