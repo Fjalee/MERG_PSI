@@ -20,8 +20,8 @@
             <StackLayout Margin="5">
 
                     <StackLayout>
-                        <Entry x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Savivaldybė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="municipalityListView" ItemsSource="{Binding MunicipalityList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <Entry x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChangedAsync" BackgroundColor="Transparent" TextColor="Black" Placeholder="Savivaldybė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="municipalityListView" ItemsSource="{Binding _municipaliyList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -38,7 +38,7 @@
                                                 HorizontalOptions="FillAndExpand"
                                                 HorizontalTextAlignment="Left"
                                                 Margin="0" 
-                                                Text="{Binding Address}"
+                                                Text="{Binding}"
                                                 TextColor="Black"  
                                                 VerticalOptions="FillAndExpand"
                                                 VerticalTextAlignment="Center"/>
@@ -48,8 +48,8 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         
-                        <Entry x:Name="microdistrict" TextChanged="MicrodistrictSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Gyvenvietė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="microdistrictListView" ItemsSource="{Binding MicrodistrictList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <Entry x:Name="microdistrict" TextChanged="MicrodistrictSearchBar_OnTextChangedAsync" BackgroundColor="Transparent" TextColor="Black" Placeholder="Gyvenvietė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="microdistrictListView" ItemsSource="{Binding _microdistrictList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -66,7 +66,7 @@
                                                 HorizontalOptions="FillAndExpand"
                                                 HorizontalTextAlignment="Left"
                                                 Margin="0" 
-                                                Text="{Binding Address}"
+                                                Text="{Binding}"
                                                 TextColor="Black"  
                                                 VerticalOptions="FillAndExpand"
                                                 VerticalTextAlignment="Center"/>
@@ -78,8 +78,8 @@
 
 
                         
-                        <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChanged" BackgroundColor="Transparent" TextColor="Black" Placeholder="Gatvė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="streetListView" ItemsSource="{Binding StreetList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChangedAsync" BackgroundColor="Transparent" TextColor="Black" Placeholder="Gatvė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
+                        <ListView x:Name="streetListView" ItemsSource="{Binding _streetList}" IsVisible="False" RefreshControlColor="Black" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -96,7 +96,7 @@
                                                 HorizontalOptions="FillAndExpand"
                                                 HorizontalTextAlignment="Left"
                                                 Margin="0" 
-                                                Text="{Binding Address}"
+                                                Text="{Binding}"
                                                 TextColor="Black"  
                                                 VerticalOptions="FillAndExpand"
                                                 VerticalTextAlignment="Center"/>

@@ -1,14 +1,13 @@
 using MERG_BackEnd;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin_UI.Services;
 
 namespace Xamarin_UI.Views
 {
@@ -18,22 +17,15 @@ namespace Xamarin_UI.Views
         private readonly Lazy<List<RealEstate>> _listOfRealEstates;
         private List<RealEstate> _filteredList;
 
-        private readonly Lazy<ObservableCollection<IList>> _municipalityList;
-        private readonly Lazy<ObservableCollection<IList>> _microdistrictList;
-        private readonly Lazy<ObservableCollection<IList>> _streetList;
-        private readonly Lazy<HttpClient> _httpClient;
-
-        private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
-        private const string _realEstateContrGetUri = @"api/RealEstate";
+        private ObservableCollection<string> _municipalityList;
+        private ObservableCollection<string> _microdistrictList;
+        private ObservableCollection<string> _streetList;
+        private readonly Lazy<HttpRequest> _httpRequest;
 
         public HomePage()
         {
             InitializeComponent();
-
-            _municipalityList = new Lazy<ObservableCollection<IList>>(() => new MunicipalityList().GetList());
-            _microdistrictList = new Lazy<ObservableCollection<IList>>(() => new MicrodistrictList().GetList());
-            _streetList = new Lazy<ObservableCollection<IList>>(() => new StreetList().GetList());
-            _httpClient = new Lazy<HttpClient>(() => new HttpClient());
+            _httpRequest = new Lazy<HttpRequest>(() => new HttpRequest());
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
@@ -55,30 +47,10 @@ namespace Xamarin_UI.Views
         {
             var filtersValue = GetFiltersValue();
 
-            var uri = new Uri($"{_webApiLink}/{_realEstateContrGetUri}/{filtersValue}");
-
             try
             {
-                var response = await _httpClient.Value.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-
-                    if (content != null)
-                    {
-                        _filteredList = JsonConvert.DeserializeObject<List<RealEstate>>(content);
-                        myItem.ItemsSource = _filteredList;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
-                }
+                _filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
+                myItem.ItemsSource = _filteredList;
             }
             catch (Exception)
             {
@@ -109,8 +81,6 @@ namespace Xamarin_UI.Views
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
 
-              
-
             filtersValue.Municipality = municipality.Text ?? "noMunicipality";
             filtersValue.Microdistrict = microdistrict.Text ?? "noMicrodistrict";
             filtersValue.Street = street.Text ?? "noStreet";
@@ -131,19 +101,31 @@ namespace Xamarin_UI.Views
         }
 
 
-        private void MunicipalitySearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        private async void MunicipalitySearchBar_OnTextChangedAsync(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList.Value);
+            if (_municipalityList == null)
+            {
+                _municipalityList = await _httpRequest.Value.GetMunicipalities();
+            }
+            OnTextChanged(e.NewTextValue, municipalityListView, _municipalityList);
         }
 
-        private void MicrodistrictSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        private async void MicrodistrictSearchBar_OnTextChangedAsync(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList.Value);
+            if (_microdistrictList == null)
+            {
+                _microdistrictList = await _httpRequest.Value.GetMicrodistricts();
+            }
+            OnTextChanged(e.NewTextValue, microdistrictListView, _microdistrictList);
         }
 
-        private void StreetSearchBar_OnTextChanged(Object sender, TextChangedEventArgs e)
+        private async void StreetSearchBar_OnTextChangedAsync(Object sender, TextChangedEventArgs e)
         {
-            OnTextChanged(e.NewTextValue, streetListView, _streetList.Value);
+            if (_streetList == null)
+            {
+                _streetList = await _httpRequest.Value.GetStreets();
+            }
+            OnTextChanged(e.NewTextValue, streetListView, _streetList);
         }
 
         private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
@@ -158,17 +140,17 @@ namespace Xamarin_UI.Views
 
         private void StreetListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
-            OnItemTapped(sender, e, streetListView, street);
+                OnItemTapped(sender, e, streetListView, street);
         }
 
-        private void OnTextChanged(string text, ListView viewlist, ObservableCollection<IList> dataList)
+        private void OnTextChanged(string text, ListView viewlist, ObservableCollection<string> dataList)
         {
             viewlist.IsVisible = true;
             viewlist.BeginRefresh();
 
             try
             {
-                var data = dataList.Where(i => i.Address.ToLower().Contains(text.ToLower()));
+                var data = dataList.Where(i => i.ToLower().Contains(text.ToLower()));
                 if (string.IsNullOrWhiteSpace(text))
                 {
                     viewlist.IsVisible = false;
@@ -187,8 +169,8 @@ namespace Xamarin_UI.Views
 
         private void OnItemTapped(Object sender, ItemTappedEventArgs e, ListView viewlist, Entry name)
         {
-            var mun = e.Item as IList;
-            name.Text = mun.Address;
+            var mun = e.Item as string;
+            name.Text = mun;
             viewlist.IsVisible = false;
             ((ListView)sender).SelectedItem = null;
         }
