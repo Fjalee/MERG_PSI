@@ -11,7 +11,7 @@ namespace Xamarin_UI.Services
     public class HttpRequest
     {
         private readonly HttpClient _httpClient;
-        private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net/";
+        private const string _webApiLink = @"https://mergwebapi20201216191928.azurewebsites.net";
         private const string _municipalityUri = @"api/Municipality";
         private const string _microdistrictUri = @"api/Microdistrict";
         private const string _streetUri = @"api/Street";
@@ -24,7 +24,7 @@ namespace Xamarin_UI.Services
         public async Task<ObservableCollection<string>> GetMunicipalities()
         {
             var municipalities = new List<string>();
-            var uri = new Uri($"{_webApiLink}{_municipalityUri}");
+            var uri = new Uri($"{_webApiLink}/{_municipalityUri}");
             try
             {
                 var response = await _httpClient.GetAsync(uri);
@@ -50,7 +50,7 @@ namespace Xamarin_UI.Services
         public async Task<ObservableCollection<string>> GetMicrodistricts()
         {
             var microdistricts = new List<string>();
-            var uri = new Uri($"{_webApiLink}{_microdistrictUri}");
+            var uri = new Uri($"{_webApiLink}/{_microdistrictUri}");
             try
             {
                 var response = await _httpClient.GetAsync(uri);
@@ -75,7 +75,7 @@ namespace Xamarin_UI.Services
         public async Task<ObservableCollection<string>> GetStreets()
         {
             var streets = new List<string>();
-            var uri = new Uri($"{_webApiLink}{_streetUri}");
+            var uri = new Uri($"{_webApiLink}/{_streetUri}");
             try
             {
                 var response = await _httpClient.GetAsync(uri);
