@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Common;
+using System.Collections.Generic;
 
 namespace MERG_BackEnd
 {
     public class Inspection : IInspection
     {
-        public List<RealEstate> GetFilteredListOFRealEstate(List<RealEstate> listOfRealEstate, FiltersValue filtersValue)
+        public List<RealEstateModel> GetFilteredListOFRealEstate(List<RealEstateModel> listOfRealEstate, FiltersValue filtersValue)
         {
             var filters = new Filters();
 
