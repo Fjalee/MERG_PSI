@@ -1,4 +1,5 @@
-﻿using MERG_BackEnd;
+﻿using Common;
+using MERG_BackEnd;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -97,9 +98,20 @@ namespace Xamarin_UI.Services
             var streetList = new ObservableCollection<string>(streets);
             return streetList;
         }
+        
         public async Task<List<RealEstate>> GetRealEstates(FiltersValue filtersValue)
         {
             var uri = new Uri($"{_webApiLink}/{_realEstateContrGetUri}/{filtersValue}");
+            var response = await _httpClient.GetAsync(uri);
+            var content = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
+            var realEstates = JsonConvert.DeserializeObject<List<RealEstate>>(content);
+
+            return realEstates;
+        }
+
+        public async Task<List<RealEstate>> GetRealEstates()
+        {
+            var uri = new Uri($"{_webApiLink}/{_realEstateContrGetUri}");
             var response = await _httpClient.GetAsync(uri);
             var content = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : null;
             var realEstates = JsonConvert.DeserializeObject<List<RealEstate>>(content);

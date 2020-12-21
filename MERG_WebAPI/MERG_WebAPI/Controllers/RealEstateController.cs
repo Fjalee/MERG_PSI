@@ -24,9 +24,9 @@ namespace MERG_WebAPI.Controllers
         }
 
         [HttpGet]
-        public void Get()
+        public List<RealEstateModel> Get()
         {
-            var _listOfRealEstates = _dbContext.RealEstates.Select(x => ((RealEstateModel)x)).ToList();
+            return _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
         }
 
         [HttpGet("{municipality}/{microdistrict}/{street}/{isPriceFrom}/{priceFrom}/{isPriceTo}/{priceTo}/{isAreaFrom}/{areaFrom}/{isAreaTo}/{areaTo}/{isBuildYearFrom}/{buildYearFrom}/{isBuildYearTo}/{buildYearTo}/{isNumberOfRoomsFrom}/{numberOfRoomsFrom}/{isNumberOfRoomsTo}/{numberOfRoomsTo}/{isPricePerSqMFrom}/{pricePerSqMFrom}/{isPricePerSqMTo}/{pricePerSqMTo}/{noInfoBuildYear}/{noInfoRoomNumber}")]
@@ -66,6 +66,8 @@ namespace MERG_WebAPI.Controllers
                 return null;
             }
         }
+
+
 
         [HttpPost]
         public void Post([FromBody] string value)
