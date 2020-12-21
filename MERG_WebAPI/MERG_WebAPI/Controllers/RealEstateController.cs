@@ -14,7 +14,6 @@ namespace MERG_WebAPI.Controllers
     {
         //dont delete comment below, its for testing
         //https://localhost:44376/api/RealEstate/SampleMunicipality3/SampleMicrodistrict3/SampleStreet3/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/false
-
         private readonly IInspection _inspection;
         private readonly AppDbContext _dbContext;
 
@@ -40,6 +39,10 @@ namespace MERG_WebAPI.Controllers
             bool noInfoBuildYear, bool noInfoRoomNumber)
         {
             var _listOfRealEstates = _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
+
+            municipality = municipality == "noMunicipality" ? "": municipality;
+            microdistrict = microdistrict == "noMicrodistrict" ? "" : microdistrict;
+            street = street == "noStreet" ? "" : street;
 
             var filter = new FiltersValue(municipality: municipality, microdistrict: microdistrict, street: street,
                priceFrom: new Tuple<bool, int>(isPriceFrom, priceFrom),
