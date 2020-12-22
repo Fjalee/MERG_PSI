@@ -65,28 +65,13 @@ namespace MERG_WebAPI.Controllers
             }
         }
 
-
-
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
         [HttpPut]
         public void Put([FromBody]List<Database.Entities.RealEstate> listOfRealEstate)
         {
-
             //System.Data.Entity.DbContext
             //_dbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE [RealEstate]");
-
-
             listOfRealEstate.ForEach(x => _dbContext.Add(x));
             _dbContext.SaveChanges();
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
