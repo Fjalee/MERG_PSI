@@ -72,8 +72,8 @@ namespace MERG_WebAPI.Controllers
         {
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]List<Database.Entities.RealEstate> listOfRealEstate)
+        [HttpPut]
+        public void Put([FromBody]List<Database.Entities.RealEstate> listOfRealEstate)
         {
 
             //System.Data.Entity.DbContext
