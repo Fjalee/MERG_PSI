@@ -12,8 +12,6 @@ namespace MERG_WebAPI.Controllers
     [ApiController]
     public class RealEstateController : ControllerBase
     {
-        //dont delete comment below, its for testing
-        //https://localhost:44376/api/RealEstate/SampleMunicipality3/SampleMicrodistrict3/SampleStreet3/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/0/false/false
         private readonly IInspection _inspection;
         private readonly AppDbContext _dbContext;
 
@@ -75,8 +73,15 @@ namespace MERG_WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody]List<Database.Entities.RealEstate> listOfRealEstate)
         {
+
+            //System.Data.Entity.DbContext
+            //_dbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE [RealEstate]");
+
+
+            listOfRealEstate.ForEach(x => _dbContext.Add(x));
+            _dbContext.SaveChanges();
         }
 
         [HttpDelete("{id}")]
