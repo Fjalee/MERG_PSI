@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Text;
 
 namespace WebScraper
 {
@@ -11,9 +12,9 @@ namespace WebScraper
     {
         private readonly KampasScraper _kampasScraper;
         private readonly DomosplusScraper _domosplusScraper;
-        private readonly OutputToJson _output;
+        private readonly IOutput _output;
 
-        public AllScrapers(KampasScraper kampasScraper, DomosplusScraper domosplusScraper, OutputToJson output)
+        public AllScrapers(KampasScraper kampasScraper, DomosplusScraper domosplusScraper, IOutput output)
         {
             _kampasScraper = kampasScraper;
             _domosplusScraper = domosplusScraper;
@@ -31,22 +32,9 @@ namespace WebScraper
             allScrapedRealEstate.AddRange(_domosplusScraper.ScrapedRealEstate);
             allScrapedRealEstate.AddRange(_kampasScraper.ScrapedRealEstate);
 
-            await Temp(allScrapedRealEstate);
-            //_output.WriteToFile(allScrapedRealEstate);
-        }
 
-        private async Task Temp(List<RealEstate> listOfRealEstates)
-        {
-            var _webApiLink = ConfigurationManager.AppSettings.Get("WEB_API_LINK");
-            var _realEstateContrUri = ConfigurationManager.AppSettings.Get("REALESTATE_CONTR_URI");
-            
-            var uri = new Uri($"{_webApiLink}/{_realEstateContrUri}");
-
-            var serializedList = JsonConvert.SerializeObject(listOfRealEstates);
-            var content = new StringContent(serializedList);
-
-            var _httpClient = new HttpClient();
-            var temp = await _httpClient.PutAsync(uri, content);
+            var jsonToOutput = JsonConvert.SerializeObject(allScrapedRealEstate);
+            await _output.DoOutput(jsonToOutput);
         }
     }
 }

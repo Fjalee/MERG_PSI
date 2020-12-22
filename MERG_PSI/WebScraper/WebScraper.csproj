@@ -82,6 +82,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Output\IOutput.cs" />
+    <Compile Include="Output\OutputToDB.cs" />
     <Compile Include="SiteScraper\AdCardLinkScraper.cs" />
     <Compile Include="ContainerConfig.cs" />
     <Compile Include="Domosplus\DomosplusInsideAdScraper.cs" />
@@ -106,7 +108,7 @@
     <Compile Include="Kampas\KampasScraper.cs" />
     <Compile Include="Log\FileLog.cs" />
     <Compile Include="Domosplus\DomosplusScraper.cs" />
-    <Compile Include="OutputToJson.cs" />
+    <Compile Include="Output\OutputToJson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Kampas\KampasAdCardLinkScraper.cs" />
