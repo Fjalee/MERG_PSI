@@ -15,6 +15,7 @@
                     HeightRequest="50">
                     <StackLayout>
                         <SearchBar Placeholder="Kur ieškote buto?"
+                        x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChangedAsync"
                         HorizontalTextAlignment="Center"
                         CancelButtonColor="Black"
                         PlaceholderColor="DarkGray"
@@ -25,8 +26,8 @@
                     </StackLayout>
                 </Frame>
 
-             <Entry x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChangedAsync" BackgroundColor="Transparent" TextColor="#E6E6E6" Placeholder="Savivaldybė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />
-                        <ListView x:Name="municipalityListView" ItemsSource="{Binding _municipaliyList}" IsVisible="False" RefreshControlColor="#E6E6E6" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+             <!--<Entry BackgroundColor="Transparent" TextColor="#E6E6E6" Placeholder="Savivaldybė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />-->
+                        <ListView x:Name="municipalityListView" ItemsSource="{Binding _municipaliyList}" IsVisible="False" RefreshControlColor="Red" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -39,10 +40,10 @@
                                             <Label BackgroundColor="Transparent"
                                                 FontSize="16"
                                                 HorizontalOptions="FillAndExpand"
-                                                HorizontalTextAlignment="Left"
+                                                HorizontalTextAlignment="Center"
                                                 Margin="0" 
                                                 Text="{Binding}"
-                                                TextColor="#E6E6E6"  
+                                                TextColor="Red"  
                                                 VerticalOptions="FillAndExpand"
                                                 VerticalTextAlignment="Center"/>
                                         </StackLayout>
@@ -58,7 +59,7 @@
             </StackLayout>
 
 
-            <StackLayout x:Name="filtersDisplay">
+            <StackLayout x:Name="filtersDisplay" IsVisible="false">
                 <!--<StackLayout  Grid.Row="1" HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10" >
                 <Label Text="Nekilnojamasis turtas" TextColor="DarkGray" FontSize="20" FontAttributes="Bold"/>  
                 </StackLayout>-->

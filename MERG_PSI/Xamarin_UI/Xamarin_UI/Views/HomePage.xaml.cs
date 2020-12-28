@@ -29,6 +29,7 @@ namespace Xamarin_UI.Views
 
             List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
             _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
+            myItem.ItemsSource = _listOfRealEstates.Value;
         }
 
         private Stream GetScrapedDataStream()
@@ -46,10 +47,12 @@ namespace Xamarin_UI.Views
         private async void Button_Clicked_SearchAsync(object sender, EventArgs e)
         {
             var filtersValue = GetFiltersValue();
+            var inspection = new Inspection();
 
             try
             {
-                _filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
+                //_filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
+                _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValue);
                 myItem.ItemsSource = _filteredList;
             }
             catch (Exception)
@@ -81,9 +84,9 @@ namespace Xamarin_UI.Views
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
 
-            filtersValue.Municipality = municipality.Text ?? "noMunicipality";
-            filtersValue.Microdistrict = microdistrict.Text ?? "noMicrodistrict";
-            filtersValue.Street = street.Text ?? "noStreet";
+            filtersValue.Municipality = municipality.Text;
+            filtersValue.Microdistrict = microdistrict.Text;
+            filtersValue.Street = street.Text;
 
             return filtersValue;
         }
@@ -130,7 +133,7 @@ namespace Xamarin_UI.Views
 
         private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
-            OnItemTapped(sender, e, municipalityListView, municipality);
+            OnItemTappedSearch(sender, e, municipalityListView, municipality);
         }
 
         private void MicrodistrictListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
@@ -168,6 +171,14 @@ namespace Xamarin_UI.Views
         }
 
         private void OnItemTapped(Object sender, ItemTappedEventArgs e, ListView viewlist, Entry name)
+        {
+            var mun = e.Item as string;
+            name.Text = mun;
+            viewlist.IsVisible = false;
+            ((ListView)sender).SelectedItem = null;
+        }
+
+        private void OnItemTappedSearch(Object sender, ItemTappedEventArgs e, ListView viewlist, SearchBar name)
         {
             var mun = e.Item as string;
             name.Text = mun;
