@@ -54,7 +54,7 @@ namespace Xamarin_UI.Views
             }
             catch (Exception)
             {
-                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenų, prašome kreiptis į administraciją", "OK");
             }
         }
 
@@ -68,7 +68,7 @@ namespace Xamarin_UI.Views
             catch (Exception)
             {
 
-                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenų, prašome kreiptis į administraciją", "OK");
             }
         }
 
@@ -93,7 +93,7 @@ namespace Xamarin_UI.Views
             if (filtersDisplay.IsVisible)
             {
                 filtersDisplay.IsVisible = false;
-                buttonExpand.Text = "Išskleisti";
+                buttonExpand.Text = "Filtrai";
                 return;
             }
             filtersDisplay.IsVisible = true;
