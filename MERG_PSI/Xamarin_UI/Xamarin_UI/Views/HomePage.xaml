@@ -12,19 +12,27 @@
                     Margin="30,30,30,10"
                     BackgroundColor="#242424"
                     HasShadow="True"
-                    HeightRequest="50">
-                    <StackLayout Grid.Row="2" >
+                    HeightRequest="60">
+
+                <StackLayout>
+                    <Grid BackgroundColor="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
                         <SearchBar Placeholder="Kur ieškote buto?"
-                        HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                        Grid.Column="0"
+                        HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"
                         x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChangedAsync"
                         CancelButtonColor="Black"
                         PlaceholderColor="DarkGray"
                         TextColor="DarkGray"
                         FontSize="Medium"
                         BackgroundColor="Transparent"/>
-                        <Image Source="{}" />
-                    </StackLayout>
-                </Frame>
+                        <Button Grid.Column="1" Text="Ieškoti" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
+                    </Grid>
+                </StackLayout>
+            </Frame>
 
              <!--<Entry BackgroundColor="Transparent" TextColor="#E6E6E6" Placeholder="Savivaldybė" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" />-->
                         <ListView x:Name="municipalityListView" ItemsSource="{Binding _municipaliyList}" IsVisible="False" RefreshControlColor="Red" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="MunicipalityListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
@@ -55,7 +63,7 @@
             <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center">
             <Button x:Name="buttonExpand" Text="Filtrai" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
             <Button Text="Žemėlapis" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
-            <Button Text="Ieškoti" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
+            
             </StackLayout>
 
 
@@ -157,7 +165,7 @@
                                     <StackLayout Margin="0,0,0,0" Padding="0">
                                         <Label Text="{Binding Municipality}" Margin="175,-5,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Center"/>
                                         <Label Text="{Binding Microdistrict}" Margin="175,-10,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Center"/>
-                                        <Label Text="{Binding Price}" Margin="175,-9,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding Price, StringFormat='{}{0:N0}€'}" Margin="175,-9,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Center"/>
                              </StackLayout>
                                 </Frame>
                                 <StackLayout>
