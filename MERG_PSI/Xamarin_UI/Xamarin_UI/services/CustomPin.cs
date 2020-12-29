@@ -17,4 +17,3 @@ namespace Xamarin_UI.Services
         public string Image { get; set; }
     }
 }
-

@@ -10,7 +10,6 @@ namespace Xamarin_UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapPage : ContentPage
     {
-
         public MapPage(RealEstate realEstate)
         {
             InitializeComponent();
@@ -41,8 +40,6 @@ namespace Xamarin_UI.Views
             customMap.Pins.Add(customPin);
             customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(realEstate.Latitude, realEstate.Longitude), Distance.FromMiles(1.0)));
             container.Children.Add(customMap);
-
         }
-
     }
 }

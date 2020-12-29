@@ -5,13 +5,13 @@ using Android.Graphics;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
 using Xamarin_UI.Droid;
 using Xamarin_UI.Services;
-using System.Linq;
 
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace Xamarin_UI.Droid
@@ -146,9 +146,9 @@ namespace Xamarin_UI.Droid
             return null;
         }
 
-        private Android.Graphics.Bitmap GetImageBitmapFromUrl(string url)
+        private Bitmap GetImageBitmapFromUrl(string url)
         {
-            Android.Graphics.Bitmap imageBitmap = null;
+            Bitmap imageBitmap = null;
             if (!(url == "null"))
             {
                 using (var webClient = new WebClient())

@@ -20,7 +20,7 @@ namespace Xamarin_UI.Views
                 MapType = MapType.Street
             };
             
-            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(55.1694, 23.8813), Distance.FromMiles(7.0)));
+            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(55.1694, 23.8813), Distance.FromMiles(110.0)));
             customMap = AddPinsToMap(realEstate, customMap);
             container.Children.Add(customMap);
         }
