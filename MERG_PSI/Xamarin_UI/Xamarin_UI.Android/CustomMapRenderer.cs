@@ -127,7 +127,14 @@ namespace Xamarin_UI.Droid
                 }
                 if (buildingYear != null)
                 {
-                    buildingYear.Text = "Statybų metai: " + customPin.BuildYear.ToString() + " m.";
+                    if (customPin.BuildYear == 0)
+                    {
+                        buildingYear.Text = "Statybų metai: Nenurodyta";
+                    }
+                    else
+                    {
+                        buildingYear.Text = "Statybų metai: " + customPin.BuildYear.ToString() + " m.";
+                    }
                 }
                 if (image != null)
                 {
