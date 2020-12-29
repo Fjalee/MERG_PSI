@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
-namespace Xamarin_UI.services
+namespace Xamarin_UI.Services
 {
-    class CustomMap : Map
+    public class CustomMap : Map
     {
         public List<CustomPin> CustomPins { get; set; }
     }
