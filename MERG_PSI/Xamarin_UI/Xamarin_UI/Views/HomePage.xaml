@@ -52,9 +52,9 @@
                         </ListView>
 
             <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center">
-            <Button x:Name="buttonExpand" Text="Suskleisti" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,5"/>
-            <Button Text="Eiti į žemėlapį" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,5"/>
-            <Button Text="Ieškoti" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,5"/>
+            <Button x:Name="buttonExpand" Text="Suskleisti" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
+            <Button Text="Eiti į žemėlapį" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
+            <Button Text="Ieškoti" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
             </StackLayout>
 
 
@@ -178,10 +178,10 @@
                     <DataTemplate>
                         <StackLayout Margin="30,-60,0,30" Padding="0" BackgroundColor="#121212">
                             <Grid>
-                                <Frame BackgroundColor="DarkGray" HasShadow="True" Margin="30" HeightRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                <Frame BackgroundColor="#242424" HasShadow="True" Margin="30" HeightRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                                     <StackLayout Margin="0,0,0,0" Padding="0">
-                                        <Label Text="{Binding Municipality}" Margin="175,-5,0,0" TextColor="#e6e6e6" FontSize="14" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding Microdistrict}" Margin="175,-10,0,0" TextColor="#e6e6e6" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Municipality}" Margin="175,-5,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Microdistrict}" Margin="175,-10,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Start"/>
                                         <!--<Label Text="{Binding Street}" Margin="175,-10,-10,0" TextColor="BLack" FontSize="14"/>
                                         Label Text="{Binding Price}" Margin="175,-10,-10,0" TextColor="BLack" FontSize="14"/>-->
                              </StackLayout>
