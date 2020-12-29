@@ -5,18 +5,17 @@
              Shell.NavBarIsVisible="False">
 <ContentPage.Content>
     
-        <StackLayout BackgroundColor="White">
+        <StackLayout BackgroundColor="#121212">
             <Frame
                     CornerRadius="30"
                     Padding="0"
-                    Margin="30"
-                    BackgroundColor="#E6E6E6"
+                    Margin="30,30,30,10"
+                    BackgroundColor="#242424"
                     HasShadow="True"
                     HeightRequest="50">
                     <StackLayout>
-                        <SearchBar Placeholder="Kur ieškote buto?"
+                        <SearchBar Placeholder="Kur ieškote buto?" HorizontalTextAlignment="Center"
                         x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChangedAsync"
-                        HorizontalTextAlignment="Center"
                         CancelButtonColor="Black"
                         PlaceholderColor="DarkGray"
                         TextColor="DarkGray"
@@ -53,9 +52,9 @@
                         </ListView>
 
             <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center">
-            <Button x:Name="buttonExpand" Text="Suskleisti" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill"/>
-            <Button Text="Eiti į žemėlapį" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Paieška" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="Fill"/>
+            <Button x:Name="buttonExpand" Text="Suskleisti" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,5"/>
+            <Button Text="Eiti į žemėlapį" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,5"/>
+            <Button Text="Ieškoti" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,5"/>
             </StackLayout>
 
 
@@ -177,12 +176,12 @@
             <CollectionView x:Name="myItem" SelectionMode="Single" SelectionChanged="MyItem_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Margin="30,-60,0,30" Padding="0" BackgroundColor="white">
+                        <StackLayout Margin="30,-60,0,30" Padding="0" BackgroundColor="#121212">
                             <Grid>
-                                <Frame BackgroundColor="#E6E6E6" HasShadow="True" Margin="30" HeightRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                <Frame BackgroundColor="DarkGray" HasShadow="True" Margin="30" HeightRequest="60" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                                     <StackLayout Margin="0,0,0,0" Padding="0">
-                                        <Label Text="{Binding Municipality}" Margin="175,-5,0,0" TextColor="Black" FontSize="14" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding Microdistrict}" Margin="175,-10,0,0" TextColor="Black" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Municipality}" Margin="175,-5,0,0" TextColor="#e6e6e6" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Microdistrict}" Margin="175,-10,0,0" TextColor="#e6e6e6" FontSize="14" HorizontalTextAlignment="Start"/>
                                         <!--<Label Text="{Binding Street}" Margin="175,-10,-10,0" TextColor="BLack" FontSize="14"/>
                                         Label Text="{Binding Price}" Margin="175,-10,-10,0" TextColor="BLack" FontSize="14"/>-->
                              </StackLayout>

@@ -29,13 +29,9 @@
             <ShellContent ContentTemplate ="{DataTemplate views:HomePage}"/>
         </Tab>
 
-        <Tab Title="About" Icon="https://img.icons8.com/ios/24/000000/about.png">
+        <!--<Tab Title="About" Icon="https://img.icons8.com/ios/24/000000/about.png">
             <ShellContent ContentTemplate ="{DataTemplate views:AboutPage}"/>
-        </Tab>
-
-        <Tab Title="Map" Icon="https://img.icons8.com/ios/48/000000/point-of-interest.png">
-            <ShellContent ContentTemplate ="{DataTemplate views:HomePage}"/>
-        </Tab>
+        </Tab>-->
         
     </TabBar>
 
