@@ -82,7 +82,7 @@ namespace Xamarin_UI.Views
               buildYearFrom: buildYearFrom.Text.ConvertToInt(), buildYearTo: buildYearTo.Text.ConvertToInt(),
               numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
-              noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
+              noBuildYearInfo: noInfoBuildYear.IsToggled, noNumberOfRoomsInfo: noInfoRoomNumber.IsToggled);
 
             filtersValue.Municipality = municipality.Text;
             filtersValue.Microdistrict = microdistrict.Text;
