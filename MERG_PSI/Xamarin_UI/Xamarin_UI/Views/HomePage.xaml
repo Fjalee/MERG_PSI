@@ -12,7 +12,9 @@
                     Margin="30,30,30,10"
                     BackgroundColor="#242424"
                     HasShadow="True"
-                    HeightRequest="60">
+                    HeightRequest="45" 
+                    MinimumHeightRequest="45"
+                >
 
                 <StackLayout>
                     <Grid BackgroundColor="Transparent">
@@ -29,7 +31,7 @@
                         TextColor="DarkGray"
                         FontSize="Medium"
                         BackgroundColor="Transparent"/>
-                        <Button Grid.Column="1" Text="Ieškoti" FontSize="12" Clicked="Button_Clicked_SearchAsync" HorizontalOptions="End" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
+                        <Button Grid.Column="1" Text="Ieškoti" FontSize="12" Clicked="Button_Clicked_SearchAsync" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,0"/>
                     </Grid>
                 </StackLayout>
             </Frame>
@@ -60,7 +62,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-            <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center">
+            <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center" HeightRequest="50">
             <Button x:Name="buttonExpand" Text="Filtrai" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
             <Button Text="Žemėlapis" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10"/>
             
@@ -144,14 +146,14 @@
                     <Entry x:Name="buildYearFrom" Placeholder="Pastatymo m nuo" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="200"/>
                     <Entry x:Name="buildYearTo" Placeholder="iki" Keyboard="Numeric" HorizontalOptions="Fill"  />
                     <!--<CheckBox x:Name="noInfoBuildYear"/>-->
-                    <Switch x:Name="noInfoBuildYear" OnColor="Gray" ThumbColor="White" IsToggled="true"/>
+                    <Switch x:Name="noInfoBuildYear" OnColor="Gray" ThumbColor="White" IsToggled="False"/>
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="30,0,30,10">
                     <Entry x:Name="numberOfRoomsFrom" Placeholder="Kambarių sk. nuo" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="200"/>
                     <Entry x:Name="numberOfRoomsTo" Placeholder="iki" Keyboard="Numeric" HorizontalOptions="Fill" />
                     <!--<CheckBox x:Name="noInfoRoomNumber"/>-->
-                    <Switch x:Name="noInfoRoomNumber" OnColor="Gray" ThumbColor="White" IsToggled="true"/>
+                    <Switch x:Name="noInfoRoomNumber" OnColor="Gray" ThumbColor="White" IsToggled="False"/>
                 </StackLayout>
             </StackLayout>
             </StackLayout>
