@@ -96,11 +96,9 @@ namespace Xamarin_UI.Views
             if (filtersDisplay.IsVisible)
             {
                 filtersDisplay.IsVisible = false;
-                buttonExpand.Text = "Filtrai";
                 return;
             }
             filtersDisplay.IsVisible = true;
-            buttonExpand.Text = "Suskleisti";
         }
 
 

@@ -4,6 +4,7 @@
              x:Class="Xamarin_UI.Views.HomePage"
              Shell.NavBarIsVisible="False">
 <ContentPage.Content>
+
     
         <StackLayout BackgroundColor="#121212">
             <Frame CornerRadius="30"
@@ -17,8 +18,8 @@
                 <StackLayout>
                     <Grid BackgroundColor="Transparent">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="100"/>
+                            <!--<ColumnDefinition Width="Auto"/>-->
+                            <ColumnDefinition Width="300"/>
                         </Grid.ColumnDefinitions>
                         <SearchBar Placeholder="Kur ieškote buto?"
                         Grid.Column="0"
@@ -29,7 +30,9 @@
                         TextColor="DarkGray"
                         FontSize="Medium"
                         BackgroundColor="Transparent"/>
-                        <Button Grid.Column="1" Text="Ieškoti" FontSize="Small" Clicked="Button_Clicked_SearchAsync" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,0"/>
+                        <Button Grid.Column="1" ImageSource="https://img.icons8.com/ios-glyphs/30/000000/lightning-bolt--v1.png" Clicked="Button_Clicked_SearchAsync" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#242424" TextColor="DarkGray" Margin="-70,0,0,0"/>
+                        <Button Grid.Column="2" x:Name="buttonExpand" ImageSource="https://img.icons8.com/android/24/000000/more.png" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" Margin="-45,0,0,0" />
+                        <Button Grid.Column="3" ImageSource="https://img.icons8.com/ios/50/000000/worldwide-location.png" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" Margin="-20,0,0,10" />
                     </Grid>
                 </StackLayout>
             </Frame>
@@ -60,12 +63,10 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-            <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center" HeightRequest="50">
-            <Button x:Name="buttonExpand" ImageSource="https://img.icons8.com/android/24/000000/more.png" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10" WidthRequest="50" />
-            <Button ImageSource="https://img.icons8.com/ios/50/000000/worldwide-location.png" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10" WidthRequest="50" />
-
-            </StackLayout>
-
+            <!--<StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center" HeightRequest="50">-->
+            <!--<Button x:Name="buttonExpand" ImageSource="https://img.icons8.com/android/24/000000/more.png" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10" WidthRequest="50" />-->
+            <!--<Button ImageSource="https://img.icons8.com/ios/50/000000/worldwide-location.png" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" CornerRadius="30" Padding="0" Margin="0,0,0,10" WidthRequest="50" />-->
+            <!--</StackLayout>-->
 
             <StackLayout x:Name="filtersDisplay" IsVisible="false">
             <StackLayout Margin="0,0,0,0">
@@ -164,7 +165,7 @@
                             <Grid>
                                 <Frame BackgroundColor="#242424" HasShadow="True" Margin="30" HeightRequest="160" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                     <StackLayout Margin="0,0,0,0" Padding="0">
-                                        <Label Text="{Binding Street}" TextDecorations="Underline" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Street}" TextDecorations="Underline" FontAttributes="Bold" Margin="160,0,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Center"/>
                                         <Label Text="{Binding Area, StringFormat='Plotas: {0:N0} m2'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
                                         <Label Text="{Binding NumberOfRooms, StringFormat='Kambariai: {0:N0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
                                         <Label Text="{Binding Floor, StringFormat='Aukštas: {0:N0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start" />
