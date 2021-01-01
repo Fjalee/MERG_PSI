@@ -4,19 +4,13 @@
              x:Class="Xamarin_UI.Views.AboutPage"
              Shell.NavBarIsVisible="True">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="10" >
-                <Label Text="Kuo mes užsiimame?" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
-                <Label Text="Nekilnojamojo turto paieška dažnai užtrunka ilgai, yra sukurta daug skirtingų puslapių, kuriuose skirtingi pasiūlymai, paieška ir filtrai. Mes kuriame sprendimą. MERG - tai aplikacija, kuri patogiaii ir greitai leis išsirinkti butą, namą ar kitą nekilnojamojo turto objektą iš rinkoje jau esančių pasiūlymų." TextColor="Black" FontSize="15" FontAttributes="Bold"/>
-                <Label Text="Su kuo bendradarbiaujame?" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
-                <Label Text="https://www.kampas.lt" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
-                <Label Text="https://domoplius.lt" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
-                <Label Text="Kaip tapti partneriu?" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
-                <Label Text="Susisiekite žemiau nurodytais kontaktais" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
-                <Label Text="Kontaktai" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
-                <Label Text="info@merg.lt" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
-                <Label Text="+370 (698) 00 000" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
-            </StackLayout>
-        </StackLayout>
+            <FlexLayout Direction="Column"
+                AlignItems="Center"
+                JustifyContent="SpaceEvenly" BackgroundColor="#121212">
+                <Label Text="Kuo mes užsiimame?" FontSize="Large" FontFamily="Lobster" TextColor="#E6E6E6"/>
+                <!--<Label Text="Tai aplikacija, kuri patogiai ir greitai leis išsirinkti butą, namą ar kitą nekilnojamojo turto objektą iš rinkoje jau esančių pasiūlymų." TextColor="#E6E6E6" Margin="30,0,0,0"/>
+                --><Button Text="SUSISIEKIME" TextColor="#E6E6E6" FontFamily="Lobster"  BackgroundColor="#242424" WidthRequest="150" HeightRequest="150"
+                           CornerRadius="100"/>
+            </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
