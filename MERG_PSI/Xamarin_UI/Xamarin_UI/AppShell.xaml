@@ -7,11 +7,11 @@
     
     <Shell.Resources>
         <ResourceDictionary>
-            <Color x:Key ="NavigationPrimary">#FFB6C1</Color>
+            <Color x:Key ="NavigationPrimary">#E6E6E6</Color>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White"/>
-                <Setter Property="Shell.TitleColor" Value=" Black"/>
+                <Setter Property="Shell.TitleColor" Value="#E6E6E6"/>
                 <Setter Property="Shell.DisabledColor" Value="#84FFFFFF"/>
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property ="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}"/>
@@ -29,10 +29,9 @@
             <ShellContent ContentTemplate ="{DataTemplate views:HomePage}"/>
         </Tab>
 
-        <Tab Title="About" Icon="https://img.icons8.com/ios/24/000000/about.png">
+        <!--<Tab Title="About" Icon="https://img.icons8.com/ios/24/000000/about.png">
             <ShellContent ContentTemplate ="{DataTemplate views:AboutPage}"/>
-        </Tab>
-
+        </Tab>-->
         
     </TabBar>
 

@@ -125,11 +125,14 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRangeSlider">
+      <Version>18.4.0.32</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Xamarin_UI\Xamarin_UI.csproj">
-      <Project>{003C8D68-F300-4A76-8390-AECFF5DFFF00}</Project>
+      <Project>{393DD123-91FF-4589-ADE9-F00A1A694D6D}</Project>
       <Name>Xamarin_UI</Name>
     </ProjectReference>
   </ItemGroup>
