@@ -32,9 +32,9 @@
                         TextColor="DarkGray"
                         FontSize="Medium"
                         BackgroundColor="Transparent"/>
-                        <Button Grid.Column="1" ImageSource="https://img.icons8.com/ios-glyphs/30/000000/lightning-bolt--v1.png" Clicked="Button_Clicked_SearchAsync" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#242424" TextColor="DarkGray" />
-                        <Button Grid.Column="2" x:Name="buttonExpand" ImageSource="https://img.icons8.com/android/24/000000/more.png" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" />
-                        <Button Grid.Column="3" ImageSource="https://img.icons8.com/ios/50/000000/worldwide-location.png" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#242424" TextColor="DarkGray" />
+                        <Button Grid.Column="1" ImageSource="https://img.icons8.com/ios-glyphs/30/000000/lightning-bolt--v1.png" Clicked="Button_Clicked_SearchAsync" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#FFD500" TextColor="DarkGray" />
+                        <Button Grid.Column="2" x:Name="buttonExpand" ImageSource="https://img.icons8.com/android/24/000000/more.png" Clicked="Button_Clicked_Expand" HorizontalOptions="Fill" BackgroundColor="#FFD500" TextColor="DarkGray" />
+                        <Button Grid.Column="3" ImageSource="https://img.icons8.com/ios/50/000000/worldwide-location.png" Clicked="Button_Clicked_GoToMapAsync" HorizontalOptions="Fill" BackgroundColor="#FFD500" TextColor="DarkGray" />
                     </Grid>
                 </StackLayout>
             </Frame>
@@ -72,12 +72,22 @@
 
             <StackLayout x:Name="filtersDisplay" IsVisible="false">
             <StackLayout>
+                
                     <StackLayout>
-                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="0,0,0,5" MinimumHeightRequest="50" HeightRequest="50">
-                            <Label Text="Gyvenvietė" TextColor="DarkGray" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                            <Entry x:Name="microdistrict" TextChanged="MicrodistrictSearchBar_OnTextChangedAsync" BackgroundColor="#242424" TextColor="DarkGray" PlaceholderColor="DarkGray" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" Margin="0,0,0,0" HorizontalOptions="Fill" WidthRequest="300" />
-                        </StackLayout>
-                            <ListView x:Name="microdistrictListView" ItemsSource="{Binding _microdistrictList}" IsVisible="False" RefreshControlColor="#E6E6E6" CachingStrategy="RecycleElement" BackgroundColor="Black" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                            <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                                <Label Text="Gyvenvietė" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
+                                <Entry x:Name="microdistrict" TextChanged="MicrodistrictSearchBar_OnTextChangedAsync" BackgroundColor="#242424" FontSize="12" TextColor="#FFD500" PlaceholderColor="DarkGray" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" Margin="0,0,0,0" HorizontalOptions="Fill" WidthRequest="250"/>
+                            </StackLayout>
+                        </Frame>
+                        <ListView x:Name="microdistrictListView" ItemsSource="{Binding _microdistrictList}" IsVisible="False" RefreshControlColor="#E6E6E6" CachingStrategy="RecycleElement" BackgroundColor="Black" ItemTapped="MicrodistrictListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -101,13 +111,21 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                        
 
-                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="0,0,0,5" MinimumHeightRequest="50" HeightRequest="50">
-                            <Label Text="Gatvė" TextColor="DarkGray" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                            <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChangedAsync" BackgroundColor="#242424" TextColor="DarkGray" PlaceholderColor="DarkGray" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" Margin="0,0,0,0" HorizontalOptions="Fill" WidthRequest="330"/>
-                        </StackLayout>
-                            <ListView x:Name="streetListView" ItemsSource="{Binding _streetList}" IsVisible="False" RefreshControlColor="#E6E6E6" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                        <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                            <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                                <Label Text="Gatvė" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
+                                <Entry x:Name="street" TextChanged="StreetSearchBar_OnTextChangedAsync" BackgroundColor="#242424" FontSize="12" TextColor="#FFD500" PlaceholderColor="DarkGray" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None" Margin="0,0,0,0" HorizontalOptions="Fill" WidthRequest="290"/>
+                            </StackLayout>
+                        </Frame>
+                        <ListView x:Name="streetListView" ItemsSource="{Binding _streetList}" IsVisible="False" RefreshControlColor="#E6E6E6" CachingStrategy="RecycleElement" BackgroundColor="Transparent" ItemTapped="StreetListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -135,38 +153,81 @@
                     </StackLayout>
 
 
+                    <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                            <Label Text="Kaina" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
+                            <Entry TextColor="#FFD500" x:Name="priceFrom" Placeholder="nuo" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
+                            <Entry TextColor="#FFD500" x:Name="priceTo" Placeholder="iki" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                            <Label Text="Plotas" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
+                            <Entry TextColor="#FFD500" x:Name="areaFrom" Placeholder="nuo" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
+                            <Entry TextColor="#FFD500" x:Name="areaTo" Placeholder="iki" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                            <Label Text="Kv. metro kaina" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
+                            <Entry TextColor="#FFD500" x:Name="pricePerSqMFrom" FontSize="12" Placeholder="nuo" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
+                            <Entry TextColor="#FFD500" x:Name="pricePerSqMTo" FontSize="12" Placeholder="iki" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
+                        </StackLayout>
+                    </Frame>
 
-                <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="0,0,0,5" MinimumHeightRequest="50" HeightRequest="50">
-                    <Label Text="Kaina" TextColor="DarkGray" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                    <Entry x:Name="priceFrom" Placeholder="nuo" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
-                    <Entry x:Name="priceTo" Placeholder="iki" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
-                </StackLayout>
+                    <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                            <Label Text="Statybų metai" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
+                            <Entry TextColor="#FFD500" x:Name="buildYearFrom" Placeholder="nuo" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
+                            <Entry TextColor="#FFD500" x:Name="buildYearTo" Placeholder="iki" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
 
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="0,0,0,5" MinimumHeightRequest="50" HeightRequest="50">
-                    <Label Text="Plotas" TextColor="DarkGray" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                    <Entry x:Name="areaFrom" Placeholder="nuo" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
-                    <Entry x:Name="areaTo" Placeholder="iki" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
-                </StackLayout>
+                            <!--<Switch x:Name="noInfoBuildYear" OnColor="Gray" ThumbColor="White" IsToggled="False"/>-->
 
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="0,0,0,5" MinimumHeightRequest="50" HeightRequest="50">
-                    <Label Text="Kv. metro kaina" TextColor="DarkGray" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                    <Entry x:Name="pricePerSqMFrom" Placeholder="nuo" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
-                    <Entry x:Name="pricePerSqMTo" Placeholder="iki" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                        <Label Text="Kambarių skaičius" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,5,5"/>
+                        <Entry TextColor="#FFD500" x:Name="numberOfRoomsFrom" Placeholder="nuo" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
+                        <Entry TextColor="#FFD500" x:Name="numberOfRoomsTo" Placeholder="iki" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
+                        <!--<Switch x:Name="noInfoRoomNumber" OnColor="Gray" ThumbColor="White" IsToggled="False"/>-->
                 </StackLayout>
-
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="0,0,0,5" MinimumHeightRequest="50" HeightRequest="50">
-                    <Label Text="Statybų metai" TextColor="DarkGray" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                    <Entry x:Name="buildYearFrom" Placeholder="nuo" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
-                    <Entry x:Name="buildYearTo" Placeholder="iki" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
-                    <Switch x:Name="noInfoBuildYear" OnColor="Gray" ThumbColor="White" IsToggled="False"/>
-                </StackLayout>
-
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="0,0,0,5" MinimumHeightRequest="50" HeightRequest="50">
-                    <Label Text="Kambarių kiekis" TextColor="DarkGray" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                    <Entry x:Name="numberOfRoomsFrom" Placeholder="nuo" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70"/>
-                    <Entry x:Name="numberOfRoomsTo" Placeholder="iki" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="70" />
-                    <Switch x:Name="noInfoRoomNumber" OnColor="Gray" ThumbColor="White" IsToggled="False"/>
-                </StackLayout>
+                </Frame>
             </StackLayout>
             </StackLayout>
 
@@ -180,7 +241,7 @@
                                 <Frame BackgroundColor="#242424" HasShadow="True" Margin="30,20,30,10" HeightRequest="160" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                     <StackLayout Margin="0,0,0,0" Padding="0">
                                         <Label Text="{Binding Street}" TextDecorations="Underline" FontAttributes="Bold" Margin="160,0,0,0" TextColor="DarkGray" FontSize="14" HorizontalTextAlignment="Center"/>
-                                        <Label Text="{Binding Area, StringFormat='Plotas: {0:N0} m2'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Area, StringFormat='Plotas: {0:N0} m²'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
                                         <Label Text="{Binding NumberOfRooms, StringFormat='Kambariai: {0:N0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
                                         <Label Text="{Binding Floor, StringFormat='Aukštas: {0:N0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start" />
                                         <Label Text="{Binding BuildYear, StringFormat='Statybų metai: {0:F0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
