@@ -95,18 +95,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Log\FormsLog.cs">
+    <Compile Include="MyLog\FormsLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Log\FormsLog.Designer.cs">
+    <Compile Include="MyLog\FormsLog.Designer.cs">
       <DependentUpon>FormsLog.cs</DependentUpon>
     </Compile>
     <Compile Include="SiteScraper\GeoResult.cs" />
-    <Compile Include="Log\ILog.cs" />
+    <Compile Include="MyLog\ILog.cs" />
     <Compile Include="SiteScraper\InsideAdScraper.cs" />
     <Compile Include="Kampas\KampasInsideAdScraper.cs" />
     <Compile Include="Kampas\KampasScraper.cs" />
-    <Compile Include="Log\FileLog.cs" />
+    <Compile Include="MyLog\FileLog.cs" />
     <Compile Include="Domosplus\DomosplusScraper.cs" />
     <Compile Include="Output\OutputToJson.cs" />
     <Compile Include="Program.cs" />
@@ -122,7 +122,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Log\FormsLog.resx">
+    <EmbeddedResource Include="MyLog\FormsLog.resx">
       <DependentUpon>FormsLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
