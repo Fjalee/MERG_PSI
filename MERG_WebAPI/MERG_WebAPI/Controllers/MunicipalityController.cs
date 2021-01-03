@@ -22,6 +22,5 @@ namespace MERG_WebAPI.Controllers
             var municipalities = _context.Municipalities.Select(x => x.Name).ToList();
             return municipalities;
         }
-
     }
 }

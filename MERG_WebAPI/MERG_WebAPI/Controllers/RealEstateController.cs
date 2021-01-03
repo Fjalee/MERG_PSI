@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Common;
+using Dapper;
+using Database;
+using MERG_BackEnd;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using MERG_BackEnd;
-using Database;
-using Common;
 
 namespace MERG_WebAPI.Controllers
 {
@@ -21,10 +24,43 @@ namespace MERG_WebAPI.Controllers
             _dbContext = dbContext;
         }
 
+        //[HttpGet]
+        //public List<RealEstateModel> Get()
+        //{
+        //    return _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
+        //}
+
         [HttpGet]
-        public List<RealEstateModel> Get()
+        public string Get()
         {
-            return _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
+
+            //Server = myServerAddress; Port = 1234; Database = myDataBase; Uid = myUsername; Pwd = myPassword;
+            //var conString = "Source=tcp:mergpsi.database.windows.net,1433;Initial Catalog=Db;User Id=mergAdmin@mergpsi;Password=!132435@qwer#M";
+            var conString = "Data Source=tcp:mergpsi.database.windows.net,1433;Initial Catalog=Db;User Id=mergAdmin@mergpsi;Password=!132435@qwer#M";
+
+            using (var connection = new SqlConnection(conString))
+            {
+                var temp = connection.Query<dynamic>(@"SELECT * FROM RealEstate");
+                //connection.Execute("truncate table RealEstate")
+
+                //temp = await connection.QueryAsync<RealEstate>(sql);
+                //var temp = await connection.QueryAsync<Database.Entities.RealEstate>(sql);
+
+                var x = "";
+                var y = "";
+            };
+            //ConfigureManager.ConnectionStrings["DefaultConnection"].ConnectionString
+            //ConfigurationManager.AppSettings.Get("DefaultConnection");
+
+
+            var list = _dbContext.RealEstates.Select(x => x).ToList();
+            var i = 0;
+            foreach (var item in list)
+            {
+                i++;
+            }
+
+            return "afasdasdasda";
         }
 
         [HttpGet("{municipality}/{microdistrict}/{street}/{isPriceFrom}/{priceFrom}/{isPriceTo}/{priceTo}/{isAreaFrom}/{areaFrom}/{isAreaTo}/{areaTo}/{isBuildYearFrom}/{buildYearFrom}/{isBuildYearTo}/{buildYearTo}/{isNumberOfRoomsFrom}/{numberOfRoomsFrom}/{isNumberOfRoomsTo}/{numberOfRoomsTo}/{isPricePerSqMFrom}/{pricePerSqMFrom}/{isPricePerSqMTo}/{pricePerSqMTo}/{noInfoBuildYear}/{noInfoRoomNumber}")]
@@ -38,7 +74,7 @@ namespace MERG_WebAPI.Controllers
         {
             var _listOfRealEstates = _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
 
-            municipality = municipality == "noMunicipality" ? "": municipality;
+            municipality = municipality == "noMunicipality" ? "" : municipality;
             microdistrict = microdistrict == "noMicrodistrict" ? "" : microdistrict;
             street = street == "noStreet" ? "" : street;
 
@@ -66,7 +102,7 @@ namespace MERG_WebAPI.Controllers
         }
 
         [HttpPut]
-        public void Put([FromBody]List<Database.Entities.RealEstate> listOfRealEstate)
+        public void Put([FromBody] List<Database.Entities.RealEstate> listOfRealEstate)
         {
             //System.Data.Entity.DbContext
             //_dbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE [RealEstate]");
