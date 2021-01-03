@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Common;
+using Dapper;
+using Database;
+using MERG_BackEnd;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using MERG_BackEnd;
-using Database;
-using Common;
 
 namespace MERG_WebAPI.Controllers
 {
@@ -14,11 +18,13 @@ namespace MERG_WebAPI.Controllers
     {
         private readonly IInspection _inspection;
         private readonly AppDbContext _dbContext;
+        private readonly IConfiguration _configuration;
 
-        public RealEstateController(IInspection inspection, AppDbContext dbContext)
+        public RealEstateController(IInspection inspection, AppDbContext dbContext, IConfiguration configuration)
         {
             _inspection = inspection;
             _dbContext = dbContext;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -38,7 +44,7 @@ namespace MERG_WebAPI.Controllers
         {
             var _listOfRealEstates = _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
 
-            municipality = municipality == "noMunicipality" ? "": municipality;
+            municipality = municipality == "noMunicipality" ? "" : municipality;
             microdistrict = microdistrict == "noMicrodistrict" ? "" : microdistrict;
             street = street == "noStreet" ? "" : street;
 
@@ -65,28 +71,17 @@ namespace MERG_WebAPI.Controllers
             }
         }
 
-
-
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
         [HttpPut]
-        public void Put([FromBody]List<Database.Entities.RealEstate> listOfRealEstate)
+        public void Put([FromBody] List<Database.Entities.RealEstate> listOfRealEstate)
         {
-
-            //System.Data.Entity.DbContext
-            //_dbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE [RealEstate]");
-
+            var conString = _configuration.GetConnectionString("DefaultConnection");
+            using (var connection = new SqlConnection(conString))
+            {
+                connection.Execute("truncate table [dbo].[RealEstates]");
+            };
 
             listOfRealEstate.ForEach(x => _dbContext.Add(x));
             _dbContext.SaveChanges();
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
