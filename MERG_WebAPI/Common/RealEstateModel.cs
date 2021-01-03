@@ -6,6 +6,7 @@ namespace Common
 {
     public abstract class RealEstateModel
     {
+
         public string Link { get; set; }
         public double Area { get; set; }
         public double PricePerSqM { get; set; }

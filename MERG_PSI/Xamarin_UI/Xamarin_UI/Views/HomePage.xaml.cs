@@ -1,3 +1,4 @@
+using Common;
 using MERG_BackEnd;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,6 @@ namespace Xamarin_UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly Lazy<List<RealEstate>> _listOfRealEstates;
         private List<RealEstate> _filteredList;
 
         private ObservableCollection<string> _municipalityList;
@@ -26,16 +26,6 @@ namespace Xamarin_UI.Views
         {
             InitializeComponent();
             _httpRequest = new Lazy<HttpRequest>(() => new HttpRequest());
-
-            List<RealEstate> getSampleData() => new Data(GetScrapedDataStream()).SampleData;
-            _listOfRealEstates = new Lazy<List<RealEstate>>(getSampleData);
-            myItem.ItemsSource = _listOfRealEstates.Value;
-        }
-
-        private Stream GetScrapedDataStream()
-        {
-            var assembly = typeof(HomePage).GetTypeInfo().Assembly;
-            return assembly.GetManifestResourceStream("Xamarin_UI.Resources.scrapedData.txt");
         }
 
         private void MyItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,7 +55,7 @@ namespace Xamarin_UI.Views
         {
             try
             {
-                var list = _filteredList ?? _listOfRealEstates.Value;
+                var list = _filteredList ?? await _httpRequest.Value.GetRealEstates();
                 await Application.Current.MainPage.Navigation.PushAsync(new FullMapPage(list));
             }
             catch (Exception)

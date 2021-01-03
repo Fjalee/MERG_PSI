@@ -1,19 +1,19 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace WebScraper
 {
-    public class OutputToJson
+    public class OutputToJson : IOutput
     {
         private const string _filePath = @"scrapedData.txt";
 
-        public void WriteToFile(List<RealEstate> listToConvert)
+        public async Task DoOutput(string jsonToOutput)
         {
-            var _jsonToWrite = JsonConvert.SerializeObject(listToConvert);
             using (var writer = new StreamWriter(_filePath))
             {
-                writer.Write(_jsonToWrite);
+                await writer.WriteAsync(jsonToOutput);
                 writer.Close();
             }
         }

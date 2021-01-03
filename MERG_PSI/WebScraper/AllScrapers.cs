@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Text;
 
 namespace WebScraper
 {
@@ -7,9 +12,9 @@ namespace WebScraper
     {
         private readonly KampasScraper _kampasScraper;
         private readonly DomosplusScraper _domosplusScraper;
-        private readonly OutputToJson _output;
+        private readonly IOutput _output;
 
-        public AllScrapers(KampasScraper kampasScraper, DomosplusScraper domosplusScraper, OutputToJson output)
+        public AllScrapers(KampasScraper kampasScraper, DomosplusScraper domosplusScraper, IOutput output)
         {
             _kampasScraper = kampasScraper;
             _domosplusScraper = domosplusScraper;
@@ -27,7 +32,9 @@ namespace WebScraper
             allScrapedRealEstate.AddRange(_domosplusScraper.ScrapedRealEstate);
             allScrapedRealEstate.AddRange(_kampasScraper.ScrapedRealEstate);
 
-            _output.WriteToFile(allScrapedRealEstate);
+
+            var jsonToOutput = JsonConvert.SerializeObject(allScrapedRealEstate);
+            await _output.DoOutput(jsonToOutput);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace WebScraper
             var builder = new ContainerBuilder();
 
             builder.RegisterType<FormsLog>().As<ILog>();
+            builder.RegisterType<OutputToDB>().As<IOutput>();
 
             builder.RegisterType<AllScrapers>().AsSelf();
             builder.RegisterType<KampasScraper>().AsSelf();
