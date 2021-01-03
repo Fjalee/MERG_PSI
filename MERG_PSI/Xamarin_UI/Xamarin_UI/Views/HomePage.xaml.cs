@@ -41,8 +41,8 @@ namespace Xamarin_UI.Views
 
             try
             {
-                //_filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
-                _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValue);
+               _filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
+               //_filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValue);
                 myItem.ItemsSource = _filteredList;
             }
             catch (Exception)
@@ -74,9 +74,9 @@ namespace Xamarin_UI.Views
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
               noBuildYearInfo: noInfoBuildYear.IsToggled, noNumberOfRoomsInfo: noInfoRoomNumber.IsToggled);
 
-            filtersValue.Municipality = municipality.Text;
-            filtersValue.Microdistrict = microdistrict.Text;
-            filtersValue.Street = street.Text;
+            filtersValue.Municipality = municipality.Text ?? "noMunicipality";
+            filtersValue.Microdistrict = microdistrict.Text ?? "noMicrodistrict";
+            filtersValue.Street = street.Text ?? "noStreet";
 
             return filtersValue;
         }
