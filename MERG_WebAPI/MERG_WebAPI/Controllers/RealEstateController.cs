@@ -27,54 +27,10 @@ namespace MERG_WebAPI.Controllers
             _configuration = configuration;
         }
 
-        //[HttpGet]
-        //public List<RealEstateModel> Get()
-        //{
-        //    return _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
-        //}
-
         [HttpGet]
-        public string Get()
+        public List<RealEstateModel> Get()
         {
-            var conString = _configuration.GetConnectionString("DefaultConnection");
-
-            using (var connection = new SqlConnection(conString))
-            {
-                connection.Execute("truncate table [dbo].[RealEstates]");
-
-
-                var temp = connection.Query<dynamic>(@"SELECT * FROM [dbo].[RealEstates]");
-
-                var tempRE = new Database.Entities.RealEstate();
-                tempRE.Link = "";
-                tempRE.Area = 0;
-                tempRE.PricePerSqM = 0;
-                tempRE.NumberOfRooms = 0;
-                tempRE.Floor = "";
-                tempRE.Price = 0;
-                tempRE.MapLink = "";
-                tempRE.Municipality = "";
-                tempRE.Microdistrict = "";
-                tempRE.Street = "";
-                tempRE.BuildYear = 1888;
-                tempRE.Image = "";
-                tempRE.Latitude = 0;
-                tempRE.Longitude = 0;
-
-                var insertSQL = @"INSERT INTO [dbo].[RealEstates](Link, Area, PricePerSqM, NumberOfRooms, Floor, Price, MapLink, Municipality, Microdistrict, Street, BuildYear, Image, Latitude, Longitude) VALUES(@Link, @Area, @PricePerSqM, @NumberOfRooms ,@Floor, @Price, @MapLink, @Municipality, @Microdistrict, @Street, @BuildYear, @Image, @Latitude, @Longitude)";
-                connection.Execute(insertSQL, tempRE);
-
-                temp = connection.Query<dynamic>(@"SELECT * FROM [dbo].[RealEstates]");
-            };
-
-            var list = _dbContext.RealEstates.Select(x => x).ToList();
-            var i = 0;
-            foreach (var item in list)
-            {
-                i++;
-            }
-
-            return "afasdasdasda";
+            return _dbContext.RealEstates.Select(x => (RealEstateModel)x).ToList();
         }
 
         [HttpGet("{municipality}/{microdistrict}/{street}/{isPriceFrom}/{priceFrom}/{isPriceTo}/{priceTo}/{isAreaFrom}/{areaFrom}/{isAreaTo}/{areaTo}/{isBuildYearFrom}/{buildYearFrom}/{isBuildYearTo}/{buildYearTo}/{isNumberOfRoomsFrom}/{numberOfRoomsFrom}/{isNumberOfRoomsTo}/{numberOfRoomsTo}/{isPricePerSqMFrom}/{pricePerSqMFrom}/{isPricePerSqMTo}/{pricePerSqMTo}/{noInfoBuildYear}/{noInfoRoomNumber}")]
@@ -118,8 +74,12 @@ namespace MERG_WebAPI.Controllers
         [HttpPut]
         public void Put([FromBody] List<Database.Entities.RealEstate> listOfRealEstate)
         {
-            //System.Data.Entity.DbContext
-            //_dbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE [RealEstate]");
+            var conString = _configuration.GetConnectionString("DefaultConnection");
+            using (var connection = new SqlConnection(conString))
+            {
+                connection.Execute("truncate table [dbo].[RealEstates]");
+            };
+
             listOfRealEstate.ForEach(x => _dbContext.Add(x));
             _dbContext.SaveChanges();
         }
