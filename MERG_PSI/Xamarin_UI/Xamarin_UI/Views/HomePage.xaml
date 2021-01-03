@@ -27,9 +27,9 @@
                         Grid.Column="0"
                         HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"
                         x:Name="municipality" TextChanged="MunicipalitySearchBar_OnTextChangedAsync"
-                        CancelButtonColor="DarkGray"
-                        PlaceholderColor="White"
-                        TextColor="DarkGray"
+                        CancelButtonColor="#C4C4C4"
+                        PlaceholderColor="#C4C4C4"
+                        TextColor="#C4C4C4"
                         FontSize="Medium"
                         BackgroundColor="Transparent"/>
                         <Button Grid.Column="1" ImageSource="https://img.icons8.com/ios/50/000000/search--v4.png" Clicked="Button_Clicked_SearchAsync" VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="#FFD500" TextColor="DarkGray" />
@@ -153,20 +153,7 @@
                     </StackLayout>
 
 
-                    <Frame
-                    CornerRadius="30"
-                    Padding="0"
-                    Margin="10,0,10,5"
-                    BackgroundColor="#242424"
-                    HasShadow="True"
-                    HeightRequest="50"
-                    MinimumHeightRequest="50">
-                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
-                            <Label Text="Kaina" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
-                            <Entry TextColor="#FFD500" x:Name="priceFrom" Margin="115,0,0,0" Placeholder="nuo" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="80" />
-                            <Entry TextColor="#FFD500" x:Name="priceTo" Margin="10,0,0,0" Placeholder="iki" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="80" />
-                        </StackLayout>
-                    </Frame>
+                    
                     <Frame
                     CornerRadius="30"
                     Padding="0"
@@ -228,6 +215,21 @@
                         <!--<Switch x:Name="noInfoRoomNumber" OnColor="Gray" ThumbColor="White" IsToggled="False"/>-->
                 </StackLayout>
                 </Frame>
+
+                <Frame
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    BackgroundColor="#242424"
+                    HasShadow="True"
+                    HeightRequest="50"
+                    MinimumHeightRequest="50">
+                        <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#242424" Margin="20,0,20,5" MinimumHeightRequest="50" HeightRequest="50">
+                            <Label Text="Kaina" TextColor="White" VerticalTextAlignment="Center" FontSize="Medium" Margin="0,0,0,0"/>
+                            <Entry TextColor="#FFD500" x:Name="priceFrom" Margin="115,0,0,0" Placeholder="nuo" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="80" />
+                            <Entry TextColor="#FFD500" x:Name="priceTo" Margin="10,0,0,0" Placeholder="iki" FontSize="12" PlaceholderColor="DarkGray" Keyboard="Numeric" HorizontalOptions="Fill" WidthRequest="80" />
+                        </StackLayout>
+                    </Frame>
             </StackLayout>
             </StackLayout>
 
@@ -238,22 +240,27 @@
                     <DataTemplate>
                         <StackLayout Margin="30,-60,0,30" Padding="0" BackgroundColor="#121212">
                             <Grid>
-                                <Frame BackgroundColor="#242424" HasShadow="True" Margin="30,20,30,10" HeightRequest="160" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" CornerRadius="30">
-                                    <StackLayout Margin="0,0,0,0" Padding="0">
+                                <Frame BackgroundColor="Black" HasShadow="True" Margin="20,10,20,10" HeightRequest="200" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" CornerRadius="50">
+                                    <StackLayout Margin="140,0,0,0" Padding="0">
                                         <StackLayout Orientation="Horizontal">
-                                             <Label Text="{Binding Municipality}" FontAttributes="Bold" Margin="160,0,0,0" TextColor="White" FontSize="10" HorizontalTextAlignment="Center"/>
-                                             <Label Text="/" TextColor="White" FontAttributes="Bold" FontSize="10" />
-                                             <Label Text="{Binding Street}" TextColor="White" FontAttributes="Bold" FontSize="10" />                                                                                                          
+                                            <Label Text="{Binding Microdistrict, StringFormat='{0:N0},'}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Start" />  
+                                            <Label Text="{Binding Street}" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Start"/>                                                                                                   
                                         </StackLayout>
-                                        <Label Text="{Binding Area, StringFormat='Plotas: {0:N0} m²'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding NumberOfRooms, StringFormat='Kambariai: {0:N0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding Floor, StringFormat='Aukštas: {0:N0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start" />
-                                        <Label Text="{Binding BuildYear, StringFormat='Statybų metai: {0:F0}'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
-                                        <Label Text="{Binding Price, StringFormat='{}{0:F0}€'}" Margin="160,0,0,0" TextColor="DarkGray" FontSize="12" HorizontalTextAlignment="Start"/>
+
+                                        <!--<Label Text="{Binding Street}" FontAttributes="Bold" TextColor="White" FontSize="Small" HorizontalTextAlignment="Start" /> 
+                                        <Label Text="{Binding Microdistrict}" FontAttributes="Bold" TextColor="White" FontSize="Small" HorizontalTextAlignment="Start"/>
+                                      -->
+
+                                        <Label Text="{Binding Area, StringFormat='Plotas: {0:N0} m²'}" TextColor="#C4C4C4" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding NumberOfRooms, StringFormat='Kambarių skaičius: {0:N0}'}" TextColor="#C4C4C4" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Floor, StringFormat='Aukštas: {0:N0}'}" TextColor="#C4C4C4" FontSize="14" HorizontalTextAlignment="Start" />
+                                        <Label Text="{Binding BuildYear, StringFormat='Statybų metai: {0:F0}'}" TextColor="#C4C4C4" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding PricePerSqM, StringFormat='€/m²: {0:F0}€'}" TextColor="#C4C4C4" FontSize="14" HorizontalTextAlignment="Start"/>
+                                        <Label Text="{Binding Price, StringFormat='Kaina: {0:F0}€'}" TextColor="#C4C4C4" FontSize="14" HorizontalTextAlignment="Start"/>
                              </StackLayout>
                                 </Frame>
                                 <StackLayout>
-                                    <Frame BackgroundColor="White" HasShadow="True" Margin="30,20,0,10" HeightRequest="170" WidthRequest="170" Padding="0"
+                                    <Frame BackgroundColor="White" HasShadow="True" Margin="20,10,0,10" HeightRequest="230" WidthRequest="150" Padding="0"
                                            VerticalOptions="CenterAndExpand" HorizontalOptions="Start">
                                         <Image Source="{Binding Image}" Aspect="AspectFill"/>
                                     </Frame>
