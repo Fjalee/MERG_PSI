@@ -37,15 +37,17 @@ namespace Xamarin_UI.Views
         private async void Button_Clicked_SearchAsync(object sender, EventArgs e)
         {
             var filtersValue = GetFiltersValue();
+            var inspection = new Inspection();
 
             try
             {
-                _filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
+                //_filteredList = await _httpRequest.Value.GetRealEstates(filtersValue);
+                _filteredList = inspection.GetFilteredListOFRealEstate(_listOfRealEstates.Value, filtersValue);
                 myItem.ItemsSource = _filteredList;
             }
             catch (Exception)
             {
-                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenų, prašome kreiptis į administraciją", "OK");
             }
         }
 
@@ -59,7 +61,7 @@ namespace Xamarin_UI.Views
             catch (Exception)
             {
 
-                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenis, prašome kreiptis į administraciją", "OK");
+                await DisplayAlert("Dėmesio", "Nepavyko pasiekti duomenų, prašome kreiptis į administraciją", "OK");
             }
         }
 
@@ -70,11 +72,11 @@ namespace Xamarin_UI.Views
               buildYearFrom: buildYearFrom.Text.ConvertToInt(), buildYearTo: buildYearTo.Text.ConvertToInt(),
               numberOfRoomsFrom: numberOfRoomsFrom.Text.ConvertToInt(), numberOfRoomsTo: numberOfRoomsTo.Text.ConvertToInt(),
               pricePerSqMFrom: pricePerSqMFrom.Text.ConvertToInt(), pricePerSqMTo: pricePerSqMTo.Text.ConvertToInt(),
-              noBuildYearInfo: noInfoBuildYear.IsChecked, noNumberOfRoomsInfo: noInfoRoomNumber.IsChecked);
+              noBuildYearInfo: noInfoBuildYear.IsToggled, noNumberOfRoomsInfo: noInfoRoomNumber.IsToggled);
 
-            filtersValue.Municipality = municipality.Text ?? "noMunicipality";
-            filtersValue.Microdistrict = microdistrict.Text ?? "noMicrodistrict";
-            filtersValue.Street = street.Text ?? "noStreet";
+            filtersValue.Municipality = municipality.Text;
+            filtersValue.Microdistrict = microdistrict.Text;
+            filtersValue.Street = street.Text;
 
             return filtersValue;
         }
@@ -84,11 +86,9 @@ namespace Xamarin_UI.Views
             if (filtersDisplay.IsVisible)
             {
                 filtersDisplay.IsVisible = false;
-                buttonExpand.Text = "Išskleisti";
                 return;
             }
             filtersDisplay.IsVisible = true;
-            buttonExpand.Text = "Suskleisti";
         }
 
 
@@ -121,7 +121,7 @@ namespace Xamarin_UI.Views
 
         private void MunicipalityListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
-            OnItemTapped(sender, e, municipalityListView, municipality);
+            OnItemTappedSearch(sender, e, municipalityListView, municipality);
         }
 
         private void MicrodistrictListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
@@ -159,6 +159,14 @@ namespace Xamarin_UI.Views
         }
 
         private void OnItemTapped(Object sender, ItemTappedEventArgs e, ListView viewlist, Entry name)
+        {
+            var mun = e.Item as string;
+            name.Text = mun;
+            viewlist.IsVisible = false;
+            ((ListView)sender).SelectedItem = null;
+        }
+
+        private void OnItemTappedSearch(Object sender, ItemTappedEventArgs e, ListView viewlist, SearchBar name)
         {
             var mun = e.Item as string;
             name.Text = mun;
