@@ -12534,46 +12534,61 @@ namespace Xamarin_UI.Droid
 			public const int notification_template_part_time = 2131427393;
 			
 			// aapt resource value: 0x7F0B0042
-			public const int pin2 = 2131427394;
+			public const int pin10 = 2131427394;
 			
 			// aapt resource value: 0x7F0B0043
-			public const int pin3 = 2131427395;
+			public const int pin11 = 2131427395;
 			
 			// aapt resource value: 0x7F0B0044
-			public const int pin7 = 2131427396;
+			public const int pin14 = 2131427396;
 			
 			// aapt resource value: 0x7F0B0045
-			public const int pin8 = 2131427397;
+			public const int pin18 = 2131427397;
 			
 			// aapt resource value: 0x7F0B0046
-			public const int pin9 = 2131427398;
+			public const int pin2 = 2131427398;
 			
 			// aapt resource value: 0x7F0B0047
-			public const int RootLayout = 2131427399;
+			public const int pin20 = 2131427399;
 			
 			// aapt resource value: 0x7F0B0048
-			public const int select_dialog_item_material = 2131427400;
+			public const int pin3 = 2131427400;
 			
 			// aapt resource value: 0x7F0B0049
-			public const int select_dialog_multichoice_material = 2131427401;
+			public const int pin7 = 2131427401;
 			
 			// aapt resource value: 0x7F0B004A
-			public const int select_dialog_singlechoice_material = 2131427402;
+			public const int pin8 = 2131427402;
 			
 			// aapt resource value: 0x7F0B004B
-			public const int ShellContent = 2131427403;
+			public const int pin9 = 2131427403;
 			
 			// aapt resource value: 0x7F0B004C
-			public const int support_simple_spinner_dropdown_item = 2131427404;
+			public const int RootLayout = 2131427404;
 			
 			// aapt resource value: 0x7F0B004D
-			public const int Tabbar = 2131427405;
+			public const int select_dialog_item_material = 2131427405;
 			
 			// aapt resource value: 0x7F0B004E
-			public const int Toolbar = 2131427406;
+			public const int select_dialog_multichoice_material = 2131427406;
 			
 			// aapt resource value: 0x7F0B004F
-			public const int XamarinMapInfoWindow = 2131427407;
+			public const int select_dialog_singlechoice_material = 2131427407;
+			
+			// aapt resource value: 0x7F0B0050
+			public const int ShellContent = 2131427408;
+			
+			// aapt resource value: 0x7F0B0051
+			public const int support_simple_spinner_dropdown_item = 2131427409;
+			
+			// aapt resource value: 0x7F0B0052
+			public const int Tabbar = 2131427410;
+			
+			// aapt resource value: 0x7F0B0053
+			public const int Toolbar = 2131427411;
+			
+			// aapt resource value: 0x7F0B0054
+			public const int XamarinMapInfoWindow = 2131427412;
 			
 			static Layout()
 			{

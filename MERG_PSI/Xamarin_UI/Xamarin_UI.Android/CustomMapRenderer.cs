@@ -54,7 +54,7 @@ namespace Xamarin_UI.Droid
             marker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
             marker.SetTitle(pin.Label);
             marker.SetSnippet(pin.Address);
-            marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Layout.pin9));
+            marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Layout.pin18));
             return marker;
         }
 
