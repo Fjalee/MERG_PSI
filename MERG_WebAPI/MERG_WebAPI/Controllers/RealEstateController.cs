@@ -4,6 +4,7 @@ using Database;
 using MERG_BackEnd;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,11 +18,13 @@ namespace MERG_WebAPI.Controllers
     {
         private readonly IInspection _inspection;
         private readonly AppDbContext _dbContext;
+        private readonly IConfiguration _configuration;
 
-        public RealEstateController(IInspection inspection, AppDbContext dbContext)
+        public RealEstateController(IInspection inspection, AppDbContext dbContext, IConfiguration configuration)
         {
             _inspection = inspection;
             _dbContext = dbContext;
+            _configuration = configuration;
         }
 
         //[HttpGet]
@@ -33,25 +36,36 @@ namespace MERG_WebAPI.Controllers
         [HttpGet]
         public string Get()
         {
-
-            //Server = myServerAddress; Port = 1234; Database = myDataBase; Uid = myUsername; Pwd = myPassword;
-            //var conString = "Source=tcp:mergpsi.database.windows.net,1433;Initial Catalog=Db;User Id=mergAdmin@mergpsi;Password=!132435@qwer#M";
-            var conString = "Data Source=tcp:mergpsi.database.windows.net,1433;Initial Catalog=Db;User Id=mergAdmin@mergpsi;Password=!132435@qwer#M";
+            var conString = _configuration.GetConnectionString("DefaultConnection");
 
             using (var connection = new SqlConnection(conString))
             {
-                var temp = connection.Query<dynamic>(@"SELECT * FROM RealEstate");
-                //connection.Execute("truncate table RealEstate")
+                connection.Execute("truncate table [dbo].[RealEstates]");
 
-                //temp = await connection.QueryAsync<RealEstate>(sql);
-                //var temp = await connection.QueryAsync<Database.Entities.RealEstate>(sql);
 
-                var x = "";
-                var y = "";
+                var temp = connection.Query<dynamic>(@"SELECT * FROM [dbo].[RealEstates]");
+
+                var tempRE = new Database.Entities.RealEstate();
+                tempRE.Link = "";
+                tempRE.Area = 0;
+                tempRE.PricePerSqM = 0;
+                tempRE.NumberOfRooms = 0;
+                tempRE.Floor = "";
+                tempRE.Price = 0;
+                tempRE.MapLink = "";
+                tempRE.Municipality = "";
+                tempRE.Microdistrict = "";
+                tempRE.Street = "";
+                tempRE.BuildYear = 1888;
+                tempRE.Image = "";
+                tempRE.Latitude = 0;
+                tempRE.Longitude = 0;
+
+                var insertSQL = @"INSERT INTO [dbo].[RealEstates](Link, Area, PricePerSqM, NumberOfRooms, Floor, Price, MapLink, Municipality, Microdistrict, Street, BuildYear, Image, Latitude, Longitude) VALUES(@Link, @Area, @PricePerSqM, @NumberOfRooms ,@Floor, @Price, @MapLink, @Municipality, @Microdistrict, @Street, @BuildYear, @Image, @Latitude, @Longitude)";
+                connection.Execute(insertSQL, tempRE);
+
+                temp = connection.Query<dynamic>(@"SELECT * FROM [dbo].[RealEstates]");
             };
-            //ConfigureManager.ConnectionStrings["DefaultConnection"].ConnectionString
-            //ConfigurationManager.AppSettings.Get("DefaultConnection");
-
 
             var list = _dbContext.RealEstates.Select(x => x).ToList();
             var i = 0;
